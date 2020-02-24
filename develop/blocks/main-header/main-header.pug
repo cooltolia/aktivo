@@ -1,0 +1,19 @@
+mixin main-header(theme = 'light')
+    +b.HEADER.main-header(class=theme)
+        +inner
+            +e.inner
+                +e.A.logo&attributes(attributes)
+                    img(src='/images/layout/logo.svg' width='88' alt='Aktivo')
+                +e.A.phone(href='tel: 8 800 500-64-64') 8 800 500-64-64
+                +e.navigation
+                    +main-nav
+                    +e.authorization.--mobile
+                        +authorization()
+                +e.authorization.--desktop
+                    +authorization()
+                +e.hamburger
+                    +hamburger
+                //- +e.mobile-nav
+                //-     +mobile-nav
+                //-     +mobile-nav
+                

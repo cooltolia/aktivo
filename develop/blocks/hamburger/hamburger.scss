@@ -1,0 +1,44 @@
+.hamburger {
+    position: relative;
+    width: 18px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.hamburger__line {
+    width: 100%;
+    height: 1px;
+    background-color: $text-color;
+    display: block;
+    margin: 0 auto 4px;
+
+    transition: all 300ms ease;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.hamburger--dark.active .hamburger__line {
+    background-color: #fff;
+}
+
+.hamburger.active {
+    .hamburger__line:nth-child(2) {
+        opacity: 0;
+    }
+}
+
+.hamburger.active {
+    .hamburger__line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+}
+
+.hamburger.active {
+    .hamburger__line:nth-child(3) {
+        transform: translateY(-3px) rotate(-45deg);
+    }
+}

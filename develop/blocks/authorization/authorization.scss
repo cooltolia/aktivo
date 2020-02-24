@@ -1,0 +1,133 @@
+.authorization {
+    &__login {
+        position: relative;
+        font-size: 13px;
+        line-height: 1.5;
+        color: $text-color;
+        text-decoration: none;
+
+        transition: color 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $theme-color;
+            text-decoration: none;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            right: -15px;
+            top: 50%;
+
+            transform: translateY(-25%) rotate(-45deg);
+
+            border-width: 0 1px 1px 0;
+            border-style: solid;
+            border-color: $theme-color;
+        }
+    }
+}
+
+.authorization__logged {
+    position: relative;
+    width: 180px;
+    top: 10px;
+}
+
+.authorization__toggle {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    padding-right: 20px;
+    display: inline-block;
+    color: $lighttext;
+    background: #4ec673;
+    text-align: left;
+    border-radius: 3px;
+    border: none;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 8px solid white;
+        transition: transform 300ms ease;
+    }
+
+    &.active::after {
+        transform: translateY(-50%) rotate(90deg);
+    }
+}
+
+.authorization__list {
+    display: none;
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 5px;
+
+    background-color: #4ec673;
+    // border-radius: 3px;
+    overflow: hidden;
+}
+
+.authorization__link {
+    position: relative;
+    display: block;
+    padding: 8px 12px 8px 45px;
+    font-size: 14px;
+    color: #fff;
+
+    text-decoration: none;
+
+    transition: background-color 300ms ease;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: #fff;
+        background-color: #6fde91;
+        text-decoration: none;
+    }
+}
+
+.authorization__icon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 10px;
+    top: 7px;
+
+    svg {
+        position: absolute;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        fill: #fff;
+    }
+
+    img {
+        @include img;
+    }
+}

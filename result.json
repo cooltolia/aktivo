@@ -1,0 +1,82 @@
+{
+	"mainNav": [
+		{
+			"url": "/realty",
+			"text": "Объекты"
+		},
+		{
+			"url": "/howitworks",
+			"text": "Коллективные инвестиции",
+			"subnav": [
+				{
+					"url": "/howitworks",
+					"text": "Как это работает"
+				},
+				{
+					"url": "/howitworks/security",
+					"text": "Безопасность"
+				},
+				{
+					"url": "/howitworks/faq",
+					"text": "Ответы на вопросы"
+				},
+				{
+					"url": "/howitworks/faq",
+					"text": "Стать партнером"
+				},
+				{
+					"url": "/howitworks/forowners",
+					"text": "Продать объект"
+				}
+			]
+		},
+		{
+			"url": "/about/story",
+			"text": "О компании",
+			"subnav": [
+				{
+					"url": "/about/story",
+					"text": "О нас"
+				},
+				{
+					"url": "about/vacancies",
+					"text": "Карьера"
+				},
+				{
+					"url": "/about/contacts",
+					"text": "Контакты"
+				}
+			]
+		},
+		{
+			"url": "/blog",
+			"text": "Блог",
+			"subnav": [
+				{
+					"url": "/blog/trends",
+					"text": "Тренды рынка"
+				},
+				{
+					"url": "/blog/summary",
+					"text": "Ликбез"
+				},
+				{
+					"url": "/blog/news",
+					"text": "Новости компании"
+				},
+				{
+					"url": "/blog/press",
+					"text": "СМИ о нас"
+				}
+			]
+		},
+		{
+			"url": "/contacts",
+			"text": "Контакты"
+		},
+		{
+			"url": "/club",
+			"text": "Клуб Liberty"
+		}
+	]
+}

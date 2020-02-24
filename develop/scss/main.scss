@@ -1,0 +1,16 @@
+@import 'includes/fonts.scss';
+@import 'variables.scss';
+@import 'includes/normalize.scss';
+@import 'sprite.scss';
+@import '../blocks/**/*';
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: $font;
+
+    &.menu-opened,
+    &.modal-opened {
+        overflow: hidden;
+    }
+}

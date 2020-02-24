@@ -1,0 +1,274 @@
+// $laptop: '(min-width: 992px)';
+$tablet: '(min-width: 768px)';
+// $tablet-sm: '(max-width: 767px)';
+$desktop: '(min-width: 1280px)';
+
+$base-font-size: 16px;
+$font: 'Montserrat', Helvetica, Arial, sans-serif;
+
+$theme-color: #ffd729;
+$text-color: #000;
+$lighttext: #fff;
+// $accent-color-light: #fee7ea;
+
+@mixin btn-theme($themecolor: $themecolor) {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 25px;
+
+    font-size: 16px;
+    color: $text-color-white;
+    font-family: $font;
+    font-weight: 500;
+    text-align: center;
+
+    background-color: $themecolor;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    border: 1px solid $themecolor;
+    border-radius: 4px;
+
+    transition: all 300ms ease;
+
+    box-shadow: 0px 4px 15px rgba($themecolor, 0.2);
+
+    &:hover {
+        background-color: adjust-color(
+            $themecolor,
+            $red: -32%,
+            $green: -30%,
+            $blue: -30%
+        );
+        border-color: adjust-color(
+            $themecolor,
+            $red: -32%,
+            $green: -30%,
+            $blue: -30%
+        );
+        text-decoration: none;
+        color: $text-color-white;
+    }
+
+    &:active,
+    &:focus {
+        text-decoration: none;
+        color: $text-color-white;
+        background-color: adjust-color(
+            $themecolor,
+            $red: -58%,
+            $green: -78%,
+            $blue: -78%
+        );
+            border-color: adjust-color(
+                $themecolor,
+                $red: -58%,
+                $green: -78%,
+                $blue: -78%
+            );
+    }
+
+    @media #{$desktop} {
+        font-size: 18px;
+    }
+}
+
+@mixin btn-transparent($themecolor: $themecolor) {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 25px;
+
+    font-size: 16px;
+    color: $themecolor;
+    font-family: $font;
+    font-weight: 500;
+    text-align: center;
+
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    border: 1px solid $themecolor;
+    border-radius: 4px;
+
+    transition: all 300ms ease;
+
+    // box-shadow: 0px 4px 15px rgba($themecolor, 0.2);
+
+    &:hover {
+        background-color: rgba($themecolor, 0.1);
+        text-decoration: none;
+    }
+
+    &:active,
+    &:focus {
+        text-decoration: none;
+        color: $text-color-white;
+        background-color: $themecolor;
+    }
+
+    @media #{$desktop} {
+        font-size: 18px;
+    }
+}
+
+@mixin btn-light {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 14px;
+    color: $themecolor;
+    font-family: $font;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+
+    background-color: $themecolor-light;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    border: 1px solid $themecolor-light;
+    border-radius: 4px;
+
+    transition: all 300ms ease;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+        color: $light-text;
+        background-color: $themecolor;
+        border-color: $themecolor;
+    }
+}
+
+@mixin btn-reset {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+@mixin visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+@mixin heading {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #191919;
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+
+    @media (max-width: 480px) {
+        font-size: 10px;
+    }
+}
+
+@mixin svg-icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+@mixin img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+@mixin container {
+    width: 100%;
+    min-width: 320px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
+
+    @media #{$tablet} {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    @media #{$desktop} {
+        padding-left: 50px;
+        padding-right: 50px;
+        max-width: 1240px;
+    }
+}
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+
+    &:before {
+        display: block;
+        content: '';
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    > .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@mixin transition($prop, $time: 300ms, $type: ease) {
+    transition: $prop $time $type;
+}
+
+@mixin arrow($color: black) {
+    width: 7px;
+    height: 7px;
+    border: 2px solid $color;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+
+    top: 4px;
+    right: -10px;
+    border-radius: 2px;
+    transform: rotate(45deg);
+}
+
+@mixin btm-line($pb: 1px) {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease-in-out;
+    padding-bottom: $pb;
+    width: max-content;
+
+    &:hover {
+        background-position: 100% 100%;
+        background-size: 0% 1px;
+    }
+
+    @content;
+}
