@@ -1,4 +1,12 @@
 .authorization {
+    $this: &;
+
+    &.dark {
+        #{$this}__login {
+            color: #fff;
+        }
+    }
+
     &__login {
         position: relative;
         font-size: 13px;

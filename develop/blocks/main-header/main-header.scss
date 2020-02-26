@@ -1,10 +1,26 @@
 .main-header {
+    $this: &;
+
     padding: 16px 0 28px;
     height: 75px;
 
     color: $text-color;
 
     border-bottom: 1px solid rgba(#919191, 0.2);
+
+    &.dark {
+        color: #fff;
+        
+        background-color: #202020;
+
+        #{$this}__navigation {
+            background-color: #202020;
+        }
+
+        #{$this}__phone {
+            color: #fff;
+        }
+    }
 
     &__inner {
         display: flex;
@@ -49,7 +65,7 @@
         top: 75px;
         width: 100%;
         height: 100%;
-        padding-bottom: 200px;
+        padding-bottom: 120px;
         left: 0;
         z-index: 1;
 
@@ -70,14 +86,18 @@
         }
 
         &--mobile {
-            position: absolute;
-            right: 38px;
-            bottom: 120px;
+            position: relative;
+            width: 100%;
+            margin-top: 65px;
+
+            .authorization {
+                position: absolute;
+                right: 38px;
+            }
         }
     }
 
     &__hamburger {
         padding-bottom: 5px;
     }
-
 }

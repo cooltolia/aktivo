@@ -1,5 +1,5 @@
-mixin main-nav()
-    +b.NAV.main-nav
+mixin main-nav(theme)
+    +b.NAV.main-nav(class=theme)
         +e.UL.list
             each link in mainNav
                 +e.LI.item

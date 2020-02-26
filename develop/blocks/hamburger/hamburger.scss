@@ -5,6 +5,12 @@
     &:hover {
         cursor: pointer;
     }
+
+    &.dark {
+        .hamburger__line {
+            background-color: #fff;
+        }
+    }
 }
 
 .hamburger__line {
@@ -19,10 +25,6 @@
     &:last-child {
         margin-bottom: 0;
     }
-}
-
-.hamburger--dark.active .hamburger__line {
-    background-color: #fff;
 }
 
 .hamburger.active {
