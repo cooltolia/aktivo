@@ -7,3 +7,709 @@
 !function(a){var b=navigator.userAgent;a.HTMLPictureElement&&/ecko/.test(b)&&b.match(/rv\:(\d+)/)&&RegExp.$1<45&&addEventListener("resize",function(){var b,c=document.createElement("source"),d=function(a){var b,d,e=a.parentNode;"PICTURE"===e.nodeName.toUpperCase()?(b=c.cloneNode(),e.insertBefore(b,e.firstElementChild),setTimeout(function(){e.removeChild(b)})):(!a._pfLastSize||a.offsetWidth>a._pfLastSize)&&(a._pfLastSize=a.offsetWidth,d=a.sizes,a.sizes+=",100vw",setTimeout(function(){a.sizes=d}))},e=function(){var a,b=document.querySelectorAll("picture > img, img[srcset][sizes]");for(a=0;a<b.length;a++)d(b[a])},f=function(){clearTimeout(b),b=setTimeout(e,99)},g=a.matchMedia&&matchMedia("(orientation: landscape)"),h=function(){f(),g&&g.addListener&&g.addListener(f)};return c.srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",/^[c|i]|d$/.test(document.readyState||"")?h():document.addEventListener("DOMContentLoaded",h),f}())}(window),function(a,b,c){"use strict";function d(a){return" "===a||"	"===a||"\n"===a||"\f"===a||"\r"===a}function e(b,c){var d=new a.Image;return d.onerror=function(){A[b]=!1,ba()},d.onload=function(){A[b]=1===d.width,ba()},d.src=c,"pending"}function f(){M=!1,P=a.devicePixelRatio,N={},O={},s.DPR=P||1,Q.width=Math.max(a.innerWidth||0,z.clientWidth),Q.height=Math.max(a.innerHeight||0,z.clientHeight),Q.vw=Q.width/100,Q.vh=Q.height/100,r=[Q.height,Q.width,P].join("-"),Q.em=s.getEmValue(),Q.rem=Q.em}function g(a,b,c,d){var e,f,g,h;return"saveData"===B.algorithm?a>2.7?h=c+1:(f=b-c,e=Math.pow(a-.6,1.5),g=f*e,d&&(g+=.1*e),h=a+g):h=c>1?Math.sqrt(a*b):a,h>c}function h(a){var b,c=s.getSet(a),d=!1;"pending"!==c&&(d=r,c&&(b=s.setRes(c),s.applySetCandidate(b,a))),a[s.ns].evaled=d}function i(a,b){return a.res-b.res}function j(a,b,c){var d;return!c&&b&&(c=a[s.ns].sets,c=c&&c[c.length-1]),d=k(b,c),d&&(b=s.makeUrl(b),a[s.ns].curSrc=b,a[s.ns].curCan=d,d.res||aa(d,d.set.sizes)),d}function k(a,b){var c,d,e;if(a&&b)for(e=s.parseSet(b),a=s.makeUrl(a),c=0;c<e.length;c++)if(a===s.makeUrl(e[c].url)){d=e[c];break}return d}function l(a,b){var c,d,e,f,g=a.getElementsByTagName("source");for(c=0,d=g.length;d>c;c++)e=g[c],e[s.ns]=!0,f=e.getAttribute("srcset"),f&&b.push({srcset:f,media:e.getAttribute("media"),type:e.getAttribute("type"),sizes:e.getAttribute("sizes")})}function m(a,b){function c(b){var c,d=b.exec(a.substring(m));return d?(c=d[0],m+=c.length,c):void 0}function e(){var a,c,d,e,f,i,j,k,l,m=!1,o={};for(e=0;e<h.length;e++)f=h[e],i=f[f.length-1],j=f.substring(0,f.length-1),k=parseInt(j,10),l=parseFloat(j),X.test(j)&&"w"===i?((a||c)&&(m=!0),0===k?m=!0:a=k):Y.test(j)&&"x"===i?((a||c||d)&&(m=!0),0>l?m=!0:c=l):X.test(j)&&"h"===i?((d||c)&&(m=!0),0===k?m=!0:d=k):m=!0;m||(o.url=g,a&&(o.w=a),c&&(o.d=c),d&&(o.h=d),d||c||a||(o.d=1),1===o.d&&(b.has1x=!0),o.set=b,n.push(o))}function f(){for(c(T),i="",j="in descriptor";;){if(k=a.charAt(m),"in descriptor"===j)if(d(k))i&&(h.push(i),i="",j="after descriptor");else{if(","===k)return m+=1,i&&h.push(i),void e();if("("===k)i+=k,j="in parens";else{if(""===k)return i&&h.push(i),void e();i+=k}}else if("in parens"===j)if(")"===k)i+=k,j="in descriptor";else{if(""===k)return h.push(i),void e();i+=k}else if("after descriptor"===j)if(d(k));else{if(""===k)return void e();j="in descriptor",m-=1}m+=1}}for(var g,h,i,j,k,l=a.length,m=0,n=[];;){if(c(U),m>=l)return n;g=c(V),h=[],","===g.slice(-1)?(g=g.replace(W,""),e()):f()}}function n(a){function b(a){function b(){f&&(g.push(f),f="")}function c(){g[0]&&(h.push(g),g=[])}for(var e,f="",g=[],h=[],i=0,j=0,k=!1;;){if(e=a.charAt(j),""===e)return b(),c(),h;if(k){if("*"===e&&"/"===a[j+1]){k=!1,j+=2,b();continue}j+=1}else{if(d(e)){if(a.charAt(j-1)&&d(a.charAt(j-1))||!f){j+=1;continue}if(0===i){b(),j+=1;continue}e=" "}else if("("===e)i+=1;else if(")"===e)i-=1;else{if(","===e){b(),c(),j+=1;continue}if("/"===e&&"*"===a.charAt(j+1)){k=!0,j+=2;continue}}f+=e,j+=1}}}function c(a){return k.test(a)&&parseFloat(a)>=0?!0:l.test(a)?!0:"0"===a||"-0"===a||"+0"===a?!0:!1}var e,f,g,h,i,j,k=/^(?:[+-]?[0-9]+|[0-9]*\.[0-9]+)(?:[eE][+-]?[0-9]+)?(?:ch|cm|em|ex|in|mm|pc|pt|px|rem|vh|vmin|vmax|vw)$/i,l=/^calc\((?:[0-9a-z \.\+\-\*\/\(\)]+)\)$/i;for(f=b(a),g=f.length,e=0;g>e;e++)if(h=f[e],i=h[h.length-1],c(i)){if(j=i,h.pop(),0===h.length)return j;if(h=h.join(" "),s.matchesMedia(h))return j}return"100vw"}b.createElement("picture");var o,p,q,r,s={},t=!1,u=function(){},v=b.createElement("img"),w=v.getAttribute,x=v.setAttribute,y=v.removeAttribute,z=b.documentElement,A={},B={algorithm:""},C="data-pfsrc",D=C+"set",E=navigator.userAgent,F=/rident/.test(E)||/ecko/.test(E)&&E.match(/rv\:(\d+)/)&&RegExp.$1>35,G="currentSrc",H=/\s+\+?\d+(e\d+)?w/,I=/(\([^)]+\))?\s*(.+)/,J=a.picturefillCFG,K="position:absolute;left:0;visibility:hidden;display:block;padding:0;border:none;font-size:1em;width:1em;overflow:hidden;clip:rect(0px, 0px, 0px, 0px)",L="font-size:100%!important;",M=!0,N={},O={},P=a.devicePixelRatio,Q={px:1,"in":96},R=b.createElement("a"),S=!1,T=/^[ \t\n\r\u000c]+/,U=/^[, \t\n\r\u000c]+/,V=/^[^ \t\n\r\u000c]+/,W=/[,]+$/,X=/^\d+$/,Y=/^-?(?:[0-9]+|[0-9]*\.[0-9]+)(?:[eE][+-]?[0-9]+)?$/,Z=function(a,b,c,d){a.addEventListener?a.addEventListener(b,c,d||!1):a.attachEvent&&a.attachEvent("on"+b,c)},$=function(a){var b={};return function(c){return c in b||(b[c]=a(c)),b[c]}},_=function(){var a=/^([\d\.]+)(em|vw|px)$/,b=function(){for(var a=arguments,b=0,c=a[0];++b in a;)c=c.replace(a[b],a[++b]);return c},c=$(function(a){return"return "+b((a||"").toLowerCase(),/\band\b/g,"&&",/,/g,"||",/min-([a-z-\s]+):/g,"e.$1>=",/max-([a-z-\s]+):/g,"e.$1<=",/calc([^)]+)/g,"($1)",/(\d+[\.]*[\d]*)([a-z]+)/g,"($1 * e.$2)",/^(?!(e.[a-z]|[0-9\.&=|><\+\-\*\(\)\/])).*/gi,"")+";"});return function(b,d){var e;if(!(b in N))if(N[b]=!1,d&&(e=b.match(a)))N[b]=e[1]*Q[e[2]];else try{N[b]=new Function("e",c(b))(Q)}catch(f){}return N[b]}}(),aa=function(a,b){return a.w?(a.cWidth=s.calcListLength(b||"100vw"),a.res=a.w/a.cWidth):a.res=a.d,a},ba=function(a){if(t){var c,d,e,f=a||{};if(f.elements&&1===f.elements.nodeType&&("IMG"===f.elements.nodeName.toUpperCase()?f.elements=[f.elements]:(f.context=f.elements,f.elements=null)),c=f.elements||s.qsa(f.context||b,f.reevaluate||f.reselect?s.sel:s.selShort),e=c.length){for(s.setupRun(f),S=!0,d=0;e>d;d++)s.fillImg(c[d],f);s.teardownRun(f)}}};o=a.console&&console.warn?function(a){console.warn(a)}:u,G in v||(G="src"),A["image/jpeg"]=!0,A["image/gif"]=!0,A["image/png"]=!0,A["image/svg+xml"]=b.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1"),s.ns=("pf"+(new Date).getTime()).substr(0,9),s.supSrcset="srcset"in v,s.supSizes="sizes"in v,s.supPicture=!!a.HTMLPictureElement,s.supSrcset&&s.supPicture&&!s.supSizes&&!function(a){v.srcset="data:,a",a.src="data:,a",s.supSrcset=v.complete===a.complete,s.supPicture=s.supSrcset&&s.supPicture}(b.createElement("img")),s.supSrcset&&!s.supSizes?!function(){var a="data:image/gif;base64,R0lGODlhAgABAPAAAP///wAAACH5BAAAAAAALAAAAAACAAEAAAICBAoAOw==",c="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",d=b.createElement("img"),e=function(){var a=d.width;2===a&&(s.supSizes=!0),q=s.supSrcset&&!s.supSizes,t=!0,setTimeout(ba)};d.onload=e,d.onerror=e,d.setAttribute("sizes","9px"),d.srcset=c+" 1w,"+a+" 9w",d.src=c}():t=!0,s.selShort="picture>img,img[srcset]",s.sel=s.selShort,s.cfg=B,s.DPR=P||1,s.u=Q,s.types=A,s.setSize=u,s.makeUrl=$(function(a){return R.href=a,R.href}),s.qsa=function(a,b){return"querySelector"in a?a.querySelectorAll(b):[]},s.matchesMedia=function(){return a.matchMedia&&(matchMedia("(min-width: 0.1em)")||{}).matches?s.matchesMedia=function(a){return!a||matchMedia(a).matches}:s.matchesMedia=s.mMQ,s.matchesMedia.apply(this,arguments)},s.mMQ=function(a){return a?_(a):!0},s.calcLength=function(a){var b=_(a,!0)||!1;return 0>b&&(b=!1),b},s.supportsType=function(a){return a?A[a]:!0},s.parseSize=$(function(a){var b=(a||"").match(I);return{media:b&&b[1],length:b&&b[2]}}),s.parseSet=function(a){return a.cands||(a.cands=m(a.srcset,a)),a.cands},s.getEmValue=function(){var a;if(!p&&(a=b.body)){var c=b.createElement("div"),d=z.style.cssText,e=a.style.cssText;c.style.cssText=K,z.style.cssText=L,a.style.cssText=L,a.appendChild(c),p=c.offsetWidth,a.removeChild(c),p=parseFloat(p,10),z.style.cssText=d,a.style.cssText=e}return p||16},s.calcListLength=function(a){if(!(a in O)||B.uT){var b=s.calcLength(n(a));O[a]=b?b:Q.width}return O[a]},s.setRes=function(a){var b;if(a){b=s.parseSet(a);for(var c=0,d=b.length;d>c;c++)aa(b[c],a.sizes)}return b},s.setRes.res=aa,s.applySetCandidate=function(a,b){if(a.length){var c,d,e,f,h,k,l,m,n,o=b[s.ns],p=s.DPR;if(k=o.curSrc||b[G],l=o.curCan||j(b,k,a[0].set),l&&l.set===a[0].set&&(n=F&&!b.complete&&l.res-.1>p,n||(l.cached=!0,l.res>=p&&(h=l))),!h)for(a.sort(i),f=a.length,h=a[f-1],d=0;f>d;d++)if(c=a[d],c.res>=p){e=d-1,h=a[e]&&(n||k!==s.makeUrl(c.url))&&g(a[e].res,c.res,p,a[e].cached)?a[e]:c;break}h&&(m=s.makeUrl(h.url),o.curSrc=m,o.curCan=h,m!==k&&s.setSrc(b,h),s.setSize(b))}},s.setSrc=function(a,b){var c;a.src=b.url,"image/svg+xml"===b.set.type&&(c=a.style.width,a.style.width=a.offsetWidth+1+"px",a.offsetWidth+1&&(a.style.width=c))},s.getSet=function(a){var b,c,d,e=!1,f=a[s.ns].sets;for(b=0;b<f.length&&!e;b++)if(c=f[b],c.srcset&&s.matchesMedia(c.media)&&(d=s.supportsType(c.type))){"pending"===d&&(c=d),e=c;break}return e},s.parseSets=function(a,b,d){var e,f,g,h,i=b&&"PICTURE"===b.nodeName.toUpperCase(),j=a[s.ns];(j.src===c||d.src)&&(j.src=w.call(a,"src"),j.src?x.call(a,C,j.src):y.call(a,C)),(j.srcset===c||d.srcset||!s.supSrcset||a.srcset)&&(e=w.call(a,"srcset"),j.srcset=e,h=!0),j.sets=[],i&&(j.pic=!0,l(b,j.sets)),j.srcset?(f={srcset:j.srcset,sizes:w.call(a,"sizes")},j.sets.push(f),g=(q||j.src)&&H.test(j.srcset||""),g||!j.src||k(j.src,f)||f.has1x||(f.srcset+=", "+j.src,f.cands.push({url:j.src,d:1,set:f}))):j.src&&j.sets.push({srcset:j.src,sizes:null}),j.curCan=null,j.curSrc=c,j.supported=!(i||f&&!s.supSrcset||g&&!s.supSizes),h&&s.supSrcset&&!j.supported&&(e?(x.call(a,D,e),a.srcset=""):y.call(a,D)),j.supported&&!j.srcset&&(!j.src&&a.src||a.src!==s.makeUrl(j.src))&&(null===j.src?a.removeAttribute("src"):a.src=j.src),j.parsed=!0},s.fillImg=function(a,b){var c,d=b.reselect||b.reevaluate;a[s.ns]||(a[s.ns]={}),c=a[s.ns],(d||c.evaled!==r)&&((!c.parsed||b.reevaluate)&&s.parseSets(a,a.parentNode,b),c.supported?c.evaled=r:h(a))},s.setupRun=function(){(!S||M||P!==a.devicePixelRatio)&&f()},s.supPicture?(ba=u,s.fillImg=u):!function(){var c,d=a.attachEvent?/d$|^c/:/d$|^c|^i/,e=function(){var a=b.readyState||"";f=setTimeout(e,"loading"===a?200:999),b.body&&(s.fillImgs(),c=c||d.test(a),c&&clearTimeout(f))},f=setTimeout(e,b.body?9:99),g=function(a,b){var c,d,e=function(){var f=new Date-d;b>f?c=setTimeout(e,b-f):(c=null,a())};return function(){d=new Date,c||(c=setTimeout(e,b))}},h=z.clientHeight,i=function(){M=Math.max(a.innerWidth||0,z.clientWidth)!==Q.width||z.clientHeight!==h,h=z.clientHeight,M&&s.fillImgs()};Z(a,"resize",g(i,99)),Z(b,"readystatechange",e)}(),s.picturefill=ba,s.fillImgs=ba,s.teardownRun=u,ba._=s,a.picturefillCFG={pf:s,push:function(a){var b=a.shift();"function"==typeof s[b]?s[b].apply(s,a):(B[b]=a[0],S&&s.fillImgs({reselect:!0}))}};for(;J&&J.length;)a.picturefillCFG.push(J.shift());a.picturefill=ba,"object"==typeof module&&"object"==typeof module.exports?module.exports=ba:"function"==typeof define&&define.amd&&define("picturefill",function(){return ba}),s.supPicture||(A["image/webp"]=e("image/webp","data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAABBxAR/Q9ERP8DAABWUDggGAAAADABAJ0BKgEAAQADADQlpAADcAD++/1QAA=="))}(window,document);
 
 !function(){"use strict";if("undefined"!=typeof window){var t=window.navigator.userAgent.match(/Edge\/(\d{2})\./),n=!!t&&16<=parseInt(t[1],10);if(!("objectFit"in document.documentElement.style!=!1)||n){var o=function(t,e,i){var n,o,l,a,d;if((i=i.split(" ")).length<2&&(i[1]=i[0]),"x"===t)n=i[0],o=i[1],l="left",a="right",d=e.clientWidth;else{if("y"!==t)return;n=i[1],o=i[0],l="top",a="bottom",d=e.clientHeight}if(n!==l&&o!==l){if(n!==a&&o!==a)return"center"===n||"50%"===n?(e.style[l]="50%",void(e.style["margin-"+l]=d/-2+"px")):void(0<=n.indexOf("%")?(n=parseInt(n))<50?(e.style[l]=n+"%",e.style["margin-"+l]=d*(n/-100)+"px"):(n=100-n,e.style[a]=n+"%",e.style["margin-"+a]=d*(n/-100)+"px"):e.style[l]=n);e.style[a]="0"}else e.style[l]="0"},l=function(t){var e=t.dataset?t.dataset.objectFit:t.getAttribute("data-object-fit"),i=t.dataset?t.dataset.objectPosition:t.getAttribute("data-object-position");e=e||"cover",i=i||"50% 50%";var n=t.parentNode;return function(t){var e=window.getComputedStyle(t,null),i=e.getPropertyValue("position"),n=e.getPropertyValue("overflow"),o=e.getPropertyValue("display");i&&"static"!==i||(t.style.position="relative"),"hidden"!==n&&(t.style.overflow="hidden"),o&&"inline"!==o||(t.style.display="block"),0===t.clientHeight&&(t.style.height="100%"),-1===t.className.indexOf("object-fit-polyfill")&&(t.className=t.className+" object-fit-polyfill")}(n),function(t){var e=window.getComputedStyle(t,null),i={"max-width":"none","max-height":"none","min-width":"0px","min-height":"0px",top:"auto",right:"auto",bottom:"auto",left:"auto","margin-top":"0px","margin-right":"0px","margin-bottom":"0px","margin-left":"0px"};for(var n in i)e.getPropertyValue(n)!==i[n]&&(t.style[n]=i[n])}(t),t.style.position="absolute",t.style.width="auto",t.style.height="auto","scale-down"===e&&(e=t.clientWidth<n.clientWidth&&t.clientHeight<n.clientHeight?"none":"contain"),"none"===e?(o("x",t,i),void o("y",t,i)):"fill"===e?(t.style.width="100%",t.style.height="100%",o("x",t,i),void o("y",t,i)):(t.style.height="100%",void("cover"===e&&t.clientWidth>n.clientWidth||"contain"===e&&t.clientWidth<n.clientWidth?(t.style.top="0",t.style.marginTop="0",o("x",t,i)):(t.style.width="100%",t.style.height="auto",t.style.left="0",t.style.marginLeft="0",o("y",t,i))))},e=function(t){if(void 0===t||t instanceof Event)t=document.querySelectorAll("[data-object-fit]");else if(t&&t.nodeName)t=[t];else{if("object"!=typeof t||!t.length||!t[0].nodeName)return!1;t=t}for(var e=0;e<t.length;e++)if(t[e].nodeName){var i=t[e].nodeName.toLowerCase();if("img"===i){if(n)continue;t[e].complete?l(t[e]):t[e].addEventListener("load",function(){l(this)})}else"video"===i?0<t[e].readyState?l(t[e]):t[e].addEventListener("loadedmetadata",function(){l(this)}):l(t[e])}return!0};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e):e(),window.addEventListener("resize",e),window.objectFitPolyfill=e}else window.objectFitPolyfill=function(){return!1}}}();
+
+/*! ie11CustomProperties.js v3.0.6 | MIT License | https://git.io/fjXMN */
+!function () {
+	'use strict';
+
+	// check for support
+	var testEl = document.createElement('i');
+	testEl.style.setProperty('--x', 'y');
+	if (testEl.style.getPropertyValue('--x') === 'y' || !testEl.msMatchesSelector) return;
+
+	if (!Element.prototype.matches) Element.prototype.matches = Element.prototype.msMatchesSelector;
+
+    var listeners = [],
+        root = document,
+        Observer;
+
+	function qsa(el, selector){
+		try {
+			return el.querySelectorAll(selector);
+		} catch(e) {
+			// console.warn('the Selector '+selector+' can not be parsed');
+			return [];
+		}
+	}
+    function onElement (selector, callback) {
+        var listener = {
+            selector: selector,
+            callback: callback,
+            elements: new WeakMap(),
+        };
+		var els = qsa(root, listener.selector), i=0, el;
+		while (el = els[i++]) {
+            listener.elements.set(el, true);
+            listener.callback.call(el, el);
+        }
+        listeners.push(listener);
+        if (!Observer) {
+            Observer = new MutationObserver(checkMutations);
+            Observer.observe(root, {
+                childList: true,
+                subtree: true
+            });
+        }
+        checkListener(listener);
+    };
+    function checkListener(listener, target) {
+        var i = 0, el, els = [];
+		try {
+			target && target.matches(listener.selector) && els.push(target);
+		} catch(e) {}
+        if (loaded) { // ok? check inside node on innerHTML - only when loaded
+            Array.prototype.push.apply(els, qsa(target || root, listener.selector));
+        }
+        while (el = els[i++]) {
+            if (listener.elements.has(el)) continue;
+            listener.elements.set(el,true);
+            listener.callback.call(el, el);
+        }
+    }
+    function checkListeners(inside) {
+        var i = 0, listener;
+        while (listener = listeners[i++]) checkListener(listener, inside);
+    }
+    function checkMutations(mutations) {
+		var j = 0, i, mutation, nodes, target;
+        while (mutation = mutations[j++]) {
+            nodes = mutation.addedNodes, i = 0;
+            while (target = nodes[i++]) target.nodeType === 1 && checkListeners(target);
+        }
+    }
+
+    var loaded = false;
+    document.addEventListener('DOMContentLoaded', function () {
+        loaded = true;
+    });
+
+	// svg polyfills
+	function copyProperty(prop, from, to){
+		var desc = Object.getOwnPropertyDescriptor(from, prop);
+		Object.defineProperty(to, prop, desc);
+	}
+	if (!('classList' in Element.prototype)) {
+		copyProperty('classList', HTMLElement.prototype, Element.prototype);
+	}
+	if (!('innerHTML' in Element.prototype)) {
+		copyProperty('innerHTML', HTMLElement.prototype, Element.prototype);
+	}
+	if (!('sheet' in SVGStyleElement.prototype)) {
+		Object.defineProperty(SVGStyleElement.prototype, 'sheet', {
+			get:function(){
+				var all = document.styleSheets, i=0, sheet;
+				while (sheet=all[i++]) {
+					if (sheet.ownerNode === this) return sheet;
+				}
+
+			}
+		});
+	}
+
+
+	// main logic
+
+	// cached regexps, better performance
+	const regFindSetters = /([\s{;])(--([A-Za-z0-9-_]*)\s*:([^;!}{]+)(!important)?)(?=\s*([;}]|$))/g;
+	const regFindGetters = /([{;]\s*)([A-Za-z0-9-_]+\s*:[^;}{]*var\([^!;}{]+)(!important)?(?=\s*([;}$]|$))/g;
+	const regRuleIEGetters = /-ieVar-([^:]+):/g
+	const regRuleIESetters = /-ie-([^};]+)/g
+	//const regHasVar = /var\(/;
+	const regPseudos = /:(hover|active|focus|target|:before|:after|:first-letter|:first-line)/;
+
+	onElement('link[rel="stylesheet"]', function (el) {
+		fetchCss(el.href, function (css) {
+			var newCss = rewriteCss(css);
+			if (css === newCss) return;
+			newCss = relToAbs(el.href, newCss);
+			el.disabled = true;
+			var style = document.createElement('style');
+			if (el.media) style.setAttribute('media', el.media);
+			el.parentNode.insertBefore(style, el);
+			activateStyleElement(style, newCss);
+		});
+	});
+
+	function foundStyle(el){
+		if (el.ieCP_polyfilled) return;
+		if (el.ieCP_elementSheet) return;
+		var css = el.innerHTML;
+		var newCss = rewriteCss(css);
+		if (css === newCss) return;
+		activateStyleElement(el, newCss);
+	}
+	onElement('style', foundStyle);
+	// immediate, to pass w3c-tests, bud its a bad idea
+	// addEventListener('DOMNodeInserted',function(e){ e.target.tagName === 'STYLE' && foundStyle(e.target); });
+
+
+
+	onElement('[ie-style]', function (el) {
+		var newCss = rewriteCss('{'+el.getAttribute('ie-style')).substr(1);
+		el.style.cssText += ';'+ newCss;
+		var found = parseRewrittenStyle(el.style);
+		if (found.getters) addGetterElement(el, found.getters, '%styleAttr');
+		if (found.setters) addSetterElement(el, found.setters);
+	});
+
+	function relToAbs(base, css) {
+		return css.replace(/url\(([^)]+)\)/g, function($0, $1){
+			$1 = $1.trim().replace(/(^['"]|['"]$)/g,'');
+			if ($1.match(/^([a-z]+:|\/)/)) return $0;
+			base = base.replace(/\?.*/,'');
+			return 'url('+ base + './../' + $1 +')';
+		});
+	}
+
+	// ie has a bug, where unknown properties at pseudo-selectors are computed at the element
+	// #el::after { -content:'x'; } => getComputedStyle(el)['-content'] == 'x'
+	// should we add something like -ieVar-pseudo_after-content:'x'?
+	function rewriteCss(css) {
+
+		/* uncomment if spec finished and needed by someone
+		css = css.replace(/@property ([^{]+){([^}]+)}/, function($0, prop, body){
+			prop = prop.trim();
+			const declaration = {name:prop};
+			body.split(';').forEach(function(pair){
+				const x = pair.split(':');
+				if (x[1]) declaration[ x[0].trim() ] = x[1];
+			});
+			declaration['inherits'] = declaration['inherits'].trim()==='true' ? true : false;
+			declaration['initialValue'] = declaration['initial-value'];
+			CSS.registerProperty(declaration)
+			return '/*\n @property ... removed \n*'+'/';
+		});
+		*/
+		return css.replace(regFindSetters, function($0, $1, $2, $3, $4, important){
+			return $1+'-ie-'+(important?'❗':'')+$3+':'+encodeValue($4);
+		}).replace(regFindGetters, function($0, $1, $2, important){
+			return $1+'-ieVar-'+(important?'❗':'')+$2+'; '+$2; // keep the original, so chaining works "--x:var(--y)"
+		});
+	}
+	function encodeValue(value){
+		return value;
+		return value.replace(/ /g,'␣');
+	}
+	const keywords = {initial:1,inherit:1,revert:1,unset:1};
+	function decodeValue(value){
+		return value;
+		if (value===undefined) return;
+		value =  value.replace(/␣/g,' ');
+		const trimmed = value.trim();
+		if (keywords[trimmed]) return trimmed;
+		return value;
+	}
+
+	// beta
+	const styles_of_getter_properties = {};
+
+	function parseRewrittenStyle(style) { // less memory then parameter cssText?
+
+		// beta
+		style['z-index']; // ie11 can access unknown properties in stylesheets only if accessed a dashed known property
+
+		const cssText = style.cssText;
+		var matchesGetters = cssText.match(regRuleIEGetters), j, match;
+		if (matchesGetters) {
+			var getters = []; // eg. [border,color]
+			for (j = 0; match = matchesGetters[j++];) {
+				let propName = match.slice(7, -1);
+				if (propName[0] === '❗') propName = propName.substr(1);
+				getters.push(propName);
+
+				// beta
+				if (!styles_of_getter_properties[propName]) styles_of_getter_properties[propName] = [];
+				styles_of_getter_properties[propName].push(style);
+			}
+		}
+		var matchesSetters = cssText.match(regRuleIESetters);
+		if (matchesSetters) {
+			var setters = {}; // eg. [--color:#fff, --padding:10px];
+			for (j = 0; match = matchesSetters[j++];) {
+				let x = match.substr(4).split(':');
+				let propName = x[0];
+				let propValue = x[1];
+				if (propName[0] === '❗') propName = propName.substr(1);
+				setters[propName] = propValue;
+			}
+		}
+		return {getters:getters, setters:setters};
+	}
+	function activateStyleElement(style, css) {
+		style.innerHTML = css;
+		style.ieCP_polyfilled = true;
+		var rules = style.sheet.rules, i=0, rule; // cssRules = CSSRuleList, rules = MSCSSRuleList
+		while (rule = rules[i++]) {
+			const found = parseRewrittenStyle(rule.style);
+			if (found.getters) addGettersSelector(rule.selectorText, found.getters);
+			if (found.setters) addSettersSelector(rule.selectorText, found.setters);
+
+			// mediaQueries: redraw the hole document
+			// better add events for each element?
+			const media = rule.parentRule && rule.parentRule.media && rule.parentRule.media.mediaText;
+			if (media && (found.getters || found.setters)) {
+				matchMedia(media).addListener(function(){
+					drawTree(document.documentElement)
+				})
+			}
+		}
+
+		// beta
+		redrawStyleSheets()
+	}
+
+	function addGettersSelector(selector, properties) {
+		selectorAddPseudoListeners(selector);
+		onElement(unPseudo(selector), function (el) {
+			addGetterElement(el, properties, selector);
+			drawElement(el);
+		});
+	}
+	function addGetterElement(el, properties, selector) {
+		var i=0, prop, j;
+		const selectors = selector.split(','); // split grouped selectors
+		el.setAttribute('iecp-needed', true);
+		if (!el.ieCPSelectors) el.ieCPSelectors = {};
+		while (prop = properties[i++]) {
+			for (j = 0; selector = selectors[j++];) {
+				const parts = selector.trim().split('::');
+				if (!el.ieCPSelectors[prop]) el.ieCPSelectors[prop] = [];
+				el.ieCPSelectors[prop].push({
+					selector: parts[0],
+					pseudo: parts[1] ? '::' + parts[1] : ''
+				});
+			}
+		}
+	}
+	function addSettersSelector(selector, propVals) {
+		selectorAddPseudoListeners(selector);
+		onElement(unPseudo(selector), function (el) {
+			addSetterElement(el, propVals);
+		});
+	}
+	function addSetterElement(el, propVals) {
+		if (!el.ieCP_setters) el.ieCP_setters = {};
+		for (var prop in propVals) { // eg. {foo:#fff, bar:baz}
+			el.ieCP_setters['--' + prop] = 1;
+		}
+		drawTree(el);
+	}
+
+	//beta
+	function redrawStyleSheets() {
+		for (var prop in styles_of_getter_properties) {
+			let styles = styles_of_getter_properties[prop];
+			for (var i=0, style; style=styles[i++];) {
+				if (style.owningElement) continue;
+				var value = style['-ieVar-'+prop];
+				if (!value) continue;
+				value = styleComputeValueWidthVars(getComputedStyle(document.documentElement), value);
+				if (value === '') continue;
+				try {
+					style[prop] = value;
+				} catch(e) {}
+			}
+		}
+	}
+
+
+	const pseudos = {
+		hover:{
+			on:'mouseenter',
+			off:'mouseleave'
+		},
+		focus:{
+			on:'focusin',
+			off:'focusout'
+		},
+		active:{
+			on:'CSSActivate',
+			off:'CSSDeactivate'
+		},
+	};
+	function selectorAddPseudoListeners(selector){
+		// ie11 has the strange behavoir, that groups of selectors are individual rules, but starting with the full selector:
+		// td, th, button { color:red } results in this rules:
+		// "td, th, button" | "th, th" | "th"
+		selector = selector.split(',')[0];
+		for (var pseudo in pseudos) {
+			var parts = selector.split(':'+pseudo);
+			if (parts.length > 1) {
+				var ending = parts[1].match(/^[^\s]*/); // ending elementpart of selector (used for not(:active))
+				let sel = unPseudo(parts[0]+ending);
+				const listeners = pseudos[pseudo];
+				onElement(sel, function (el) {
+					el.addEventListener(listeners.on, drawTreeEvent);
+					el.addEventListener(listeners.off, drawTreeEvent);
+				});
+			}
+		}
+	}
+	let CSSActive = null;
+	document.addEventListener('mousedown',function(e){
+		setTimeout(function(){
+			if (e.target === document.activeElement) {
+				var evt = document.createEvent('Event');
+				evt.initEvent('CSSActivate', true, true);
+				CSSActive = e.target;
+				CSSActive.dispatchEvent(evt);
+			}
+		})
+	});
+	document.addEventListener('mouseup',function(){
+		if (CSSActive) {
+			var evt = document.createEvent('Event');
+			evt.initEvent('CSSDeactivate', true, true);
+			CSSActive.dispatchEvent(evt);
+			CSSActive = null;
+		}
+	});
+
+	function unPseudo(selector){
+		return selector.replace(regPseudos,'').replace(':not()','');
+	}
+
+	var uniqueCounter = 0;
+
+	/* old *
+	function _drawElement(el) {
+		if (!el.ieCP_unique) { // use el.uniqueNumber? but needs class for the css-selector => test performance
+			el.ieCP_unique = ++uniqueCounter;
+			el.classList.add('iecp-u' + el.ieCP_unique);
+		}
+		var style = getComputedStyle(el);
+		if (el.ieCP_sheet) while (el.ieCP_sheet.rules[0]) el.ieCP_sheet.deleteRule(0);
+		for (var prop in el.ieCPSelectors) {
+			var important = style['-ieVar-❗' + prop];
+			let valueWithVar = important || style['-ieVar-' + prop];
+			if (!valueWithVar) continue; // todo, what if '0'
+
+			var details = {};
+			var value = styleComputeValueWidthVars(style, valueWithVar, details);
+
+			if (important) value += ' !important';
+			for (var i=0, item; item=el.ieCPSelectors[prop][i++];) { // todo: split and use requestAnimationFrame?
+				if (item.selector === '%styleAttr') {
+					el.style[prop] = value;
+				} else {
+
+					// beta
+					if (!important && details.allByRoot !== false) continue; // dont have to draw root-properties
+
+					//let selector = item.selector.replace(/>? \.[^ ]+/, ' ', item.selector); // todo: try to equalize specificity
+					let selector = item.selector;
+					elementStyleSheet(el).insertRule(selector + '.iecp-u' + el.ieCP_unique + item.pseudo + ' {' + prop + ':' + value + '}', 0);
+				}
+			}
+		}
+	}
+	function elementStyleSheet(el){
+		if (!el.ieCP_sheet) {
+			const styleEl = document.createElement('style');
+			styleEl.ieCP_elementSheet = 1;
+			//el.appendChild(styleEl); // yes! self-closing tags can have style as children, but - if i set innerHTML, the stylesheet is lost
+			document.head.appendChild(styleEl);
+			el.ieCP_sheet = styleEl.sheet;
+		}
+		return el.ieCP_sheet;
+	}
+
+	/* */
+	function _drawElement(el) {
+		if (!el.ieCP_unique) { // use el.uniqueNumber? but needs class for the css-selector => test performance
+			el.ieCP_unique = ++uniqueCounter;
+			el.classList.add('iecp-u' + el.ieCP_unique);
+		}
+		var style = getComputedStyle(el);
+		let css = '';
+		for (var prop in el.ieCPSelectors) {
+			var important = style['-ieVar-❗' + prop];
+			let valueWithVar = important || style['-ieVar-' + prop];
+			if (!valueWithVar) continue; // todo, what if '0'
+			var details = {};
+			var value = styleComputeValueWidthVars(style, valueWithVar, details);
+			//if (value==='initial') value = initials[prop];
+			if (important) value += ' !important';
+			for (var i=0, item; item=el.ieCPSelectors[prop][i++];) { // todo: split and use requestAnimationFrame?
+				if (item.selector === '%styleAttr') {
+					el.style[prop] = value;
+				} else {
+
+					// beta
+					if (!important && details.allByRoot !== false) continue; // dont have to draw root-properties
+
+					//let selector = item.selector.replace(/>? \.[^ ]+/, ' ', item.selector); // todo: try to equalize specificity
+					let selector = item.selector;
+					css += selector + '.iecp-u' + el.ieCP_unique + item.pseudo + '{' + prop + ':' + value + '}\n';
+				}
+			}
+		}
+		elementSetCss(el, css);
+	}
+	function elementSetCss(el, css){
+		if (!el.ieCP_styleEl && css) {
+			const styleEl = document.createElement('style');
+			styleEl.ieCP_elementSheet = 1;
+			//el.appendChild(styleEl); // yes! self-closing tags can have style as children, but - if i set innerHTML, the stylesheet is lost
+			document.head.appendChild(styleEl);
+			el.ieCP_styleEl = styleEl;
+		}
+		if (el.ieCP_styleEl) el.ieCP_styleEl.innerHTML = css;
+	}
+	/* */
+
+	function drawTree(target) {
+		if (!target) return;
+		var els = target.querySelectorAll('[iecp-needed]');
+		if (target.hasAttribute && target.hasAttribute('iecp-needed')) drawElement(target); // self
+		for (var i = 0, el; el = els[i++];) drawElement(el); // tree
+	}
+	// draw queue
+	let drawQueue = new Set();
+	let collecting = false;
+	let drawing = false;
+	function drawElement(el){
+		drawQueue.add(el);
+		if (collecting) return;
+		collecting = true;
+		requestAnimationFrame(function(){
+		//setImmediate(function(){
+			collecting = false;
+			drawing = true;
+			drawQueue.forEach(_drawElement);
+			drawQueue.clear();
+			setTimeout(function(){ // mutationObserver will trigger delayed, requestAnimationFrame will miss some changes
+				drawing = false;
+			})
+		})
+	}
+
+
+	function drawTreeEvent(e) {
+		drawTree(e.target)
+	}
+
+	function findVars(str, cb){ // css value parser
+		let level=0, openedLevel=null, lastPoint=0, newStr = '', i=0, char, insideCalc;
+		while (char=str[i++]) {
+			if (char === '(') {
+				++level;
+				if (openedLevel === null && str[i-4]+str[i-3]+str[i-2] === 'var') {
+					openedLevel = level;
+					newStr += str.substring(lastPoint, i-4);
+					lastPoint = i;
+				}
+				if (str[i-5]+str[i-4]+str[i-3]+str[i-2] === 'calc') {
+					insideCalc = level;
+				}
+			}
+			if (char === ')' && openedLevel === level) {
+				let variable = str.substring(lastPoint, i-1).trim(), fallback;
+				let x = variable.indexOf(',');
+				if (x!==-1) {
+					fallback = variable.slice(x+1);
+					variable = variable.slice(0,x);
+				}
+				newStr += cb(variable, fallback, insideCalc);
+				lastPoint = i;
+				openedLevel = null;
+			}
+			if (char === ')') {
+				--level;
+				if (insideCalc === level) insideCalc = null;
+			}
+		}
+		newStr += str.substring(lastPoint);
+		return newStr;
+	}
+	function styleComputeValueWidthVars(style, valueWithVars, details){
+		return findVars(valueWithVars, function(variable, fallback, insideCalc){
+			var value = style.getPropertyValue(variable);
+			if (insideCalc) value = value.replace(/^calc\(/, '('); // prevent nested calc
+			if (details && style.lastPropertyServedBy !== document.documentElement) details.allByRoot = false;
+			if (value==='' && fallback) value = styleComputeValueWidthVars(style, fallback, details);
+			return value;
+		});
+	}
+
+	// mutation listener
+	var observer = new MutationObserver(function(mutations) {
+		if (drawing) return;
+		for (var i=0, mutation; mutation=mutations[i++];) {
+			if (mutation.attributeName === 'iecp-needed') continue; // why?
+			// recheck all selectors if it targets new elements?
+			drawTree(mutation.target);
+		}
+	});
+	setTimeout(function(){
+		observer.observe(document,{attributes: true, subtree: true });
+	})
+
+	// :target listener
+	var oldHash = location.hash
+	addEventListener('hashchange',function(e){
+		var newEl = document.getElementById(location.hash.substr(1));
+		if (newEl) {
+			var oldEl = document.getElementById(oldHash.substr(1));
+			drawTree(newEl);
+			drawTree(oldEl);
+		} else {
+			drawTree(document);
+		}
+		oldHash = location.hash;
+	});
+
+	// add owningElement to Element.style
+	var descriptor = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'style');
+	var styleGetter = descriptor.get;
+	descriptor.get = function () {
+		const style = styleGetter.call(this);
+		style.owningElement = this;
+		return style;
+	}
+	Object.defineProperty(HTMLElement.prototype, 'style', descriptor);
+
+	// add computedFor to computed style-objects
+	var originalGetComputed = getComputedStyle;
+	window.getComputedStyle = function (el) {
+		var style = originalGetComputed.apply(this, arguments);
+		style.computedFor = el;
+		//style.pseudoElt = pseudoElt; //not needed at the moment
+		return style;
+	}
+
+	// getPropertyValue / setProperty hooks
+	const StyleProto = CSSStyleDeclaration.prototype;
+
+	const oldGetP = StyleProto.getPropertyValue;
+	StyleProto.getPropertyValue = function (property) {
+		this.lastPropertyServedBy = false;
+		property = property.trim();
+
+		/* *
+		if (this.owningElement) {
+			const ieProperty = '-ieVar-'+property;
+			const iePropertyImportant = '-ieVar-❗'+property;
+			let value = this[iePropertyImportant] || this[ieProperty];
+			if (value !== undefined) {
+				// todo, test if syntax valid
+				return value;
+			}
+		}
+		/* */
+
+		if (property[0] !== '-' || property[1] !== '-') return oldGetP.apply(this, arguments);
+		const undashed = property.substr(2);
+		const ieProperty = '-ie-'+undashed;
+		const iePropertyImportant = '-ie-❗'+undashed;
+		let value = decodeValue(this[iePropertyImportant] || this[ieProperty]);
+
+		if (this.computedFor) { // computedStyle
+			if (value !== undefined && !inheritingKeywords[value]) {
+				//if (regHasVar.test(value))  // todo: to i need this check?!!! i think its faster without
+					value = styleComputeValueWidthVars(this, value);
+				this.lastPropertyServedBy = this.computedFor;
+			} else { // inherited
+				if (inheritingKeywords[value] || !register[property] || register[property].inherits) {
+					//let el = this.pseudoElt ? this.computedFor : this.computedFor.parentNode;
+					let el = this.computedFor.parentNode;
+					while (el.nodeType === 1) {
+						// how slower would it be to getComputedStyle for every element, not just with defined ieCP_setters
+						if (el.ieCP_setters && el.ieCP_setters[property]) {
+							// i could make
+							// value = el.nodeType ? getComputedStyle(this.computedFor.parentNode).getPropertyValue(property)
+							// but i fear performance, stupid?
+							var style = getComputedStyle(el);
+							var tmpVal = decodeValue(style[iePropertyImportant] || style[ieProperty]);
+							if (tmpVal !== undefined) {
+								// calculated style from current element not from the element the value was inherited from! (style, value)
+								//value = tmpVal; if (regHasVar.test(tmpVal))  // todo: to i need this check?!!! i think its faster without
+									value = styleComputeValueWidthVars(this, tmpVal);
+								this.lastPropertyServedBy = el;
+								break;
+							}
+						}
+						el = el.parentNode;
+					}
+				}
+			}
+			if (value==='initial') return '';
+		}
+		//if ((value === undefined || value === 'initial') && register[property]) value = register[property].initialValue; // todo?
+		if (value === undefined && register[property]) value = register[property].initialValue;
+		if (value === undefined) return '';
+		return value;
+	};
+	const inheritingKeywords = {inherit:1,revert:1,unset:1};
+
+	const oldSetP = StyleProto.setProperty;
+	StyleProto.setProperty = function (property, value, prio) {
+		if (property[0] !== '-' || property[1] !== '-') return oldSetP.apply(this, arguments);
+		const el = this.owningElement;
+		if (el) {
+			if (!el.ieCP_setters) el.ieCP_setters = {};
+			el.ieCP_setters[property] = 1;
+		}
+		property = '-ie-'+(prio==='important'?'❗':'') + property.substr(2);
+		this.cssText += '; ' + property + ':' + encodeValue(value) + ';';
+		//this[property] = value;
+		el === document.documentElement && redrawStyleSheets();
+		el && drawTree(el); // its delayed internal
+	};
+
+
+	/*
+	var descriptor = Object.getOwnPropertyDescriptor(StyleProto, 'cssText');
+	var cssTextGetter = descriptor.get;
+	var cssTextSetter = descriptor.set;
+	// descriptor.get = function () {
+	// 	const style = styleGetter.call(this);
+	// 	style.owningElement = this;
+	// 	return style;
+	// }
+	descriptor.set = function (css) {
+		var el = this.owningElement;
+		if (el) {
+			css = rewriteCss('{'+css).substr(1);
+			cssTextSetter.call(this, css);
+			var found = parseRewrittenStyle(this);
+			if (found.getters) addGetterElement(el, found.getters, '%styleAttr');
+			if (found.setters) addSetterElement(el, found.setters);
+			return;
+		}
+		return cssTextSetter.call(this, css);
+	}
+	Object.defineProperty(StyleProto, 'cssText', descriptor);
+	*/
+
+
+	if (!window.CSS) window.CSS = {};
+	const register = {}
+	CSS.registerProperty = function(options){
+		register[options.name] = options;
+	}
+
+	// fix "initial" keyword with generated custom properties, this is not supported ad all by ie, should i make a separate "inherit"-polyfill?
+	/*
+	const computed = getComputedStyle(document.documentElement)
+	const initials = {};
+	for (let i in computed) {
+		initials[i.replace(/([A-Z])/, function(x){ return '-'+x.toLowerCase(x) })] = computed[i];
+	}
+	initials['display'] = 'inline';
+	*/
+
+	// utils
+	function fetchCss(url, callback) {
+		var request = new XMLHttpRequest();
+		request.open('GET', url);
+		request.overrideMimeType('text/css');
+		request.onload = function () {
+			if (request.status >= 200 && request.status < 400) {
+				callback(request.responseText);
+			}
+		};
+		request.send();
+	}
+
+}();

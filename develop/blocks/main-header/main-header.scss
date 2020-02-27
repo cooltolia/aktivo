@@ -4,23 +4,11 @@
     padding: 16px 0 28px;
     height: 75px;
 
-    color: $text-color;
-
+    
     border-bottom: 1px solid rgba(#919191, 0.2);
-
-    &.dark {
-        color: #fff;
-        
-        background-color: #202020;
-
-        #{$this}__navigation {
-            background-color: #202020;
-        }
-
-        #{$this}__phone {
-            color: #fff;
-        }
-    }
+    
+    background-color: var(--theme-background-color);
+    color: var(--theme-text-color);
 
     &__inner {
         display: flex;
@@ -46,7 +34,7 @@
         font-size: 13px;
         line-height: 1.5;
         white-space: nowrap;
-        color: $text-color;
+        color: var(--theme-text-color);
         text-decoration: none;
 
         transition: color 300ms ease;
@@ -69,7 +57,7 @@
         left: 0;
         z-index: 1;
 
-        background-color: #fff;
+        background-color: var(--theme-background-color);
         overflow-y: auto;
         transform: translateX(-100%);
 

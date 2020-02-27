@@ -1,5 +1,5 @@
-mixin authorization(theme)
-    +b.authorization(class=theme)
+mixin authorization()
+    +b.authorization
         if !loggedIn
             +e.A.login(href='#') Вход
         else

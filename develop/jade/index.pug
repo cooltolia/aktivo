@@ -2,11 +2,11 @@ include template/header
 include template/footer
 include ../blocks/**/*
 - const alias = "m"
-
+- const theme = 'dark'
 doctype html
 html(lang='ru')
     +doc-header
-    body
-        +main-header('dark')
+    body(dark-theme)
+        +main-header()
         div(style='background-color: darkgreen; height: 2000px')
         +doc-footer

@@ -1,17 +1,10 @@
 .authorization {
-    $this: &;
-
-    &.dark {
-        #{$this}__login {
-            color: #fff;
-        }
-    }
-
+    
     &__login {
         position: relative;
         font-size: 13px;
         line-height: 1.5;
-        color: $text-color;
+        color: var(--theme-text-color);
         text-decoration: none;
 
         transition: color 300ms ease;
