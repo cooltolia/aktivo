@@ -470,6 +470,72 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
+      var $inputs = $('.base-input__input');
+      var $autocompleteInputs = $('.base-input-autocomplete');
+      $inputs.each(function () {
+        if ($(this).val().trim() !== '') {
+          $(this).addClass('hasValue');
+        }
+
+        $(this).on('blur', function () {
+          if ($(this).val().trim() !== '') {
+            $(this).addClass('hasValue');
+          } else {
+            $(this).removeClass('hasValue');
+          }
+        });
+      });
+      $autocompleteInputs.each(function () {
+        var input = $(this).find('input');
+        var label = $(this).find('label');
+        input.on('focus', function () {
+          label.addClass('js-focus');
+        });
+        input.on('blur', function () {
+          label.removeClass('js-focus');
+        });
+      });
+    })();
+
+    (function () {
+      var $select = $('.base-select__input');
+      var $options = $('.base-select__options-list');
+      var $optionsItem = $('.base-select__options-item');
+      if ($select.length == 0) return;
+
+      if ($select.val().trim() !== '') {
+        $select.addClass('hasValue');
+      }
+
+      $select.on('blur', function () {
+        if ($select.val().trim() !== '') {
+          $select.addClass('hasValue');
+        } else {
+          $select.removeClass('hasValue');
+        }
+      });
+      $select.on('click', function () {
+        $select.parent().addClass('active');
+        $options.slideDown();
+      });
+      $(document).on('click', function (e) {
+        if ($select.parent().hasClass('active') && e.target !== $select && $select.parent().has(e.target).length === 0) {
+          $select.parent().removeClass('active');
+          $options.slideUp();
+        }
+      });
+      $optionsItem.each(function () {
+        $(this).on('click', function (e) {
+          var text = $(this).text();
+          $select.val(text);
+          $select.addClass('hasValue');
+          $select.parent().removeClass('active');
+          $options.slideUp();
+        });
+      });
+    })();
+
+    (function () {
       var $mainNav = $('.main-header__navigation');
       $('.hamburger').click(function () {
         $(this).toggleClass('active');
@@ -480,11 +546,14 @@ jQuery(document).ready(function ($) {
 
     (function () {
       var subNavLinks = $('.main-nav__link.has-subnav');
-      subNavLinks.on('click', function (e) {
-        e.preventDefault();
-        var subnav = $(this).next();
-        subnav.slideToggle(300);
-      });
+
+      if (window.matchMedia('(max-width: 1024px)').matches) {
+        subNavLinks.on('click', function (e) {
+          e.preventDefault();
+          var subnav = $(this).next();
+          subnav.slideToggle(300);
+        });
+      }
     })();
   }
 

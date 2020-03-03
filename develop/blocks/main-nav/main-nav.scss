@@ -2,7 +2,7 @@
     background-color: var(--theme-background-color);
 
     &__list {
-        padding: 32px 26px;
+        padding: 32px 24px;
         margin: 0;
         list-style: none;
     }
@@ -13,6 +13,8 @@
 
     &__link,
     &__sublink {
+        display: inline-block;
+
         font-size: 13px;
         color: var(--theme-text-color);
         text-decoration: none;
@@ -67,5 +69,75 @@
 
     &__sublink {
         font-weight: 300;
+    }
+}
+
+@media #{$laptop} {
+    .main-nav {
+        $this: &;
+        &__list {
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        &__item {
+            position: relative;
+            margin-bottom: 0;
+            margin-right: 15px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:hover {
+                #{$this}__subnav {
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+        }
+
+        &__link {
+            &.has-subnav {
+                padding-right: 15px;
+
+                &::after {
+                    right: 3px;
+                }
+            }
+        }
+
+        &__subnav {
+            position: absolute;
+            display: block;
+            width: 100%;
+            min-width: 200px;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: opacity 300ms ease;
+        }
+
+        &__sublist {
+            padding-left: 0;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .main-nav {
+        &__item {
+            margin-right: 30px;
+        }
+
+        &__link {
+            &.has-subnav {
+                &::after {
+                    right: 0px;
+                }
+            }
+        }
     }
 }

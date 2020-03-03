@@ -1,4 +1,4 @@
-// $laptop: '(min-width: 992px)';
+$laptop: '(min-width: 1024px)';
 $tablet: '(min-width: 768px)';
 // $tablet-sm: '(max-width: 767px)';
 $desktop: '(min-width: 1280px)';
@@ -6,9 +6,10 @@ $desktop: '(min-width: 1280px)';
 $base-font-size: 16px;
 $font: 'Montserrat', Helvetica, Arial, sans-serif;
 
-$theme-color: #ffd729;
+$theme-color: #fed63f;
 $text-color: #000;
-$lighttext: #fff;
+$text-color-light: #a5a5a5;
+$text-color-white: #fff;
 // $accent-color-light: #fee7ea;
 
 @mixin btn-theme($themecolor: $themecolor) {

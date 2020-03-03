@@ -1,0 +1,110 @@
+.index-top {
+    background-image: url(../images/index-top/bg.jpg);
+    background-size: cover;
+
+    &__wrapper {
+        margin-bottom: -200px;
+    }
+
+    &__title {
+        position: relative;
+        top: -6px;
+        margin: 0 0 34px;
+
+        font-size: 28px;
+        font-weight: 600;
+        color: $text-color-white;
+    }
+
+    &__advantages {
+        padding: 0;
+        margin: 0 0 40px;
+        list-style: none;
+    }
+
+    &__advantages-item {
+        margin-bottom: 20px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .title {
+            display: block;
+
+            font-size: 28px;
+            font-weight: 600;
+            color: $theme-color;
+        }
+
+        .value {
+            display: block;
+
+            font-size: 14px;
+            color: $text-color-white;
+        }
+    }
+
+    &__link {
+        margin-bottom: 40px;
+        max-width: 290px;
+    }
+
+    &__slider {
+        height: 480px;
+        width: 300px;
+        margin-right: -20px;
+
+        background-color: teal;
+    }
+}
+
+@media #{$tablet} {
+    .index-top {
+    }
+}
+
+@media #{$desktop} {
+    .index-top {
+        &__wrapper {
+            padding-top: 115px;
+            display: grid;
+            grid-template-areas:
+                'title title advantages'
+                'slider link advantages'
+                'slider . advantages';
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, auto);
+
+            margin-bottom: -375px;
+        }
+        &__title {
+            position: relative;
+            z-index: 10;
+            grid-area: title;
+
+            font-size: 50px;
+            text-align: right;
+        }
+
+        &__advantages {
+            grid-area: advantages;
+            padding-left: 50px;
+        }
+
+        &__link {
+            grid-area: link;
+            width: 290px;
+            align-self: start;
+            justify-self: end;
+        }
+
+        &__slider {
+            position: relative;
+            z-index: 0;
+            top: -145px;
+            width: 100%;
+            height: 690px;
+        }
+    }
+}

@@ -7,6 +7,12 @@ doctype html
 html(lang='ru')
     +doc-header
     body(dark-theme)
-        +main-header()
-        div(style='background-color: darkgreen; height: 2000px')
+        +main-header
+        .page
+            +grid
+            +index-top
+            div(style='background-color: #fff; height: 2000px; padding-top: 200px')
+                +inner
+        +main-footer
+            +grid
         +doc-footer

@@ -1,6 +1,8 @@
 .authorization {
-    
     &__login {
+        display: block;
+
+        padding-right: 15px;
         position: relative;
         font-size: 13px;
         line-height: 1.5;
@@ -21,10 +23,10 @@
             position: absolute;
             width: 6px;
             height: 6px;
-            right: -15px;
+            right: 0;
             top: 50%;
 
-            transform: translateY(-25%) rotate(-45deg);
+            transform: translateY(-35%) rotate(-45deg);
 
             border-width: 0 1px 1px 0;
             border-style: solid;
@@ -45,7 +47,7 @@
     padding: 10px;
     padding-right: 20px;
     display: inline-block;
-    color: $lighttext;
+    color: $text-color-white;
     background: #4ec673;
     text-align: left;
     border-radius: 3px;

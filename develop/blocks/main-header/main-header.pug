@@ -1,22 +1,17 @@
 mixin main-header()
     +b.HEADER.main-header
-        +inner
-            +e.inner
-                +e.A.logo&attributes(attributes)
-                    if (theme === 'dark')
-                        img(src='/images/logo-white.svg' width='88' alt='Aktivo')
-                    else
-                        img(src='/images/logo.svg' width='88' alt='Aktivo')
-                +e.A.phone(href='tel: 8 800 500-64-64') 8 800 500-64-64
-                +e.navigation
-                    +main-nav(theme)
-                    +e.authorization.--mobile
-                        +authorization(theme)
-                +e.authorization.--desktop
+        +e.inner
+            +e.A.logo(href='/')
+                if (theme === 'dark')
+                    img(src='/images/logo-white.svg' width='88' alt='Aktivo')
+                else
+                    img(src='/images/logo.svg' width='88' alt='Aktivo')
+            +e.navigation
+                +main-nav(theme)
+                +e.authorization.--mobile
                     +authorization(theme)
-                +e.hamburger
-                    +hamburger(theme)
-                //- +e.mobile-nav
-                //-     +mobile-nav
-                //-     +mobile-nav
-                
+            +e.A.phone(href='tel: 8 800 500-64-64') 8 800 500-64-64
+            +e.authorization.--desktop
+                +authorization(theme)
+            +e.hamburger
+                +hamburger(theme)

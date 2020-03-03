@@ -1,0 +1,54 @@
+.btn {
+    padding: 13px 32px 12px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    color: $text-color;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+
+    background-color: $theme-color;
+    border: 1px solid $theme-color;
+    border-radius: 8px;
+
+    outline: none;
+
+    transition: opacity 300ms ease;
+
+    &:hover,
+    &:active,
+    &:focus {
+        opacity: 0.6;
+        text-decoration: none;
+    }
+
+    &--transparent {
+        color: $theme-color;
+
+        background-color: transparent;
+    }
+
+    &--small {
+        padding: 7px 24px 6px;
+
+        font-size: 16px;
+    }
+}
+
+@media #{$tablet} {
+    .btn {
+    }
+}
+
+@media #{$desktop} {
+    .btn {
+        font-size: 21px;
+
+        &--small {
+            font-size: 16px;
+        }
+    }
+}

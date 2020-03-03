@@ -1,0 +1,29 @@
+mixin main-footer()
+    +b.FOOTER.main-footer
+        block
+        +inner
+            +e.inner
+                +e.col
+                    +e.menu
+                        +footer-nav
+                +e.col
+                    +e.FORM.appeal
+                        +e.title Подписаться на новости
+                        +e.appeal-row
+                            +e.appeal-block
+                                +e.appeal-input
+                                    +base-input('email', 'footerEmail', 'footer_email', true)
+                                +e.P.appeal-tip Рассылка приходит раз в неделю
+                            +e.BUTTON.appeal-submit.btn.btn--small(type='submit') Отправить
+                    +e.socials
+                        +e.title Подписаться на наши соц. сети
+                        +e.UL.socials-list
+                            +e.LI.socials-item
+                                +e.A.socials-link(href='#')
+                                    +icon('youtube')
+                            +e.LI.socials-item
+                                +e.A.socials-link(href='#')
+                                    +icon('facebook')
+                            +e.LI.socials-item
+                                +e.A.socials-link(href='#')
+                                    +icon('instagram')
