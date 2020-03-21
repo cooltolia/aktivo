@@ -1,0 +1,33 @@
+.title {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+
+    font-family: $font;
+    color: $text-color;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+
+    &--main {
+        font-size: 32px;
+    }
+
+    &--small {
+        font-size: 20px;
+    }
+
+    &.light {
+        color: $text-color-white;
+    }
+}
+
+@media #{$tablet} {
+    .title {
+    }
+}
+
+@media #{$desktop} {
+    .title {
+    }
+}

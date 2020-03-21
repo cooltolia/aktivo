@@ -1,0 +1,36 @@
+mixin profit-calc()
+    +b.SECTION.profit-calc
+        +inner
+            +e.wrapper
+                +e.text
+                    +e.ruble-icon
+                        +icon('ruble-icon')
+                    p Доходность коллективных инвестиций выше, чем у большинства классических низкорисковых способов получения пассивного дохода
+                    a(href='#') Подробнее
+                +e.title
+                    +title
+                        | Рассчитайте ваш доход
+                +e.investment
+                    +e.investment-range
+                    +e.investment-data
+                        +e.investment-label Сколько вложить
+                        +e.investment-value
+                +e.objects
+                    +e.income-range
+                    +e.objects-nav
+                        div ТЦ «Эко Видное»
+                        div ТЦ «Город»
+                        div Пятерочка
+                        div Перекреток
+                        div Дикси
+                    +e.objects-slider
+                        +e.objects-slide
+                            +profit-object(1, 'ТЦ «Эко Видное»', '12.8')(data-min='100000', data-max='2000000' data-step='75000')
+                        +e.objects-slide
+                            +profit-object(2, 'ТЦ «Город»', '10.8')(data-min='1000000', data-max='10000000' data-step='300000')
+                        +e.objects-slide
+                            +profit-object(1, 'Пятерочка', '13')(data-min='200000', data-max='9000000' data-step='70000')
+                        +e.objects-slide
+                            +profit-object(2, 'Перекреток', '9.2')(data-min='2000000', data-max='20000000' data-step='200000')
+                        +e.objects-slide
+                            +profit-object(1, 'Дикси', '8')(data-min='100000', data-max='8000000' data-step='100000')

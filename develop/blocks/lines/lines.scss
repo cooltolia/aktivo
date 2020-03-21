@@ -1,4 +1,4 @@
-.grid {
+.lines {
     position: absolute;
     z-index: 9;
     width: 100%;
@@ -29,12 +29,12 @@
 }
 
 @media #{$tablet} {
-    .grid {
+    .lines {
     }
 }
 
 @media #{$desktop} {
-    .grid {
+    .lines {
         .line {
             position: absolute;
             width: 400px;

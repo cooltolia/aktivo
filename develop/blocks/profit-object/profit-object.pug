@@ -1,0 +1,19 @@
+mixin profit-object(id, name, rate)
+    +b.profit-object&attributes(attributes)
+        +e.image
+            img(src='images/object-cards/object' + id +'.jpg', alt="")
+        +e.content
+            +e.title Сколько получить
+            +e.data
+                +e.data-row
+                    +e.data-value.__income 0
+                    +e.data-label Ежемесячный доход
+                +e.data-row
+                    +e.data-value.__share 0
+                    +e.data-label Приобретенных паев
+                +e.data-row
+                    +e.data-value.__rate(data-rate=rate)= rate + '%'
+                    +e.data-label Доходность
+        +e.footer
+            +e.name= name
+            +e.A.link(href='#') Подробнее

@@ -1,0 +1,10 @@
+mixin title(tag = 'h2', mod)
+    if (tag === 'h1')
+        +b.H1.title.--main(class=mod)
+            block
+    else if (tag === 'h2')
+        +b.H2.title(class=mod )
+            block
+    else if (tag === 'h3')
+        +b.H3.title.--small(class=mod )
+            block

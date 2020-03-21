@@ -21,8 +21,6 @@ jQuery(document).ready(function($) {
 
     function globalInitFunction() {
         //=require helpers.js
-        //=require SimpleSlider.js
-        //=require TopScreenSlider.js
         //=require ../blocks/**/*.js
     }
 

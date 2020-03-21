@@ -448,9 +448,7 @@ jQuery(document).ready(function ($) {
         video[0].pause();
       });
       observeVideo(video);
-    } //=require SimpleSlider.js
-    //=require TopScreenSlider.js
-
+    }
 
     (function () {
       var btn = $('.authorization__toggle');
@@ -545,6 +543,17 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
+      var indexSlider = $('.index-slider');
+      if (indexSlider.length === 0) return;
+      indexSlider.slick({
+        rows: 0,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        arrows: true
+      });
+    })();
+
+    (function () {
       var subNavLinks = $('.main-nav__link.has-subnav');
 
       if (window.matchMedia('(max-width: 1024px)').matches) {
@@ -553,6 +562,161 @@ jQuery(document).ready(function ($) {
           var subnav = $(this).next();
           subnav.slideToggle(300);
         });
+      }
+    })();
+
+    (function () {
+      var profitCalc = document.querySelector('.profit-calc');
+      if (!profitCalc) return;
+      var investmentRangeSlider = document.querySelector('.profit-calc__investment-range');
+      var invsestmentValue = document.querySelector('.profit-calc__investment-value');
+      var incomeRangeSlider = document.querySelector('.profit-calc__income-range');
+      var format = wNumb({
+        decimals: 0,
+        suffix: " \u20BD",
+        thousand: ' '
+      });
+      var objectsNav = $('.profit-calc__objects-nav');
+      var objectsSlider = $('.profit-calc__objects-slider');
+      var initialValue = 1000000;
+      initRangeSlider();
+      /** init and interact with sliders */
+
+      objectsSlider.on('init', function (e, slick) {
+        var currentSlide = $(slick.$slides[slick.currentSlide]);
+        var object = $(currentSlide.children()[0]);
+        updateObjectData(object, initialValue);
+      });
+      objectsSlider.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
+        if (currentSlide === nextSlide) return;
+        var slide = $(slick.$slides[nextSlide]);
+        var object = $(slide.children()[0]);
+        var minValue = object.data('min');
+        var maxValue = object.data('max');
+        var stepValue = object.data('step');
+        var rate = object.find('.profit-object__rate').data('rate');
+        var currentRangeValue = parseInt(investmentRangeSlider.noUiSlider.get());
+        var startValue = maxValue < currentRangeValue ? maxValue : currentRangeValue;
+        investmentRangeSlider.noUiSlider.updateOptions({
+          start: startValue,
+          step: stepValue,
+          range: {
+            min: minValue,
+            max: maxValue
+          }
+        });
+        var incomeMinValue = minValue * rate / 100;
+        var incomeMaxValue = maxValue * rate / 100;
+        var incomeInitialValue = startValue * rate / 100;
+        var incomeStepValue = stepValue * rate / 100;
+        incomeRangeSlider.noUiSlider.updateOptions({
+          start: incomeInitialValue,
+          step: incomeStepValue,
+          range: {
+            min: incomeMinValue,
+            max: incomeMaxValue
+          }
+        });
+        animateRangeSlider();
+        updateObjectData(object, startValue);
+      });
+      objectsNav.slick({
+        rows: 0,
+        slidesToScroll: 1,
+        variableWidth: true,
+        asNavFor: objectsSlider,
+        arrows: false,
+        focusOnSelect: true
+      });
+      objectsSlider.slick({
+        rows: 0,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        asNavFor: objectsNav
+      });
+      /**
+       * interactions with range slider
+       */
+
+      investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
+        invsestmentValue.textContent = format.to(+values[handle]);
+        var currentSlide = objectsSlider.find('.slick-current');
+        var object = $(currentSlide.children()[0]);
+        updateObjectData(object, values[handle]);
+        incomeRangeSliderUpdate(object, values[handle]);
+      });
+      incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
+        var currentSlide = objectsSlider.find('.slick-current');
+        var object = $(currentSlide.children()[0]);
+        investmentRangeSliderUpdate(object, values[handle]);
+      }); // helper functions
+
+      function initRangeSlider() {
+        var firstObject = $($(profitCalc).find('.profit-object')[0]);
+        var minValue = firstObject.data('min');
+        var maxValue = firstObject.data('max');
+        var stepValue = firstObject.data('step');
+        var rate = firstObject.find('.profit-object__rate').data('rate');
+        noUiSlider.create(investmentRangeSlider, {
+          start: initialValue,
+          step: stepValue,
+          animate: false,
+          connect: 'lower',
+          range: {
+            min: minValue,
+            max: maxValue
+          }
+        });
+        updateObjectData(firstObject, initialValue);
+        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
+      }
+
+      function incomeRangeSliderInit(min, max, step, initial, rate) {
+        var minValue = min * rate / 100;
+        var maxValue = max * rate / 100;
+        var initialValue = initial * rate / 100;
+        var stepValue = step * rate / 100;
+        noUiSlider.create(incomeRangeSlider, {
+          start: initialValue,
+          step: stepValue,
+          animate: false,
+          range: {
+            min: minValue,
+            max: maxValue
+          }
+        });
+      }
+
+      function incomeRangeSliderUpdate(object, value) {
+        var rate = object.find('.profit-object__rate').data('rate');
+        incomeRangeSlider.noUiSlider.set(value * rate / 100);
+        animateRangeSlider();
+      }
+
+      function investmentRangeSliderUpdate(object, value) {
+        var rate = object.find('.profit-object__rate').data('rate');
+        investmentRangeSlider.noUiSlider.set(value / rate * 100);
+      }
+
+      function updateObjectData(object, value) {
+        var income = object.find('.profit-object__income');
+        var share = object.find('.profit-object__share');
+        var rate = object.find('.profit-object__rate').data('rate');
+        var step = object.data('step');
+        share.text(Math.floor(value / step));
+        income.text(format.to(value * rate / 100));
+      }
+
+      function animateRangeSlider() {
+        var rangeLine = $('.noUi-connect');
+        var rangeHandle = $('.noUi-origin');
+        rangeLine.addClass('transition');
+        rangeHandle.addClass('transition');
+        setTimeout(function () {
+          rangeLine.removeClass('transition');
+          rangeHandle.removeClass('transition');
+        }, 300);
       }
     })();
   }
