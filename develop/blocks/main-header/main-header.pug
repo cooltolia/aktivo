@@ -1,11 +1,11 @@
 mixin main-header()
     +b.HEADER.main-header
         +e.inner
-            +e.A.logo(href='/')
+            +e.A.logo(href='../')
                 if (theme === 'dark')
-                    img(src='/images/logo-white.svg' width='88' alt='Aktivo')
+                    img(src='images/logo-white.svg' width='88' alt='Aktivo')
                 else
-                    img(src='/images/logo.svg' width='88' alt='Aktivo')
+                    img(src='images/logo.svg' width='88' alt='Aktivo')
             +e.navigation
                 +main-nav(theme)
                 +e.authorization.--mobile
