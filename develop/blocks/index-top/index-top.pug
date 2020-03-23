@@ -2,17 +2,19 @@ mixin index-top()
     +b.SECTION.index-top
         +inner
             +e.wrapper
-                +e.H1.title Коллективные <br>инвестиции<br> в коммерческую<br> недвижимость
+                +e.title
+                    +title('h1', 'light') 
+                        | Коллективные <br>инвестиции<br> в коммерческую<br> недвижимость
                 +e.UL.advantages
                     +e.LI.advantages-item
-                        span.title 458 000 000 ₽
-                        span.value Распределили инвесторам за 2019 г.
+                        +e.SPAN.advantage-value 458 000 000 ₽
+                        +e.SPAN.advantage-title Распределили инвесторам за 2019 г.
                     +e.LI.advantages-item
-                        span.title 3 млрд
-                        span.value Стоимость активов Aktivo
+                        +e.SPAN.advantage-value 3 млрд
+                        +e.SPAN.advantage-title Стоимость активов Aktivo
                     +e.LI.advantages-item
-                        span.title &gt;700
-                        span.value активных инвесторов
+                        +e.SPAN.advantage-value &gt;700
+                        +e.SPAN.advantage-title активных инвесторов
                 +e.A.link.btn(href='#') Смотреть объекты
                 +e.slider
                     +index-slider

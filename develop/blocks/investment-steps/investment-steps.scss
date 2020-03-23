@@ -1,0 +1,217 @@
+.investment-steps {
+    padding-top: 30px;
+
+    &__title {
+        margin-bottom: 48px;
+    }
+
+    &__list {
+        padding: 0;
+        margin: 0 0 40px;
+        list-style: none;
+    }
+
+    &__item {
+        position: relative;
+        margin-bottom: 56px;
+        padding-left: 72px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__content {
+        max-width: 250px;
+    }
+
+    &__counter {
+        position: absolute;
+        top: -20px;
+        left: 0;
+
+        font-size: 100px;
+        font-weight: 600;
+        color: $text-color-white;
+        -webkit-text-stroke: 0.5px #b9b9b9;
+        text-stroke: 0.5px #b9b9b9;
+    }
+
+    &__item-title {
+        margin: 0 0 26px;
+
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    &__item-text {
+        margin: 0;
+
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    &__appeal-text {
+        margin: 0 0 5px;
+
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    &__appeal-link {
+        position: relative;
+        display: inline-block;
+
+        font-size: 25px;
+        font-weight: 500;
+        color: $theme-color;
+        text-decoration: none;
+
+        transition: opacity 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            opacity: 0.6;
+        }
+    }
+}
+
+@media #{$tablet} {
+    .investment-steps {
+        padding-top: 80px;
+
+        &__wrapper {
+            display: grid;
+            grid-template-areas:
+                'title list appeal'
+                '. list appeal'
+                '. list .';
+            grid-template-columns: repeat(3, 33.3%);
+            grid-template-rows: auto max-content auto;
+        }
+
+        &__title {
+            grid-area: title;
+            padding-top: 45px;
+        }
+
+        &__list {
+            grid-area: list;
+            margin-bottom: 45px;
+        }
+
+        &__appeal {
+            grid-area: appeal;
+        }
+
+        &__item {
+            padding-left: 65px;
+            padding-right: 7px;
+        }
+
+        &__counter {
+            left: 7px;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .investment-steps {
+        &__title {
+            padding-top: 25px;
+        }
+
+        &__item {
+            padding-left: 72px;
+        }
+
+        &__appeal-text {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        &__appeal-link {
+            &::after {
+                content: '';
+                position: absolute;
+                width: 11px;
+                height: 11px;
+                right: -16px;
+                top: 50%;
+                transform: translateY(-40%) rotate(-45deg);
+
+                border-width: 0 2px 2px 0;
+                border-style: solid;
+                border-color: $theme-color;
+            }
+        }
+
+        &__item {
+            margin-bottom: 45px;
+        }
+
+        &__item-text {
+            font-size: 16px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .investment-steps {
+        $this: &;
+
+        padding-top: 110px;
+
+        &__wrapper {
+            position: relative;
+            grid-template-columns: 400px 360px 400px;
+
+            // &::before {
+            //     content: '';
+            //     position: absolute;
+            //     z-index: 10;
+            //     width: 3px;
+            //     height: calc(100% + 350px);
+
+            //     background-color: #fff;
+            //     right: -1px;
+            //     top: -175px;
+            // }
+        }
+
+        &__list {
+            margin-bottom: 125px;
+        }
+
+        &__item {
+            padding-left: 124px;
+            padding-right: 30px;
+
+            &:first-child {
+                #{$this}__counter {
+                    left: 35px;
+                }
+            }
+        }
+
+        &__title {
+            margin-top: -20px;
+        }
+
+        &__item-title {
+            margin-bottom: 20px;
+        }
+
+        &__counter {
+            font-size: 140px;
+            left: 25px;
+            top: -30px;
+        }
+
+        &__appeal-text {
+            margin-bottom: 12px;
+            padding-right: 50px;
+        }
+    }
+}

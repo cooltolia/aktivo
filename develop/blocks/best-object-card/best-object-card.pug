@@ -1,0 +1,7 @@
+mixin best-object-card(id, name, rate)
+    +b.best-object-card&attributes(attributes)
+        +e.image
+            img(src='images/object-cards/object' + id +'.jpg', alt="")
+        +e.name= name
+        +e.A.link(href='#') Подробнее про объект
+        +e.rate= rate

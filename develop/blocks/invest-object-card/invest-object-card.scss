@@ -1,0 +1,129 @@
+.invest-object-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding: 24px 16px;
+
+    &__image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+        }
+    }
+
+    &__name {
+        position: relative;
+        margin: 0 0 36px;
+
+        font-size: 20px;
+        font-weight: 400;
+        color: $text-color-white;
+        line-height: 1;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: calc(50% + 16px);
+            height: 1px;
+            left: -16px;
+            bottom: -15px;
+
+            background-color: $theme-color;
+        }
+    }
+
+    &__price {
+        margin-bottom: 4px;
+
+        font-size: 24px;
+        color: $text-color-white;
+        font-weight: 600;
+    }
+
+    &__tip {
+        margin: 0 0 15px;
+
+        font-size: 14px;
+        color: $text-color-white;
+    }
+
+    &__link {
+        display: inline-block;
+        position: relative;
+
+        font-size: 14px;
+        color: $theme-color;
+        text-decoration: none;
+
+        transition: opacity 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            opacity: 0.6;
+            text-decoration: none;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            left: 0;
+            bottom: -3px;
+
+            background-color: $theme-color;
+        }
+    }
+
+    &__rate {
+        position: relative;
+        font-size: 50px;
+        font-weight: 600;
+        color: #6ec89e;
+    }
+}
+
+@media #{$laptop} {
+    .invest-object-card {
+        padding: 30px;
+        padding-right: 16px;
+
+        &__title {
+            &::after {
+                width: calc(50% + 30px);
+                left: -30px;
+            }
+        }
+
+        &__price {
+            font-size: 32px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .invest-object-card {
+    }
+}

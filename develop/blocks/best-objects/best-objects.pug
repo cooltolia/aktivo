@@ -1,0 +1,33 @@
+mixin best-objects()
+    +b.SECTION.best-objects
+        +inner
+            +e.title
+                +title
+                    | Все объекты<br> проходят проверку
+            +e.wrapper
+                +e.content
+                    +e.P.paragraph
+                        | Мы тщательно подбираем и&nbsp;выставляем рейтинг каждому объекту
+                    +e.P.paragraph
+                        | Средняя доходность от&nbsp;объектов до&nbsp;15%&nbsp;годовых
+                    +e.A.link.btn(href='#') Смотреть объекты
+                +e.graph
+                    +e.legend
+                        +e.legend-item 100%
+                        +e.legend-item 90%
+                        +e.legend-item 80%
+                        +e.legend-item.--medium 70%
+                        +e.legend-item.--medium 60%
+                        +e.legend-item.--medium 50%
+                        +e.legend-item.--low 40%
+                        +e.legend-item.--low 30%
+                        +e.legend-item.--hidden 20%
+                        +e.legend-item.--hidden 10%
+                        +e.legend-item.--hidden 0%
+                    +e.objects
+                        +e.object
+                            +best-object-card(1, '«Эко Видное»', '87,4%')(data-rate='87.4')
+                        +e.object
+                            +best-object-card(2, '«Перекресток»', '93,3%')(data-rate='93.3')
+                        +e.object
+                            +best-object-card(1, '«Эко Видное»', '77,3%')(data-rate='77.3')

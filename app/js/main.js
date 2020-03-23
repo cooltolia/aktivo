@@ -534,6 +534,27 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
+      var bestObjectCards = $('.best-object-card');
+      if (bestObjectCards.length === 0) return;
+      var rateColors = ['#1cb96f', '#fed63f', '#ffa30c'];
+      bestObjectCards.each(function (_, card) {
+        var rate = parseInt($(card).data('rate'));
+        var rateNode = $(card).find('.best-object-card__rate');
+        var stepHeight = 8;
+
+        if (rate >= 80) {
+          rateNode.css('color', rateColors[0]);
+        } else if (rate < 80 && rate >= 50) {
+          rateNode.css('color', rateColors[1]);
+        } else {
+          rateNode.css('color', rateColors[2]);
+        }
+
+        $(card).css('top', "calc(".concat(100 - rate, "% + ").concat(stepHeight, "px"));
+      });
+    })();
+
+    (function () {
       var $mainNav = $('.main-header__navigation');
       $('.hamburger').click(function () {
         $(this).toggleClass('active');
@@ -543,13 +564,15 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
-      var indexSlider = $('.index-slider');
+      var indexSlider = $('.index-slider, .index-bottom__slider');
       if (indexSlider.length === 0) return;
-      indexSlider.slick({
-        rows: 0,
-        slidesToScroll: 1,
-        slidesToShow: 1,
-        arrows: true
+      indexSlider.each(function (_, slider) {
+        $(slider).slick({
+          rows: 0,
+          slidesToScroll: 1,
+          slidesToShow: 1,
+          arrows: true
+        });
       });
     })();
 
@@ -650,6 +673,12 @@ jQuery(document).ready(function ($) {
         var currentSlide = objectsSlider.find('.slick-current');
         var object = $(currentSlide.children()[0]);
         investmentRangeSliderUpdate(object, values[handle]);
+      });
+      investmentRangeSlider.noUiSlider.on('change', function () {
+        animateRangeSlider();
+      });
+      incomeRangeSlider.noUiSlider.on('change', function () {
+        animateRangeSlider();
       }); // helper functions
 
       function initRangeSlider() {
@@ -691,7 +720,6 @@ jQuery(document).ready(function ($) {
       function incomeRangeSliderUpdate(object, value) {
         var rate = object.find('.profit-object__rate').data('rate');
         incomeRangeSlider.noUiSlider.set(value * rate / 100);
-        animateRangeSlider();
       }
 
       function investmentRangeSliderUpdate(object, value) {

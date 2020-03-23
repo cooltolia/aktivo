@@ -5,6 +5,18 @@
     height: 100%;
     margin: 0 auto;
     min-width: 320px;
-    max-width: 1240px;
+    max-width: 1200px;
     padding: 0 20px;
+}
+
+@media #{$tablet} {
+    .inner {
+        padding: 0 34px;
+    }
+}
+
+@media #{$desktop} {
+    .inner {
+        padding: 0 20px;
+    }
 }

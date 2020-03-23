@@ -107,6 +107,14 @@
         investmentRangeSliderUpdate(object, values[handle]);
     });
 
+    investmentRangeSlider.noUiSlider.on('change', () => {
+        animateRangeSlider();
+    });
+
+    incomeRangeSlider.noUiSlider.on('change', () => {
+        animateRangeSlider();
+    });
+
     // helper functions
 
     function initRangeSlider() {
@@ -154,9 +162,8 @@
     function incomeRangeSliderUpdate(object, value) {
         const rate = object.find('.profit-object__rate').data('rate');
         incomeRangeSlider.noUiSlider.set((value * rate) / 100);
-
-        animateRangeSlider();
     }
+
     function investmentRangeSliderUpdate(object, value) {
         const rate = object.find('.profit-object__rate').data('rate');
         investmentRangeSlider.noUiSlider.set((value / rate) * 100);

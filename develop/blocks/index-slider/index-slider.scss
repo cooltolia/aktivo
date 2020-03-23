@@ -71,7 +71,7 @@
         position: relative;
         z-index: 1;
         height: 100%;
-        padding: 20px 35px;
+        padding: 25px 35px;
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-end;
@@ -144,12 +144,13 @@
     }
 }
 
-@media #{$tablet} {
+@media #{$laptop} {
     .index-slider {
         .slick-arrow {
             &.slick-prev {
                 display: block !important;
                 left: 28px;
+                z-index: 1;
             }
         }
     }

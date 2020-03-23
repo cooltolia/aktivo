@@ -38,17 +38,17 @@
     }
 }
 
-@media #{$tablet} {
-    .btn {
-    }
-}
-
-@media #{$desktop} {
+@media #{$laptop} {
     .btn {
         font-size: 21px;
 
         &--small {
             font-size: 16px;
         }
+    }
+}
+
+@media #{$desktop} {
+    .btn {
     }
 }

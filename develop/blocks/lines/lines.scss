@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 9;
     width: 100%;
-    max-width: 1240px;
+    max-width: 1160px;
     height: 100%;
     left: 50%;
     transform: translateX(-50%);
@@ -30,16 +30,53 @@
 
 @media #{$tablet} {
     .lines {
+        &::before {
+            left: 34px;
+        }
+
+        &::after {
+            right: 34px;
+        }
+        
+        .line {
+            position: absolute;
+            width: calc((100% - 68px) / 3);
+            height: 100%;
+            left: calc((100% - 68px) / 3 + 34px);
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 1px;
+                background-color: rgba(#919191, 0.2);
+            }
+
+            &::after {
+                left: auto;
+                right: 0;
+            }
+        }
     }
 }
 
 @media #{$desktop} {
     .lines {
+        &::before {
+            left: 0;
+        }
+
+        &::after {
+            right: 0;
+        }
         .line {
             position: absolute;
-            width: 400px;
+            width: 360px;
             height: 100%;
-            left: 420px;
+            left: 400px;
 
             &::before,
             &::after {

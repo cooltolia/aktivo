@@ -24,10 +24,18 @@
 
 @media #{$tablet} {
     .title {
+        font-size: 32px;
+    }
+}
+
+@media #{$laptop} {
+    .title {
+        font-size: 40px;
     }
 }
 
 @media #{$desktop} {
     .title {
+        font-size: 50px;
     }
 }
