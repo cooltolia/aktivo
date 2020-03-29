@@ -1,5 +1,13 @@
 "use strict";
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 /**
  * some global settings and functions
  */
@@ -589,6 +597,62 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
+      var partnersWrapper = document.querySelector('.partners-wrapper');
+      if (!partnersWrapper) return;
+
+      var stepsIcons = _toConsumableArray(document.querySelectorAll('.partners-wrapper__step'));
+
+      var step1 = document.querySelector('.partners-choice');
+      var step2 = document.querySelector('.partners-status');
+      var step3 = document.querySelector('.partners-income');
+      var obserevedSteps = [step1, step2, step3];
+      changeStepNumber();
+
+      function changeStepNumber() {
+        var options = {
+          rootMargin: '0px 0px -90% 0px',
+          root: null,
+          threshold: 0
+        };
+        var previousY = 0;
+        var previousRatio = 0;
+
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              var isIntersecting = entry.isIntersecting;
+
+              if (isIntersecting) {
+                var targetIndex = obserevedSteps.indexOf(entry.target);
+                var currentStep = stepsIcons.find(function (step) {
+                  return step.classList.contains('active');
+                });
+                var currentStepIndex = stepsIcons.indexOf(currentStep);
+                if (currentStepIndex === targetIndex) return;
+                currentStep.classList.remove('active');
+                var targetStepIcon = stepsIcons[targetIndex];
+                targetStepIcon.classList.add('active');
+              }
+            });
+          }, {
+            rootMargin: options.rootMargin,
+            root: options.root,
+            threshold: options.threshold
+          });
+          obserevedSteps.forEach(function (step) {
+            return observer.observe(step);
+          });
+        } else {
+          setTimeout(function () {
+            items.forEach(function (item) {
+              item.classList.add('animated');
+            });
+          }, 300);
+        }
+      }
+    })();
+
+    (function () {
       var profitCalc = document.querySelector('.profit-calc');
       if (!profitCalc) return;
       var investmentRangeSlider = document.querySelector('.profit-calc__investment-range');
@@ -733,7 +797,7 @@ jQuery(document).ready(function ($) {
         var rate = object.find('.profit-object__rate').data('rate');
         var step = object.data('step');
         share.text(Math.floor(value / step));
-        income.text(format.to(value * rate / 100));
+        income.text(format.to(value * rate / 100 / 12));
       }
 
       function animateRangeSlider() {

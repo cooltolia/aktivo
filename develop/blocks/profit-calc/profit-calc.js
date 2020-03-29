@@ -177,7 +177,7 @@
         const step = object.data('step');
 
         share.text(Math.floor(value / step));
-        income.text(format.to((value * rate) / 100));
+        income.text(format.to((value * rate) / 100 / 12));
     }
 
     function animateRangeSlider() {

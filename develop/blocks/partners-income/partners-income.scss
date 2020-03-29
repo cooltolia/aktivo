@@ -1,0 +1,373 @@
+.partners-income {
+    padding-top: 70px;
+    padding-bottom: 40px;
+
+    &__title {
+        position: relative;
+        padding-left: 75px;
+        margin-bottom: 30px;
+    }
+
+    &__step {
+        position: absolute;
+        left: 0;
+        top: -20px;
+
+        font-size: 100px;
+        color: transparent;
+        -webkit-text-stroke: 1px $theme-color;
+    }
+
+    &__total {
+        margin-bottom: 25px;
+    }
+
+    &__total-value {
+        margin: 0 0 10px;
+
+        font-size: 46px;
+        color: $theme-color;
+        font-weight: 600;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    &__total-label {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    &__options-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 65px;
+
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 1.2;
+
+        .highlight {
+            margin-left: 10px;
+            font-size: 80px;
+            color: $theme-color;
+        }
+    }
+
+    &__options {
+        max-width: 400px;
+        .smi {
+            --highlight: #3f76fe;
+        }
+
+        .sales {
+            --highlight: #fed63f;
+        }
+    }
+
+    &__data {
+        margin-bottom: 16px;
+    }
+
+    &__option-label {
+        margin: 0 0 10px;
+
+        font-size: 18px;
+        color: var(--highlight);
+        font-weight: 500;
+    }
+
+    &__option-title {
+        margin: 0 0 5px;
+
+        font-size: 28px;
+        font-weight: 500;
+    }
+
+    &__advantages {
+        &.smi {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__advantage {
+        margin-bottom: 20px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__advantage-label {
+        margin-bottom: 12px;
+
+        font-size: 16px;
+        color: $text-color-medium;
+        font-weight: 600;
+    }
+
+    &__advantage-value {
+        margin-bottom: 10px;
+
+        font-size: 46px;
+        color: var(--highlight);
+        font-weight: 600;
+        line-height: 1;
+
+        .divider {
+            position: relative;
+            width: 10px;
+            display: inline-block;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 1px;
+                height: 34px;
+                top: -30px;
+                left: 6px;
+
+                background-color: $theme-color;
+            }
+        }
+    }
+
+    &__advantage-text {
+        margin: 0;
+
+        font-size: 16px;
+        line-height: 1.4;
+    }
+}
+
+@media #{$tablet} {
+    .partners-income {
+        $this: &;
+        padding-top: 60px;
+        padding-bottom: 65px;
+
+        &__wrapper {
+            padding-left: 33%;
+        }
+
+        &__title {
+            padding-left: 0;
+            margin-bottom: 20px;
+
+            .title br {
+                display: none;
+            }
+        }
+
+        &__step {
+            display: none;
+        }
+
+        &__total {
+            margin-bottom: 35px;
+        }
+
+        &__total-value {
+            margin-bottom: 0;
+
+            font-size: 80px;
+        }
+
+        &__options {
+            max-width: none;
+        }
+
+        &__options-title {
+            margin-bottom: 50px;
+
+            font-size: 40px;
+
+            .highlight {
+                font-size: 120px;
+                line-height: 1;
+            }
+        }
+
+        &__options {
+            grid-area: options;
+            display: grid;
+            grid-template-areas:
+                'smiData salesData'
+                'smiAdvantages salesAdvantages';
+            grid-template-columns: 1fr 1fr;
+
+            margin-bottom: 0;
+
+            .smi {
+                --data_area: smiData;
+                --advantages_area: smiAdvantages;
+            }
+
+            .sales {
+                --data_area: salesData;
+                --advantages_area: salesAdvantages;
+
+                #{$this}__advantage-label {
+                    visibility: hidden;
+                }
+            }
+        }
+
+        &__option-text {
+            padding-right: 20px;
+        }
+
+        &__data {
+            grid-area: var(--data_area);
+            margin-bottom: 10px;
+        }
+
+        &__advantages {
+            grid-area: var(--advantages_area);
+            display: flex;
+            flex-flow: column nowrap;
+
+            &.smi {
+                margin-bottom: 0;
+            }
+        }
+
+        &__advantage {
+            margin-bottom: 30px;
+
+            &:last-child {
+                margin-top: auto;
+                margin-bottom: 0;
+            }
+        }
+
+        &__advantage-label {
+            margin-bottom: 16px;
+        }
+
+        &__advantage-value {
+            font-size: 54px;
+
+            &.huge {
+                font-size: 65px;
+            }
+
+            &.translate {
+                transform: translateY(-65px);
+            }
+
+            .divider::before {
+                height: 40px;
+                top: -38px;
+            }
+        }
+
+        &__advantage-desc {
+            padding-right: 15px;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .partners-income {
+        &__total-value {
+            font-size: 105px;
+        }
+
+        &__option-title {
+            font-size: 34px;
+        }
+
+        &__advantage-value {
+            font-size: 67px;
+
+            &.huge {
+                font-size: 77px;
+            }
+
+            &.translate {
+                transform: translateY(-40px);
+            }
+        }
+    }
+}
+
+@media #{$desktop} {
+    .partners-income {
+        overflow: hidden;
+        padding-top: 205px;
+        padding: 120px;
+
+        &__wrapper {
+            padding-left: 400px;
+        }
+
+        &__total {
+            margin-bottom: 85px;
+        }
+
+        &__total-value {
+            margin-bottom: 7px;
+
+            font-size: 127px;
+        }
+
+        &__options-title {
+            margin-bottom: 70px;
+
+            font-size: 50px;
+
+            .highlight {
+                font-size: 130px;
+            }
+        }
+
+        &__data {
+            margin-bottom: 10px;
+        }
+
+        &__options {
+            grid-template-columns: 400px 360px;
+        }
+
+        &__option-label {
+            font-size: 27px;
+        }
+
+        &__option-title {
+            margin-bottom: 20px;
+
+            font-size: 34px;
+            width: 400px;
+        }
+
+        &__advantage {
+            margin-bottom: 50px;
+        }
+
+        &__advantage-label {
+            position: relative;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 1000%;
+                height: 1px;
+                left: 0;
+                bottom: 0;
+
+                background-color: rgba(#919191, 0.2);
+            }
+        }
+
+        &__advantage-value {
+            font-size: 77px;
+
+            .divider::before {
+                height: 60px;
+                top: -55px;
+            }
+        }
+    }
+}

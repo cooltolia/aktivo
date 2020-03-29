@@ -1,0 +1,100 @@
+.partners-appeal {
+    padding-top: 50px;
+    padding-bottom: 70px;
+
+    background-image: url(../images/redesign/partners-page/appeal-bg.jpg);
+    background-size: cover;
+
+    &__title {
+        margin-bottom: 15px;
+    }
+
+    &__button {
+        margin-bottom: 25px;
+    }
+
+    &__info {
+        max-width: 270px;
+
+        font-size: 16px;
+        color: $text-color-white;
+        line-height: 1.4;
+    }
+
+    &__info-title {
+        margin-bottom: 22px;
+
+        font-weight: 600;
+    }
+
+    &__info-text {
+        margin: 0;
+    }
+}
+
+@media #{$tablet} {
+    .partners-appeal {
+        padding-bottom: 95px;
+
+        .lines {
+            &::after {
+                display: none;
+            }
+
+            .line::after {
+                display: none;
+            }
+        }
+
+        &__title {
+            margin-bottom: 30px;
+        }
+
+        &__wrapper {
+            padding-left: 33%;
+        }
+
+        &__row {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        &__button {
+            flex: 1 1 auto;
+            margin-right: 30px;
+            min-width: 230px;
+            max-width: 290px;
+        }
+
+        &__info {
+            max-width: 230px;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .partners-appeal {
+        &__button {
+            margin-right: 40px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .partners-appeal {
+        padding-top: 60px;
+        padding-bottom: 130px;
+
+        &__wrapper {
+            padding-left: 400px;
+        }
+
+        &__title {
+            margin-bottom: 80px;
+        }
+
+        &__button {
+            margin-right: 60px;
+        }
+    }
+}

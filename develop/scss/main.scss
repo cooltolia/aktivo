@@ -26,7 +26,7 @@ body {
 .page {
     position: relative;
 
-    .lines {
+    > .lines {
         top: 75px;
     }
 }

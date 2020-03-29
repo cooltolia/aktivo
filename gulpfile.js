@@ -51,7 +51,7 @@ gulp.task('svgSprite', function() {
     let symbolConfig = {
         mode: {
             symbol: {
-                dest: '.',
+                dest: './redesign',
                 sprite: 'html-sprite.svg'
             }
         }
@@ -89,7 +89,7 @@ gulp.task('svgSprite', function() {
             mapname: "icons"
         } */
     };
-    gulp.src('./app/images/svg/inline-svg/*.svg')
+    gulp.src('./app/images/redesign/svg/inline-svg/*.svg')
         .pipe(
             svgmin({
                 js2svg: {
