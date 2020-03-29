@@ -1,0 +1,23 @@
+mixin objects()
+    +b.SECTION.objects
+        +lines
+        +inner
+            +e.title
+                +title('h1')
+                    | Наши объекты
+            +e.wrapper
+                +e.ASIDE.aside
+                    +e.NAV.categories
+                        +e.UL.categories-list
+                            +e.LI.categories-item
+                                +e.A.categrories-link.active(href='#') Самый высокий рейтинг
+                            +e.LI.categories-item
+                                +e.A.categrories-link(href='#') Высокая доходность
+                            +e.LI.categories-item
+                                +e.A.categrories-link(href='#') Доступные паи
+                            +e.LI.categories-item
+                                +e.A.categrories-link(href='#') Лучшая окупаемость
+                +e.MAIN.list
+                    each object in objects
+                        +e.object
+                            +object-card(object)

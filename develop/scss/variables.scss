@@ -13,6 +13,8 @@ $text-color-medium: #9c9c9c;
 $text-color-white: #fff;
 // $accent-color-light: #fee7ea;
 
+$green: #5fce67;
+
 @mixin btn-theme($themecolor: $themecolor) {
     position: relative;
     display: flex;
