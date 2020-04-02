@@ -37,6 +37,12 @@
         &::after {
             right: 34px;
         }
+
+        &.small-right {
+            &::after {
+                opacity: 0;
+            }
+        }
         
         .line {
             position: absolute;
@@ -72,6 +78,17 @@
         &::after {
             right: 0;
         }
+
+        &.small-right {
+            &::after {
+                opacity: 1;
+            }
+
+            .line {
+                width: 400px;
+            }
+        }
+
         .line {
             position: absolute;
             width: 360px;

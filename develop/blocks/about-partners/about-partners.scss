@@ -1,0 +1,136 @@
+.about-partners {
+    padding-top: 80px;
+
+    &__title {
+        margin-bottom: 20px;
+    }
+
+    &__button {
+        &.btn {
+            display: none;
+        }
+    }
+
+    &__text {
+        margin: 0 0 30px;
+        max-width: 260px;
+
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    &__list {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        margin: 0 -5px -20px;
+        max-width: 360px;
+    }
+
+    &__partner {
+        flex: 1 1 auto;
+        max-width: 60%;
+        margin: 0 5px 20px;
+
+        img {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    &__other {
+        flex: 1 1 auto;
+        max-width: 60%;
+        margin: 0 5px 20px;
+
+        display: flex;
+        align-items: center;
+
+        span {
+            font-size: 16px;
+            line-height: 1.25;
+
+            &:first-child {
+                margin-right: 8px;
+
+                font-size: 44px;
+                font-weight: 600;
+                color: $theme-color;
+            }
+        }
+    }
+}
+
+@media #{$tablet} {
+    .about-partners {
+        padding-top: 60px;
+
+        &__wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 33.33%);
+        }
+
+        &__title {
+            margin-bottom: 25px;
+        }
+
+        &__button {
+            width: 90%;
+            max-width: 290px;
+            &.btn {
+                display: flex;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        &__text {
+            padding-right: 15px;
+            max-width: none;
+            margin-bottom: 0;
+
+            font-size: 24px;
+        }
+
+        &__list {
+            min-width: 300px;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .about-partners {
+        &__text {
+            font-size: 30px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .about-partners {
+        padding-top: 120px;
+
+        &__wrapper {
+            grid-template-columns: 400px 400px 360px;
+        }
+
+        &__title {
+            margin-bottom: 40px;
+        }
+
+        &__list {
+            justify-content: space-between;
+            margin: 0 0 -20px;
+        }
+
+        &__partner {
+            margin: 0 0 20px;
+        }
+
+        &__text {
+            font-size: 34px;
+            padding-right: 45px;
+        }
+    }
+}

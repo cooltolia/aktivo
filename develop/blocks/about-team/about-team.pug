@@ -1,0 +1,27 @@
+mixin about-team()
+    +b.SECTION.about-team
+        +inner
+            +e.header
+                +e.H2.title Более <br> 5 лет опыта
+                +e.subtitle
+                    +title
+                        | Наша<br> команда
+            +e.list
+                +e.teammate
+                    +e.FIGURE.figure
+                        img(src="images/redesign/about/team1.jpg", alt="")
+                        +e.FIGCAPTION.figcaption
+                            +e.name Оскар Хартманн
+                            +e.post Президент
+                +e.teammate
+                    +e.FIGURE.figure
+                        img(src="images/redesign/about/team2.jpg", alt="")
+                        +e.FIGCAPTION.figcaption
+                            +e.name Егор Клименко
+                            +e.post Генеральный директор
+                +e.teammate
+                    +e.FIGURE.figure
+                        img(src="images/redesign/about/team3.jpg", alt="")
+                        +e.FIGCAPTION.figcaption
+                            +e.name Михаил Костромин
+                            +e.post Директор по продажам

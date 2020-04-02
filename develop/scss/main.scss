@@ -17,7 +17,7 @@ body {
     --theme-background-color: #fff;
     --theme-text-color: #000;
 
-    &[dark-theme] {
+    &[theme='dark-theme'] {
         --theme-background-color: #202020;
         --theme-text-color: #fff;
     }

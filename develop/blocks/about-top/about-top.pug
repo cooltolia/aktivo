@@ -1,0 +1,25 @@
+mixin about-top()
+    +b.SECTION.about-top
+        +inner
+            +e.wrapper
+                +e.title
+                    +title('h1', 'light') Aktivo сегодня — <br>сотни инвесторов,<br>приумножившие<br> собственный<br> капитал
+                +e.A.link.btn(href='#') Стать инвестором
+                +e.UL.advantages
+                    +e.LI.advantages-item
+                        +e.SPAN.advantage-value &gt;700
+                        +e.SPAN.advantage-title активных инвесторов
+                    +e.LI.advantages-item
+                        +e.SPAN.advantage-value 458&nbsp;000&nbsp;000&nbsp;₽
+                        +e.SPAN.advantage-title Распределили инвесторам за 2019 г.
+                    +e.LI.advantages-item
+                        +e.SPAN.advantage-value 3 млрд
+                        +e.SPAN.advantage-title Стоимость активов Aktivo
+                +e.A.video-snippet(href='#')
+                    +e.video-poster
+                        img(src="images/redesign/index-bottom/ceo.jpg", alt="")
+                    +e.video-content
+                        +e.BLOCKQUOTE.blockquote Наша цель — сделать процесс инвестирования простым, понятным и доступным для более широкого круга.
+                        +e.name Оскар Хартманн
+                        +e.post Основатель и Президент AKTIVO
+                    
