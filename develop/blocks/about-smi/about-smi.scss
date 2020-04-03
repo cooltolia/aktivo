@@ -74,18 +74,38 @@
 
 @media #{$tablet} {
     .about-smi {
+        position: relative;
         padding-top: 50px;
         margin-bottom: 30px;
+
+        .inner {
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: calc(100% - 68px);
+                height: 70px;
+                left: 72px;
+                z-index: 12;
+
+                background-color: #fff;
+            }
+        }
 
         &__list {
             display: flex;
             flex-flow: row wrap;
-            width: 798px;
+            width: 700px;
         }
 
         &__post {
-            width: 256px;
-            height: 256px;
+            width: 233px;
+            height: 233px;
+        }
+
+        &__heading {
+            font-size: 16px;
         }
     }
 }
@@ -99,6 +119,10 @@
         &__post {
             width: 318px;
             height: 318px;
+        }
+
+        &__heading {
+            font-size: 18px;
         }
     }
 }

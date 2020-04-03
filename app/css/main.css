@@ -654,7 +654,7 @@ th {
       margin-bottom: 0;
       font-size: 24px; }
     .about-partners__list {
-      min-width: 300px; } }
+      min-width: 280px; } }
 
 @media (min-width: 1024px) {
   .about-partners__text {
@@ -737,8 +737,21 @@ th {
 
 @media (min-width: 768px) {
   .about-smi {
+    position: relative;
     padding-top: 50px;
     margin-bottom: 30px; }
+    .about-smi .inner {
+      position: relative; }
+      .about-smi .inner::after {
+        content: '';
+        position: absolute;
+        width: -webkit-calc(100% - 68px);
+        width: -moz-calc(100% - 68px);
+        width: calc(100% - 68px);
+        height: 70px;
+        left: 72px;
+        z-index: 12;
+        background-color: #fff; }
     .about-smi__list {
       display: -webkit-box;
       display: -moz-box;
@@ -750,17 +763,21 @@ th {
          -moz-box-direction: normal;
           -ms-flex-flow: row wrap;
               flex-flow: row wrap;
-      width: 798px; }
+      width: 700px; }
     .about-smi__post {
-      width: 256px;
-      height: 256px; } }
+      width: 233px;
+      height: 233px; }
+    .about-smi__heading {
+      font-size: 16px; } }
 
 @media (min-width: 1024px) {
   .about-smi__list {
     width: 984px; }
   .about-smi__post {
     width: 318px;
-    height: 318px; } }
+    height: 318px; }
+  .about-smi__heading {
+    font-size: 18px; } }
 
 @media (min-width: 1200px) {
   .about-smi {
@@ -870,8 +887,8 @@ th {
           -ms-flex: 1 1 33%;
               flex: 1 1 33%; }
     .about-team__figure {
-      width: 256px;
-      height: 256px; } }
+      width: 233px;
+      height: 233px; } }
 
 @media (min-width: 1024px) {
   .about-team__header {
