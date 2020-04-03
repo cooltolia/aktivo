@@ -1,0 +1,223 @@
+.faq {
+    position: relative;
+
+    .lines {
+        top: 5px;
+        height: calc(100% + 5px);
+    }
+
+    &__title {
+        margin-top: -5px;
+        margin-bottom: 20px;
+    }
+
+    &__aside {
+        margin-bottom: 50px;
+    }
+
+    &__questions-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    &__questions-item {
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__questions-link {
+        position: relative;
+        padding: 3px 0;
+
+        font-size: 20px;
+        color: $text-color;
+        text-decoration: none;
+
+        transition: color 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $theme-color;
+
+            text-decoration: none;
+        }
+
+        &.active {
+            font-weight: 700;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                left: -15px;
+                top: 50%;
+
+                transform: translateY(-45%) rotate(-45deg);
+
+                border-width: 0 1px 1px 0;
+                border-style: solid;
+                border-color: $theme-color;
+            }
+        }
+    }
+
+    &__paragraph {
+        margin-bottom: 36px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0 0 20px;
+
+            font-size: 16px;
+            line-height: 1.4;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        ul {
+            padding: 0;
+            margin: 0 0 20px;
+            list-style: none;
+
+            font-size: 16px;
+            line-height: 1.4;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 8px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 12px;
+                height: 2px;
+                left: 0;
+                top: 10px;
+
+                background-color: $theme-color;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media #{$tablet} {
+    .faq {
+        position: relative;
+        padding-top: 90px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            z-index: 12;
+            height: 1px;
+            left: 33px;
+            right: 0;
+
+            background-color: rgba(#919191, 0.2);
+        }
+
+        .lines {
+            top: 0;
+
+            .line {
+                &::after {
+                    opacity: 0;
+                }
+            }
+        }
+
+        &__title {
+            margin-top: 0;
+            margin-bottom: 35px;
+        }
+
+        &__wrapper {
+            display: flex;
+        }
+
+        &__aside {
+            width: calc(100% / 3);
+            padding-right: 10px;
+        }
+
+        &__questions {
+            position: sticky;
+            top: 20px;
+        }
+
+        &__questions-item {
+            margin-bottom: 40px;
+        }
+
+        &__content {
+            width: calc(100% / 3 * 2);
+        }
+    }
+}
+
+@media #{$desktop} {
+    .faq {
+        padding-top: 85px;
+
+        &::after {
+            left: 0;
+        }
+
+        .lines {
+            .line {
+                width: 400px;
+            }
+
+            &::after {
+                opacity: 0;
+            }
+        }
+
+        &__aside {
+            width: 400px;
+        }
+
+        &__questions {
+            top: 50px;
+        }
+
+        &__questions-link {
+            &.active {
+                &::before {
+                    left: -25px;
+                }
+            }
+        }
+
+        &__content {
+            width: 760px;
+        }
+    }
+}

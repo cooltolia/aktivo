@@ -2,11 +2,14 @@ include template/header
 include template/footer
 include ../blocks/**/*
 - const alias = "m"
-
+- const theme = 'light'
 doctype html
 html(lang='ru')
     +doc-header
     body
-        +inner
-            +dev-nav
+        +main-header
+        .page
+            +faq
+        +main-footer
+            +lines
         +doc-footer

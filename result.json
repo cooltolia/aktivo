@@ -1,4 +1,28 @@
 {
+	"devNav": {
+		"main": [
+			{
+				"link": "main-page.html",
+				"text": "Главная страница"
+			},
+			{
+				"link": "objects-page.html",
+				"text": "Наши объекты"
+			},
+			{
+				"link": "partners-page.html",
+				"text": "Нащи партнеры"
+			},
+			{
+				"link": "about-page.html",
+				"text": "О нас"
+			},
+			{
+				"link": "faq-page.html",
+				"text": "Ответы на вопросы"
+			}
+		]
+	},
 	"mainNav": [
 		{
 			"url": "/realty",

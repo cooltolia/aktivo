@@ -1,0 +1,22 @@
+include template/header
+include template/footer
+include ../blocks/**/*
+- const alias = "m"
+- const theme = 'dark'
+- const loggedIn = true
+doctype html
+html(lang='ru')
+    +doc-header
+    body(theme='dark-theme')
+        +main-header
+        .page
+            +lines
+            +index-top
+            +profit-calc
+            +advantages
+            +best-objects
+            +investment-steps
+            +index-bottom
+        +main-footer
+            +lines
+        +doc-footer
