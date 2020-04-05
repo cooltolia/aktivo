@@ -1,0 +1,164 @@
+.project-appeal {
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 75px;
+
+    background-color: #1b1b1b;
+    background-image: url(../images/redesign/index-bottom/bg.jpg);
+    background-size: cover;
+
+    &__title {
+        margin-bottom: 20px;
+    }
+
+    &__button {
+        width: 100%;
+        max-width: 240px;
+        margin-bottom: 32px;
+    }
+
+    &__duration {
+        margin-bottom: 46px;
+
+        .value {
+            display: block;
+            margin-bottom: 4px;
+
+            font-size: 50px;
+            color: $theme-color;
+            font-weight: 600;
+        }
+
+        .label {
+            display: block;
+
+            color: $text-color-white;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+    }
+
+    &__steps {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+
+            background-color: $theme-color;
+        }
+    }
+
+    &__step {
+        position: relative;
+        padding-left: 32px;
+        margin-bottom: 12px;
+
+        font-size: 16px;
+        font-weight: 600;
+        color: $text-color-white;
+
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: 12;
+            width: 16px;
+            height: 16px;
+            top: 2px;
+            left: -8px;
+
+            background-color: $theme-color;
+            border-radius: 50%;
+        }
+    }
+
+    &__step-title {
+        margin-bottom: 2px;
+    }
+
+    &__step-duration {
+        color: $theme-color;
+    }
+}
+
+@media #{$tablet} {
+    .project-appeal {
+        padding-top: 95px;
+        padding-bottom: 75px;
+
+        .lines {
+            &::after {
+                opacity: 0;
+            }
+        }
+
+        &__wrapper {
+            display: flex;
+        }
+
+        &__column {
+            width: 60%;
+            flex: 0 0 auto;
+            margin-bottom: 0;
+
+            &:last-child {
+                width: 40%;
+            }
+        }
+
+        &__button {
+            max-width: 290px;
+            margin-bottom: 45px;
+        }
+
+        &__duration {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+
+            .value {
+                margin-right: 20px;
+            }
+        }
+
+        &__steps {
+            margin-top: 15px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .project-appeal {
+        padding-top: 85px;
+        padding-bottom: 85px;
+
+        &__title {
+            margin-bottom: 24px;
+        }
+
+        &__column {
+            width: 665px;
+
+            &:last-child {
+                width: 495px;
+            }
+        }
+
+        &__step {
+            margin-bottom: 16px;
+            padding-left: 42px;
+        }
+
+        &__step-title {
+            margin-bottom: 6px;
+        }
+    }
+}

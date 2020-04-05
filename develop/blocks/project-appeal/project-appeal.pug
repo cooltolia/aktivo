@@ -1,0 +1,41 @@
+mixin project-appeal()
+    +b.SECTION.project-appeal
+        +lines('two-columns')
+        +inner
+            +e.wrapper
+                +e.column
+                    +e.title
+                        +title('h2', 'light')
+                            | Начните <br>зарабатывать <br> c лидером <br> краудфандинга <br>в России
+                    +e.BUTTON.button.btn(type='button') Оставить заявку
+                    +e.duration
+                        span.value 90 дней
+                        span.label срок закрытия <br>сделки
+                +e.column
+                    +e.UL.steps
+                        +e.LI.step
+                            +e.step-title Рассмотрение предложения 
+                            +e.step-duration 2 дня
+                        +e.LI.step
+                            +e.step-title Осмотр помещения
+                            +e.step-duration 1 день
+                        +e.LI.step
+                            +e.step-title Запрос документов
+                            +e.step-duration 7 дней
+                        +e.LI.step
+                            +e.step-title Предварительная оценка
+                            +e.step-duration 1 день
+                        +e.LI.step
+                            +e.step-title Подписание оффера
+                            +e.step-duration 30 дней
+                        +e.LI.step
+                            +e.step-title Due Dilligence
+                            +e.step-duration 1 день
+                        +e.LI.step
+                            +e.step-title Подписание договора
+                            +e.step-duration 45 дней
+                        +e.LI.step
+                            +e.step-title Фондирование сделки
+                            +e.step-duration 1 день
+                        +e.LI.step
+                            +e.step-title Закрытие сделки

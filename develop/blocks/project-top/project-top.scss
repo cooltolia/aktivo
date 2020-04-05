@@ -1,0 +1,105 @@
+.project-top {
+    position: relative;
+    padding-top: 75px;
+    margin-top: -75px;
+    padding-bottom: 260px;
+
+    background-color: #1b1b1b;
+    background-image: url(../images/redesign/index-top/bg.jpg);
+    background-size: cover;
+
+    .lines {
+        top: 75px;
+        height: calc(100% - 75px);
+    }
+
+    &__title {
+        margin-top: -5px;
+        margin-bottom: 20px;
+    }
+
+    &__button {
+        width: 100%;
+        max-width: 290px;
+        margin-bottom: 25px;
+    }
+
+    &__advantages {
+        padding: 0;
+        margin: 0 0 40px;
+        list-style: none;
+    }
+
+    &__advantages-item {
+        margin-bottom: 20px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__advantage-title {
+        display: block;
+
+        font-size: 14px;
+        color: $text-color-white;
+    }
+
+    &__advantage-value {
+        display: block;
+
+        font-size: 34px;
+        font-weight: 600;
+        color: $theme-color;
+    }
+}
+
+@media #{$tablet} {
+    .project-top {
+        padding-bottom: 105px;
+
+        &__wrapper {
+            padding-top: 90px;
+            width: 60%;
+        }
+
+        &__title {
+            margin-bottom: 25px;
+        }
+
+        &__row {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        &__button {
+            max-width: 230px;
+            margin-right: 20px;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .project-top {
+        padding-bottom: 145px;
+
+        &__button {
+            max-width: 290px;
+            margin-right: 50px;
+        }
+    }
+}
+@media #{$desktop} {
+    .project-top {
+        padding-bottom: 125px;
+
+        &__wrapper {
+            padding-top: 70px;
+            width: 665px;
+        }
+
+        &__button {
+            margin-right: 60px;
+        }
+    }
+}

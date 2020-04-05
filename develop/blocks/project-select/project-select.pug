@@ -1,0 +1,10 @@
+mixin project-select(selectType = 'block', modifier, name, options = [])
+    +b.project-select(class=modifier + ' ' + selectType)
+        if (selectType === 'block')
+            +e.LABEL.label 
+                block
+        +e.INPUT.input(type='hidden' name=name readonly='' value=options[0])
+        +e.selected !{options[0]}
+        +e.options
+            each option in options
+                +e.option !{option}

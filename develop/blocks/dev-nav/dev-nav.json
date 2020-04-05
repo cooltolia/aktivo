@@ -20,6 +20,10 @@
             {
                 "link": "faq-page.html",
                 "text": "Ответы на вопросы"
+            },
+            {
+                "link": "project-sale-page.html",
+                "text": "Продажа проекта"
             }
         ]
     }

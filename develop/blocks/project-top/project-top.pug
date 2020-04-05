@@ -1,0 +1,20 @@
+mixin project-top()
+    +b.SECTION.project-top
+        +lines('two-columns')
+        +inner
+            +e.wrapper
+                +e.title
+                    +title('h1', 'light')
+                        | Простой <br>и надежный<br>способ продать<br> недвижимость
+                +e.row
+                    +e.BUTTON.button.btn(type='button') Оставить заявку
+                    +e.UL.advantages
+                        +e.LI.advantages-item
+                            +e.SPAN.advantage-value до 2 млрд.&nbsp;₽
+                            +e.SPAN.advantage-title Стоимость объектов для продажи
+                        +e.LI.advantages-item
+                            +e.SPAN.advantage-value 90 дней
+                            +e.SPAN.advantage-title Стоимость активов Aktivo
+                        +e.LI.advantages-item
+                            +e.SPAN.advantage-value &gt;700
+                            +e.SPAN.advantage-title активных инвесторов

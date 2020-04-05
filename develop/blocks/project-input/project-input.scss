@@ -1,0 +1,69 @@
+.project-input {
+    $this: &;
+    position: relative;
+
+    &.small-padding {
+        #{$this}__input {
+            padding-right: 80px;
+        }
+    }
+
+    &.big-padding {
+        #{$this}__input {
+            padding-right: 100px;
+        }
+    }
+
+    &__label {
+        margin-bottom: 6px;
+
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    &__input {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        padding-right: 20px;
+        padding-left: 2px;
+        height: 38px;
+
+        font-size: 16px;
+        line-height: 38px;
+
+        border: none;
+        outline: none;
+        border-bottom: solid 1px rgba(#979797, 0.5);
+
+        transition: border-color 300ms ease;
+
+        &::placeholder {
+            color: rgba($color: $text-color, $alpha: 0.26);
+        }
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            appearance: none;
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+
+    &__tip {
+        font-size: 10px;
+        color: #9e9e9e;
+        line-height: 2;
+    }
+}
+
+@media #{$tablet} {
+    .project-input {
+    }
+}
+
+@media #{$desktop} {
+    .project-input {
+    }
+}

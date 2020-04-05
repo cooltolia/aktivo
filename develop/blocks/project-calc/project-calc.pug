@@ -1,0 +1,77 @@
+mixin project-calc()
+    +b.SECTION.project-calc
+        +lines('two-columns')
+        +inner
+            +e.title
+                +title
+                    | Рассчитайте <br>стоимость объекта
+            +e.FORM.form
+                +e.row
+                    +e.column.--flex
+                        +e.section
+                            +e.section-title Объект
+                            +e.section-input
+                                +project-select('block', '', 'project_type', projectSalePage.selects.projectType)
+                                    | Тип
+                            +e.section-input
+                                +project-select('block', '', 'project_city', projectSalePage.selects.cities)
+                                    | Город
+                            +e.section-input
+                                +project-input('text', 'projectAddress', 'project_address', 'Адрес', 'Ул. Космонавтов')
+                            +e.section-input
+                                +project-input('text', 'projectArea', 'project_area', 'Площадь', '2 456 м²')(data-format='meter')
+                        +e.section
+                            +e.section-title Собственник
+                            +e.section-input
+                                +project-select('block', '', 'owner_type', projectSalePage.selects.ownerType)
+                                    | Тип
+                            +e.section-input
+                                +project-select('block', '', 'tax_type', projectSalePage.selects.taxType)
+                                    | Налогооблажение
+                +e.row
+                    +e.column.--flex
+                        +e.section
+                            +e.section-title.--big-margin
+                                +e.section-value#monthIncome 0 ₽
+                                | Доходы от аренды в месяц
+                            +e.section-input
+                                +project-input('text', 'rentalIncome1', 'rental_income1', 'Выручка от аренды помещений в месяц (МАП)', '1 000 000 ₽', 'small-padding')(data-format='ruble')
+                                    +project-select('inline', '', 'rental_income1_type', projectSalePage.selects.nds)
+                            +e.section-input
+                                +project-input('text', 'rentalIncome2', 'rental_income2', 'Средние доходы от эксплуатации в месяц', '1 000 000 ₽', 'small-padding')(data-format='ruble')
+                                    +project-select('inline', '', 'rental_income2_type', projectSalePage.selects.nds)
+                            +e.section-input
+                                +project-input('text', 'rentalIncome3', 'rental_income3', 'Средние коммунальные платежи в месяц', '1 000 000 ₽', 'small-padding')(data-format='ruble')
+                                    +project-select('inline', '', 'rental_income3_type', projectSalePage.selects.nds)
+                                +e.input-tip Арендатор возмещает собственнику
+                            +e.section-input
+                                +project-input('text', 'rentalIncome4', 'rental_income4', 'Средние коммунальные платежи в месяц', '1 000 000 ₽')(data-format='ruble')
+                        +e.section
+                            +e.section-title.--big-margin
+                                +e.section-value#monthExpanses 0 ₽
+                                | Расходы в месяц
+                            +e.section-input
+                                +project-input('text', 'propertyExpenses1', 'property_expenses1', 'Налог на имущество за последний квартал', '1 000 000 ₽', 'big-padding')(data-format='ruble')
+                                    +project-select('inline', 'small', 'property_expenses1_type', projectSalePage.selects.payment1)
+                            +e.section-input
+                                +project-input('text', 'propertyExpenses2', 'property_expenses2', 'Земельные платежи за последний квартал', '1 000 000 ₽', 'big-padding')(data-format='ruble')
+                                    +project-select('inline', 'small', 'property_expenses2_type', projectSalePage.selects.payment2)
+                            +e.section-input
+                                +project-input('text', 'propertyExpenses3', 'property_expenses3', 'Средние расходы по эксплуатации в месяц ', '1 000 000 ₽', 'small-padding')(data-format='ruble')
+                                    +project-select('inline', '', 'property_expenses3_type', projectSalePage.selects.nds)
+                            +e.section-input
+                                +project-input('text', 'propertyExpenses3', 'property_expenses3', 'Средние расходы по эксплуатации в месяц ', '1 000 000 ₽', 'small-padding')(data-format='ruble')
+                                    +project-select('inline', '', 'property_expenses3_type', projectSalePage.selects.nds)
+                    +e.column
+                        +e.result-row
+                            +e.result-value 595 227 357 ₽
+                            +e.result-label Стоимость объекта для платформы Активо
+                        +e.result-row
+                            +e.result-value 51 227 357 ₽
+                            +e.result-label Чистый операционный доход
+                        +e.result-row
+                            +e.result-value 1 283 333 ₽
+                            +e.result-label НДС к вычету
+                        +e.result-row
+                            +e.result-value 0 ₽
+                            +e.result-label НДС к зачету

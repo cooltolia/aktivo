@@ -43,7 +43,18 @@
                 opacity: 0;
             }
         }
-        
+
+        &.two-columns {
+            .line {
+                width: calc((100% - 68px) * 0.4);
+                left: calc((100% - 68px) * 0.6 + 34px);
+
+                &::after {
+                    opacity: 0;
+                }
+            }
+        }
+
         .line {
             position: absolute;
             width: calc((100% - 68px) / 3);
@@ -86,6 +97,13 @@
 
             .line {
                 width: 400px;
+            }
+        }
+
+        &.two-columns {
+            .line {
+                width: 495px;
+                left: 665px;
             }
         }
 

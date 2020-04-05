@@ -1,0 +1,218 @@
+.project-structure {
+    position: relative;
+    padding-top: 65px;
+    padding-bottom: 70px;
+
+    &__title {
+        margin-bottom: 20px;
+
+        &--main {
+            margin-bottom: 30px;
+        }
+    }
+
+    &__section {
+        margin-bottom: 40px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    &__item {
+        position: relative;
+        min-height: 270px;
+        padding-bottom: 30px;
+        padding-left: 45px;
+
+        font-size: 16px;
+        line-height: 1.4;
+
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: 12;
+            width: 27px;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        &:nth-child(1)::before {
+            background-color: #fed643;
+        }
+
+        &:nth-child(2)::before {
+            background-color: #d5dadf;
+        }
+
+        &:nth-child(3)::before {
+            background-color: #848f9b;
+        }
+
+        &:nth-child(4)::before {
+            background-color: #455a6e;
+        }
+    }
+
+    &__item-title {
+        margin: 0 0 10px;
+
+        font-weight: 600;
+    }
+
+    &__item-text {
+        margin: 0;
+    }
+
+    &__advantages-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    &__advantages-item {
+        position: relative;
+        padding-left: 54px;
+        margin-bottom: 30px;
+
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.4;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -25px;
+
+            color: transparent;
+            font-size: 66px;
+            font-weight: 600;
+            -webkit-text-stroke: 0.7px $theme-color;
+        }
+
+        &--plus::before {
+            content: '+';
+        }
+
+        &--copyright::before {
+            content: '©';
+            top: -15px;
+
+            font-size: 56px;
+        }
+
+        &--equal::before {
+            content: '=';
+        }
+
+        &--ruble::before {
+            content: '₽';
+            font-size: 56px;
+        }
+    }
+}
+
+@media #{$tablet} {
+    .project-structure {
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        .lines {
+            &::after {
+                opacity: 0;
+            }
+        }
+
+        &__title {
+            margin-bottom: 46px;
+
+            .title {
+                font-size: 34px;
+            }
+
+            &--main {
+                margin-bottom: 32px;
+
+                .title {
+                    font-size: 40px;
+                    br {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        &__wrapper {
+            display: flex;
+        }
+
+        &__section {
+            width: 60%;
+            flex: 0 0 auto;
+            margin-bottom: 0;
+
+            &:last-child {
+                width: 40%;
+            }
+        }
+
+        &__item {
+            min-height: 190px;
+            padding-bottom: 30px;
+            padding-left: 125px;
+            padding-right: 20px;
+
+            &::before {
+                width: 82px;
+            }
+        }
+
+        &__advantages-item {
+            margin-bottom: 55px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .project-structure {
+        padding-top: 130px;
+        padding-bottom: 100px;
+
+        &__section {
+            width: 665px;
+
+            &:last-child {
+                width: 495px;
+            }
+        }
+
+        &__title {
+            margin-bottom: 45px;
+
+            &--main {
+                margin-bottom: 35px;
+            }
+        }
+
+        &__item {
+            padding-left: 210px;
+            padding-right: 40px;
+
+            &::before {
+                width: 165px;
+            }
+        }
+    }
+}
