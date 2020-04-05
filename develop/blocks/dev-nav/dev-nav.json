@@ -24,6 +24,10 @@
             {
                 "link": "project-sale-page.html",
                 "text": "Продажа проекта"
+            },
+            {
+                "link": "howitworks-page.html",
+                "text": "Как это работает"
             }
         ]
     }

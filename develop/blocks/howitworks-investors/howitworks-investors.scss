@@ -1,0 +1,116 @@
+.howitworks-investors {
+    padding-top: 65px;
+    overflow: hidden;
+
+    &__title {
+        margin-bottom: 5px;
+    }
+
+    &__subtitle {
+        display: none;
+    }
+
+    &__letters {
+        margin-bottom: 30px;
+        margin-left: -10px;
+
+        color: transparent;
+        font-size: 110px;
+        font-weight: 600;
+        line-height: 0.85;
+        -webkit-text-stroke: 0.7px $theme-color;
+    }
+
+    &__advantages {
+        max-width: 360px;
+        padding-right: 30px;
+    }
+
+    &__advantage {
+        margin-bottom: 40px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__advantage-title {
+        margin: 0 0 12px;
+
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    &__advantage-text {
+        margin: 0;
+
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+@media #{$tablet} {
+    .howitworks-investors {
+        padding-top: 100px;
+
+        &__wrapper {
+            display: grid;
+            grid-template-areas:
+                'subtitle advantages title'
+                '. advantages letters';
+            grid-template-columns: repeat(3, 33.3%);
+            grid-template-rows: 50px auto;
+        }
+
+        &__title {
+            grid-area: title;
+        }
+
+        &__subtitle {
+            display: block;
+        }
+
+        &__advantages {
+            grid-area: advantages;
+        }
+
+        &__advantage {
+            margin-bottom: 20px;
+        }
+
+        &__letters {
+            grid-area: letters;
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .howitworks-investors {
+        &__wrapper {
+            grid-template-rows: 70px auto;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .howitworks-investors {
+        &__wrapper {
+            grid-template-columns: 400px 360px 400px;
+        }
+
+        &__advantages {
+            padding-right: 60px;
+        }
+
+        &__advantage {
+            margin-bottom: 40px;
+        }
+
+        &__letters {
+            margin-left: -13px;
+            
+            font-size: 128px;
+        }
+    }
+}

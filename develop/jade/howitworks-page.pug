@@ -1,0 +1,19 @@
+include template/header
+include template/footer
+include ../blocks/**/*
+- const alias = "m"
+- const theme = 'light'
+doctype html
+html(lang='ru')
+    +doc-header
+    body
+        +main-header
+        .page
+            +lines
+            +howitworks-top
+            +howitworks-investors
+            +howitworks-aktivo
+            +howitworks-objects
+        +main-footer
+            +lines
+        +doc-footer

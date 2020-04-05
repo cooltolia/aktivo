@@ -25,10 +25,10 @@ body {
 
 .page {
     position: relative;
+}
 
-    > .lines {
-        top: 75px;
-    }
+[theme='dark-theme'] .page > .lines {
+    top: 75px;
 }
 
 .tippy-popper {

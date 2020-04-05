@@ -1,0 +1,19 @@
+mixin howitworks-objects()
+    +b.SECTION.howitworks-objects
+        +inner
+            +e.wrapper
+                +e.title
+                    +title('h2', 'light')
+                        | Объекты
+                +e.content
+                    +e.column
+                        +e.subtitle
+                            +title('h3', 'light small') 
+                                | Аудит каждого объекта
+                        +e.P.text
+                            | Все объекты недвижимости проходят аудит юридической, финансовой чистоты и технического состояния. В принятии решения о заключении сделки принимает участие инвестиционный комитет состоящий из признанных экспертов рынка.
+                        +e.A.link.btn(href='objects-page.html') Смотреть объекты
+                    +e.column
+                        +e.utp
+                            span.value 2%
+                            span.label В результате проверки, <br>мы отбираем только 2% от всех<br> рассмотренных объектов.
