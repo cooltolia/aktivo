@@ -17,6 +17,10 @@
         font-size: 20px;
     }
 
+    &.medium {
+        font-size: 24px;
+    }
+
     &.light {
         color: $text-color-white;
     }
@@ -29,6 +33,10 @@
         &.small {
             font-size: 26px;
         }
+
+        &.medium {
+            font-size: 28px;
+        }
     }
 }
 
@@ -38,6 +46,10 @@
 
         &.small {
             font-size: 30px;
+        }
+
+        &.medium {
+            font-size: 34px;
         }
     }
 }
@@ -49,6 +61,10 @@
         line-height: 1.1;
 
         &.small {
+            font-size: 34px;
+        }
+
+        &.medium {
             font-size: 34px;
         }
     }

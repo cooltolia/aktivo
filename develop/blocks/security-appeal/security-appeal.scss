@@ -1,0 +1,116 @@
+.security-appeal {
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    background-color: #1b1b1b;
+    background-image: url(../images/redesign/index-bottom/bg.jpg);
+    background-size: cover;
+
+    &__title {
+        margin-bottom: 20px;
+    }
+
+    &__button {
+        width: 100%;
+        max-width: 290px;
+        margin-bottom: 36px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    &__text {
+        font-size: 14px;
+        line-height: 1.6;
+        color: $text-color-white;
+
+        .highlight {
+            display: block;
+            margin-bottom: 4px;
+
+            color: transparent;
+            font-size: 88px;
+            line-height: 1;
+            font-weight: 600;
+            white-space: nowrap;
+            -webkit-text-stroke: 0.7px $theme-color;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+}
+
+@media #{$tablet} {
+    .security-appeal {
+        padding-top: 65px;
+        padding-bottom: 100px;
+
+        &__wrapper {
+            display: flex;
+        }
+
+        &__col {
+            width: 66%;
+            flex: 1 1 auto;
+
+            &:last-child {
+                width: 33%;
+            }
+        }
+
+        &__button {
+            margin-bottom: 0;
+        }
+
+        &__text {
+            .highlight {
+                font-size: 75px;
+            }
+        }
+    }
+}
+
+@media #{$laptop} {
+    .security-appeal {
+        &__button {
+            max-width: 354px;
+        }
+
+        &__text {
+            font-size: 16px;
+            line-height: 1.4;
+
+            .highlight {
+                font-size: 102px;
+            }
+        }
+    }
+}
+@media #{$desktop} {
+    .security-appeal {
+        padding-top: 110px;
+        padding-bottom: 160px;
+
+        &__title {
+            margin-bottom: 26px;
+        }
+
+        &__col {
+            width: 760px;
+
+            &:last-child {
+                width: 400px;
+            }
+        }
+
+        &__text {
+            padding-right: 30px;
+            margin-bottom: 10px;
+
+            .highlight {
+                font-size: 128px;
+            }
+        }
+    }
+}

@@ -2,19 +2,16 @@ include template/header
 include template/footer
 include ../blocks/**/*
 - const alias = "m"
-- const theme = 'dark'
+- const theme = 'light'
 doctype html
 html(lang='ru')
     +doc-header
-    body(theme='dark-theme')
+    body
         +main-header
         .page
-            +lines('small-right offset-right')
-            +about-top
-            +about-history
-            +about-team
-            +about-partners
-            +about-smi
+            +lines
+            +security-advantages
+            +security-appeal
         +main-footer
             +lines
         +doc-footer
