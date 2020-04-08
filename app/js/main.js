@@ -104,26 +104,26 @@ jQuery(document).ready(function ($) {
       }
     });
 
-    function hideInputErrors(modal) {
-      var inputs = modal.find('input.js-error');
+    function hideInputErrors(wrapper) {
+      var inputs = wrapper.find('input.error');
       inputs.each(function () {
-        $(this).removeClass('js-error');
-        $(this).siblings('.custom-input__error').slideUp(0);
+        $(this).removeClass('error');
+        $(this).siblings('.error').slideUp(0);
       });
     }
 
     function showInputError(input, text) {
       var inputNode = $(input);
-      var errorNode = inputNode.siblings('.custom-input__error');
-      inputNode.addClass('js-error');
+      var errorNode = inputNode.siblings('.error');
+      inputNode.addClass('error');
       errorNode.text(text);
       errorNode.slideDown(200);
     }
 
     function hideSingleInputError(input) {
       var inputNode = $(input);
-      var errorNode = inputNode.siblings('.custom-input__error');
-      inputNode.removeClass('js-error');
+      var errorNode = inputNode.siblings('.error');
+      inputNode.removeClass('error');
       errorNode.slideUp(200);
     }
 
@@ -140,60 +140,13 @@ jQuery(document).ready(function ($) {
           processData: options.processData,
           contentType: options.contentType,
           success: function success(data) {
-            var response = function (raw) {
-              try {
-                return JSON.parse(raw);
-              } catch (err) {
-                return false;
-              }
-            }(data);
-
+            var response = safelyParseJSON(data);
             resolve(response);
           },
           error: function error(data) {
             reject(data);
           }
         });
-      });
-    }
-
-    function productLike(e) {
-      var _this = this;
-
-      var target = e.currentTarget;
-      var productId = $(this).data('like');
-      var formData = 'id=' + productId;
-      var favoritesCounter = $('.main-header__favourites .number');
-      var newTippy = tippy(target, {
-        content: 'Добавлено в <a href="/favourites/">избранное</a>',
-        placement: 'top',
-        trigger: 'manual',
-        arrow: true,
-        theme: 'norman-tooltip',
-        interactive: true // hideOnClick: false
-
-      });
-      var tippyInstance = target._tippy;
-
-      if (!$(this).hasClass('active')) {
-        tippyInstance.show();
-        setTimeout(function () {
-          tippyInstance.hide();
-        }, 2000);
-      }
-
-      $(this).attr('disabled', true);
-      /** find others cards with the same id */
-
-      var sameProductCards = $('[data-like="' + productId + '"]');
-      sameProductCards.toggleClass('active');
-      postData('user/favorites.php', formData).then(function (res) {
-        $(_this).attr('disabled', false);
-        var favorites = parseInt(res.favorites) > 0 ? res.favorites : '';
-        favoritesCounter.text(favorites);
-      }, function (rej) {
-        console.error(rej);
-        $(_this).attr('disabled', false);
       });
     }
 
@@ -226,28 +179,6 @@ jQuery(document).ready(function ($) {
       $('html, body').animate({
         scrollTop: elementOffset - 50
       }, scrollSpeed);
-    }
-
-    function getCities(currentValue) {
-      return new Promise(function (resolve) {
-        $.get(API + 'user/search_city.php?city=' + currentValue).then(function (res) {
-          var listItems = JSON.parse(res);
-          resolve(listItems);
-        }).catch(function (err) {
-          console.log(err.statusText);
-        });
-      });
-    }
-
-    function loadModal(endPoint) {
-      return new Promise(function (resolve) {
-        $.get(API + endPoint).then(function (response) {
-          var data = JSON.parse(response);
-          resolve(data);
-        }, function (e) {
-          throw new Error(e);
-        });
-      });
     }
 
     function numberWithSpaces(n) {
@@ -368,40 +299,6 @@ jQuery(document).ready(function ($) {
     function forwardingZero(val) {
       return val < 10 ? '0' + val : val;
     }
-    /** @param -- jQuery node object */
-
-
-    function observeVideo(video) {
-      var observerOptions = {
-        rootMargin: '0px',
-        threshold: 0
-      };
-
-      var observerCallback = function observerCallback(entries, observer) {
-        if (!entries[0].isIntersecting && !video[0].paused) {
-          if (!document.pictureInPictureEnabled) {
-            console.log('picture-in-picture is not supported in this browser');
-          }
-
-          if (document.pictureInPictureElement) {
-            document.exitPictureInPicture().then(function () {
-              observer.unobserve(video[0]);
-            });
-          } else {
-            video[0].requestPictureInPicture();
-          }
-        } else if (entries[0].isIntersecting && document.pictureInPictureElement) {
-          document.exitPictureInPicture().then(function () {
-            observer.unobserve(video[0]);
-          });
-        }
-      };
-
-      if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(observerCallback, observerOptions);
-        observer.observe(video[0]);
-      }
-    }
 
     function triggerAnimation(items) {
       var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -436,26 +333,14 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    function inlineVideoLogic() {
-      var clickedBnt = $(this);
-      var video = clickedBnt.next();
-      var wrapper = clickedBnt.parent();
-      clickedBnt.fadeOut(300);
-      wrapper.addClass('playing');
-      video.addClass('active');
-      video[0].play();
-      video.on('ended', function () {
-        wrapper.removeClass('playing');
-        video.removeClass('active');
-        clickedBnt.fadeIn(300);
-      });
-      video[0].addEventListener('leavepictureinpicture', function (event) {
-        wrapper.removeClass('playing');
-        video.removeClass('active');
-        clickedBnt.fadeIn(300);
-        video[0].pause();
-      });
-      observeVideo(video);
+    function safelyParseJSON(json) {
+      var parsed;
+
+      try {
+        parsed = JSON.parse(json);
+      } catch (e) {}
+
+      return parsed;
     }
 
     (function () {
@@ -822,7 +707,40 @@ jQuery(document).ready(function ($) {
     (function () {
       var projectCalc = $('.project-calc');
       if (projectCalc.length === 0) return;
+      var form = $('.project-calc__form');
       var formatedInputs = projectCalc.find('input[data-format]');
+      var allFormInputs = projectCalc.find('input');
+      var allRequiredInputs = allFormInputs.filter('[required]');
+
+      function formLogic() {
+        // check whether all required inputs are filled
+        var requiredInputsFilled = _toConsumableArray(allRequiredInputs).every(function (input) {
+          return input.value.trim().length > 0;
+        });
+
+        if (!requiredInputsFilled) return;
+        var formData = form.serialize();
+        postData('url', formData).then(function (data) {
+          //if all is fine
+          updateData(data);
+        });
+      }
+
+      allFormInputs.each(function (_, input) {
+        $(input).on('change', function (e) {
+          formLogic();
+        });
+      });
+
+      function updateData(data) {
+        $('#monthIncome').text(data.monthIncome);
+        $('#monthExpanses').text(data.monthExpanses);
+        $('#objectValue').text(data.objectValue);
+        $('#operatingIncome').text(data.operatingIncome);
+        $('#vatRecovery').text(data.vatRecovery);
+        $('#vatOffset').text(data.vatOffset);
+      }
+
       var formatPatterns = {
         meter: wNumb({
           decimals: 0,
@@ -872,6 +790,7 @@ jQuery(document).ready(function ($) {
         var input = parentSelect.find('.project-select__input');
         selected.html(val);
         input.val(val);
+        input.trigger('change');
         hideSelect(parentSelect, optionsWrap);
       });
       $(document).on('click', function () {

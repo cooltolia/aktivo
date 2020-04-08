@@ -14,12 +14,11 @@ mixin project-calc()
                                 +project-select('block', '', 'project_type', projectSalePage.selects.projectType)
                                     | Тип
                             +e.section-input
-                                +project-select('block', '', 'project_city', projectSalePage.selects.cities)
-                                    | Город
+                                +project-input('text', 'projectCity', 'project_city', 'Город', 'Москва')(required='')
                             +e.section-input
-                                +project-input('text', 'projectAddress', 'project_address', 'Адрес', 'Ул. Космонавтов')
+                                +project-input('text', 'projectAddress', 'project_address', 'Адрес', 'Ул. Космонавтов')(required='')
                             +e.section-input
-                                +project-input('text', 'projectArea', 'project_area', 'Площадь', '2 456 м²')(data-format='meter')
+                                +project-input('text', 'projectArea', 'project_area', 'Площадь', '2 456 м²')(data-format='meter' required='')
                         +e.section
                             +e.section-title Собственник
                             +e.section-input
@@ -35,7 +34,7 @@ mixin project-calc()
                                 +e.section-value#monthIncome 0 ₽
                                 | Доходы от аренды в месяц
                             +e.section-input
-                                +project-input('text', 'rentalIncome1', 'rental_income1', 'Выручка от аренды помещений в месяц (МАП)', '1 000 000 ₽', 'small-padding')(data-format='ruble')
+                                +project-input('text', 'rentalIncome1', 'rental_income1', 'Выручка от аренды помещений в месяц (МАП)', '1 000 000 ₽', 'small-padding')(data-format='ruble' required='')
                                     +project-select('inline', '', 'rental_income1_type', projectSalePage.selects.nds)
                             +e.section-input
                                 +project-input('text', 'rentalIncome2', 'rental_income2', 'Средние доходы от эксплуатации в месяц', '1 000 000 ₽', 'small-padding')(data-format='ruble')
@@ -64,14 +63,14 @@ mixin project-calc()
                                     +project-select('inline', '', 'property_expenses3_type', projectSalePage.selects.nds)
                     +e.column
                         +e.result-row
-                            +e.result-value 595 227 357 ₽
+                            +e.result-value#objectValue 595 227 357 ₽
                             +e.result-label Стоимость объекта для платформы Активо
                         +e.result-row
-                            +e.result-value 51 227 357 ₽
+                            +e.result-value#operatingIncome 51 227 357 ₽
                             +e.result-label Чистый операционный доход
                         +e.result-row
                             +e.result-value 1 283 333 ₽
-                            +e.result-label НДС к вычету
+                            +e.result-label#vatRecovery НДС к вычету
                         +e.result-row
                             +e.result-value 0 ₽
-                            +e.result-label НДС к зачету
+                            +e.result-label#vatOffset НДС к зачету

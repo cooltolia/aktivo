@@ -24,6 +24,8 @@
         selected.html(val);
         input.val(val);
 
+        input.trigger('change')
+
         hideSelect(parentSelect, optionsWrap);
     });
 

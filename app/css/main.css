@@ -5550,6 +5550,9 @@ th {
 
 @media (min-width: 1200px) {
   .project-decoration {
+    width: -webkit-calc(100% - 120px);
+    width: -moz-calc(100% - 120px);
+    width: calc(100% - 120px);
     max-width: 1280px;
     margin-left: 60px; }
     .project-decoration__container {
@@ -5572,6 +5575,9 @@ th {
 
 .project-input {
   position: relative; }
+  .project-input.error .project-input__error {
+    opacity: 1;
+    pointer-events: all; }
   .project-input.small-padding .project-input__input {
     padding-right: 80px; }
   .project-input.big-padding .project-input__input {
@@ -5616,6 +5622,18 @@ th {
     font-size: 10px;
     color: #9e9e9e;
     line-height: 2; }
+  .project-input__error {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    color: red;
+    font-size: 10px;
+    line-height: 2;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: opacity 300ms ease;
+    -moz-transition: opacity 300ms ease;
+    transition: opacity 300ms ease; }
 
 .project-select {
   position: relative;

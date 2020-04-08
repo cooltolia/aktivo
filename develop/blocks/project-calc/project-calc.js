@@ -2,7 +2,43 @@
     const projectCalc = $('.project-calc');
     if (projectCalc.length === 0) return;
 
+    const form = $('.project-calc__form');
+
     const formatedInputs = projectCalc.find('input[data-format]');
+    const allFormInputs = projectCalc.find('input');
+    const allRequiredInputs = allFormInputs.filter('[required]');
+
+    function formLogic() {
+        // check whether all required inputs are filled
+        const requiredInputsFilled = [...allRequiredInputs].every((input) => {
+            return input.value.trim().length > 0;
+        });
+
+        if (!requiredInputsFilled) return;
+
+        const formData = form.serialize();
+
+        postData('url', formData).then(data => {
+            //if all is fine
+            updateData(data)
+        })
+    }
+
+    allFormInputs.each((_, input) => {
+        $(input).on('change', (e) => {
+            formLogic();
+        });
+    });
+
+    function updateData(data) {
+        $('#monthIncome').text(data.monthIncome);
+        $('#monthExpanses').text(data.monthExpanses);
+        $('#objectValue').text(data.objectValue);
+        $('#operatingIncome').text(data.operatingIncome);
+        $('#vatRecovery').text(data.vatRecovery);
+        $('#vatOffset').text(data.vatOffset);
+    }
+
 
     const formatPatterns = {
         meter: wNumb({
