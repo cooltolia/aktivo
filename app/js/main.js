@@ -719,7 +719,28 @@ jQuery(document).ready(function ($) {
         });
 
         if (!requiredInputsFilled) return;
-        var formData = form.serialize();
+
+        _toConsumableArray(formatedInputs).map(function (input) {
+          var val = input.value;
+
+          if (val.length > 0) {
+            var newVal = parseInt(val);
+            input.value = newVal;
+          }
+        });
+
+        var formData = form.serialize(); //format inputs back
+
+        _toConsumableArray(formatedInputs).map(function (input) {
+          var val = parseInt(input.value);
+          var type = input.dataset.format;
+
+          if (val.length > 0) {
+            var newVal = formatPatterns[type].to(val);
+            input.value = newVal;
+          }
+        });
+
         postData('url', formData).then(function (data) {
           //if all is fine
           updateData(data);
