@@ -185,50 +185,22 @@
                       </div>
                     </div><!--/ project-select --> 
                   </div>
-                  <div class="project-calc__section-input"><!-- project-select --> 
-                    <div class="project-select block">
-                      <label class="project-select__label"> Город
-                      </label><input class="project-select__input" type="hidden" name="project_city" readonly="" value="Москва"/>
-                      <div class="project-select__selected">Москва
-                      </div>
-                      <div class="project-select__options">
-                        <div class="project-select__option">Москва
-                        </div>
-                        <div class="project-select__option">Санкт-Петербург
-                        </div>
-                        <div class="project-select__option">Екатеринбург
-                        </div>
-                        <div class="project-select__option">Пермь
-                        </div>
-                        <div class="project-select__option">Владивосток
-                        </div>
-                        <div class="project-select__option">Хабаровск
-                        </div>
-                        <div class="project-select__option">Москва
-                        </div>
-                        <div class="project-select__option">Санкт-Петербург
-                        </div>
-                        <div class="project-select__option">Екатеринбург
-                        </div>
-                        <div class="project-select__option">Пермь
-                        </div>
-                        <div class="project-select__option">Владивосток
-                        </div>
-                        <div class="project-select__option">Хабаровск
-                        </div>
-                      </div>
-                    </div><!--/ project-select --> 
+                  <div class="project-calc__section-input"><!-- project-input --> 
+                    <div class="project-input">
+                      <label class="project-input__label" for="projectCity">Город
+                      </label><input class="project-input__input" type="text" id="projectCity" name="project_city" placeholder="Москва" required=""/><span class="project-input__error error">some text</span>
+                    </div><!--/ project-input --> 
                   </div>
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input">
                       <label class="project-input__label" for="projectAddress">Адрес
-                      </label><input class="project-input__input" type="text" id="projectAddress" name="project_address" placeholder="Ул. Космонавтов"/>
+                      </label><input class="project-input__input" type="text" id="projectAddress" name="project_address" placeholder="Ул. Космонавтов" required=""/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input">
                       <label class="project-input__label" for="projectArea">Площадь
-                      </label><input class="project-input__input" type="text" id="projectArea" name="project_area" placeholder="2 456 м²" data-format="meter"/>
+                      </label><input class="project-input__input" type="text" id="projectArea" name="project_area" placeholder="2 456 м²" data-format="meter" required=""/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                 </div>
@@ -280,49 +252,19 @@
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="rentalIncome1">Выручка от аренды помещений в месяц (МАП)
-                      </label><input class="project-input__input" type="text" id="rentalIncome1" name="rental_income1" placeholder="1 000 000 ₽" data-format="ruble"/><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="rental_income1_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
-                        </div>
-                        <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
-                          <div class="project-select__option">Без НДС
-                          </div>
-                        </div>
-                      </div><!--/ project-select --> 
+                      </label><input class="project-input__input" type="text" id="rentalIncome1" name="rental_income1" placeholder="1 000 000 ₽" data-format="ruble" required=""/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="rentalIncome2">Средние доходы от эксплуатации в месяц
-                      </label><input class="project-input__input" type="text" id="rentalIncome2" name="rental_income2" placeholder="1 000 000 ₽" data-format="ruble"/><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="rental_income2_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
-                        </div>
-                        <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
-                          <div class="project-select__option">Без НДС
-                          </div>
-                        </div>
-                      </div><!--/ project-select --> 
+                      </label><input class="project-input__input" type="text" id="rentalIncome2" name="rental_income2" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="rentalIncome3">Средние коммунальные платежи в месяц
-                      </label><input class="project-input__input" type="text" id="rentalIncome3" name="rental_income3" placeholder="1 000 000 ₽" data-format="ruble"/><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="rental_income3_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
-                        </div>
-                        <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
-                          <div class="project-select__option">Без НДС
-                          </div>
-                        </div>
-                      </div><!--/ project-select --> 
+                      </label><input class="project-input__input" type="text" id="rentalIncome3" name="rental_income3" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                     <div class="project-calc__input-tip">Арендатор возмещает собственнику
                     </div>
@@ -330,7 +272,7 @@
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input">
                       <label class="project-input__label" for="rentalIncome4">Средние коммунальные платежи в месяц
-                      </label><input class="project-input__input" type="text" id="rentalIncome4" name="rental_income4" placeholder="1 000 000 ₽" data-format="ruble"/>
+                      </label><input class="project-input__input" type="text" id="rentalIncome4" name="rental_income4" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                 </div>
@@ -342,78 +284,38 @@
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input big-padding">
                       <label class="project-input__label" for="propertyExpenses1">Налог на имущество за последний квартал
-                      </label><input class="project-input__input" type="text" id="propertyExpenses1" name="property_expenses1" placeholder="1 000 000 ₽" data-format="ruble"/><!-- project-select --> 
-                      <div class="project-select small inline"><input class="project-select__input" type="hidden" name="property_expenses1_type" readonly="" value="кадастровая&amp;lt;br&amp;gt;стоимость"/>
-                        <div class="project-select__selected">кадастровая<br>стоимость
-                        </div>
-                        <div class="project-select__options">
-                          <div class="project-select__option">кадастровая<br>стоимость
-                          </div>
-                          <div class="project-select__option">арендная<br>плата
-                          </div>
-                        </div>
-                      </div><!--/ project-select --> 
+                      </label><input class="project-input__input" type="text" id="propertyExpenses1" name="property_expenses1" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input big-padding">
                       <label class="project-input__label" for="propertyExpenses2">Земельные платежи за последний квартал
-                      </label><input class="project-input__input" type="text" id="propertyExpenses2" name="property_expenses2" placeholder="1 000 000 ₽" data-format="ruble"/><!-- project-select --> 
-                      <div class="project-select small inline"><input class="project-select__input" type="hidden" name="property_expenses2_type" readonly="" value="арендная&amp;lt;br&amp;gt;плата"/>
-                        <div class="project-select__selected">арендная<br>плата
-                        </div>
-                        <div class="project-select__options">
-                          <div class="project-select__option">арендная<br>плата
-                          </div>
-                          <div class="project-select__option">кадастровая<br>стоимость
-                          </div>
-                        </div>
-                      </div><!--/ project-select --> 
+                      </label><input class="project-input__input" type="text" id="propertyExpenses2" name="property_expenses2" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="propertyExpenses3">Средние расходы по эксплуатации в месяц 
-                      </label><input class="project-input__input" type="text" id="propertyExpenses3" name="property_expenses3" placeholder="1 000 000 ₽" data-format="ruble"/><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="property_expenses3_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
-                        </div>
-                        <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
-                          <div class="project-select__option">Без НДС
-                          </div>
-                        </div>
-                      </div><!--/ project-select --> 
+                      </label><input class="project-input__input" type="text" id="propertyExpenses3" name="property_expenses3" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                   <div class="project-calc__section-input"><!-- project-input --> 
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="propertyExpenses3">Средние расходы по эксплуатации в месяц 
-                      </label><input class="project-input__input" type="text" id="propertyExpenses3" name="property_expenses3" placeholder="1 000 000 ₽" data-format="ruble"/><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="property_expenses3_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
-                        </div>
-                        <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
-                          <div class="project-select__option">Без НДС
-                          </div>
-                        </div>
-                      </div><!--/ project-select --> 
+                      </label><input class="project-input__input" type="text" id="propertyExpenses3" name="property_expenses3" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span>
                     </div><!--/ project-input --> 
                   </div>
                 </div>
               </div>
               <div class="project-calc__column">
                 <div class="project-calc__result-row">
-                  <div class="project-calc__result-value">595 227 357 ₽
+                  <div class="project-calc__result-value" id="objectValue">595 227 357 ₽
                   </div>
                   <div class="project-calc__result-label">Стоимость объекта для платформы Активо
                   </div>
                 </div>
                 <div class="project-calc__result-row">
-                  <div class="project-calc__result-value">51 227 357 ₽
+                  <div class="project-calc__result-value" id="operatingIncome">51 227 357 ₽
                   </div>
                   <div class="project-calc__result-label">Чистый операционный доход
                   </div>
@@ -421,13 +323,13 @@
                 <div class="project-calc__result-row">
                   <div class="project-calc__result-value">1 283 333 ₽
                   </div>
-                  <div class="project-calc__result-label">НДС к вычету
+                  <div class="project-calc__result-label" id="vatRecovery">НДС к вычету
                   </div>
                 </div>
                 <div class="project-calc__result-row">
                   <div class="project-calc__result-value">0 ₽
                   </div>
-                  <div class="project-calc__result-label">НДС к зачету
+                  <div class="project-calc__result-label" id="vatOffset">НДС к зачету
                   </div>
                 </div>
               </div>
