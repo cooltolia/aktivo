@@ -1,4 +1,4 @@
-.faq {
+.vacancies {
     position: relative;
 
     .lines {
@@ -15,13 +15,13 @@
         margin-bottom: 50px;
     }
 
-    &__questions-list {
+    &__list {
         padding: 0;
         margin: 0;
         list-style: none;
     }
 
-    &__questions-item {
+    &__item {
         margin-bottom: 10px;
 
         &:last-child {
@@ -29,7 +29,7 @@
         }
     }
 
-    &__questions-link {
+    &__link {
         position: relative;
         padding: 3px 0;
 
@@ -112,45 +112,45 @@
             &::before {
                 content: '';
                 position: absolute;
-                width: 12px;
-                height: 2px;
+                width: 18px;
+                height: 1px;
                 left: 0;
-                top: 10px;
+                top: 11px;
 
-                background-color: $theme-color;
+                background-color: $text-color;
             }
 
             &:last-child {
                 margin-bottom: 0;
             }
         }
+
+        a {
+            color: #1d97ff;
+            text-decoration: none;
+            transition: opacity 300ms ease;
+
+            &:hover,
+            &:active,
+            &:focus {
+                opacity: 0.6;
+            }
+        }
+
+        b {
+            font-weight: 600;
+        }
     }
 }
 
 @media #{$tablet} {
-    .faq {
+    .vacancies {
         position: relative;
         padding-top: 90px;
 
-        &::after {
-            content: '';
-            position: absolute;
-            z-index: 12;
-            height: 1px;
-            left: 33px;
-            right: 0;
-
-            background-color: rgba(#919191, 0.2);
-        }
-
         .lines {
             top: 0;
-
-            .line {
-                &::after {
-                    opacity: 0;
-                }
-            }
+            height: 100%;
         }
 
         &__title {
@@ -172,7 +172,7 @@
             top: 20px;
         }
 
-        &__questions-item {
+        &__item {
             margin-bottom: 40px;
         }
 
@@ -183,32 +183,13 @@
 }
 
 @media #{$desktop} {
-    .faq {
-        padding-top: 85px;
-
-        &::after {
-            left: 0;
-        }
-
-        .lines {
-            .line {
-                width: 400px;
-            }
-
-            &::after {
-                opacity: 0;
-            }
-        }
+    .vacancies {
 
         &__aside {
             width: 400px;
         }
 
-        &__questions {
-            top: 50px;
-        }
-
-        &__questions-link {
+        &__link {
             &.active {
                 &::before {
                     left: -25px;

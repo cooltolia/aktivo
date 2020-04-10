@@ -387,7 +387,7 @@
             <div class="advantages__title advantages__title--bottom"><!-- title --> 
               <h2 class="title">Ваши<br> инвестиции<br> защищены
               </h2><!--/ title --> 
-              <button class="advantages__appeal btn">Оставить заявку
+              <button class="advantages__appeal btn application-trigger">Оставить заявку
               </button>
             </div>
             <div class="advantages__image">
@@ -703,7 +703,50 @@
           </div>
         </div>
       </div>
-    </footer><!--/ main-footer --> 
+    </footer><!--/ main-footer --> <!-- modal --> 
+    <div class="modal application-modal" id="applicationModal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="Добавить ребенка">
+          <button class="modal__close modal__close" aria-label="Close modal" data-micromodal-close="">
+            <svg>
+              <use xlink:href="images/redesign/html-sprite.svg#close"></use>
+            </svg>
+          </button>
+          <div class="modal__header">
+            <div class="modal__title">Заполните <br>данные для заявки
+            </div>
+            <div class="modal__subtitle">Наш специалист свяжется <br>с вами в течение одного рабочего дня.
+            </div>
+          </div>
+          <form class="modal__form" method="post" action="#">
+            <div class="modal__input-row">
+              <label class="modal__label" for="applicationName">Имя
+              </label><input class="modal__input" type="text" name="application_name" id="applicationName" placeholder="Александр" required=""/><span class="modal__input-error error"></span>
+            </div>
+            <div class="modal__input-row">
+              <label class="modal__label" for="applicationSurname">Фамилия
+              </label><input class="modal__input" type="text" name="application_surname" id="applicationSurname" placeholder="Петров"/><span class="modal__input-error error"></span>
+            </div>
+            <div class="modal__input-row">
+              <label class="modal__label" for="applicationEmail">E-mail
+              </label><input class="modal__input" type="email" name="application_email" id="applicationEmail" placeholder="@"/><span class="modal__input-error error"></span>
+            </div>
+            <div class="modal__input-row">
+              <label class="modal__label" for="applicationPhone">Телефон
+              </label><input class="modal__input" type="text" name="application_phone" id="applicationPhone" placeholder="8 926 453 58 74" required=""/><span class="modal__input-error error"></span>
+            </div>
+            <div class="modal__checkbox">
+              <input type="checkbox" name="fakecaptcha" id="fakeCaptcha"/>
+              <label for="fakeCaptcha">Я не робот</label>
+            </div>
+            <button class="modal__submit btn" type="submit">Отправить
+            </button>
+          </form>
+          <div class="modal__legal">Нажимая кнопку «Зарегистрироваться», я даю <a href='#'>согласие</a>на хранение и обработку персональных данных и соглашаюсь с <a href='#'>условиями</a> электронного документооборота с Aktivo.
+          </div>
+        </div>
+      </div>
+    </div><!--/ modal --> 
     <script src="js/vendor.js"></script>
     <script src="js/main.js"></script>
   </body>

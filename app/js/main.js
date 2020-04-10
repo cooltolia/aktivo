@@ -12,6 +12,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
  * some global settings and functions
  */
 var API = '/app/ajax/';
+Inputmask.extendDefinitions({
+  f: {
+    //masksymbol
+    validator: '[0-7|9]'
+  }
+});
+var phoneMask = '+7 (f99) 999-99-99';
+var scrollBarWidth = getScrollbarWidth();
+
+function getScrollbarWidth() {
+  return window.innerWidth - document.documentElement.clientWidth;
+}
+
 $.noConflict();
 jQuery(document).ready(function ($) {
   $('body').removeClass('pageload');
@@ -125,6 +138,18 @@ jQuery(document).ready(function ($) {
       var errorNode = inputNode.siblings('.error');
       inputNode.removeClass('error');
       errorNode.slideUp(200);
+    }
+    /**
+     * @param {string} value email input value
+     * @returns {boolean}
+     */
+
+
+    function isEmailValid(value) {
+      var emailRegex = /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.))+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]/i;
+      var result = value.match(emailRegex);
+      if (result && result[0]) return true;
+      return false;
     }
 
     function postData(url, formData) {
@@ -447,6 +472,67 @@ jQuery(document).ready(function ($) {
       });
     })();
 
+    {
+      var triggerButtons = document.querySelectorAll('.application-trigger');
+
+      if (triggerButtons.length > 0) {
+        triggerButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            MicroModal.show('applicationModal', {
+              disableScroll: true,
+              awaitCloseAnimation: true,
+              onShow: function onShow(modal) {
+                onModalOpen(modal);
+                applicationModalLogic(modal);
+              },
+              onClose: function onClose(modal) {
+                onModalClose(modal, false);
+              }
+            });
+          });
+        });
+      }
+    }
+
+    function applicationModalLogic(modal) {
+      var form = modal.querySelector('.modal__form');
+      var inputs = form.querySelectorAll('input');
+      console.log(inputs);
+      var inputEmail = $('#applicationEmail');
+      var inputPhone = $('#applicationPhone');
+      var phoneMask = '+7 (f99) 999-99-99';
+      inputPhone.inputmask({
+        mask: phoneMask,
+        showMaskOnHover: false
+      });
+
+      function inputPhoneValidate() {
+        var enteredPhone = inputPhone.val();
+        return Inputmask.isValid(enteredPhone, {
+          mask: phoneMask
+        });
+      }
+
+      inputs.forEach(function (input) {
+        return input.addEventListener('focus', function () {
+          return hideSingleInputError(input);
+        });
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!inputPhoneValidate()) {
+          showInputError(inputPhone, 'Неверно указан телефон');
+          return;
+        }
+
+        var formData = $(form).serialize();
+        postData('url', formData).then(function (data) {
+          MicroModal.close('applicationModal');
+        });
+      });
+    }
+
     (function () {
       var $mainNav = $('.main-header__navigation');
       $('.hamburger').click(function () {
@@ -480,6 +566,24 @@ jQuery(document).ready(function ($) {
         });
       }
     })();
+
+    function onModalOpen(modal) {
+      modal.children[0].style.paddingRight = scrollBarWidth + 'px';
+      document.body.style.paddingRight = scrollBarWidth + 'px';
+    }
+
+    function onModalClose(modal) {
+      var remove = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      modal.children[0].style.paddingRight = '';
+      document.body.style.paddingRight = '';
+
+      if (remove) {
+        modal.addEventListener('animationend', function removeModal() {
+          this.remove();
+          this.removeEventListener('animationend', removeModal);
+        });
+      }
+    }
 
     (function () {
       tippy('.object-card__tooltip', {

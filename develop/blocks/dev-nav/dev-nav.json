@@ -22,6 +22,10 @@
                 "text": "Ответы на вопросы"
             },
             {
+                "link": "vacancies-page.html",
+                "text": "Вакансии"
+            },
+            {
                 "link": "project-sale-page.html",
                 "text": "Продажа проекта"
             },

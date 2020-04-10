@@ -1,0 +1,34 @@
+mixin application-modal()
+    +b.modal.application-modal#applicationModal(aria-hidden="true")
+        +e.overlay(tabindex="-1" data-micromodal-close="")
+            +e.dialog(role="dialog" aria-modal="true" aria-labelledby="Добавить ребенка")
+                +e.close.BUTTON.modal__close(aria-label="Close modal" data-micromodal-close="")
+                    +icon('close')
+                +e.header
+                    +e.title Заполните <br>данные для заявки
+                    +e.subtitle Наш специалист свяжется <br>с вами в течение одного рабочего дня.
+                +e.FORM.form(method='post' action='#')
+                    +e.input-row
+                        +e.LABEL.label(for='applicationName') Имя
+                        +e.INPUT.input(type='text', name='application_name' id='applicationName' placeholder='Александр' required='')
+                        +e.SPAN.input-error.error
+                    +e.input-row
+                        +e.LABEL.label(for='applicationSurname') Фамилия
+                        +e.INPUT.input(type='text', name='application_surname' id='applicationSurname' placeholder='Петров')
+                        +e.SPAN.input-error.error
+                    +e.input-row
+                        +e.LABEL.label(for='applicationEmail') E-mail
+                        +e.INPUT.input(type='email', name='application_email' id='applicationEmail' placeholder='@')
+                        +e.SPAN.input-error.error
+                    +e.input-row
+                        +e.LABEL.label(for='applicationPhone') Телефон
+                        +e.INPUT.input(type='text', name='application_phone' id='applicationPhone' placeholder='8 926 453 58 74' required='')
+                        +e.SPAN.input-error.error
+                    +e.checkbox
+                        input(type='checkbox' name='fakecaptcha' id='fakeCaptcha')
+                        label(for='fakeCaptcha') Я не робот
+                    +e.BUTTON.submit.btn(type='submit') Отправить
+                +e.legal
+                    | Нажимая кнопку «Зарегистрироваться», я даю <a href='#'>согласие</a>на хранение и обработку персональных данных и соглашаюсь с <a href='#'>условиями</a> электронного документооборота с Aktivo.
+                   
+                

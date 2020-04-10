@@ -44,6 +44,16 @@
             }
         }
 
+        &.left-only {
+            &::after {
+                opacity: 0;
+            }
+
+            .line::after {
+                opacity: 0;
+            }
+        }
+
         &.two-columns {
             .line {
                 width: calc((100% - 68px) * 0.4);

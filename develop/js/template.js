@@ -3,12 +3,26 @@
  */
 const API = '/app/ajax/';
 
+Inputmask.extendDefinitions({
+    f: {
+        //masksymbol
+        validator: '[0-7|9]',
+    },
+});
+const phoneMask = '+7 (f99) 999-99-99';
+
+const scrollBarWidth = getScrollbarWidth();
+
+function getScrollbarWidth() {
+    return window.innerWidth - document.documentElement.clientWidth;
+}
+
 $.noConflict();
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     $('body').removeClass('pageload');
 
     if (typeof Promise !== 'function') {
-        document.createElement('picture');   
+        document.createElement('picture');
         loadScript('/js/polyfills/browser.js', globalInitFunction);
         // loadScript('/js/polyfills/browser.js', globalInitFunction);
     } else {
@@ -27,10 +41,10 @@ jQuery(document).ready(function($) {
     function loadScript(url, done) {
         var script = document.createElement('script');
         script.src = url;
-        script.onload = function() {
+        script.onload = function () {
             done();
         };
-        script.onerror = function() {
+        script.onerror = function () {
             throw new Error('Failed to load script ' + url);
         };
         document.head.appendChild(script);
