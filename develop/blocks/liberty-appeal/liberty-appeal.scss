@@ -1,0 +1,138 @@
+.liberty-appeal {
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+    overflow: hidden;
+
+    &__title {
+        position: relative;
+        padding-left: 66px;
+        margin-bottom: 15px;
+
+        .title {
+            font-weight: 500;
+        }
+
+        &::before {
+            content: '«';
+            position: absolute;
+            left: 0;
+            top: -40px;
+
+            font-size: 90px;
+            font-weight: 600;
+            color: $liberty-theme;
+        }
+    }
+
+    &__text {
+        margin: 0 0 15px;
+        max-width: 280px;
+
+        font-size: 14px;
+        color: $text-color-white;
+        line-height: 1.45;
+    }
+
+    &__button {
+        min-width: 200px;
+        margin-bottom: 30px;
+
+        color: $text-color-white;
+        font-weight: 400;
+
+        background-color: $liberty-theme;
+        border-color: $liberty-theme;
+    }
+
+    &__number {
+        color: transparent;
+        font-size: 110px;
+        font-weight: 700;
+        -webkit-text-stroke: 0.7px $liberty-theme;
+        white-space: nowrap;
+    }
+}
+
+@media #{$tablet} {
+    .liberty-appeal {
+        padding-top: 145px;
+        padding-bottom: 145px;
+
+        &__wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        &__content {
+            width: 33%;
+            flex: 1 1 auto;
+            padding-right: 15px;
+        }
+
+        &__text {
+            margin-bottom: 25px;
+        }
+
+        &__number {
+            width: 66%;
+            flex: 1 1 auto;
+
+            font-size: 320px;
+            line-height: 0.7;
+        }
+
+        &__button {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .liberty-appeal {
+        &__content {
+            padding-left: 66px;
+            padding-right: 20px;
+        }
+
+        &__title {
+            padding-left: 0;
+
+            &::before {
+                left: -65px;
+            }
+        }
+
+        &__number {
+            font-size: 400px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .liberty-appeal {
+        &__content {
+            width: 400px;
+            flex: 0 0 auto;
+            padding-left: 0;
+        }
+
+        &__title {
+            margin-bottom: 30px;
+
+
+        }
+
+        &__text {
+            max-width: 340px;
+            margin-bottom: 30px;
+        }
+
+        &__number {
+            width: 760px;
+            flex: 0 0 auto;
+
+            font-size: 500px;
+        }
+    }
+}

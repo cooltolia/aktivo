@@ -153,15 +153,14 @@ function createNewEvent(eventName, data) {
     return event;
 }
 
-function scrollTo(element, speed) {
-    const scrollSpeed = parseInt(speed) || 300;
+function scrollTo(element, speed = 300, offset = 0) {
     const elementOffset = $(element).offset().top;
 
     $('html, body').animate(
         {
-            scrollTop: elementOffset - 50,
+            scrollTop: elementOffset - offset,
         },
-        scrollSpeed
+        speed
     );
 }
 

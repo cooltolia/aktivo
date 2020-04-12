@@ -1,0 +1,68 @@
+.liberty-club {
+    position: relative;
+    padding-top: 75px;
+    margin-top: -75px;
+
+    background-color: #282724;
+
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 160%;
+        top: 7%;
+        left: -6%;
+
+        background-color: $liberty-theme;
+
+        transform: rotate(9deg);
+    }
+
+    .lines {
+        top: 75px;
+    }
+}
+
+@media #{$tablet} {
+    .liberty-club {
+        &::before {
+            top: 7%;
+            left: -20%;
+            height: 200%;
+
+            transform: rotate(18deg);
+        }
+    }
+}
+
+@media #{$laptop} {
+    .liberty-club {
+        &::before {
+            top: 2%;
+            left: -16%;
+
+            transform: rotate(23deg);
+        }
+    }
+}
+
+@media #{$desktop} {
+    .liberty-club {
+        &::before {
+            top: -3%;
+            left: -9%;
+            transform: rotate(29deg);
+        }
+    }
+}
+
+@media (min-width: 1920px) {
+    .liberty-club {
+        &::before {
+            left: 5%;
+        }
+    }
+}
+

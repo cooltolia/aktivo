@@ -36,6 +36,10 @@
 			{
 				"link": "security-page.html",
 				"text": "Безопасность"
+			},
+			{
+				"link": "liberty-page.html",
+				"text": "Клуб Liberty"
 			}
 		]
 	},

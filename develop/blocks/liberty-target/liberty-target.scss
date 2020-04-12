@@ -1,0 +1,158 @@
+.liberty-target {
+    padding-top: 20px;
+
+    &__image {
+        position: relative;
+        z-index: 12;
+        width: calc(100% + 20px);
+
+        margin-bottom: 35px;
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    &__figure {
+        position: relative;
+        margin: 0;
+    }
+
+    &__figcaption {
+        position: absolute;
+
+        left: 20px;
+        bottom: 15px;
+
+        color: $text-color-white;
+
+        .name {
+            display: block;
+            margin-bottom: 3px;
+
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .post {
+            font-size: 16px;
+        }
+    }
+
+    &__title {
+        margin-bottom: 25px;
+
+        .title {
+            font-weight: 500;
+        }
+    }
+
+    &__blockquote {
+        position: relative;
+        margin: 0;
+        padding-left: 55px;
+        padding-right: 10px;
+        max-width: 320px;
+
+        color: $text-color-white;
+        font-size: 14px;
+        line-height: 1.45;
+
+        &::before {
+            content: '«';
+            position: absolute;
+            left: 0;
+            top: -50px;
+
+            font-size: 90px;
+            font-weight: 600;
+            color: $liberty-theme;
+        }
+    }
+}
+
+@media #{$tablet} {
+    .liberty-target {
+        padding-top: 60px;
+
+        &__wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        &__image {
+            width: 66%;
+            flex: 1 1 auto;
+        }
+
+        &__figcaption {
+            left: auto;
+            right: 35px;
+            bottom: 20px;
+        }
+
+        &__content {
+            width: 33%;
+            flex: 1 1 auto;
+            padding-left: 40px;
+        }
+
+        &__title {
+            .title {
+                line-height: 1.2;
+            }
+        }
+
+        &__blockquote {
+            padding-left: 0;
+
+            &::before {
+                left: -50px;
+            }
+        }
+    }
+}
+
+@media #{$laptop} {
+    .liberty-target {
+        &__content {
+            padding-left: 75px;
+        }
+
+        &__blockquote {
+            &::before {
+                left: -60px;
+            }
+        }
+    }
+}
+
+@media #{$desktop} {
+    .liberty-target {
+        padding-top: 80px;
+
+        &__image {
+            width: 760px;
+        }
+
+        &__figure {
+            max-width: 686px;
+        }
+
+        &__content {
+            width: 400px;
+            padding-left: 0;
+        }
+
+        &__title {
+            margin-bottom: 25px;
+            max-width: 240px;
+        }
+
+        &__blockquote {
+            max-width: 240px;
+        }
+    }
+}

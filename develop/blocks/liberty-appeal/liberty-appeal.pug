@@ -1,0 +1,12 @@
+mixin liberty-appeal()
+    +b.SECTION.liberty-appeal
+        +inner
+            +e.wrapper
+                +e.content
+                    +e.title
+                        +title('h2', 'light medium')
+                            | Liberty это <br>только начало
+                    +e.P.text
+                        | Для того, чтобы стать членом клуба Либерти, размер ваших единовременных инвестиций в объект должен быть не менее 10&nbsp;000&nbsp;000&nbsp;руб.
+                    +e.BUTTON.button.btn(type='button') Вступить
+                +e.number(aria-hidden='true') 10000000

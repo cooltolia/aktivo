@@ -2057,6 +2057,8 @@ th {
         border-width: 0 1px 1px 0;
         border-style: solid;
         border-color: #fed63f; }
+  .faq__answer {
+    display: none; }
   .faq__paragraph {
     margin-bottom: 36px; }
     .faq__paragraph:last-child {
@@ -3326,6 +3328,515 @@ th {
     .investment-steps__appeal-text {
       margin-bottom: 12px;
       padding-right: 50px; } }
+
+.liberty-advantages {
+  padding-top: 50px; }
+  .liberty-advantages__title {
+    position: relative;
+    padding-left: 66px;
+    margin-bottom: 35px; }
+    .liberty-advantages__title .title {
+      font-weight: 500; }
+    .liberty-advantages__title::before {
+      content: '«';
+      position: absolute;
+      left: 0;
+      top: -40px;
+      font-size: 90px;
+      font-weight: 600;
+      color: #8f6d00; }
+  .liberty-advantages__item {
+    max-width: 300px;
+    margin-bottom: 45px; }
+    .liberty-advantages__item:last-child {
+      margin-bottom: 0; }
+  .liberty-advantages__item-title {
+    margin: 0 0 20px;
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 1.2; }
+    .liberty-advantages__item-title--ruble {
+      padding-top: 70px; }
+      .liberty-advantages__item-title--ruble::before {
+        content: '₽';
+        position: absolute;
+        top: -5px;
+        color: transparent;
+        font-size: 81px;
+        font-weight: 700;
+        line-height: 0.9;
+        -webkit-text-stroke: 0.5px #8f6d00; }
+    .liberty-advantages__item-title--parentheses {
+      padding-left: 45px;
+      margin-bottom: 30px; }
+      .liberty-advantages__item-title--parentheses::before, .liberty-advantages__item-title--parentheses::after {
+        top: -30px;
+        position: absolute;
+        color: transparent;
+        font-weight: 700;
+        font-size: 81px;
+        -webkit-text-stroke: 0.5px #8f6d00; }
+      .liberty-advantages__item-title--parentheses::before {
+        content: '(';
+        left: 0; }
+      .liberty-advantages__item-title--parentheses::after {
+        content: ')';
+        right: -60px; }
+  .liberty-advantages__item-text {
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.45; }
+    .liberty-advantages__item-text p {
+      margin: 0 0 15px; }
+      .liberty-advantages__item-text p:last-child {
+        margin-bottom: 0; }
+
+@media (min-width: 768px) {
+  .liberty-advantages {
+    padding-top: 85px; }
+    .liberty-advantages__wrapper {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: start;
+         -moz-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start; }
+    .liberty-advantages__title {
+      width: 33%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      padding-left: 50px; }
+    .liberty-advantages__list {
+      width: 66%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      padding-top: 30px; }
+    .liberty-advantages__item {
+      width: 50%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      max-width: none;
+      margin-bottom: 0; }
+    .liberty-advantages__item-title {
+      margin-bottom: 25px; }
+      .liberty-advantages__item-title--ruble {
+        padding-top: 0; }
+        .liberty-advantages__item-title--ruble::before {
+          top: -35px;
+          left: -40px;
+          font-size: 51px; }
+      .liberty-advantages__item-title--parentheses {
+        padding-left: 0;
+        margin-bottom: 25px; }
+        .liberty-advantages__item-title--parentheses::before {
+          left: -45px; }
+    .liberty-advantages__item-text {
+      max-width: 255px;
+      padding-right: 15px; } }
+
+@media (min-width: 1024px) {
+  .liberty-advantages__title {
+    padding-left: 55px; } }
+
+@media (min-width: 1200px) {
+  .liberty-advantages {
+    padding-top: 120px; }
+    .liberty-advantages__title {
+      width: 400px;
+      -webkit-box-flex: 0;
+         -moz-box-flex: 0;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+      padding-left: 0; }
+      .liberty-advantages__title::before {
+        left: -50px; }
+    .liberty-advantages__list {
+      width: 760px;
+      -webkit-box-flex: 0;
+         -moz-box-flex: 0;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+      padding-top: 15px; }
+    .liberty-advantages__item {
+      width: 400px;
+      -webkit-box-flex: 0;
+         -moz-box-flex: 0;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto; }
+      .liberty-advantages__item:first-child {
+        width: 360px; }
+    .liberty-advantages__item-title--ruble::before {
+      top: -60px;
+      left: -75px;
+      font-size: 81px; }
+    .liberty-advantages__item-text {
+      max-width: 285px; } }
+
+.liberty-appeal {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  overflow: hidden; }
+  .liberty-appeal__title {
+    position: relative;
+    padding-left: 66px;
+    margin-bottom: 15px; }
+    .liberty-appeal__title .title {
+      font-weight: 500; }
+    .liberty-appeal__title::before {
+      content: '«';
+      position: absolute;
+      left: 0;
+      top: -40px;
+      font-size: 90px;
+      font-weight: 600;
+      color: #8f6d00; }
+  .liberty-appeal__text {
+    margin: 0 0 15px;
+    max-width: 280px;
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.45; }
+  .liberty-appeal__button {
+    min-width: 200px;
+    margin-bottom: 30px;
+    color: #fff;
+    font-weight: 400;
+    background-color: #8f6d00;
+    border-color: #8f6d00; }
+  .liberty-appeal__number {
+    color: transparent;
+    font-size: 110px;
+    font-weight: 700;
+    -webkit-text-stroke: 0.7px #8f6d00;
+    white-space: nowrap; }
+
+@media (min-width: 768px) {
+  .liberty-appeal {
+    padding-top: 145px;
+    padding-bottom: 145px; }
+    .liberty-appeal__wrapper {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: start;
+         -moz-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start; }
+    .liberty-appeal__content {
+      width: 33%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      padding-right: 15px; }
+    .liberty-appeal__text {
+      margin-bottom: 25px; }
+    .liberty-appeal__number {
+      width: 66%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      font-size: 320px;
+      line-height: 0.7; }
+    .liberty-appeal__button {
+      margin-bottom: 0; } }
+
+@media (min-width: 1024px) {
+  .liberty-appeal__content {
+    padding-left: 66px;
+    padding-right: 20px; }
+  .liberty-appeal__title {
+    padding-left: 0; }
+    .liberty-appeal__title::before {
+      left: -65px; }
+  .liberty-appeal__number {
+    font-size: 400px; } }
+
+@media (min-width: 1200px) {
+  .liberty-appeal__content {
+    width: 400px;
+    -webkit-box-flex: 0;
+       -moz-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    padding-left: 0; }
+  .liberty-appeal__title {
+    margin-bottom: 30px; }
+  .liberty-appeal__text {
+    max-width: 340px;
+    margin-bottom: 30px; }
+  .liberty-appeal__number {
+    width: 760px;
+    -webkit-box-flex: 0;
+       -moz-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    font-size: 500px; } }
+
+.liberty-club {
+  position: relative;
+  padding-top: 75px;
+  margin-top: -75px;
+  background-color: #282724;
+  overflow: hidden; }
+  .liberty-club::before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 160%;
+    top: 7%;
+    left: -6%;
+    background-color: #8f6d00;
+    -webkit-transform: rotate(9deg);
+       -moz-transform: rotate(9deg);
+        -ms-transform: rotate(9deg);
+            transform: rotate(9deg); }
+  .liberty-club .lines {
+    top: 75px; }
+
+@media (min-width: 768px) {
+  .liberty-club::before {
+    top: 7%;
+    left: -20%;
+    height: 200%;
+    -webkit-transform: rotate(18deg);
+       -moz-transform: rotate(18deg);
+        -ms-transform: rotate(18deg);
+            transform: rotate(18deg); } }
+
+@media (min-width: 1024px) {
+  .liberty-club::before {
+    top: 2%;
+    left: -16%;
+    -webkit-transform: rotate(23deg);
+       -moz-transform: rotate(23deg);
+        -ms-transform: rotate(23deg);
+            transform: rotate(23deg); } }
+
+@media (min-width: 1200px) {
+  .liberty-club::before {
+    top: -3%;
+    left: -9%;
+    -webkit-transform: rotate(29deg);
+       -moz-transform: rotate(29deg);
+        -ms-transform: rotate(29deg);
+            transform: rotate(29deg); } }
+
+@media (min-width: 1920px) {
+  .liberty-club::before {
+    left: 5%; } }
+
+.liberty-target {
+  padding-top: 20px; }
+  .liberty-target__image {
+    position: relative;
+    z-index: 12;
+    width: -webkit-calc(100% + 20px);
+    width: -moz-calc(100% + 20px);
+    width: calc(100% + 20px);
+    margin-bottom: 35px; }
+    .liberty-target__image img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
+  .liberty-target__figure {
+    position: relative;
+    margin: 0; }
+  .liberty-target__figcaption {
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+    color: #fff; }
+    .liberty-target__figcaption .name {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 22px;
+      font-weight: 600; }
+    .liberty-target__figcaption .post {
+      font-size: 16px; }
+  .liberty-target__title {
+    margin-bottom: 25px; }
+    .liberty-target__title .title {
+      font-weight: 500; }
+  .liberty-target__blockquote {
+    position: relative;
+    margin: 0;
+    padding-left: 55px;
+    padding-right: 10px;
+    max-width: 320px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.45; }
+    .liberty-target__blockquote::before {
+      content: '«';
+      position: absolute;
+      left: 0;
+      top: -50px;
+      font-size: 90px;
+      font-weight: 600;
+      color: #8f6d00; }
+
+@media (min-width: 768px) {
+  .liberty-target {
+    padding-top: 60px; }
+    .liberty-target__wrapper {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: start;
+         -moz-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start; }
+    .liberty-target__image {
+      width: 66%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto; }
+    .liberty-target__figcaption {
+      left: auto;
+      right: 35px;
+      bottom: 20px; }
+    .liberty-target__content {
+      width: 33%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      padding-left: 40px; }
+    .liberty-target__title .title {
+      line-height: 1.2; }
+    .liberty-target__blockquote {
+      padding-left: 0; }
+      .liberty-target__blockquote::before {
+        left: -50px; } }
+
+@media (min-width: 1024px) {
+  .liberty-target__content {
+    padding-left: 75px; }
+  .liberty-target__blockquote::before {
+    left: -60px; } }
+
+@media (min-width: 1200px) {
+  .liberty-target {
+    padding-top: 80px; }
+    .liberty-target__image {
+      width: 760px; }
+    .liberty-target__figure {
+      max-width: 686px; }
+    .liberty-target__content {
+      width: 400px;
+      padding-left: 0; }
+    .liberty-target__title {
+      margin-bottom: 25px;
+      max-width: 240px; }
+    .liberty-target__blockquote {
+      max-width: 240px; } }
+
+.liberty-top__title {
+  margin-bottom: 25px; }
+  .liberty-top__title .title {
+    font-weight: 500; }
+
+.liberty-top__subtitle {
+  max-width: 240px;
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2; }
+
+.liberty-top__text {
+  margin: 0 0 20px;
+  max-width: 240px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.45; }
+
+.liberty-top__button {
+  min-width: 200px;
+  margin-bottom: 16px;
+  color: #fff;
+  font-weight: 400;
+  background-color: #8f6d00;
+  border-color: #8f6d00; }
+
+.liberty-top__tip {
+  margin: 0;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5; }
+
+@media (min-width: 768px) {
+  .liberty-top {
+    padding-top: 80px; }
+    .liberty-top__wrapper {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: start;
+         -moz-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start; }
+    .liberty-top__title {
+      width: 66%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      margin-bottom: 0; }
+      .liberty-top__title .title {
+        font-size: 58px;
+        line-height: 1.2; }
+    .liberty-top__content {
+      width: 33%;
+      -webkit-box-flex: 1;
+         -moz-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto; }
+    .liberty-top__subtitle {
+      font-size: 28px; }
+    .liberty-top__text {
+      margin-bottom: 40px; } }
+
+@media (min-width: 1024px) {
+  .liberty-top__title .title {
+    font-size: 68px; }
+  .liberty-top__subtitle {
+    margin-bottom: 15px;
+    font-size: 30px; } }
+
+@media (min-width: 1200px) {
+  .liberty-top {
+    padding-top: 50px; }
+    .liberty-top__title {
+      width: 760px; }
+      .liberty-top__title .title {
+        font-size: 78px; }
+    .liberty-top__content {
+      width: 400px; }
+    .liberty-top__subtitle {
+      margin-bottom: 5px;
+      font-size: 34px; } }
 
 .lines {
   position: absolute;

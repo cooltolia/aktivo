@@ -198,12 +198,13 @@ jQuery(document).ready(function ($) {
       return event;
     }
 
-    function scrollTo(element, speed) {
-      var scrollSpeed = parseInt(speed) || 300;
+    function scrollTo(element) {
+      var speed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 300;
+      var offset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
       var elementOffset = $(element).offset().top;
       $('html, body').animate({
-        scrollTop: elementOffset - 50
-      }, scrollSpeed);
+        scrollTop: elementOffset - offset
+      }, speed);
     }
 
     function numberWithSpaces(n) {
@@ -469,6 +470,39 @@ jQuery(document).ready(function ($) {
         }
 
         $(card).css('top', "calc(".concat(100 - rate, "% + ").concat(stepHeight, "px"));
+      });
+    })();
+
+    (function () {
+      var faq = $('.faq');
+      if (faq.length === 0) return;
+      var faqLinks = $('.faq__questions-link');
+      var faqAnswers = $('.faq__answer');
+      var content = $('.faq__content');
+      var scrollOffset = 0;
+
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        scrollOffset = 50;
+      } else {
+        scrollOffset = 150;
+      }
+
+      faqLinks.on('click', function (e) {
+        e.preventDefault();
+        var link = $(this);
+        if (link.hasClass('active')) return;
+        var activeAnswer = faqAnswers.filter('.active');
+        var activeLink = faqLinks.filter('.active');
+        var targetId = link.data('target');
+        var targetAnswer = faqAnswers.filter('#' + targetId);
+        activeLink.removeClass('active');
+        activeAnswer.fadeOut(300, function () {
+          activeAnswer.removeClass('active');
+          link.addClass('active');
+          targetAnswer.addClass('active');
+          targetAnswer.fadeIn(300);
+          scrollTo(content, 300, scrollOffset);
+        });
       });
     })();
 
