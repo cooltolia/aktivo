@@ -40,6 +40,14 @@
             {
                 "link": "liberty-page.html",
                 "text": "Клуб Liberty"
+            },
+            {
+                "link": "contacts-page.html",
+                "text": "Контакты"
+            },
+            {
+                "link": "error-page.html",
+                "text": "404 ошибка"
             }
         ]
     }

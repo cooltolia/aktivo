@@ -1,0 +1,17 @@
+include template/header
+include template/footer
+include ../blocks/**/*
+- const alias = "m"
+- const theme = 'light'
+doctype html
+html(lang='ru')
+    +doc-header
+        script(src='https://api-maps.yandex.ru/2.1/?apikey=99b483f6-bdce-45d5-b098-440038f8912a&lang=ru_RU')
+    body
+        +main-header
+        .page
+            +lines
+            +contacts
+        +main-footer
+            +lines
+        +doc-footer

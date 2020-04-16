@@ -1,0 +1,12 @@
+mixin error-screen()
+    +b.SECTION.error-screen
+        +inner
+            +e.wrapper
+                +e.code 404
+                +e.content
+                    +e.title
+                        +title('h1')
+                            | Страница не найдена
+                    +e.P.text
+                        | Возможно вы искали другую страницу. Попробуйте ввести еще раз или поищите на главной странице
+                    +e.A.link.btn(href='/') На главную

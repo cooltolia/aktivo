@@ -65,6 +65,12 @@
             }
         }
 
+        &.only-sides {
+            .line {
+                display: none;
+            }
+        }
+
         .line {
             position: absolute;
             width: calc((100% - 68px) / 3);

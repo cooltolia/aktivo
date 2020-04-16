@@ -95,6 +95,10 @@
             &::after {
                 display: none;
             }
+
+            &.show-right::after {
+                display: block;
+            }
         }
 
         &__top-row {

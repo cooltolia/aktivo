@@ -1,0 +1,134 @@
+.contacts {
+    overflow: hidden;
+
+    &__map {
+        position: relative;
+        z-index: 12;
+        margin-bottom: 32px;
+        width: calc(100% + 40px);
+        height: 200px;
+        margin-left: -20px;
+    }
+
+    &__title {
+        margin-bottom: 12px;
+    }
+
+    &__address {
+        margin: 0 0 25px;
+
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    &__table {
+        tr:first-child {
+            td {
+                padding-bottom: 14px;
+            }
+        }
+
+        td {
+            padding: 6px 0;
+
+            font-size: 12px;
+
+            &:first-child {
+                padding-right: 24px;
+            }
+        }
+
+        a {
+            color: $text-color;
+            text-decoration: none;
+
+            transition: color 300ms ease;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $theme-color;
+            }
+        }
+    }
+}
+
+@media #{$tablet} {
+    .contacts {
+        &__wrapper {
+            display: flex;
+            width: calc(100% + 32px);
+        }
+
+        &__map {
+            order: 1;
+            width: 66%;
+            flex: 1 1 auto;
+            height: auto;
+            margin: 0;
+        }
+
+        &__data {
+            flex: 1 1 auto;
+            width: calc(33% - 32px);
+            padding-top: 75px;
+            padding-right: 10px;
+        }
+
+        &__table {
+            td {
+                &:first-child {
+                    padding-right: 12px;
+                }
+            }
+        }
+    }
+}
+
+@media #{$laptop} {
+    .contacts {
+        td {
+            font-size: 13px;
+
+            &:first-child {
+                padding-right: 24px;
+            }
+        }
+    }
+}
+
+@media #{$desktop} {
+    .contacts {
+        &__wrapper {
+            display: flex;
+        }
+
+        &__map {
+            min-height: 564px;
+            width: 880px;
+            flex: 0 0 auto;
+        }
+
+        &__data {
+            width: 400px;
+            flex: 0 0 auto;
+        }
+
+        &__address {
+            margin-bottom: 65px;
+        }
+
+        &__table {
+            tr:first-child {
+                td {
+                    padding-bottom: 18px;
+                }
+            }
+            td {
+                padding: 7px 0;
+
+                font-size: 16px;
+            }
+        }
+    }
+}

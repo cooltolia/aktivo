@@ -1,0 +1,48 @@
+mixin contacts()
+    +b.SECTION.contacts
+        +inner
+            +e.wrapper
+                +e.map#map
+                +e.data
+                    +e.title
+                        +title('h1')
+                            | Офис в&nbsp;Москве
+                    +e.P.address
+                        | 123112, Москва, Пресненская наб., д.&nbsp;12, МФК&nbsp;«Федерация Восток»
+                    +e.TABLE.table
+                        tr
+                            td Телефон:
+                            td
+                                a(href='tel:+7 (495) 135-06-18') +7 (495) 135-06-18
+                        tr
+                            td Клиентам:
+                            td
+                                a(href='mailto:welcome@aktivo.ru') welcome@aktivo.ru
+                        tr
+                            td Владельцам:
+                            td
+                                a(href='mailto:welcome@aktivo.ru') welcome@aktivo.ru
+                        tr
+                            td Маркетинг:
+                            td
+                                a(href='mailto:marketing@aktivo.ru') marketing@aktivo.ru
+                        tr
+                            td Пресс-секретарь: 
+                            td
+                                a(href='mailto:press@aktivo.ru') press@aktivo.ru
+                        tr
+                            td Вакансии:
+                            td
+                                a(href='mailto:hr@aktivo.ru') hr@aktivo.ru
+
+
+                            
+
+ 
+ 
+
+
+
+
+
+
