@@ -2,9 +2,14 @@
     position: relative;
     z-index: 10;
     background-color: #fff;
+
     &__inner {
         padding-top: 45px;
         padding-bottom: 45px;
+    }
+
+    &__top-row {
+        margin-bottom: 25px;
     }
 
     &__title {
@@ -69,6 +74,18 @@
             }
         }
     }
+
+    &__info {
+        margin: 0 0 15px;
+        font-size: 10px;
+        line-height: 1.6;
+    }
+
+    &__legal {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+    }
 }
 
 @media #{$tablet} {
@@ -80,7 +97,7 @@
             }
         }
 
-        &__inner {
+        &__top-row {
             display: flex;
             align-items: flex-start;
         }

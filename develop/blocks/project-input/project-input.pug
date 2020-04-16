@@ -3,3 +3,4 @@ mixin project-input(inputType, id, name, label, placeholder, mod)
         +e.LABEL.label(for=id)= label
         +e.INPUT.input(type=inputType id=id name=name placeholder=placeholder)&attributes(attributes)
         +e.SPAN.error.error some text
+        block

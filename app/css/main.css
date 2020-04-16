@@ -3944,6 +3944,8 @@ th {
   .main-footer__inner {
     padding-top: 45px;
     padding-bottom: 45px; }
+  .main-footer__top-row {
+    margin-bottom: 25px; }
   .main-footer__title {
     margin: 0 0 10px;
     font-size: 16px;
@@ -3989,11 +3991,19 @@ th {
       transition: fill 300ms ease; }
     .main-footer__socials-link:hover svg, .main-footer__socials-link:active svg, .main-footer__socials-link:focus svg {
       fill: #fed63f; }
+  .main-footer__info {
+    margin: 0 0 15px;
+    font-size: 10px;
+    line-height: 1.6; }
+  .main-footer__legal {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600; }
 
 @media (min-width: 768px) {
   .main-footer .lines .line, .main-footer .lines::after {
     display: none; }
-  .main-footer__inner {
+  .main-footer__top-row {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
