@@ -1,5 +1,5 @@
 mixin project-calc()
-    +b.SECTION.project-calc
+    +b.SECTION.project-calc#projectCalc
         +lines('two-columns')
         +inner
             +e.title
@@ -74,3 +74,4 @@ mixin project-calc()
                         +e.result-row
                             +e.result-value 0 ₽
                             +e.result-label#vatOffset НДС к зачету
+                        +e.BUTTON.button.btn(type='button') Оставить заявку

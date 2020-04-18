@@ -207,6 +207,18 @@ jQuery(document).ready(function ($) {
       }, speed);
     }
 
+    var scrollToLinks = $('[data-scroll-to]');
+    scrollToLinks.on('click', function (e) {
+      var clickedLink = $(this);
+      var targetId = clickedLink.data('scroll-to');
+      var target = $("#".concat(targetId));
+      var offset = clickedLink.data('scroll-offset') || 0;
+
+      if (target.length === 1) {
+        scrollTo(target, 300, offset);
+      }
+    });
+
     function numberWithSpaces(n) {
       return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
@@ -881,9 +893,10 @@ jQuery(document).ready(function ($) {
 
         _toConsumableArray(formatedInputs).map(function (input) {
           var val = input.value;
+          var type = input.dataset.format;
 
           if (val.length > 0) {
-            var newVal = parseInt(val);
+            var newVal = formatPatterns[type].from(val);
             input.value = newVal;
           }
         });
@@ -894,16 +907,15 @@ jQuery(document).ready(function ($) {
           var val = parseInt(input.value);
           var type = input.dataset.format;
 
-          if (val.length > 0) {
+          if (val) {
             var newVal = formatPatterns[type].to(val);
             input.value = newVal;
           }
-        });
+        }); // postData('url', formData).then((data) => {
+        //     //if all is fine
+        //     updateData(data);
+        // });
 
-        postData('url', formData).then(function (data) {
-          //if all is fine
-          updateData(data);
-        });
       }
 
       allFormInputs.each(function (_, input) {

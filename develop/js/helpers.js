@@ -164,6 +164,21 @@ function scrollTo(element, speed = 300, offset = 0) {
     );
 }
 
+const scrollToLinks = $('[data-scroll-to]');
+scrollToLinks.on('click', function(e) {
+    const clickedLink = $(this);
+    const targetId = clickedLink.data('scroll-to');
+
+    const target = $(`#${targetId}`);
+    const offset = clickedLink.data('scroll-offset') || 0;
+
+    if (target.length === 1) {
+        scrollTo(target, 300, offset)
+    }
+
+})
+
+
 function numberWithSpaces(n) {
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }

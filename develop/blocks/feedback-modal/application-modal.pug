@@ -28,6 +28,10 @@ mixin application-modal()
                         input(type='checkbox' name='fakecaptcha' id='fakeCaptcha')
                         label(for='fakeCaptcha') Я не робот
                     +e.BUTTON.submit.btn(type='submit') Отправить
+                    +e.P.text-field
+                        | <a href='#'>Забыли пароль?</a>
+                    +e.P.text-field
+                        | Если у вас еще нет аккаунта, Вы можете <a href='#'>зарегистрироваться</a>
                 +e.legal
                     | Нажимая кнопку «Зарегистрироваться», я даю <a href='#'>согласие</a>на хранение и обработку персональных данных и соглашаюсь с <a href='#'>условиями</a> электронного документооборота с Aktivo.
                    

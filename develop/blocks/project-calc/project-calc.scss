@@ -137,6 +137,10 @@
         &__result-value {
             font-size: 54px;
         }
+
+        &__button {
+            min-width: 290px;
+        }
     }
 }
 @media #{$desktop} {

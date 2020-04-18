@@ -18,9 +18,10 @@
 
         [...formatedInputs].map((input) => {
             const val = input.value;
+            const type = input.dataset.format;
 
             if (val.length > 0) {
-                const newVal = parseInt(val);
+                const newVal = formatPatterns[type].from(val);
                 input.value = newVal;
             }
         });
@@ -32,16 +33,16 @@
             const val = parseInt(input.value);
             const type = input.dataset.format;
 
-            if (val.length > 0) {
+            if (val) {
                 const newVal = formatPatterns[type].to(val);
                 input.value = newVal;
             }
         });
 
-        postData('url', formData).then((data) => {
-            //if all is fine
-            updateData(data);
-        });
+        // postData('url', formData).then((data) => {
+        //     //if all is fine
+        //     updateData(data);
+        // });
     }
 
     allFormInputs.each((_, input) => {
