@@ -72,18 +72,59 @@
     }
 
     &__objects {
+        z-index: 11;
         display: flex;
         flex-flow: row nowrap;
         height: calc(100% + 5px);
+
+        .slick-list,
+        .slick-track {
+            height: 100%;
+        }
+
+        .slick-arrow {
+            @include btn-reset;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 35px;
+            height: 35px;
+            transform: translateY(-50%) rotate(-45deg);
+
+            border-width: 0 1px 1px 0;
+            border-style: solid;
+            border-color: $theme-color;
+
+            font-size: 0;
+
+            transition: opacity 300ms ease;
+
+            &.slick-prev {
+                display: none !important;
+
+                transform: translateY(-50%) rotate(135deg);
+            }
+
+            &.slick-next {
+                left: auto;
+                right: 28px;
+            }
+
+            &.slick-disabled {
+                opacity: 0;
+            }
+        }
     }
 
     &__object {
+        position: relative;
         width: 280px;
+        height: 100%;
         flex: 0 0 auto;
 
-        &:not(:first-child) {
-            display: none;
-        }
+        // &:not(:first-child) {
+        //     display: none;
+        // }
     }
 }
 
@@ -170,9 +211,15 @@
             }
         }
 
-        &__object {
-            &:not(:first-child) {
-                display: block;
+        &__objects {
+            width: calc(100% + 34px);
+
+            .slick-arrow {
+                &.slick-prev {
+                    display: block !important;
+                    left: 28px;
+                    z-index: 1;
+                }
             }
         }
     }
@@ -225,16 +272,24 @@
             font-size: 30px;
         }
 
-        &__graph {
-            width: 880px;
-        }
-
-        &__object {
-            width: 294px;
+        &__objects {
+            width: calc(100% + 20px);
         }
 
         &__legend-item {
             font-size: 16px;
+        }
+    }
+}
+
+@media (min-width: 1440px) {
+    .best-objects {
+        &__graph {
+            width: 880px;
+        }
+
+        &__objects {
+            width: 100%;
         }
     }
 }

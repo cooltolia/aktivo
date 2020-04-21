@@ -486,6 +486,36 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
+      var bestObjects = $('.best-objects');
+      if (bestObjects.length === 0) return;
+      var sliderWrapper = $('.best-objects__objects');
+      sliderWrapper.slick({
+        rows: 0,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        arrows: true,
+        mobileFirst: true,
+        infinite: false,
+        responsive: [{
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 2
+          }
+        }, {
+          breakpoint: 1023,
+          settings: {
+            slidesToShow: 2.25
+          }
+        }, {
+          breakpoint: 1199,
+          settings: {
+            slidesToShow: 3
+          }
+        }]
+      });
+    })();
+
+    (function () {
       var contacts = $('.contacts');
       if (contacts.length === 0) return;
       ymaps.ready(function () {
@@ -656,6 +686,39 @@ jQuery(document).ready(function ($) {
       tippy('.object-card__tooltip', {
         placement: 'bottom',
         arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
+      });
+    })();
+
+    (function () {
+      var object = $('.object');
+      if (object.length === 0) return;
+      var objectLinks = $('.object__navigation-link');
+      var objectAnswers = $('.object__answer');
+      var content = $('.object__content');
+      var scrollOffset = 0;
+
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        scrollOffset = 50;
+      } else {
+        scrollOffset = 150;
+      }
+
+      objectLinks.on('click', function (e) {
+        e.preventDefault();
+        var link = $(this);
+        if (link.hasClass('active')) return;
+        var activeAnswer = objectAnswers.filter('.active');
+        var activeLink = objectLinks.filter('.active');
+        var targetId = link.data('target');
+        var targetAnswer = objectAnswers.filter('#' + targetId);
+        activeLink.removeClass('active');
+        activeAnswer.fadeOut(300, function () {
+          activeAnswer.removeClass('active');
+          link.addClass('active');
+          targetAnswer.addClass('active');
+          targetAnswer.fadeIn(300);
+          scrollTo(content, 300, scrollOffset);
+        });
       });
     })();
 

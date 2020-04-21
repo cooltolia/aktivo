@@ -1,0 +1,27 @@
+mixin object()
+    +b.SECTION.object
+        +lines
+        +inner
+            +e.title
+                +title('h1')
+                    | Ответы <br>на вопросы
+            +e.wrapper
+                +e.ASIDE.aside
+                    +e.NAV.navigation
+                        +e.UL.navigation-list
+                            +e.LI.navigation-item
+                                +e.A.navigation-link.active(href='#' data-target='answer1') Преимущества AKTIVO
+                            +e.LI.navigation-item
+                                +e.A.navigation-link(href='#' data-target='answer2') Доходность
+                            +e.LI.navigation-item
+                                +e.A.navigation-link(href='#' data-target='answer3') Покупка активов
+                            +e.LI.navigation-item
+                                +e.A.navigation-link(href='#' data-target='answer4') Налогообложение инвестора
+                            +e.LI.navigation-item
+                                +e.A.navigation-link(href='#' data-target='answer5') Безопасность
+                            +e.LI.navigation-item
+                                +e.A.navigation-link(href='#' data-target='answer6') Словарь терминов
+                            +e.LI.navigation-item
+                                +e.A.navigation-link(href='#' data-target='answer7') Управляющая компания
+                +e.MAIN.content
+                    +e.section
