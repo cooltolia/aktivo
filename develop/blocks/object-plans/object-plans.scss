@@ -1,0 +1,78 @@
+.object-plans {
+    &__title {
+        margin-bottom: 16px;
+    }
+
+    &__slider {
+        position: relative;
+        z-index: 12;
+        width: 100%;
+
+        .slick-list,
+        .slick-track {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slick-arrow {
+            @include btn-reset;
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            transform: translateY(-50%) rotate(-45deg);
+
+            border-width: 0 1px 1px 0;
+            border-style: solid;
+            border-color: $theme-color;
+
+            font-size: 0;
+
+            &.slick-prev {
+                left: 14px;
+                transform: translateY(-50%) rotate(135deg);
+            }
+
+            &.slick-next {
+                left: auto;
+                right: 14px;
+            }
+        }
+    }
+
+    &__slide {
+        position: relative;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+@media #{$tablet} {
+    .object-plans {
+        &__title {
+            margin-bottom: 25px;
+        }
+
+        &__slider {
+            .slick-arrow {
+                width: 35px;
+                height: 35px;
+
+                &.slick-prev {
+                    left: 40px;
+                }
+
+                &.slick-next {
+                    right: 40px;
+                }
+            }
+        }
+    }
+}

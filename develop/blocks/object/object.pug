@@ -1,27 +1,40 @@
 mixin object()
-    +b.SECTION.object
+    +b.object
         +lines
         +inner
             +e.title
                 +title('h1')
-                    | Ответы <br>на вопросы
+                    | Объект
             +e.wrapper
                 +e.ASIDE.aside
                     +e.NAV.navigation
                         +e.UL.navigation-list
                             +e.LI.navigation-item
-                                +e.A.navigation-link.active(href='#' data-target='answer1') Преимущества AKTIVO
+                                +e.A.navigation-link(href='#' data-scroll-to='objectDescription') Описание
                             +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-target='answer2') Доходность
+                                +e.A.navigation-link(href='#' data-scroll-to='objectEstimates') Прогноз доходности
                             +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-target='answer3') Покупка активов
+                                +e.A.navigation-link(href='#' data-scroll-to='objectPlans') Планировка
                             +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-target='answer4') Налогообложение инвестора
+                                +e.A.navigation-link(href='#' data-scroll-to='objectLocation') Расположение
                             +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-target='answer5') Безопасность
+                                +e.A.navigation-link(href='#' data-scroll-to='objectFinances') Финансы
                             +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-target='answer6') Словарь терминов
-                            +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-target='answer7') Управляющая компания
-                +e.MAIN.content
-                    +e.section
+                                +e.A.navigation-link(href='#' data-scroll-to='objectCalc') Рассчитать доход
+                +e.section.--top
+                    +object-slider
+                +e.section(id='objectDescription')
+                    +object-description
+                +e.section(id='objectEstimates')
+                    +object-estimates
+                +e.section(id='objectPlans')
+                    +object-plans
+                +e.section(id='objectLocation')
+                    +object-location
+                +e.section(id='objectFinances')
+                    +object-finances
+                +e.section(id='objectCalc')
+                    +object-calc
+
+
+

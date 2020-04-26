@@ -1,27 +1,26 @@
-.faq {
+.object {
     position: relative;
 
-    .lines {
-        top: 5px;
-        height: calc(100% + 5px);
+    &__title {
+        display: none;
     }
 
-    &__title {
-        margin-top: -5px;
-        margin-bottom: 20px;
+    &__wrapper {
+        display: flex;
+        flex-flow: column nowrap;
     }
 
     &__aside {
-        margin-bottom: 50px;
+        margin-bottom: 35px;
     }
 
-    &__questions-list {
+    &__navigation-list {
         padding: 0;
         margin: 0;
         list-style: none;
     }
 
-    &__questions-item {
+    &__navigation-item {
         margin-bottom: 10px;
 
         &:last-child {
@@ -29,7 +28,7 @@
         }
     }
 
-    &__questions-link {
+    &__navigation-link {
         position: relative;
         padding: 3px 0;
 
@@ -67,161 +66,87 @@
         }
     }
 
-    &__answer {
-        display: none;
-    }
+    &__section {
+        padding: 0 1px;
+        margin-bottom: 35px;
 
-    &__paragraph {
-        margin-bottom: 36px;
+        &--top {
+            order: -1;
+            margin-bottom: 20px;
+        }
 
         &:last-child {
             margin-bottom: 0;
-        }
-
-        h3 {
-            margin: 0 0 8px;
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        p {
-            margin: 0 0 20px;
-
-            font-size: 16px;
-            line-height: 1.4;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        ul {
-            padding: 0;
-            margin: 0 0 20px;
-            list-style: none;
-
-            font-size: 16px;
-            line-height: 1.4;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        li {
-            position: relative;
-            padding-left: 24px;
-            margin-bottom: 8px;
-
-            &::before {
-                content: '';
-                position: absolute;
-                width: 12px;
-                height: 2px;
-                left: 0;
-                top: 10px;
-
-                background-color: $theme-color;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-            }
         }
     }
 }
 
 @media #{$tablet} {
-    .faq {
-        position: relative;
-        padding-top: 90px;
-
-        &::after {
-            content: '';
-            position: absolute;
-            z-index: 12;
-            height: 1px;
-            left: 33px;
-            right: 0;
-
-            background-color: rgba(#919191, 0.2);
-        }
+    .object {
+        padding-top: 50px;
 
         .lines {
-            top: 0;
-
             .line {
-                &::after {
-                    opacity: 0;
-                }
+                width: 35%;
+                left: 250px;
             }
         }
 
-        &__title {
-            margin-top: 0;
-            margin-bottom: 35px;
-        }
-
-        &__wrapper {
-            display: flex;
-        }
-
-        &__aside {
-            width: calc(100% / 3);
-            padding-right: 10px;
-        }
-
-        &__questions {
+        &__navigation {
             position: sticky;
             top: 20px;
         }
 
-        &__questions-item {
-            margin-bottom: 40px;
+        &__title {
+            display: block;
+            margin-bottom: 35px;
         }
 
-        &__content {
-            width: calc(100% / 3 * 2);
+        &__wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 216px minmax(0, 1fr);
+        }
+
+        &__aside {
+            grid-column: 1;
+            grid-row: 1 / 999;
+        }
+
+        &__section {
+            width: 100%;
+            grid-column: 2;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .object {
+        .lines {
+            .line {
+                width: 43%;
+            }
         }
     }
 }
 
 @media #{$desktop} {
-    .faq {
-        padding-top: 85px;
-
-        &::after {
-            left: 0;
-        }
-
+    .object {
         .lines {
             .line {
-                width: 400px;
-            }
-
-            &::after {
-                opacity: 0;
+                width: 542px;
+                left: 260px;
             }
         }
 
-        &__aside {
-            width: 400px;
+        &__wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
         }
 
-        &__questions {
-            top: 50px;
-        }
-
-        &__questions-link {
-            &.active {
-                &::before {
-                    left: -25px;
-                }
-            }
-        }
-
-        &__content {
-            width: 760px;
+        &__section {
+            margin-bottom: 55px;
         }
     }
 }

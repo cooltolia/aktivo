@@ -10,6 +10,10 @@
 				"text": "Наши объекты"
 			},
 			{
+				"link": "object-page.html",
+				"text": "Объект"
+			},
+			{
 				"link": "partners-page.html",
 				"text": "Нащи партнеры"
 			},

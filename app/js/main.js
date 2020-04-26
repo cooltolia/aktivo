@@ -683,6 +683,101 @@ jQuery(document).ready(function ($) {
     }
 
     (function () {
+      var objectCalc = document.querySelector('.object-calc');
+      if (!objectCalc) return;
+      var investmentRangeSlider = document.querySelector('.object-calc__investment-range');
+      var invsestmentValue = document.querySelector('.object-calc__investment-value');
+      var incomeRangeSlider = document.querySelector('.object-calc__income-range');
+      var format = wNumb({
+        decimals: 0,
+        suffix: " \u20BD",
+        thousand: ' '
+      });
+      var initialValue = 1000000;
+      var dataWrapper = $('.object-calc__income-data');
+      var income = dataWrapper.find('.object-calc__income');
+      var share = dataWrapper.find('.object-calc__share');
+      var rate = dataWrapper.find('.object-calc__rate').data('rate');
+      var step = dataWrapper.data('step');
+      initRangeSlider();
+      /**
+       * interactions with range slider
+       */
+
+      investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
+        invsestmentValue.textContent = format.to(+values[handle]);
+        updateData(values[handle]);
+        incomeRangeSliderUpdate(values[handle]);
+      });
+      incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
+        investmentRangeSliderUpdate(values[handle]);
+      });
+      investmentRangeSlider.noUiSlider.on('change', function () {
+        animateRangeSlider();
+      });
+      incomeRangeSlider.noUiSlider.on('change', function () {
+        animateRangeSlider();
+      }); // helper functions
+
+      function initRangeSlider() {
+        var minValue = dataWrapper.data('min');
+        var maxValue = dataWrapper.data('max');
+        var stepValue = dataWrapper.data('step');
+        noUiSlider.create(investmentRangeSlider, {
+          start: initialValue,
+          step: stepValue,
+          animate: false,
+          connect: 'lower',
+          range: {
+            min: minValue,
+            max: maxValue
+          }
+        });
+        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
+      }
+
+      function incomeRangeSliderInit(min, max, step, initial, rate) {
+        var minValue = min * rate / 100;
+        var maxValue = max * rate / 100;
+        var initialValue = initial * rate / 100;
+        var stepValue = step * rate / 100;
+        noUiSlider.create(incomeRangeSlider, {
+          start: initialValue,
+          step: stepValue,
+          animate: false,
+          range: {
+            min: minValue,
+            max: maxValue
+          }
+        });
+      }
+
+      function incomeRangeSliderUpdate(value) {
+        incomeRangeSlider.noUiSlider.set(value * rate / 100);
+      }
+
+      function investmentRangeSliderUpdate(value) {
+        investmentRangeSlider.noUiSlider.set(value / rate * 100);
+      }
+
+      function updateData(value) {
+        share.text(Math.floor(value / step));
+        income.text(format.to(value * rate / 100 / 12));
+      }
+
+      function animateRangeSlider() {
+        var rangeLine = $('.noUi-connect');
+        var rangeHandle = $('.noUi-origin');
+        rangeLine.addClass('transition');
+        rangeHandle.addClass('transition');
+        setTimeout(function () {
+          rangeLine.removeClass('transition');
+          rangeHandle.removeClass('transition');
+        }, 300);
+      }
+    })();
+
+    (function () {
       tippy('.object-card__tooltip', {
         placement: 'bottom',
         arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
@@ -690,35 +785,362 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
+      var objectFinances = $('.object-finances');
+      if (objectFinances.length === 0) return;
+      var financesTable = document.querySelector('.object-finances__table');
+      var lineChart = document.querySelector('#lineChart');
+      var lineChartPadding = parseInt(window.getComputedStyle(lineChart.parentNode).paddingLeft);
+      var scrolledLineChart = null;
+      var columnChart = document.querySelector('#columnChart');
+      var columnChartPadding = parseInt(window.getComputedStyle(columnChart.parentNode).paddingLeft);
+      var scrolledColumnChart = null;
+      var dataCells = financesTable.querySelectorAll('tr:not(:first-child) td');
+      var cellHeight = dataCells[0].getBoundingClientRect().height;
+      var regularCellWidth = dataCells[1].getBoundingClientRect().width;
+      var firstCellWidth = dataCells[0].getBoundingClientRect().width;
+      console.log(regularCellWidth);
+      var hr = document.querySelector('.object-finances__hr');
+      var vr = document.querySelector('.object-finances__vr');
+      var labelFontSize = '12px';
+      var showGridLine = false;
+
+      if (window.matchMedia('(min-width: 1024px)').matches) {
+        labelFontSize = '14px';
+        showGridLine = true;
+      }
+
+      dataCells.forEach(function (cell) {
+        cell.addEventListener('mouseover', function () {
+          var offsetTop = cell.offsetParent.offsetTop + cell.offsetTop + cellHeight;
+          hr.style.top = "".concat(offsetTop, "px");
+
+          var index = _toConsumableArray(cell.parentNode.children).indexOf(cell);
+
+          var leftPadding = -5;
+
+          if (index === 1) {
+            leftPadding = parseInt(window.getComputedStyle(cell).paddingLeft) - 5;
+          }
+
+          var offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
+          vr.style.left = "".concat(offsetLeft, "px");
+          hr.classList.add('active');
+          vr.classList.add('active');
+        });
+        cell.addEventListener('mouseout', function () {
+          hr.classList.remove('active');
+          vr.classList.remove('active');
+        });
+      });
+      var scrollNext = document.querySelector('.object-finances__scroll-next');
+      var scrollPrev = document.querySelector('.object-finances__scroll-prev');
+      var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
+      console.log('maxScrollLeft: ', maxScrollLeft);
+      var debouncedNextClick = debounce(nextClick, 200, true);
+      var debouncedPrevClick = debounce(prevClick, 200, true);
+      scrollNext.addEventListener('click', debouncedNextClick);
+      scrollPrev.addEventListener('click', debouncedPrevClick);
+
+      function nextClick() {
+        var value = financesTable.scrollLeft + regularCellWidth;
+
+        if (value > 0) {
+          scrollPrev.classList.add('active');
+        }
+
+        if (value >= maxScrollLeft - regularCellWidth) {
+          scrollNext.classList.remove('active');
+        }
+
+        smoothLeftScroll(value);
+      }
+
+      function prevClick() {
+        var value = financesTable.scrollLeft - regularCellWidth;
+        smoothLeftScroll(value);
+
+        if (value <= 0) {
+          scrollPrev.classList.remove('active');
+        }
+
+        if (value <= maxScrollLeft) {
+          scrollNext.classList.add('active');
+        }
+      }
+
+      if (lineChart) {
+        var data = [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, null];
+        var categories = ['Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', ''];
+        var columnWidth = regularCellWidth;
+        var chartMinWidth = columnWidth * data.length;
+        Highcharts.chart('lineChart', {
+          chart: {
+            type: 'line',
+            scrollablePlotArea: {
+              minWidth: chartMinWidth
+            },
+            marginTop: 60
+          },
+          title: false,
+          credits: {
+            enabled: false
+          },
+          xAxis: {
+            categories: categories,
+            opposite: true,
+            tickPixelInterval: columnWidth,
+            width: columnWidth * data.length,
+            gridLineColor: '#197F07',
+            // height: 40,
+            offset: 30,
+            lineWidth: 0,
+            tickWidth: 0,
+            labels: {
+              align: 'left',
+              style: {
+                color: '#9e9e9e',
+                fontSize: labelFontSize,
+                fontWeight: '600',
+                fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                paddingLeft: '5px'
+              }
+            }
+          },
+          yAxis: {
+            title: false,
+            gridLineColor: '#f2f2f2',
+            labels: {
+              padding: 5,
+              style: {
+                color: '#9e9e9e',
+                fontSize: labelFontSize,
+                fontWeight: '600',
+                fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                paddingLeft: '5px'
+              }
+            }
+          },
+          plotOptions: {
+            line: {
+              color: '#fed63f',
+              dataLabels: {
+                enabled: false
+              }
+            },
+            series: {
+              point: {
+                events: {
+                  mouseOver: function mouseOver(_ref) {
+                    var target = _ref.target;
+                    if (!showGridLine) return;
+                    var magicNumber = 34;
+                    vr.style.left = "".concat(target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft, "px");
+                    vr.classList.add('active');
+                  },
+                  mouseOut: function mouseOut() {
+                    vr.classList.remove('active');
+                  }
+                }
+              }
+            }
+          },
+          tooltip: {
+            enabled: false
+          },
+          series: [{
+            data: data
+          }],
+          legend: false
+        });
+        scrolledLineChart = lineChart.querySelector('.highcharts-scrolling');
+      }
+
+      if (columnChart) {
+        var _data = [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, null];
+        var _categories = ['Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', ''];
+        var _columnWidth = regularCellWidth;
+
+        var _chartMinWidth = _columnWidth * _data.length;
+
+        Highcharts.chart('columnChart', {
+          chart: {
+            type: 'column',
+            scrollablePlotArea: {
+              minWidth: _chartMinWidth
+            },
+            marginTop: 60
+          },
+          title: false,
+          credits: {
+            enabled: false
+          },
+          xAxis: {
+            categories: _categories,
+            opposite: true,
+            tickPixelInterval: _columnWidth,
+            width: _columnWidth * _data.length,
+            offset: 30,
+            // height: 40,
+            lineWidth: 0,
+            tickWidth: 0,
+            labels: {
+              align: 'left',
+              style: {
+                color: '#9e9e9e',
+                fontSize: labelFontSize,
+                fontWeight: '600',
+                fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                paddingLeft: '5px'
+              }
+            }
+          },
+          yAxis: {
+            title: false,
+            gridLineColor: '#f2f2f2',
+            labels: {
+              padding: 5,
+              style: {
+                color: '#9e9e9e',
+                fontSize: labelFontSize,
+                fontWeight: '600',
+                fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                paddingLeft: '5px'
+              }
+            }
+          },
+          plotOptions: {
+            column: {
+              color: '#d8d8d8',
+              dataLabels: {
+                enabled: false
+              },
+              pointWidth: 122,
+              pointPlacement: 0.37
+            }
+          },
+          tooltip: {
+            enabled: false
+          },
+          series: [{
+            data: _data,
+            states: {
+              hover: {
+                color: '#fed63f'
+              }
+            },
+            point: {
+              events: {
+                mouseOver: function mouseOver(_ref2) {
+                  var target = _ref2.target;
+                  if (!showGridLine) return;
+                  var magicNumber = 41;
+                  vr.style.left = "".concat(target.clientX - target.pointWidth / 2 + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft, "px");
+                  vr.classList.add('active');
+                },
+                mouseOut: function mouseOut() {
+                  vr.classList.remove('active');
+                }
+              }
+            }
+          }],
+          legend: false
+        });
+        scrolledColumnChart = columnChart.querySelector('.highcharts-scrolling');
+      }
+
+      function smoothLeftScroll(value) {
+        financesTable.scrollTo({
+          left: value,
+          behavior: 'smooth'
+        });
+        scrolledLineChart.scrollTo({
+          left: value,
+          behavior: 'smooth'
+        });
+        scrolledColumnChart.scrollTo({
+          left: value,
+          behavior: 'smooth'
+        });
+      }
+    })();
+
+    (function () {
+      var objectLocation = $('.object-location');
+      if (objectLocation.length === 0) return;
+      ymaps.ready(function () {
+        var myMap = new ymaps.Map('map', {
+          center: [55.749511, 37.537083],
+          zoom: 15,
+          controls: ['zoomControl']
+        });
+        var myPlacemark = new ymaps.Placemark([55.749511, 37.537083], {
+          hintContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
+          balloonContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»'
+        }, {
+          preset: 'islands#icon',
+          iconColor: '#fed63f'
+        });
+        myMap.behaviors.disable('scrollZoom');
+        myMap.geoObjects.add(myPlacemark);
+      });
+    })();
+
+    (function () {
+      var objectPlans = $('.object-plans');
+      if (objectPlans.length === 0) return;
+      var slider = $('.object-plans__slider');
+      slider.slick({
+        rows: 0,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        arrows: true
+      });
+    })();
+
+    (function () {
+      var objectSlider = $('.object-slider');
+      if (objectSlider.length === 0) return;
+      var slider = $('.object-slider__slider');
+      slider.slick({
+        rows: 0,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        arrows: true
+      });
+      $('.object-slider__play').modalVideo();
+    })();
+
+    (function () {
       var object = $('.object');
       if (object.length === 0) return;
       var objectLinks = $('.object__navigation-link');
-      var objectAnswers = $('.object__answer');
-      var content = $('.object__content');
-      var scrollOffset = 0;
+      var objectSections = document.querySelectorAll('.object__section');
 
-      if (window.matchMedia('(max-width: 768px)').matches) {
-        scrollOffset = 50;
-      } else {
-        scrollOffset = 150;
+      if (window.matchMedia('(min-width: 768px)').matches) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              objectLinks.removeClass('active');
+              var sectionId = entry.target.id;
+              if (!sectionId) return;
+              var relatedLink = objectLinks.filter("[data-scroll-to=".concat(sectionId, "]"));
+              relatedLink.addClass('active');
+            }
+          });
+        }, {
+          rootMargin: '-50% 0% -50% 0%',
+          root: null
+        });
+        objectSections.forEach(function (section) {
+          return observer.observe(section);
+        });
       }
 
       objectLinks.on('click', function (e) {
         e.preventDefault();
         var link = $(this);
-        if (link.hasClass('active')) return;
-        var activeAnswer = objectAnswers.filter('.active');
-        var activeLink = objectLinks.filter('.active');
-        var targetId = link.data('target');
-        var targetAnswer = objectAnswers.filter('#' + targetId);
-        activeLink.removeClass('active');
-        activeAnswer.fadeOut(300, function () {
-          activeAnswer.removeClass('active');
-          link.addClass('active');
-          targetAnswer.addClass('active');
-          targetAnswer.fadeIn(300);
-          scrollTo(content, 300, scrollOffset);
-        });
+        objectLinks.removeClass('active');
+        link.addClass('active');
       });
     })();
 

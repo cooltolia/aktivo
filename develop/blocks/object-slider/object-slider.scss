@@ -1,0 +1,227 @@
+.object-slider {
+    position: relative;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    height: 310px;
+    z-index: 12;
+
+    &__data {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        color: $text-color-white;
+
+        pointer-events: none;
+    }
+
+    &__data-top {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        font-size: 19px;
+        font-weight: 600;
+    }
+
+    &__title {
+        padding-right: 10px;
+    }
+
+    &__data-bottom {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        right: 5px;
+
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    &__data-col {
+        width: 40%;
+        flex: 1 1 auto;
+        margin: 0 12px 15px;
+
+        white-space: nowrap;
+    }
+
+    &__data-label {
+        margin-bottom: 2px;
+        font-size: 12px;
+    }
+
+    &__data-value {
+        font-size: 14px;
+    }
+
+    &__slider {
+        width: 100%;
+        height: 100%;
+
+        .slick-list,
+        .slick-track {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slick-arrow {
+            @include btn-reset;
+            position: absolute;
+            z-index: 1;
+            top: 40%;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            transform: translateY(-50%) rotate(-45deg);
+
+            border-width: 0 1px 1px 0;
+            border-style: solid;
+            border-color: $theme-color;
+
+            font-size: 0;
+
+            &.slick-prev {
+                left: 14px;
+                transform: translateY(-50%) rotate(135deg);
+            }
+
+            &.slick-next {
+                left: auto;
+                right: 14px;
+            }
+        }
+    }
+
+    &__slide {
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__play {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%);
+        margin-left: 9px;
+
+        border-width: 18px 0 18px 36px;
+        border-color: #fed63f;
+        border-style: solid;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+
+        background-color: transparent;
+        outline: none;
+    }
+}
+
+@media #{$tablet} {
+    .object-slider {
+        width: 100%;
+        margin: 0;
+        height: 400px;
+
+        &__slider {
+            .slick-arrow {
+                top: 50%;
+            }
+        }
+
+        &__play {
+            top: 50%;
+        }
+
+        &__data-col {
+            width: auto;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .object-slider {
+        height: 490px;
+
+        &__slider {
+            .slick-arrow {
+                width: 35px;
+                height: 35px;
+
+                &.slick-prev {
+                    left: 40px;
+                }
+
+                &.slick-next {
+                    right: 40px;
+                }
+            }
+        }
+
+        &__play {
+            margin-left: 16px;
+
+            border-width: 35px 0 35px 70px;
+        }
+
+        &__data-top {
+            left: 40px;
+            right: 40px;
+        }
+
+        &__data-bottom {
+            left: 28px;
+            right: 28px;
+        }
+
+        &__data-top {
+            top: 32px;
+        }
+
+        &__data-col {
+            width: auto;
+        }
+
+        &__title,
+        &__rating {
+            font-size: 34px;
+        }
+
+        &__data-label {
+            font-size: 14px;
+        }
+
+        &__data-value {
+            font-size: 20px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .object-slider {
+        height: 600px;
+    }
+}

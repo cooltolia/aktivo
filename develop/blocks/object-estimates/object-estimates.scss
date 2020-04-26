@@ -1,0 +1,127 @@
+.object-estimates {
+    &__title {
+        margin-bottom: 16px;
+
+        span {
+            margin-top: 5px;
+            display: block;
+
+            font-size: 14px;
+        }
+    }
+
+    &__main {
+        margin-bottom: 16px;
+    }
+
+    &__sum-value {
+        margin-bottom: 5px;
+
+        color: $theme-color;
+        font-size: 44px;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    &__sum-label {
+        font-size: 14px;
+    }
+
+    &__row {
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__value {
+        position: relative;
+
+        font-size: 24px;
+        font-weight: 600;
+
+        &--positive,
+        &--equal {
+            color: $theme-color;
+        }
+
+        &--equal {
+            &::before {
+                content: '=';
+                position: absolute;
+                left: -18px;
+                top: 50%;
+                transform: translateY(-50%);
+
+                color: inherit;
+                font-size: inherit;
+            }
+        }
+
+        &--minus {
+            color: #cecece;
+
+            &::before {
+                content: '-';
+                position: absolute;
+                top: 50%;
+                left: -13px;
+                transform: translateY(-50%);
+
+                color: inherit;
+                font-size: inherit;
+            }
+        }
+    }
+
+    &__label {
+        font-size: 14px;
+    }
+}
+
+@media #{$tablet} {
+    .object-estimates {
+        &__wrapper {
+            display: flex;
+        }
+
+        &__main {
+            width: 35vw;
+            flex: 0 0 auto;
+        }
+
+        &__aside {
+            width: 30%;
+            flex: 1 1 auto;
+        }
+
+        &__sum-value {
+            font-size: 38px;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .object-estimates {
+        &__main {
+            width: 43vw;
+        }
+
+        &__sum-value {
+            font-size: 60px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .object-estimates {
+        &__main {
+            width: 542px;
+        }
+
+        &__sum-value {
+            font-size: 74px;
+        }
+    }
+}
