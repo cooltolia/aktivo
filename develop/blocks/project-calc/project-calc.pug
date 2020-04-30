@@ -22,7 +22,7 @@ mixin project-calc()
                         +e.section
                             +e.section-title Собственник
                             +e.section-input
-                                +project-select('block', '', 'owner_type', projectSalePage.selects.ownerType)
+                                +project-select('block', '', 'owner_type', projectSalePage.selects.ownerType)(id='ownerType')
                                     | Тип
                             +e.section-input
                                 +project-select('block', '', 'tax_type', projectSalePage.selects.taxType)
@@ -35,13 +35,13 @@ mixin project-calc()
                                 | Доходы от аренды в месяц
                             +e.section-input
                                 +project-input('text', 'rentalIncome1', 'rental_income1', 'Выручка от аренды помещений в месяц (МАП)', '1 000 000 ₽', 'small-padding')(data-format='ruble' required='')
-                                    +project-select('inline', '', 'rental_income1_type', projectSalePage.selects.nds)
+                                    +project-select('inline', '', 'rental_income1_type', projectSalePage.selects.nds)(data-type='taxType')
                             +e.section-input
                                 +project-input('text', 'rentalIncome2', 'rental_income2', 'Средние доходы от эксплуатации в месяц', '1 000 000 ₽', 'small-padding')(data-format='ruble')
-                                    +project-select('inline', '', 'rental_income2_type', projectSalePage.selects.nds)
+                                    +project-select('inline', '', 'rental_income2_type', projectSalePage.selects.nds)(data-type='taxType')
                             +e.section-input
                                 +project-input('text', 'rentalIncome3', 'rental_income3', 'Средние коммунальные платежи в месяц', '1 000 000 ₽', 'small-padding')(data-format='ruble')
-                                    +project-select('inline', '', 'rental_income3_type', projectSalePage.selects.nds)
+                                    +project-select('inline', '', 'rental_income3_type', projectSalePage.selects.nds)(data-type='taxType')
                                 +e.input-tip Арендатор возмещает собственнику
                             +e.section-input
                                 +project-input('text', 'rentalIncome4', 'rental_income4', 'Средние коммунальные платежи в месяц', '1 000 000 ₽')(data-format='ruble')
@@ -57,10 +57,10 @@ mixin project-calc()
                                     +project-select('inline', 'small', 'property_expenses2_type', projectSalePage.selects.payment2)
                             +e.section-input
                                 +project-input('text', 'propertyExpenses3', 'property_expenses3', 'Средние расходы по эксплуатации в месяц ', '1 000 000 ₽', 'small-padding')(data-format='ruble')
-                                    +project-select('inline', '', 'property_expenses3_type', projectSalePage.selects.nds)
+                                    +project-select('inline', '', 'property_expenses3_type', projectSalePage.selects.nds)(data-type='taxType')
                             +e.section-input
                                 +project-input('text', 'propertyExpenses3', 'property_expenses3', 'Средние расходы по эксплуатации в месяц ', '1 000 000 ₽', 'small-padding')(data-format='ruble')
-                                    +project-select('inline', '', 'property_expenses3_type', projectSalePage.selects.nds)
+                                    +project-select('inline', '', 'property_expenses3_type', projectSalePage.selects.nds)(data-type='taxType')
                     +e.column
                         +e.result-row
                             +e.result-value#objectValue 595 227 357 ₽

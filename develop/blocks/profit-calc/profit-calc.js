@@ -1,4 +1,4 @@
-(function() {
+(function () {
     const profitCalc = document.querySelector('.profit-calc');
     if (!profitCalc) return;
 
@@ -6,6 +6,10 @@
     const invsestmentValue = document.querySelector('.profit-calc__investment-value');
 
     const incomeRangeSlider = document.querySelector('.profit-calc__income-range');
+
+    const LIBERTY_MIN = 10000000;
+
+    const objectLink = document.querySelector('.profit-calc__object-link');
 
     const format = wNumb({
         decimals: 0,
@@ -21,14 +25,15 @@
     initRangeSlider();
 
     /** init and interact with sliders */
-    objectsSlider.on('init', function(e, slick) {
+    objectsSlider.on('init', function (e, slick) {
         const currentSlide = $(slick.$slides[slick.currentSlide]);
         const object = $(currentSlide.children()[0]);
 
         updateObjectData(object, initialValue);
+        updateObjectLink(object);
     });
 
-    objectsSlider.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
+    objectsSlider.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
         if (currentSlide === nextSlide) return;
 
         const slide = $(slick.$slides[nextSlide]);
@@ -36,11 +41,12 @@
 
         const minValue = object.data('min');
         const maxValue = object.data('max');
-        const stepValue = object.data('step');
 
         const rate = object.find('.profit-object__rate').data('rate');
 
         const currentRangeValue = parseInt(investmentRangeSlider.noUiSlider.get());
+
+        const stepValue = currentRangeValue > LIBERTY_MIN ? object.data('libety-step') : object.data('step');
 
         const startValue = maxValue < currentRangeValue ? maxValue : currentRangeValue;
 
@@ -68,6 +74,7 @@
         });
         animateRangeSlider();
         updateObjectData(object, startValue);
+        updateObjectLink(object);
     });
 
     objectsNav.slick({
@@ -90,17 +97,28 @@
     /**
      * interactions with range slider
      */
-    investmentRangeSlider.noUiSlider.on('update', function(values, handle) {
-        invsestmentValue.textContent = format.to(+values[handle]);
+    investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
+        const value = +values[handle];
+        invsestmentValue.textContent = format.to(value);
 
         const currentSlide = objectsSlider.find('.slick-current');
         const object = $(currentSlide.children()[0]);
 
-        updateObjectData(object, values[handle]);
-        incomeRangeSliderUpdate(object, values[handle]);
+        updateObjectData(object, value);
+        incomeRangeSliderUpdate(object, value);
+
+        updateObjectLink(object);
     });
 
-    incomeRangeSlider.noUiSlider.on('slide', function(values, handle) {
+    investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
+        const value = +values[handle];
+        const currentSlide = objectsSlider.find('.slick-current');
+        const object = $(currentSlide.children()[0]);
+
+        updateRangesStep(object, value);
+    });
+
+    incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
         const currentSlide = objectsSlider.find('.slick-current');
         const object = $(currentSlide.children()[0]);
 
@@ -174,10 +192,28 @@
         const share = object.find('.profit-object__share');
         const rate = object.find('.profit-object__rate').data('rate');
 
-        const step = object.data('step');
+        const basicStep = object.data('step');
+        const libertyStep = object.data('liberty-step');
+        const step = +value > LIBERTY_MIN ? libertyStep : basicStep;
 
         share.text(Math.floor(value / step));
         income.text(format.to((value * rate) / 100 / 12));
+    }
+
+    function updateObjectLink(object) {
+        const value = parseInt(investmentRangeSlider.noUiSlider.get());
+        objectLink.href = object.data('link') + '/' + value;
+    }
+
+    function updateRangesStep(object, value) {
+        const basicStep = object.data('step');
+        const libertyStep = object.data('liberty-step');
+        const step = value > LIBERTY_MIN ? libertyStep : basicStep;
+        console.log('step: ', step);
+
+        // debugger;
+
+        investmentRangeSlider.noUiSlider.updateOptions({ step }, false);
     }
 
     function animateRangeSlider() {

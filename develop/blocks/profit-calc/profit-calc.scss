@@ -244,6 +244,39 @@
             height: 100%;
         }
     }
+
+    &__object-link {
+        display: inline-block;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        z-index: 12;
+
+        font-size: 25px;
+        font-weight: 500;
+        color: $theme-color;
+        text-decoration: none;
+
+        transition: opacity 300ms ease;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            left: 0;
+            bottom: -3px;
+
+            background-color: $theme-color;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            opacity: 0.6;
+            text-decoration: none;
+        }
+    }
 }
 
 @media #{$tablet} {
@@ -355,6 +388,10 @@
                 left: 0;
             }
         }
+
+        &__object-link {
+            left: 40px;
+        }
     }
 }
 
@@ -383,7 +420,7 @@
 
         &__investment-range {
             &::after {
-                width: 100%
+                width: 100%;
             }
         }
 
@@ -405,6 +442,11 @@
 
         &__income-range {
             top: 120px;
+        }
+
+        &__object-link {
+            left: 55px;
+            bottom: 35px;
         }
     }
 }

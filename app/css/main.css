@@ -7154,6 +7154,30 @@ th {
     .profit-calc__objects-slider .slick-track,
     .profit-calc__objects-slider .slick-slide {
       height: 100%; }
+  .profit-calc__object-link {
+    display: inline-block;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 12;
+    font-size: 25px;
+    font-weight: 500;
+    color: #fed63f;
+    text-decoration: none;
+    -webkit-transition: opacity 300ms ease;
+    -moz-transition: opacity 300ms ease;
+    transition: opacity 300ms ease; }
+    .profit-calc__object-link::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      left: 0;
+      bottom: -3px;
+      background-color: #fed63f; }
+    .profit-calc__object-link:hover, .profit-calc__object-link:active, .profit-calc__object-link:focus {
+      opacity: 0.6;
+      text-decoration: none; }
 
 @media (min-width: 768px) {
   .profit-calc {
@@ -7229,7 +7253,9 @@ th {
       font-size: 25px;
       cursor: pointer; }
     .profit-calc__objects-nav::after {
-      left: 0; } }
+      left: 0; }
+    .profit-calc__object-link {
+      left: 40px; } }
 
 @media (min-width: 1200px) {
   .profit-calc__wrapper {
@@ -7259,7 +7285,10 @@ th {
     padding-left: 55px;
     height: 120px; }
   .profit-calc__income-range {
-    top: 120px; } }
+    top: 120px; }
+  .profit-calc__object-link {
+    left: 55px;
+    bottom: 35px; } }
 
 .profit-object {
   position: relative;
@@ -7332,10 +7361,10 @@ th {
        -moz-box-direction: normal;
         -ms-flex-flow: column nowrap;
             flex-flow: column nowrap;
-    -webkit-box-pack: center;
-       -moz-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: start;
+       -moz-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     -webkit-box-align: start;
        -moz-box-align: start;
         -ms-flex-align: start;
@@ -7351,30 +7380,9 @@ th {
       top: 0;
       background-color: rgba(145, 145, 145, 0.2); }
   .profit-object__name {
-    margin: 0 0 10px;
+    margin: 20px 0 10px;
     font-size: 25px;
     font-weight: 600; }
-  .profit-object__link {
-    display: inline-block;
-    position: relative;
-    font-size: 25px;
-    font-weight: 500;
-    color: #fed63f;
-    text-decoration: none;
-    -webkit-transition: opacity 300ms ease;
-    -moz-transition: opacity 300ms ease;
-    transition: opacity 300ms ease; }
-    .profit-object__link::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      left: 0;
-      bottom: -3px;
-      background-color: #fed63f; }
-    .profit-object__link:hover, .profit-object__link:active, .profit-object__link:focus {
-      opacity: 0.6;
-      text-decoration: none; }
 
 @media (min-width: 768px) {
   .profit-object {

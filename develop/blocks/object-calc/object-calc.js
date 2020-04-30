@@ -13,19 +13,23 @@
         thousand: ' ',
     });
 
-
-    const initialValue = 1000000;
+    const LIBERTY_MIN = 10000000;
 
     const dataWrapper = $('.object-calc__income-data');
     const income = dataWrapper.find('.object-calc__income');
     const share = dataWrapper.find('.object-calc__share');
     const rate = dataWrapper.find('.object-calc__rate').data('rate');
 
-    const step = dataWrapper.data('step');
+    const initialValue = dataWrapper.data('initial');
+    const minValue = dataWrapper.data('min');
+    const maxValue = dataWrapper.data('max');
+    const basicStep = dataWrapper.data('step');
+    const libertyStep = dataWrapper.data('liberty-step');
+
+    const stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
 
     initRangeSlider();
 
-  
     /**
      * interactions with range slider
      */
@@ -34,6 +38,11 @@
 
         updateData(values[handle]);
         incomeRangeSliderUpdate(values[handle]);
+    });
+
+    investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
+        const value = +values[handle];
+        updateRangesStep(value);
     });
 
     incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
@@ -51,10 +60,6 @@
     // helper functions
 
     function initRangeSlider() {
-        const minValue = dataWrapper.data('min');
-        const maxValue = dataWrapper.data('max');
-        const stepValue = dataWrapper.data('step');
-
         noUiSlider.create(investmentRangeSlider, {
             start: initialValue,
             step: stepValue,
@@ -95,8 +100,17 @@
     }
 
     function updateData(value) {
-                share.text(Math.floor(value / step));
+        share.text(Math.floor(value / stepValue));
         income.text(format.to((value * rate) / 100 / 12));
+    }
+
+    function updateRangesStep(value) {
+        const step = value > LIBERTY_MIN ? libertyStep : basicStep;
+        console.log('step: ', step);
+
+        // debugger;
+
+        investmentRangeSlider.noUiSlider.updateOptions({ step }, false);
     }
 
     function animateRangeSlider() {
