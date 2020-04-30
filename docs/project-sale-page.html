@@ -208,19 +208,17 @@
                   <div class="project-calc__section-title">Собственник
                   </div>
                   <div class="project-calc__section-input"><!-- project-select --> 
-                    <div class="project-select block">
+                    <div class="project-select block" id="ownerType">
                       <label class="project-select__label"> Тип
-                      </label><input class="project-select__input" type="hidden" name="owner_type" readonly="" value="ИП"/>
-                      <div class="project-select__selected">ИП
+                      </label><input class="project-select__input" type="hidden" name="owner_type" readonly="" value="Физическое лицо"/>
+                      <div class="project-select__selected">Физическое лицо
                       </div>
                       <div class="project-select__options">
-                        <div class="project-select__option">ИП
+                        <div class="project-select__option" data-type="1">Физическое лицо
                         </div>
-                        <div class="project-select__option">ООО
+                        <div class="project-select__option" data-type="1">ИП
                         </div>
-                        <div class="project-select__option">ОАО
-                        </div>
-                        <div class="project-select__option">ЗАО
+                        <div class="project-select__option" data-type="2">Юридическое лицо
                         </div>
                       </div>
                     </div><!--/ project-select --> 
@@ -253,13 +251,13 @@
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="rentalIncome1">Выручка от аренды помещений в месяц (МАП)
                       </label><input class="project-input__input" type="text" id="rentalIncome1" name="rental_income1" placeholder="1 000 000 ₽" data-format="ruble" required=""/><span class="project-input__error error">some text</span><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="rental_income1_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
+                      <div class="project-select inline" data-type="taxType"><input class="project-select__input" type="hidden" name="rental_income1_type" readonly="" value="Без НДС"/>
+                        <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
                           <div class="project-select__option">Без НДС
+                          </div>
+                          <div class="project-select__option">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -269,13 +267,13 @@
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="rentalIncome2">Средние доходы от эксплуатации в месяц
                       </label><input class="project-input__input" type="text" id="rentalIncome2" name="rental_income2" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="rental_income2_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
+                      <div class="project-select inline" data-type="taxType"><input class="project-select__input" type="hidden" name="rental_income2_type" readonly="" value="Без НДС"/>
+                        <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
                           <div class="project-select__option">Без НДС
+                          </div>
+                          <div class="project-select__option">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -285,13 +283,13 @@
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="rentalIncome3">Средние коммунальные платежи в месяц
                       </label><input class="project-input__input" type="text" id="rentalIncome3" name="rental_income3" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="rental_income3_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
+                      <div class="project-select inline" data-type="taxType"><input class="project-select__input" type="hidden" name="rental_income3_type" readonly="" value="Без НДС"/>
+                        <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
                           <div class="project-select__option">Без НДС
+                          </div>
+                          <div class="project-select__option">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -347,13 +345,13 @@
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="propertyExpenses3">Средние расходы по эксплуатации в месяц 
                       </label><input class="project-input__input" type="text" id="propertyExpenses3" name="property_expenses3" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="property_expenses3_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
+                      <div class="project-select inline" data-type="taxType"><input class="project-select__input" type="hidden" name="property_expenses3_type" readonly="" value="Без НДС"/>
+                        <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
                           <div class="project-select__option">Без НДС
+                          </div>
+                          <div class="project-select__option">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -363,13 +361,13 @@
                     <div class="project-input small-padding">
                       <label class="project-input__label" for="propertyExpenses3">Средние расходы по эксплуатации в месяц 
                       </label><input class="project-input__input" type="text" id="propertyExpenses3" name="property_expenses3" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span><!-- project-select --> 
-                      <div class="project-select inline"><input class="project-select__input" type="hidden" name="property_expenses3_type" readonly="" value="С НДС"/>
-                        <div class="project-select__selected">С НДС
+                      <div class="project-select inline" data-type="taxType"><input class="project-select__input" type="hidden" name="property_expenses3_type" readonly="" value="Без НДС"/>
+                        <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">С НДС
-                          </div>
                           <div class="project-select__option">Без НДС
+                          </div>
+                          <div class="project-select__option">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 
