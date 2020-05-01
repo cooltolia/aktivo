@@ -42,12 +42,14 @@
         const minValue = object.data('min');
         const maxValue = object.data('max');
 
-        const rate = object.find('.profit-object__rate').data('rate');
-
+        const rateNode = object.find('.profit-object__rate');
+        const basicRate = rateNode.data('rate');
+        const libertyRate = rateNode.data('liberty-rate');
+        
         const currentRangeValue = parseInt(investmentRangeSlider.noUiSlider.get());
-
-        const stepValue = currentRangeValue > LIBERTY_MIN ? object.data('libety-step') : object.data('step');
-
+        
+        const rate = currentRangeValue > LIBERTY_MIN ? libertyRate : basicRate;
+        const stepValue = currentRangeValue > LIBERTY_MIN ? object.data('liberty-step') : object.data('step');
         const startValue = maxValue < currentRangeValue ? maxValue : currentRangeValue;
 
         investmentRangeSlider.noUiSlider.updateOptions({
@@ -142,7 +144,8 @@
         const maxValue = firstObject.data('max');
         const stepValue = firstObject.data('step');
 
-        const rate = firstObject.find('.profit-object__rate').data('rate');
+        const rateNode = firstObject.find('.profit-object__rate')
+        const basicRate = rateNode.data('rate');
 
         noUiSlider.create(investmentRangeSlider, {
             start: initialValue,
@@ -157,7 +160,7 @@
 
         updateObjectData(firstObject, initialValue);
 
-        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
+        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, basicRate);
     }
 
     function incomeRangeSliderInit(min, max, step, initial, rate) {
@@ -178,26 +181,42 @@
     }
 
     function incomeRangeSliderUpdate(object, value) {
-        const rate = object.find('.profit-object__rate').data('rate');
+        const rateNode = object.find('.profit-object__rate')
+        const basicRate = rateNode.data('rate');
+        const libertyRate = rateNode.data('liberty-rate');
+        const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+
         incomeRangeSlider.noUiSlider.set((value * rate) / 100);
     }
 
     function investmentRangeSliderUpdate(object, value) {
-        const rate = object.find('.profit-object__rate').data('rate');
+        const rateNode = object.find('.profit-object__rate')
+        const basicRate = rateNode.data('rate');
+        const libertyRate = rateNode.data('liberty-rate');
+
+        const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+
         investmentRangeSlider.noUiSlider.set((value / rate) * 100);
     }
 
     function updateObjectData(object, value) {
         const income = object.find('.profit-object__income');
         const share = object.find('.profit-object__share');
-        const rate = object.find('.profit-object__rate').data('rate');
+        
+        const rateNode = object.find('.profit-object__rate');
+        const basicRate = rateNode.data('rate');
+        const libertyRate = rateNode.data('liberty-rate');
+        debugger;
 
+        const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+        
         const basicStep = object.data('step');
         const libertyStep = object.data('liberty-step');
         const step = +value > LIBERTY_MIN ? libertyStep : basicStep;
-
+        
         share.text(Math.floor(value / step));
         income.text(format.to((value * rate) / 100 / 12));
+        rateNode.text(rate + '%');
     }
 
     function updateObjectLink(object) {

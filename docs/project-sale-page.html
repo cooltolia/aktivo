@@ -170,17 +170,17 @@
                       <div class="project-select__selected">Торговое помещение
                       </div>
                       <div class="project-select__options">
-                        <div class="project-select__option">Торговое помещение
+                        <div class="project-select__option" data-value="Торговое помещение">Торговое помещение
                         </div>
-                        <div class="project-select__option">Торговый центр
+                        <div class="project-select__option" data-value="Торговый центр">Торговый центр
                         </div>
-                        <div class="project-select__option">Офисное помещение
+                        <div class="project-select__option" data-value="Офисное помещение">Офисное помещение
                         </div>
-                        <div class="project-select__option">Бизнес центр
+                        <div class="project-select__option" data-value="Бизнес центр">Бизнес центр
                         </div>
-                        <div class="project-select__option">Складское помещение
+                        <div class="project-select__option" data-value="Складское помещение">Складское помещение
                         </div>
-                        <div class="project-select__option">Складское здание
+                        <div class="project-select__option" data-value="Складское здание">Складское здание
                         </div>
                       </div>
                     </div><!--/ project-select --> 
@@ -214,11 +214,11 @@
                       <div class="project-select__selected">Физическое лицо
                       </div>
                       <div class="project-select__options">
-                        <div class="project-select__option" data-type="1">Физическое лицо
+                        <div class="project-select__option" data-type="1" data-value="Физическое лицо">Физическое лицо
                         </div>
-                        <div class="project-select__option" data-type="1">ИП
+                        <div class="project-select__option" data-type="1" data-value="ИП">ИП
                         </div>
-                        <div class="project-select__option" data-type="2">Юридическое лицо
+                        <div class="project-select__option" data-type="2" data-value="Юридическое лицо">Юридическое лицо
                         </div>
                       </div>
                     </div><!--/ project-select --> 
@@ -230,9 +230,9 @@
                       <div class="project-select__selected">Упрощенная система
                       </div>
                       <div class="project-select__options">
-                        <div class="project-select__option">Упрощенная система
+                        <div class="project-select__option" data-value="Упрощенная система">Упрощенная система
                         </div>
-                        <div class="project-select__option">Общая система
+                        <div class="project-select__option" data-value="Общая система">Общая система
                         </div>
                       </div>
                     </div><!--/ project-select --> 
@@ -255,9 +255,9 @@
                         <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">Без НДС
+                          <div class="project-select__option" data-type="1" data-value="Без НДС">Без НДС
                           </div>
-                          <div class="project-select__option">С НДС
+                          <div class="project-select__option" data-type="2" data-value="С НДС">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -271,9 +271,9 @@
                         <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">Без НДС
+                          <div class="project-select__option" data-type="1" data-value="Без НДС">Без НДС
                           </div>
-                          <div class="project-select__option">С НДС
+                          <div class="project-select__option" data-type="2" data-value="С НДС">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -287,9 +287,9 @@
                         <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">Без НДС
+                          <div class="project-select__option" data-type="1" data-value="Без НДС">Без НДС
                           </div>
-                          <div class="project-select__option">С НДС
+                          <div class="project-select__option" data-type="2" data-value="С НДС">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -317,9 +317,9 @@
                         <div class="project-select__selected">кадастровая<br>стоимость
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">кадастровая<br>стоимость
+                          <div class="project-select__option" data-value="кадастровая&lt;br&gt;стоимость">кадастровая<br>стоимость
                           </div>
-                          <div class="project-select__option">арендная<br>плата
+                          <div class="project-select__option" data-value="арендная&lt;br&gt;плата">арендная<br>плата
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -333,25 +333,9 @@
                         <div class="project-select__selected">арендная<br>плата
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">арендная<br>плата
+                          <div class="project-select__option" data-value="арендная&lt;br&gt;плата">арендная<br>плата
                           </div>
-                          <div class="project-select__option">кадастровая<br>стоимость
-                          </div>
-                        </div>
-                      </div><!--/ project-select --> 
-                    </div><!--/ project-input --> 
-                  </div>
-                  <div class="project-calc__section-input"><!-- project-input --> 
-                    <div class="project-input small-padding">
-                      <label class="project-input__label" for="propertyExpenses3">Средние расходы по эксплуатации в месяц 
-                      </label><input class="project-input__input" type="text" id="propertyExpenses3" name="property_expenses3" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span><!-- project-select --> 
-                      <div class="project-select inline" data-type="taxType"><input class="project-select__input" type="hidden" name="property_expenses3_type" readonly="" value="Без НДС"/>
-                        <div class="project-select__selected">Без НДС
-                        </div>
-                        <div class="project-select__options">
-                          <div class="project-select__option">Без НДС
-                          </div>
-                          <div class="project-select__option">С НДС
+                          <div class="project-select__option" data-value="кадастровая&lt;br&gt;стоимость">кадастровая<br>стоимость
                           </div>
                         </div>
                       </div><!--/ project-select --> 
@@ -365,9 +349,25 @@
                         <div class="project-select__selected">Без НДС
                         </div>
                         <div class="project-select__options">
-                          <div class="project-select__option">Без НДС
+                          <div class="project-select__option" data-type="1" data-value="Без НДС">Без НДС
                           </div>
-                          <div class="project-select__option">С НДС
+                          <div class="project-select__option" data-type="2" data-value="С НДС">С НДС
+                          </div>
+                        </div>
+                      </div><!--/ project-select --> 
+                    </div><!--/ project-input --> 
+                  </div>
+                  <div class="project-calc__section-input"><!-- project-input --> 
+                    <div class="project-input small-padding">
+                      <label class="project-input__label" for="propertyExpenses3">Средние расходы по эксплуатации в месяц 
+                      </label><input class="project-input__input" type="text" id="propertyExpenses3" name="property_expenses3" placeholder="1 000 000 ₽" data-format="ruble"/><span class="project-input__error error">some text</span><!-- project-select --> 
+                      <div class="project-select inline" data-type="taxType"><input class="project-select__input" type="hidden" name="property_expenses3_type" readonly="" value="Без НДС"/>
+                        <div class="project-select__selected">Без НДС
+                        </div>
+                        <div class="project-select__options">
+                          <div class="project-select__option" data-type="1" data-value="Без НДС">Без НДС
+                          </div>
+                          <div class="project-select__option" data-type="2" data-value="С НДС">С НДС
                           </div>
                         </div>
                       </div><!--/ project-select --> 

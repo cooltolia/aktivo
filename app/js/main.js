@@ -688,6 +688,7 @@ jQuery(document).ready(function ($) {
       var investmentRangeSlider = document.querySelector('.object-calc__investment-range');
       var invsestmentValue = document.querySelector('.object-calc__investment-value');
       var incomeRangeSlider = document.querySelector('.object-calc__income-range');
+      var submitDataButton = document.querySelector('.object-calc__button');
       var format = wNumb({
         decimals: 0,
         suffix: " \u20BD",
@@ -697,7 +698,9 @@ jQuery(document).ready(function ($) {
       var dataWrapper = $('.object-calc__income-data');
       var income = dataWrapper.find('.object-calc__income');
       var share = dataWrapper.find('.object-calc__share');
-      var rate = dataWrapper.find('.object-calc__rate').data('rate');
+      var rateNode = dataWrapper.find('.object-calc__rate');
+      var basicRate = rateNode.data('rate');
+      var libetyRate = rateNode.data('liberty-rate');
       var initialValue = dataWrapper.data('initial');
       var minValue = dataWrapper.data('min');
       var maxValue = dataWrapper.data('max');
@@ -705,21 +708,28 @@ jQuery(document).ready(function ($) {
       var libertyStep = dataWrapper.data('liberty-step');
       var stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
       initRangeSlider();
+      submitDataButton.addEventListener('click', submitData);
       /**
        * interactions with range slider
        */
 
       investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
-        invsestmentValue.textContent = format.to(+values[handle]);
-        updateData(values[handle]);
-        incomeRangeSliderUpdate(values[handle]);
+        var value = +values[handle];
+        invsestmentValue.textContent = format.to(value);
+        var rate = value > LIBERTY_MIN ? libetyRate : basicRate;
+        rateNode.html(rate + '%');
+        updateData(value, rate);
+        incomeRangeSliderUpdate(value, rate);
       });
       investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
         var value = +values[handle];
         updateRangesStep(value);
       });
       incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
-        investmentRangeSliderUpdate(values[handle]);
+        var value = +values[handle];
+        var rate = value > LIBERTY_MIN ? libetyRate : basicRate;
+        rateNode.html(rate + '%');
+        investmentRangeSliderUpdate(value, rate);
       });
       investmentRangeSlider.noUiSlider.on('change', function () {
         animateRangeSlider();
@@ -739,6 +749,7 @@ jQuery(document).ready(function ($) {
             max: maxValue
           }
         });
+        var rate = value > LIBERTY_MIN ? libetyRate : basicRate;
         incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
       }
 
@@ -758,15 +769,15 @@ jQuery(document).ready(function ($) {
         });
       }
 
-      function incomeRangeSliderUpdate(value) {
+      function incomeRangeSliderUpdate(value, rate) {
         incomeRangeSlider.noUiSlider.set(value * rate / 100);
       }
 
-      function investmentRangeSliderUpdate(value) {
+      function investmentRangeSliderUpdate(value, rate) {
         investmentRangeSlider.noUiSlider.set(value / rate * 100);
       }
 
-      function updateData(value) {
+      function updateData(value, rate) {
         share.text(Math.floor(value / stepValue));
         income.text(format.to(value * rate / 100 / 12));
       }
@@ -789,6 +800,12 @@ jQuery(document).ready(function ($) {
           rangeLine.removeClass('transition');
           rangeHandle.removeClass('transition');
         }, 300);
+      }
+
+      function submitData() {
+        var finalSelectedValue = investmentRangeSlider.noUiSlider.get();
+        debugger;
+        postData('url', "investment=".concat(finalSelectedValue)).then(function (data) {});
       }
     })();
 
@@ -1246,9 +1263,12 @@ jQuery(document).ready(function ($) {
         var object = $(slide.children()[0]);
         var minValue = object.data('min');
         var maxValue = object.data('max');
-        var rate = object.find('.profit-object__rate').data('rate');
+        var rateNode = object.find('.profit-object__rate');
+        var basicRate = rateNode.data('rate');
+        var libertyRate = rateNode.data('liberty-rate');
         var currentRangeValue = parseInt(investmentRangeSlider.noUiSlider.get());
-        var stepValue = currentRangeValue > LIBERTY_MIN ? object.data('libety-step') : object.data('step');
+        var rate = currentRangeValue > LIBERTY_MIN ? libertyRate : basicRate;
+        var stepValue = currentRangeValue > LIBERTY_MIN ? object.data('liberty-step') : object.data('step');
         var startValue = maxValue < currentRangeValue ? maxValue : currentRangeValue;
         investmentRangeSlider.noUiSlider.updateOptions({
           start: startValue,
@@ -1325,7 +1345,8 @@ jQuery(document).ready(function ($) {
         var minValue = firstObject.data('min');
         var maxValue = firstObject.data('max');
         var stepValue = firstObject.data('step');
-        var rate = firstObject.find('.profit-object__rate').data('rate');
+        var rateNode = firstObject.find('.profit-object__rate');
+        var basicRate = rateNode.data('rate');
         noUiSlider.create(investmentRangeSlider, {
           start: initialValue,
           step: stepValue,
@@ -1337,7 +1358,7 @@ jQuery(document).ready(function ($) {
           }
         });
         updateObjectData(firstObject, initialValue);
-        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
+        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, basicRate);
       }
 
       function incomeRangeSliderInit(min, max, step, initial, rate) {
@@ -1357,24 +1378,35 @@ jQuery(document).ready(function ($) {
       }
 
       function incomeRangeSliderUpdate(object, value) {
-        var rate = object.find('.profit-object__rate').data('rate');
+        var rateNode = object.find('.profit-object__rate');
+        var basicRate = rateNode.data('rate');
+        var libertyRate = rateNode.data('liberty-rate');
+        var rate = value > LIBERTY_MIN ? libertyRate : basicRate;
         incomeRangeSlider.noUiSlider.set(value * rate / 100);
       }
 
       function investmentRangeSliderUpdate(object, value) {
-        var rate = object.find('.profit-object__rate').data('rate');
+        var rateNode = object.find('.profit-object__rate');
+        var basicRate = rateNode.data('rate');
+        var libertyRate = rateNode.data('liberty-rate');
+        var rate = value > LIBERTY_MIN ? libertyRate : basicRate;
         investmentRangeSlider.noUiSlider.set(value / rate * 100);
       }
 
       function updateObjectData(object, value) {
         var income = object.find('.profit-object__income');
         var share = object.find('.profit-object__share');
-        var rate = object.find('.profit-object__rate').data('rate');
+        var rateNode = object.find('.profit-object__rate');
+        var basicRate = rateNode.data('rate');
+        var libertyRate = rateNode.data('liberty-rate');
+        debugger;
+        var rate = value > LIBERTY_MIN ? libertyRate : basicRate;
         var basicStep = object.data('step');
         var libertyStep = object.data('liberty-step');
         var step = +value > LIBERTY_MIN ? libertyStep : basicStep;
         share.text(Math.floor(value / step));
         income.text(format.to(value * rate / 100 / 12));
+        rateNode.text(rate + '%');
       }
 
       function updateObjectLink(object) {
@@ -1506,12 +1538,13 @@ jQuery(document).ready(function ($) {
       });
       options.on('click', function (e) {
         e.stopPropagation();
-        var val = $(this).html();
+        var val = $(this).data('value');
+        var labelValue = $(this).html();
         var parentSelect = $(this).parents('.project-select');
         var optionsWrap = parentSelect.find('.project-select__options');
         var selected = parentSelect.find('.project-select__selected');
         var input = parentSelect.find('.project-select__input');
-        selected.html(val);
+        selected.html(labelValue);
         input.val(val);
         input.trigger('change');
 
@@ -1520,16 +1553,9 @@ jQuery(document).ready(function ($) {
           taxTypeSelects.each(function (_, select) {
             var input = $(select).find('.project-select__input');
             var selected = $(select).find('.project-select__selected');
-            var options = $(select).find('.project-select__option');
-            debugger;
-
-            if (type === '1') {
-              input.val(options[0].textContent);
-              selected.text(options[0].textContent);
-            } else {
-              input.val(options[1].textContent);
-              selected.text(options[1].textContent);
-            }
+            var sameTypeoption = $(select).find(".project-select__option[data-type=".concat(type, "]"));
+            input.val(sameTypeoption.data('value'));
+            selected.text(sameTypeoption.data('value'));
           });
         }
 

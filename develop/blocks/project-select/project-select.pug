@@ -8,6 +8,6 @@ mixin project-select(selectType = 'block', modifier, name, options = [])
         +e.options
             each option in options
                 if (option.type)
-                    +e.option(data-type=option.type) !{option.text}
+                    +e.option(data-type=option.type data-value=option.text) !{option.text}
                 else
-                    +e.option !{option}
+                    +e.option(data-value=option) !{option}

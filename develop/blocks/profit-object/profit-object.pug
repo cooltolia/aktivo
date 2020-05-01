@@ -1,4 +1,4 @@
-mixin profit-object(id, name, rate)
+mixin profit-object(id, name, rate, libertyRate)
     +b.profit-object&attributes(attributes)
         +e.image
             img(src='images/redesign/object-cards/object' + id +'.jpg', alt="")
@@ -12,7 +12,7 @@ mixin profit-object(id, name, rate)
                     +e.data-value.__share 0
                     +e.data-label Приобретенных паев
                 +e.data-row
-                    +e.data-value.__rate(data-rate=rate)= rate + '%'
+                    +e.data-value.__rate(data-rate=rate data-liberty-rate=libertyRate)= rate + '%'
                     +e.data-label Доходность
         +e.footer
             +e.name= name
