@@ -10,6 +10,8 @@
 
     changeStepNumber();
 
+    stepsIcons[0].classList.add('active')
+
     function changeStepNumber() {
         const options = {
             rootMargin: '0px 0px -90% 0px',

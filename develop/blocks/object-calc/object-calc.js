@@ -86,7 +86,7 @@
             },
         });
 
-        const rate = value > LIBERTY_MIN ? libetyRate : basicRate;
+        const rate = initialValue > LIBERTY_MIN ? libetyRate : basicRate;
 
         incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
     }
@@ -145,9 +145,7 @@
 
     function submitData() {
         const finalSelectedValue = investmentRangeSlider.noUiSlider.get();
-        debugger;
         postData('url', `investment=${finalSelectedValue}`).then(data => {
-
         })
     }
 })();

@@ -206,7 +206,6 @@
         const rateNode = object.find('.profit-object__rate');
         const basicRate = rateNode.data('rate');
         const libertyRate = rateNode.data('liberty-rate');
-        debugger;
 
         const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
         

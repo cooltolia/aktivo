@@ -7,6 +7,11 @@ function onModalClose(modal, remove = false) {
     modal.children[0].style.paddingRight = '';
     document.body.style.paddingRight = '';
 
+    let focusedElement = document.activeElement;
+    if (focusedElement && focusedElement.focus) {
+        focusedElement.blur();
+    }
+
     if (remove) {
         modal.addEventListener('animationend', function removeModal() {
             this.remove();

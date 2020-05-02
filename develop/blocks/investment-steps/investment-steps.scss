@@ -3,6 +3,8 @@
 
     &__title {
         margin-bottom: 48px;
+
+        overflow: hidden;
     }
 
     &__list {
@@ -162,6 +164,10 @@
         $this: &;
 
         padding-top: 110px;
+
+        &__title {
+            margin-left: -3px;
+        }
 
         &__wrapper {
             position: relative;

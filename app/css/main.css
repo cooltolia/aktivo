@@ -4,35 +4,35 @@
   font-weight: 300;
   font-style: normal;
   src: url("../fonts/Montserrat/Montserrat-300.woff2") format("woff2"), url("../fonts/Montserrat/Montserrat-300.woff") format("woff");
-  font-display: swap; }
+  font-display: block; }
 
 @font-face {
   font-family: 'Montserrat';
   font-weight: 400;
   font-style: normal;
   src: url("../fonts/Montserrat/Montserrat-400.woff2") format("woff2"), url("../fonts/Montserrat/Montserrat-400.woff") format("woff");
-  font-display: swap; }
+  font-display: block; }
 
 @font-face {
   font-family: 'Montserrat';
   font-weight: 500;
   font-style: normal;
   src: url("../fonts/Montserrat/Montserrat-500.woff2") format("woff2"), url("../fonts/Montserrat/Montserrat-500.woff") format("woff");
-  font-display: swap; }
+  font-display: block; }
 
 @font-face {
   font-family: 'Montserrat';
   font-weight: 600;
   font-style: normal;
   src: url("../fonts/Montserrat/Montserrat-600.woff2") format("woff2"), url("../fonts/Montserrat/Montserrat-600.woff") format("woff");
-  font-display: swap; }
+  font-display: block; }
 
 @font-face {
   font-family: 'Montserrat';
   font-weight: 700;
   font-style: normal;
   src: url("../fonts/Montserrat/Montserrat-700.woff2") format("woff2"), url("../fonts/Montserrat/Montserrat-700.woff") format("woff");
-  font-display: swap; }
+  font-display: block; }
 
 /*! normalize.scss v0.1.0 | MIT License | based on git.io/normalize */
 /**
@@ -1097,7 +1097,8 @@ th {
   padding-top: 110px;
   overflow: hidden; }
   .advantages__wrapper {
-    position: relative; }
+    position: relative;
+    visibility: visible !important; }
     .advantages__wrapper::after {
       content: '';
       position: absolute;
@@ -1106,13 +1107,24 @@ th {
       height: 1px;
       top: 30%;
       left: -50%;
-      -webkit-transform: rotate(-45deg);
-         -moz-transform: rotate(-45deg);
-          -ms-transform: rotate(-45deg);
-              transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg) scaleX(0.5);
+         -moz-transform: rotate(-45deg) scaleX(0.5);
+          -ms-transform: rotate(-45deg) scaleX(0.5);
+              transform: rotate(-45deg) scaleX(0.5);
+      -webkit-transition: -webkit-transform 1500ms ease;
+      transition: -webkit-transform 1500ms ease;
+      -moz-transition: transform 1500ms ease, -moz-transform 1500ms ease;
+      transition: transform 1500ms ease;
+      transition: transform 1500ms ease, -webkit-transform 1500ms ease, -moz-transform 1500ms ease;
       background-color: #fed63f; }
+    .advantages__wrapper.aos-animate::after {
+      -webkit-transform: rotate(-45deg) scaleX(1);
+         -moz-transform: rotate(-45deg) scaleX(1);
+          -ms-transform: rotate(-45deg) scaleX(1);
+              transform: rotate(-45deg) scaleX(1); }
   .advantages__title {
-    margin-bottom: 24px; }
+    margin-bottom: 24px;
+    overflow: hidden; }
     .advantages__title--bottom {
       margin-bottom: 10px; }
   .advantages__appeal {
@@ -1140,6 +1152,7 @@ th {
     font-weight: 600; }
   .advantages__image {
     position: relative;
+    z-index: 12;
     margin-bottom: 265px;
     pointer-events: none; }
   .advantages__image-positioner {
@@ -1759,7 +1772,8 @@ th {
   padding-top: 105px;
   overflow: hidden; }
   .best-objects__title {
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    overflow: hidden; }
   .best-objects__content {
     margin-bottom: 26px; }
   .best-objects__paragraph {
@@ -2953,7 +2967,8 @@ th {
       -webkit-text-stroke: 0.5px #b9b9b9;
       text-stroke: 0.5px #b9b9b9; }
   .index-bottom__title {
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    overflow: hidden; }
   .index-bottom__link {
     width: 100%;
     max-width: 320px; }
@@ -3222,7 +3237,8 @@ th {
   .index-top__title {
     position: relative;
     top: -6px;
-    margin: 0 0 34px; }
+    margin: 0 0 34px;
+    overflow: hidden; }
   .index-top__advantages {
     padding: 0;
     margin: 0 0 40px;
@@ -3428,7 +3444,8 @@ th {
 .investment-steps {
   padding-top: 30px; }
   .investment-steps__title {
-    margin-bottom: 48px; }
+    margin-bottom: 48px;
+    overflow: hidden; }
   .investment-steps__list {
     padding: 0;
     margin: 0 0 40px;
@@ -3528,6 +3545,8 @@ th {
 @media (min-width: 1200px) {
   .investment-steps {
     padding-top: 110px; }
+    .investment-steps__title {
+      margin-left: -3px; }
     .investment-steps__wrapper {
       position: relative;
       grid-template-columns: 400px 360px 400px; }
@@ -4311,7 +4330,8 @@ th {
   .main-header__logo {
     display: block;
     width: 54px;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    overflow: hidden; }
     .main-header__logo img {
       display: block;
       width: 100%;
@@ -5513,7 +5533,7 @@ th {
     z-index: 13;
     width: 1px;
     top: 0;
-    bottom: 70px;
+    bottom: 50px;
     background-color: #fed63f;
     opacity: 0;
     -webkit-transition: opacity 300ms ease;
@@ -5568,13 +5588,13 @@ th {
   .object-finances__line-chart {
     position: relative;
     padding-top: 50px;
-    padding-left: 70px; }
+    padding-left: 50px; }
     .object-finances__line-chart .highcharts-scrolling {
       overflow: hidden !important; }
   .object-finances__column-chart {
     position: relative;
     padding-top: 40px;
-    padding-left: 70px; }
+    padding-left: 50px; }
     .object-finances__column-chart .highcharts-scrolling {
       overflow: hidden !important; }
   .object-finances__subtitle {
@@ -5631,17 +5651,19 @@ th {
   .object-finances__line-chart {
     position: relative;
     padding-top: 70px;
-    padding-left: 150px; }
+    padding-left: 130px; }
   .object-finances__column-chart {
     padding-top: 40px;
-    padding-left: 150px; }
+    padding-left: 130px; }
   .object-finances__subtitle {
     width: 260px;
     -webkit-box-align: start;
        -moz-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    font-size: 24px; } }
+    font-size: 24px; }
+  .object-finances__vr {
+    bottom: 70px; } }
 
 @media (min-width: 1200px) {
   .object-finances {
@@ -5813,7 +5835,8 @@ th {
   width: calc(100% + 40px);
   margin-left: -20px;
   height: 310px;
-  z-index: 12; }
+  z-index: 12;
+  overflow: hidden; }
   .object-slider__data {
     position: absolute;
     z-index: 1;
@@ -5875,6 +5898,8 @@ th {
   .object-slider__slider {
     width: 100%;
     height: 100%; }
+    .object-slider__slider:not(.slick-initialized) {
+      overflow: hidden; }
     .object-slider__slider .slick-list,
     .object-slider__slider .slick-track {
       width: 100%;
@@ -5909,7 +5934,8 @@ th {
         left: auto;
         right: 14px; }
   .object-slider__slide {
-    position: relative; }
+    position: relative;
+    height: 100%; }
     .object-slider__slide::after {
       content: '';
       position: absolute;
@@ -7009,7 +7035,8 @@ th {
       fill: none;
       stroke: #b9b9b9; }
   .profit-calc__title {
-    margin-bottom: 15px; }
+    margin-bottom: 15px;
+    overflow: hidden; }
   .profit-calc__investment {
     position: relative;
     width: -webkit-calc(100% + 20px);
@@ -8536,6 +8563,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
   --theme-background-color: #fff;
   --theme-text-color: #000; }
   body.menu-opened, body.modal-opened {
@@ -8543,6 +8571,22 @@ body {
   body[theme='dark-theme'] {
     --theme-background-color: #202020;
     --theme-text-color: #fff; }
+
+[data-aos] {
+  visibility: hidden; }
+
+[data-aos].aos-animate {
+  visibility: visible; }
+
+[data-aos='fade-left-full'] {
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0); }
+
+[data-aos='fade-right-full'] {
+  -webkit-transform: translate3d(-100%, 0, 0);
+     -moz-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0); }
 
 .page {
   position: relative; }

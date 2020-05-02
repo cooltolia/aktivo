@@ -3,15 +3,15 @@ mixin main-header()
         +e.inner
             +e.A.logo(href='./')
                 if (theme === 'dark')
-                    img(src='images/redesign/logo-white.svg' width='88' alt='Aktivo')
+                    img(src='images/redesign/logo-white.svg' width='88' alt='Aktivo' data-aos="fade-up" data-aos-delay="0")
                 else
-                    img(src='images/redesign/logo.svg' width='88' alt='Aktivo')
+                    img(src='images/redesign/logo.svg' width='88' alt='Aktivo' data-aos="fade-up" data-aos-delay="0")
             +e.navigation
                 +main-nav(theme)
                 +e.authorization.--mobile
                     +authorization(theme)
-            +e.A.phone(href='tel: 8 800 500-64-64') 8 800 500-64-64
-            +e.authorization.--desktop
+            +e.A.phone(href='tel: 8 800 500-64-64' data-aos="fade-left" data-aos-delay="350") 8 800 500-64-64
+            +e.authorization.--desktop(data-aos="fade-left" data-aos-delay="400")
                 +authorization(theme)
             +e.hamburger
                 +hamburger(theme)

@@ -3,17 +3,17 @@ mixin index-bottom()
         +inner
             +e.wrapper
                 +e.column.--left
-                    +e.ceo
+                    +e.ceo(data-aos='fade' data-aos-duration='750' data-aos-offset='300')
                         img(src='images/redesign/index-bottom/ceo.jpg', alt="")
                         +e.ceo-name Оскар Хартманн
                         +e.ceo-post Основатель и Президент AKTIVO
                     +e.BLOCKQUOTE.blockquote Мы совместно делаем рынок недвижимости более доступным и привлекательным и создаем возможность пассивного и долгосрочного дохода для каждой семьи в России
                 +e.column.--center
                     +e.title
-                        +title('h2', 'light')
+                        +title('h2', 'light')(data-aos='fade-right-full' data-aos-duration='750')
                             | Инвестируйте в&nbsp;пассивный доход с&nbsp;Aktivo сегодня
-                    +e.link.btn(href='#') Смотреть объекты
-                +e.slider
+                    +e.link.btn(href='#' data-aos='fade-down' data-aos-delay='500') Смотреть объекты
+                +e.slider(data-aos='fade' data-aos-duration='750' data-aos-offset='200')
                     +e.slide
                         +invest-object-card(1, '«Эко Видное»', '344 950 руб/м²')
                     +e.slide

@@ -1,10 +1,10 @@
 mixin title(tag = 'h2', mod)
     if (tag === 'h1')
-        +b.H1.title(class=mod)
+        +b.H1.title(class=mod)&attributes(attributes)
             block
     else if (tag === 'h2')
-        +b.H2.title(class=mod )
+        +b.H2.title(class=mod )&attributes(attributes)
             block
     else if (tag === 'h3')
-        +b.H3.title(class=mod )
+        +b.H3.title(class=mod )&attributes(attributes)
             block

@@ -5,6 +5,7 @@
 
     &__wrapper {
         position: relative;
+        visibility: visible !important;
 
         &::after {
             content: '';
@@ -15,14 +16,24 @@
             top: 30%;
             left: -50%;
 
-            transform: rotate(-45deg);
+            transform: rotate(-45deg) scaleX(0.5);
+
+            transition: transform 1500ms ease;
 
             background-color: $theme-color;
+        }
+
+        &.aos-animate {
+            &::after {
+                transform: rotate(-45deg) scaleX(1);
+            }
         }
     }
 
     &__title {
         margin-bottom: 24px;
+
+        overflow: hidden;
 
         &--bottom {
             margin-bottom: 10px;
@@ -75,6 +86,7 @@
 
     &__image {
         position: relative;
+        z-index: 12;
         margin-bottom: 265px;
         pointer-events: none;
     }

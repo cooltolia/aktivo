@@ -1,9 +1,9 @@
 mixin advantages()
     +b.SECTION.advantages
         +inner
-            +e.wrapper
+            +e.wrapper(data-aos='')
                 +e.title.--top
-                    +title
+                    +title(data-aos="fade-left-full")
                         | Инвестируйте <br>с Aktivo
                 +e.list.--top
                     +e.item
@@ -20,7 +20,7 @@ mixin advantages()
                     +title
                         | Ваши<br> инвестиции<br> защищены
                     +e.BUTTON.appeal.btn.application-trigger Оставить заявку
-                +e.image
+                +e.image(data-aos="fade-up")
                     +e.image-positioner
                         +picture-helper({desktop: "images/redesign/advantages/umbrella.png", tablet: "images/redesign/advantages/umbrella.png", mobile: "images/redesign/advantages/umbrella_mobile.png"})
                 +e.list.--bottom

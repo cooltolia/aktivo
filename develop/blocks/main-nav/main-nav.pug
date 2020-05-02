@@ -1,8 +1,8 @@
 mixin main-nav()
     +b.NAV.main-nav
         +e.UL.list
-            each link in mainNav
-                +e.LI.item
+            each link, index in mainNav
+                +e.LI.item(data-aos="fade-left" data-aos-delay="50" * index + 1)
                     if (link.subnav)
                         +e.A.link.has-subnav(href=link.url) #{link.text}
                         +e.subnav

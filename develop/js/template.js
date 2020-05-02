@@ -17,6 +17,12 @@ function getScrollbarWidth() {
     return window.innerWidth - document.documentElement.clientWidth;
 }
 
+AOS.init({
+    disable: 'mobile',
+    once: true,
+    duration: 750,
+});
+
 $.noConflict();
 jQuery(document).ready(function ($) {
     $('body').removeClass('pageload');

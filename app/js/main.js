@@ -25,6 +25,11 @@ function getScrollbarWidth() {
   return window.innerWidth - document.documentElement.clientWidth;
 }
 
+AOS.init({
+  disable: 'mobile',
+  once: true,
+  duration: 750
+});
 $.noConflict();
 jQuery(document).ready(function ($) {
   $('body').removeClass('pageload');
@@ -673,6 +678,11 @@ jQuery(document).ready(function ($) {
       var remove = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       modal.children[0].style.paddingRight = '';
       document.body.style.paddingRight = '';
+      var focusedElement = document.activeElement;
+
+      if (focusedElement && focusedElement.focus) {
+        focusedElement.blur();
+      }
 
       if (remove) {
         modal.addEventListener('animationend', function removeModal() {
@@ -749,7 +759,7 @@ jQuery(document).ready(function ($) {
             max: maxValue
           }
         });
-        var rate = value > LIBERTY_MIN ? libetyRate : basicRate;
+        var rate = initialValue > LIBERTY_MIN ? libetyRate : basicRate;
         incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
       }
 
@@ -804,7 +814,6 @@ jQuery(document).ready(function ($) {
 
       function submitData() {
         var finalSelectedValue = investmentRangeSlider.noUiSlider.get();
-        debugger;
         postData('url', "investment=".concat(finalSelectedValue)).then(function (data) {});
       }
     })();
@@ -835,9 +844,11 @@ jQuery(document).ready(function ($) {
       var vr = document.querySelector('.object-finances__vr');
       var labelFontSize = '12px';
       var showGridLine = false;
+      var plotColumnWidth = 102;
 
       if (window.matchMedia('(min-width: 1024px)').matches) {
         labelFontSize = '14px';
+        plotColumnWidth = 122;
         showGridLine = true;
       }
 
@@ -901,8 +912,8 @@ jQuery(document).ready(function ($) {
       }
 
       if (lineChart) {
-        var data = [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, null];
-        var categories = ['Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', ''];
+        var data = [3652630.28, 3806601.8, 2422776.77, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 2570890.35, 4195441.54, 1001971.62, 3348942.76, 4656600.96, 3395237.74, 2890238.47, 3082031.01, 2952247, 4196775.21, 3602760.57, 4025475.32, 2729290.73, 3654850.22, 1135382.72, 2504889.49, 2557290.57, 1795512.88, 3098144.21, null];
+        var categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', 'Ноябрь 2018', 'Декабрь 2018', 'Январь 2019', 'Февраль 2019', 'Март 2019', 'Апрель 2019', 'Май 2019', 'Июнь 2019', 'Июль 2019', 'Август 2019', 'Сентябрь 2019', 'Октябрь 2019', 'Ноябрь 2019', 'Декабрь 2019', 'Январь 2020', ''];
         var columnWidth = regularCellWidth;
         var chartMinWidth = columnWidth * data.length;
         Highcharts.chart('lineChart', {
@@ -911,7 +922,8 @@ jQuery(document).ready(function ($) {
             scrollablePlotArea: {
               minWidth: chartMinWidth
             },
-            marginTop: 60
+            marginTop: 60,
+            marginLeft: 60
           },
           title: false,
           credits: {
@@ -929,6 +941,7 @@ jQuery(document).ready(function ($) {
             tickWidth: 0,
             labels: {
               align: 'left',
+              // x: -5,
               style: {
                 color: '#9e9e9e',
                 fontSize: labelFontSize,
@@ -941,31 +954,45 @@ jQuery(document).ready(function ($) {
           yAxis: {
             title: false,
             gridLineColor: '#f2f2f2',
+            offset: 10,
             labels: {
-              padding: 5,
+              // padding: 5,
               style: {
                 color: '#9e9e9e',
                 fontSize: labelFontSize,
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                 paddingLeft: '5px'
+              },
+              formatter: function formatter() {
+                return this.value / 1000000 + 'M';
               }
             }
           },
           plotOptions: {
             line: {
-              color: '#fed63f',
-              dataLabels: {
-                enabled: false
-              }
+              color: '#fed63f' // dataLabels: {
+              //     enabled: false,
+              // },
+
             },
             series: {
+              dataLabels: {
+                enabled: true,
+                align: 'left',
+                y: -5,
+                style: {
+                  fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                  fontSize: '14px',
+                  fontWeight: '400'
+                }
+              },
               point: {
                 events: {
                   mouseOver: function mouseOver(_ref) {
                     var target = _ref.target;
                     if (!showGridLine) return;
-                    var magicNumber = 34;
+                    var magicNumber = 54;
                     vr.style.left = "".concat(target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft, "px");
                     vr.classList.add('active');
                   },
@@ -988,8 +1015,8 @@ jQuery(document).ready(function ($) {
       }
 
       if (columnChart) {
-        var _data = [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, null];
-        var _categories = ['Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', ''];
+        var _data = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
+        var _categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', 'Ноябрь 2018', 'Декабрь 2018', 'Январь 2019', 'Февраль 2019', 'Март 2019', 'Апрель 2019', 'Май 2019', 'Июнь 2019', 'Июль 2019', 'Август 2019', 'Сентябрь 2019', 'Октябрь 2019', 'Ноябрь 2019', 'Декабрь 2019', 'Январь 2020', ''];
         var _columnWidth = regularCellWidth;
 
         var _chartMinWidth = _columnWidth * _data.length;
@@ -1000,7 +1027,8 @@ jQuery(document).ready(function ($) {
             scrollablePlotArea: {
               minWidth: _chartMinWidth
             },
-            marginTop: 60
+            marginTop: 60,
+            marginLeft: 60
           },
           title: false,
           credits: {
@@ -1022,31 +1050,31 @@ jQuery(document).ready(function ($) {
                 fontSize: labelFontSize,
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
-                paddingLeft: '5px'
+                paddingLeft: '5px',
+                whiteSpace: 'nowrap'
               }
             }
           },
           yAxis: {
             title: false,
             gridLineColor: '#f2f2f2',
+            // offset: 50,
             labels: {
-              padding: 5,
+              padding: 0,
               style: {
                 color: '#9e9e9e',
                 fontSize: labelFontSize,
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
-                paddingLeft: '5px'
+                // paddingLeft: '5px',
+                whiteSpace: 'nowrap'
               }
             }
           },
           plotOptions: {
             column: {
               color: '#d8d8d8',
-              dataLabels: {
-                enabled: false
-              },
-              pointWidth: 122,
+              pointWidth: plotColumnWidth,
               pointPlacement: 0.37
             }
           },
@@ -1055,17 +1083,29 @@ jQuery(document).ready(function ($) {
           },
           series: [{
             data: _data,
+            dataLabels: {
+              enabled: true,
+              align: 'left',
+              y: -5,
+              format: '{y} %',
+              style: {
+                fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                fontSize: '14px',
+                fontWeight: '400'
+              }
+            },
             states: {
               hover: {
                 color: '#fed63f'
               }
             },
+            minPointLength: 10,
             point: {
               events: {
                 mouseOver: function mouseOver(_ref2) {
                   var target = _ref2.target;
                   if (!showGridLine) return;
-                  var magicNumber = 41;
+                  var magicNumber = 59;
                   vr.style.left = "".concat(target.clientX - target.pointWidth / 2 + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft, "px");
                   vr.classList.add('active');
                 },
@@ -1187,6 +1227,7 @@ jQuery(document).ready(function ($) {
       var step3 = document.querySelector('.partners-income');
       var obserevedSteps = [step1, step2, step3];
       changeStepNumber();
+      stepsIcons[0].classList.add('active');
 
       function changeStepNumber() {
         var options = {
@@ -1399,7 +1440,6 @@ jQuery(document).ready(function ($) {
         var rateNode = object.find('.profit-object__rate');
         var basicRate = rateNode.data('rate');
         var libertyRate = rateNode.data('liberty-rate');
-        debugger;
         var rate = value > LIBERTY_MIN ? libertyRate : basicRate;
         var basicStep = object.data('step');
         var libertyStep = object.data('liberty-step');

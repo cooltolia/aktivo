@@ -108,7 +108,7 @@
         z-index: 13;
         width: 1px;
         top: 0;
-        bottom: 70px;
+        bottom: 50px;
 
         background-color: $theme-color;
 
@@ -174,7 +174,7 @@
     &__line-chart {
         position: relative;
         padding-top: 50px;
-        padding-left: 70px;
+        padding-left: 50px;
 
         .highcharts-scrolling {
             overflow: hidden !important;
@@ -184,7 +184,7 @@
     &__column-chart {
         position: relative;
         padding-top: 40px;
-        padding-left: 70px;
+        padding-left: 50px;
 
         .highcharts-scrolling {
             overflow: hidden !important;
@@ -270,12 +270,12 @@
         &__line-chart {
             position: relative;
             padding-top: 70px;
-            padding-left: 150px;
+            padding-left: 130px;
         }
 
         &__column-chart {
             padding-top: 40px;
-            padding-left: 150px;
+            padding-left: 130px;
         }
 
         &__subtitle {
@@ -283,6 +283,10 @@
             align-items: flex-start;
 
             font-size: 24px;
+        }
+
+        &__vr {
+            bottom: 70px;
         }
     }
 }

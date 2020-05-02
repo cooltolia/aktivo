@@ -9,6 +9,8 @@ body {
     min-height: 100vh;
     font-family: $font;
 
+    overflow-x: hidden;
+
     &.menu-opened,
     &.modal-opened {
         overflow: hidden;
@@ -21,6 +23,21 @@ body {
         --theme-background-color: #202020;
         --theme-text-color: #fff;
     }
+}
+
+[data-aos] {
+    visibility: hidden;
+}
+[data-aos].aos-animate {
+    visibility: visible;
+}
+
+[data-aos='fade-left-full'] {
+    transform: translate3d(100%, 0, 0);
+}
+
+[data-aos='fade-right-full'] {
+    transform: translate3d(-100%, 0, 0);
 }
 
 .page {
