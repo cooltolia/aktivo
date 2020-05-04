@@ -173,6 +173,8 @@
 
 @media #{$laptop} {
     .security-advantages {
+        padding-top: 155px;
+
         &__title {
             margin-bottom: 105px;
         }
@@ -213,7 +215,6 @@
 
 @media #{$desktop} {
     .security-advantages {
-        padding-top: 120px;
         padding-bottom: 145px;
 
         &__title {

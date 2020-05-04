@@ -10,10 +10,20 @@
 
     function formLogic() {
         // check whether all required inputs are filled
+        
+
         const requiredInputsFilled = [...allRequiredInputs].every((input) => {
             return input.value.trim().length > 0;
         });
 
+        // hideInputErrors(form);
+        // if (!requiredInputsFilled) {
+        //     [...allRequiredInputs].map(input => {
+        //         if (input.value.length === 0) showInputError(input, 'Поле обязательно для заполнения')
+        //     })
+            
+        //     return;
+        // };
         if (!requiredInputsFilled) return;
 
         [...formatedInputs].map((input) => {

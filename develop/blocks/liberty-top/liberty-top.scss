@@ -83,6 +83,8 @@
 
 @media #{$laptop} {
     .liberty-top {
+        padding-top: 145px;
+        
         &__title {
             .title {
                 font-size: 68px;
@@ -99,7 +101,7 @@
 
 @media #{$desktop} {
     .liberty-top {
-        padding-top: 50px;
+        padding-top: 110px;
 
         &__title {
             width: 760px;

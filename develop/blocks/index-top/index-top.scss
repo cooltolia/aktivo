@@ -115,6 +115,10 @@
 
 @media #{$laptop} {
     .index-top {
+        &__wrapper {
+            padding-top: 125px;
+        }
+
         &__title {
             top: -10px;
         }
@@ -136,7 +140,7 @@
 @media #{$desktop} {
     .index-top {
         &__wrapper {
-            padding-top: 115px;
+            padding-top: 165px;
             margin-bottom: -375px;
 
             grid-template-columns: 400px 360px 400px;

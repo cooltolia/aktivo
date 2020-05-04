@@ -87,11 +87,19 @@
 
 @media #{$laptop} {
     .contacts {
-        td {
-            font-size: 13px;
+        padding-top: 125px;
 
-            &:first-child {
-                padding-right: 24px;
+        &__data {
+            padding-top: 25px;
+        }
+
+        &__table {
+            td {
+                font-size: 13px;
+
+                &:first-child {
+                    padding-right: 24px;
+                }
             }
         }
     }
@@ -99,6 +107,8 @@
 
 @media #{$desktop} {
     .contacts {
+        padding-top: 155px;
+        
         &__wrapper {
             display: flex;
         }

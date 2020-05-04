@@ -14,7 +14,8 @@ mixin project-calc()
                                 +project-select('block', '', 'project_type', projectSalePage.selects.projectType)
                                     | Тип
                             +e.section-input
-                                +project-input('text', 'projectCity', 'project_city', 'Город', 'Москва')(required='')
+                                +project-input('text', 'projectCity', 'project_city', 'Город', 'Москва', '', true)(required='')
+                                +e.input-tip.accent Обязательное поле
                             +e.section-input
                                 +project-input('text', 'projectAddress', 'project_address', 'Адрес', 'Ул. Космонавтов')(required='')
                             +e.section-input

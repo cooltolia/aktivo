@@ -135,6 +135,8 @@
 
 @media #{$laptop} {
     .howitworks-top {
+        padding-top: 135px;
+        
         &__step {
             padding-left: 112px;
         }

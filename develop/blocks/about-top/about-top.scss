@@ -136,7 +136,7 @@
 @media #{$tablet} {
     .about-top {
         &__wrapper {
-            padding-top: 75px;
+            padding-top: 125px;
             margin-bottom: -155px;
 
             display: grid;
@@ -195,7 +195,7 @@
 @media #{$desktop} {
     .about-top {
         &__wrapper {
-            padding-top: 80px;
+            padding-top: 155px;
             margin-bottom: -275px;
 
             grid-template-columns: 400px 400px 360px;

@@ -5,7 +5,7 @@
     const investmentRangeSlider = document.querySelector('.profit-calc__investment-range');
     const invsestmentValue = document.querySelector('.profit-calc__investment-value');
 
-    const incomeRangeSlider = document.querySelector('.profit-calc__income-range');
+    // const incomeRangeSlider = document.querySelector('.profit-calc__income-range');
 
     const LIBERTY_MIN = 10000000;
 
@@ -61,19 +61,19 @@
             },
         });
 
-        const incomeMinValue = (minValue * rate) / 100;
-        const incomeMaxValue = (maxValue * rate) / 100;
-        const incomeInitialValue = (startValue * rate) / 100;
-        const incomeStepValue = (stepValue * rate) / 100;
+        // const incomeMinValue = (minValue * rate) / 100;
+        // const incomeMaxValue = (maxValue * rate) / 100;
+        // const incomeInitialValue = (startValue * rate) / 100;
+        // const incomeStepValue = (stepValue * rate) / 100;
 
-        incomeRangeSlider.noUiSlider.updateOptions({
-            start: incomeInitialValue,
-            step: incomeStepValue,
-            range: {
-                min: incomeMinValue,
-                max: incomeMaxValue,
-            },
-        });
+        // incomeRangeSlider.noUiSlider.updateOptions({
+        //     start: incomeInitialValue,
+        //     step: incomeStepValue,
+        //     range: {
+        //         min: incomeMinValue,
+        //         max: incomeMaxValue,
+        //     },
+        // });
         animateRangeSlider();
         updateObjectData(object, startValue);
         updateObjectLink(object);
@@ -107,7 +107,7 @@
         const object = $(currentSlide.children()[0]);
 
         updateObjectData(object, value);
-        incomeRangeSliderUpdate(object, value);
+        // incomeRangeSliderUpdate(object, value);
 
         updateObjectLink(object);
     });
@@ -120,20 +120,20 @@
         updateRangesStep(object, value);
     });
 
-    incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
-        const currentSlide = objectsSlider.find('.slick-current');
-        const object = $(currentSlide.children()[0]);
+    // incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
+    //     const currentSlide = objectsSlider.find('.slick-current');
+    //     const object = $(currentSlide.children()[0]);
 
-        investmentRangeSliderUpdate(object, values[handle]);
-    });
+    //     investmentRangeSliderUpdate(object, values[handle]);
+    // });
 
     investmentRangeSlider.noUiSlider.on('change', () => {
         animateRangeSlider();
     });
 
-    incomeRangeSlider.noUiSlider.on('change', () => {
-        animateRangeSlider();
-    });
+    // incomeRangeSlider.noUiSlider.on('change', () => {
+    //     animateRangeSlider();
+    // });
 
     // helper functions
 
@@ -160,7 +160,7 @@
 
         updateObjectData(firstObject, initialValue);
 
-        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, basicRate);
+        // incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, basicRate);
     }
 
     function incomeRangeSliderInit(min, max, step, initial, rate) {

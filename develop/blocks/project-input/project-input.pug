@@ -1,6 +1,8 @@
-mixin project-input(inputType, id, name, label, placeholder, mod)
+mixin project-input(inputType, id, name, label, placeholder, mod, required)
     +b.project-input(class=mod)
         +e.LABEL.label(for=id)= label
+            if (required)
+                sup *
         +e.INPUT.input(type=inputType id=id name=name placeholder=placeholder)&attributes(attributes)
         +e.SPAN.error.error some text
         block

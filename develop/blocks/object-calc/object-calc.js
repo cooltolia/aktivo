@@ -5,7 +5,7 @@
     const investmentRangeSlider = document.querySelector('.object-calc__investment-range');
     const invsestmentValue = document.querySelector('.object-calc__investment-value');
 
-    const incomeRangeSlider = document.querySelector('.object-calc__income-range');
+    // const incomeRangeSlider = document.querySelector('.object-calc__income-range');
 
     const submitDataButton = document.querySelector('.object-calc__button');
 
@@ -48,7 +48,7 @@
         rateNode.html(rate + '%');
 
         updateData(value, rate);
-        incomeRangeSliderUpdate(value, rate);
+        // incomeRangeSliderUpdate(value, rate);
     });
 
     investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
@@ -56,21 +56,21 @@
         updateRangesStep(value);
     });
 
-    incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
-        const value = +values[handle];
-        const rate = value > LIBERTY_MIN ? libetyRate : basicRate;
-        rateNode.html(rate + '%');
+    // incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
+    //     const value = +values[handle];
+    //     const rate = value > LIBERTY_MIN ? libetyRate : basicRate;
+    //     rateNode.html(rate + '%');
 
-        investmentRangeSliderUpdate(value, rate);
-    });
+    //     investmentRangeSliderUpdate(value, rate);
+    // });
 
     investmentRangeSlider.noUiSlider.on('change', () => {
         animateRangeSlider();
     });
 
-    incomeRangeSlider.noUiSlider.on('change', () => {
-        animateRangeSlider();
-    });
+    // incomeRangeSlider.noUiSlider.on('change', () => {
+    //     animateRangeSlider();
+    // });
 
     // helper functions
 
@@ -86,36 +86,36 @@
             },
         });
 
-        const rate = initialValue > LIBERTY_MIN ? libetyRate : basicRate;
+        // const rate = initialValue > LIBERTY_MIN ? libetyRate : basicRate;
 
-        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
+        // incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
     }
 
-    function incomeRangeSliderInit(min, max, step, initial, rate) {
-        const minValue = (min * rate) / 100;
-        const maxValue = (max * rate) / 100;
-        const initialValue = (initial * rate) / 100;
-        const stepValue = (step * rate) / 100;
+    // function incomeRangeSliderInit(min, max, step, initial, rate) {
+    //     const minValue = (min * rate) / 100;
+    //     const maxValue = (max * rate) / 100;
+    //     const initialValue = (initial * rate) / 100;
+    //     const stepValue = (step * rate) / 100;
 
-        noUiSlider.create(incomeRangeSlider, {
-            start: initialValue,
-            step: stepValue,
-            animate: false,
-            range: {
-                min: minValue,
-                max: maxValue,
-            },
-        });
-    }
+    //     noUiSlider.create(incomeRangeSlider, {
+    //         start: initialValue,
+    //         step: stepValue,
+    //         animate: false,
+    //         range: {
+    //             min: minValue,
+    //             max: maxValue,
+    //         },
+    //     });
+    // }
 
-    function incomeRangeSliderUpdate(value, rate) {
-        incomeRangeSlider.noUiSlider.set((value * rate) / 100);
-    }
+    // function incomeRangeSliderUpdate(value, rate) {
+    //     incomeRangeSlider.noUiSlider.set((value * rate) / 100);
+    // }
 
-    function investmentRangeSliderUpdate(value, rate) {
+    // function investmentRangeSliderUpdate(value, rate) {
        
-        investmentRangeSlider.noUiSlider.set((value / rate) * 100);
-    }
+    //     investmentRangeSlider.noUiSlider.set((value / rate) * 100);
+    // }
 
     function updateData(value, rate) {
         share.text(Math.floor(value / stepValue));

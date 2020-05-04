@@ -82,6 +82,10 @@
 @media #{$laptop} {
     .project-top {
         padding-bottom: 145px;
+        
+        &__wrapper {
+            padding-top: 160px;
+        }
 
         &__button {
             max-width: 290px;
@@ -94,7 +98,7 @@
         padding-bottom: 125px;
 
         &__wrapper {
-            padding-top: 70px;
+            padding-top: 100px;
             width: 665px;
         }
 

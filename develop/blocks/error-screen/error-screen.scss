@@ -58,6 +58,8 @@
 
 @media #{$laptop} {
     .error-screen {
+        padding-top: 135px;
+        
         &__code {
             font-size: 325px;
         }
@@ -66,7 +68,7 @@
 
 @media #{$desktop} {
     .error-screen {
-        padding-top: 70px;
+        padding-top: 150px;
         padding-bottom: 155px;
 
         &__code {

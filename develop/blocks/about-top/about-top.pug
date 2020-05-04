@@ -3,7 +3,8 @@ mixin about-top()
         +inner
             +e.wrapper
                 +e.title
-                    +title('h1', 'light') Aktivo сегодня — <br>сотни инвесторов,<br>приумножившие<br> собственный<br> капитал
+                    +title('h1', 'light') 
+                        | Aktivo сегодня — <br>сотни инвесторов,<br>приумножившие<br> собственный<br> капитал
                 +e.A.link.btn(href='#') Стать инвестором
                 +e.UL.advantages
                     +e.LI.advantages-item
@@ -15,7 +16,7 @@ mixin about-top()
                     +e.LI.advantages-item
                         +e.SPAN.advantage-value 3 млрд
                         +e.SPAN.advantage-title Стоимость активов Aktivo
-                +e.A.video-snippet(href='#')
+                +e.A.video-snippet(data-video-id='9xckn9gpCgU')
                     +e.video-poster
                         img(src="images/redesign/index-bottom/ceo.jpg", alt="")
                     +e.video-content

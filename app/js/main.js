@@ -387,6 +387,10 @@ jQuery(document).ready(function ($) {
     }
 
     (function () {
+      $('.about-top__video-snippet').modalVideo();
+    })();
+
+    (function () {
       var btn = $('.authorization__toggle');
       var btnAccount = $('.authorization__logged');
       var btnAccountMenu = $('.authorization__list');
@@ -696,8 +700,8 @@ jQuery(document).ready(function ($) {
       var objectCalc = document.querySelector('.object-calc');
       if (!objectCalc) return;
       var investmentRangeSlider = document.querySelector('.object-calc__investment-range');
-      var invsestmentValue = document.querySelector('.object-calc__investment-value');
-      var incomeRangeSlider = document.querySelector('.object-calc__income-range');
+      var invsestmentValue = document.querySelector('.object-calc__investment-value'); // const incomeRangeSlider = document.querySelector('.object-calc__income-range');
+
       var submitDataButton = document.querySelector('.object-calc__button');
       var format = wNumb({
         decimals: 0,
@@ -728,25 +732,24 @@ jQuery(document).ready(function ($) {
         invsestmentValue.textContent = format.to(value);
         var rate = value > LIBERTY_MIN ? libetyRate : basicRate;
         rateNode.html(rate + '%');
-        updateData(value, rate);
-        incomeRangeSliderUpdate(value, rate);
+        updateData(value, rate); // incomeRangeSliderUpdate(value, rate);
       });
       investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
         var value = +values[handle];
         updateRangesStep(value);
-      });
-      incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
-        var value = +values[handle];
-        var rate = value > LIBERTY_MIN ? libetyRate : basicRate;
-        rateNode.html(rate + '%');
-        investmentRangeSliderUpdate(value, rate);
-      });
+      }); // incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
+      //     const value = +values[handle];
+      //     const rate = value > LIBERTY_MIN ? libetyRate : basicRate;
+      //     rateNode.html(rate + '%');
+      //     investmentRangeSliderUpdate(value, rate);
+      // });
+
       investmentRangeSlider.noUiSlider.on('change', function () {
         animateRangeSlider();
-      });
-      incomeRangeSlider.noUiSlider.on('change', function () {
-        animateRangeSlider();
-      }); // helper functions
+      }); // incomeRangeSlider.noUiSlider.on('change', () => {
+      //     animateRangeSlider();
+      // });
+      // helper functions
 
       function initRangeSlider() {
         noUiSlider.create(investmentRangeSlider, {
@@ -758,34 +761,30 @@ jQuery(document).ready(function ($) {
             min: minValue,
             max: maxValue
           }
-        });
-        var rate = initialValue > LIBERTY_MIN ? libetyRate : basicRate;
-        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
-      }
+        }); // const rate = initialValue > LIBERTY_MIN ? libetyRate : basicRate;
+        // incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
+      } // function incomeRangeSliderInit(min, max, step, initial, rate) {
+      //     const minValue = (min * rate) / 100;
+      //     const maxValue = (max * rate) / 100;
+      //     const initialValue = (initial * rate) / 100;
+      //     const stepValue = (step * rate) / 100;
+      //     noUiSlider.create(incomeRangeSlider, {
+      //         start: initialValue,
+      //         step: stepValue,
+      //         animate: false,
+      //         range: {
+      //             min: minValue,
+      //             max: maxValue,
+      //         },
+      //     });
+      // }
+      // function incomeRangeSliderUpdate(value, rate) {
+      //     incomeRangeSlider.noUiSlider.set((value * rate) / 100);
+      // }
+      // function investmentRangeSliderUpdate(value, rate) {
+      //     investmentRangeSlider.noUiSlider.set((value / rate) * 100);
+      // }
 
-      function incomeRangeSliderInit(min, max, step, initial, rate) {
-        var minValue = min * rate / 100;
-        var maxValue = max * rate / 100;
-        var initialValue = initial * rate / 100;
-        var stepValue = step * rate / 100;
-        noUiSlider.create(incomeRangeSlider, {
-          start: initialValue,
-          step: stepValue,
-          animate: false,
-          range: {
-            min: minValue,
-            max: maxValue
-          }
-        });
-      }
-
-      function incomeRangeSliderUpdate(value, rate) {
-        incomeRangeSlider.noUiSlider.set(value * rate / 100);
-      }
-
-      function investmentRangeSliderUpdate(value, rate) {
-        investmentRangeSlider.noUiSlider.set(value / rate * 100);
-      }
 
       function updateData(value, rate) {
         share.text(Math.floor(value / stepValue));
@@ -1277,8 +1276,8 @@ jQuery(document).ready(function ($) {
       var profitCalc = document.querySelector('.profit-calc');
       if (!profitCalc) return;
       var investmentRangeSlider = document.querySelector('.profit-calc__investment-range');
-      var invsestmentValue = document.querySelector('.profit-calc__investment-value');
-      var incomeRangeSlider = document.querySelector('.profit-calc__income-range');
+      var invsestmentValue = document.querySelector('.profit-calc__investment-value'); // const incomeRangeSlider = document.querySelector('.profit-calc__income-range');
+
       var LIBERTY_MIN = 10000000;
       var objectLink = document.querySelector('.profit-calc__object-link');
       var format = wNumb({
@@ -1318,19 +1317,19 @@ jQuery(document).ready(function ($) {
             min: minValue,
             max: maxValue
           }
-        });
-        var incomeMinValue = minValue * rate / 100;
-        var incomeMaxValue = maxValue * rate / 100;
-        var incomeInitialValue = startValue * rate / 100;
-        var incomeStepValue = stepValue * rate / 100;
-        incomeRangeSlider.noUiSlider.updateOptions({
-          start: incomeInitialValue,
-          step: incomeStepValue,
-          range: {
-            min: incomeMinValue,
-            max: incomeMaxValue
-          }
-        });
+        }); // const incomeMinValue = (minValue * rate) / 100;
+        // const incomeMaxValue = (maxValue * rate) / 100;
+        // const incomeInitialValue = (startValue * rate) / 100;
+        // const incomeStepValue = (stepValue * rate) / 100;
+        // incomeRangeSlider.noUiSlider.updateOptions({
+        //     start: incomeInitialValue,
+        //     step: incomeStepValue,
+        //     range: {
+        //         min: incomeMinValue,
+        //         max: incomeMaxValue,
+        //     },
+        // });
+
         animateRangeSlider();
         updateObjectData(object, startValue);
         updateObjectLink(object);
@@ -1359,8 +1358,8 @@ jQuery(document).ready(function ($) {
         invsestmentValue.textContent = format.to(value);
         var currentSlide = objectsSlider.find('.slick-current');
         var object = $(currentSlide.children()[0]);
-        updateObjectData(object, value);
-        incomeRangeSliderUpdate(object, value);
+        updateObjectData(object, value); // incomeRangeSliderUpdate(object, value);
+
         updateObjectLink(object);
       });
       investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
@@ -1368,18 +1367,18 @@ jQuery(document).ready(function ($) {
         var currentSlide = objectsSlider.find('.slick-current');
         var object = $(currentSlide.children()[0]);
         updateRangesStep(object, value);
-      });
-      incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
-        var currentSlide = objectsSlider.find('.slick-current');
-        var object = $(currentSlide.children()[0]);
-        investmentRangeSliderUpdate(object, values[handle]);
-      });
+      }); // incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
+      //     const currentSlide = objectsSlider.find('.slick-current');
+      //     const object = $(currentSlide.children()[0]);
+      //     investmentRangeSliderUpdate(object, values[handle]);
+      // });
+
       investmentRangeSlider.noUiSlider.on('change', function () {
         animateRangeSlider();
-      });
-      incomeRangeSlider.noUiSlider.on('change', function () {
-        animateRangeSlider();
-      }); // helper functions
+      }); // incomeRangeSlider.noUiSlider.on('change', () => {
+      //     animateRangeSlider();
+      // });
+      // helper functions
 
       function initRangeSlider() {
         var firstObject = $($(profitCalc).find('.profit-object')[0]);
@@ -1398,8 +1397,7 @@ jQuery(document).ready(function ($) {
             max: maxValue
           }
         });
-        updateObjectData(firstObject, initialValue);
-        incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, basicRate);
+        updateObjectData(firstObject, initialValue); // incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, basicRate);
       }
 
       function incomeRangeSliderInit(min, max, step, initial, rate) {
@@ -1489,7 +1487,14 @@ jQuery(document).ready(function ($) {
         // check whether all required inputs are filled
         var requiredInputsFilled = _toConsumableArray(allRequiredInputs).every(function (input) {
           return input.value.trim().length > 0;
-        });
+        }); // hideInputErrors(form);
+        // if (!requiredInputsFilled) {
+        //     [...allRequiredInputs].map(input => {
+        //         if (input.value.length === 0) showInputError(input, 'Поле обязательно для заполнения')
+        //     })
+        //     return;
+        // };
+
 
         if (!requiredInputsFilled) return;
 
