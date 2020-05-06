@@ -4,13 +4,13 @@ mixin object-card(data)
             +e.A.link(href='object-page.html')
             +e.image
                 img(src='images/redesign/objects/object' + data.id + '.jpg', alt="")
+                if (data.video)
+                    +e.BUTTON.play(data-video-id='1-kG-vDVrkk')
             +e.top
                 +e.name= data.name
                 +e.address= data.address
             +e.bottom
                 +e.rating= data.rating
-                if (data.video)
-                    +e.A.video(href='#') Видеообзор
                 if (data.labels)
                     +e.labels
                         each label in data.labels
@@ -29,16 +29,17 @@ mixin object-card(data)
                     td Доходность в первый год:
                     td
                         span.value 10.4%
-                            +e.BUTTON.tooltip(data-tippy-content='Доходность растёт с каждым годом за счет ежегодной индексации на 5% и будет составлять 16.4% в 2027 году. Рассчитано при цене 411 млн руб.') ?
+                            +e.BUTTON.tooltip.tooltip(data-tippy-content='Доходность растёт с каждым годом за счет ежегодной индексации на 5% и будет составлять 16.4% в 2027 году. Рассчитано при цене 411 млн руб.') ?
                 tr
                     td Доходность за 10 лет: 
                     td
                         span.value 12.8%
-                            +e.BUTTON.tooltip(data-tippy-content='Доходность растёт с каждым годом за счет ежегодной индексации на 5% и будет составлять 16.4% в 2027 году. Рассчитано при цене 411 млн руб.') ?
+                            +e.BUTTON.tooltip.tooltip(data-tippy-content='Доходность растёт с каждым годом за счет ежегодной индексации на 5% и будет составлять 16.4% в 2027 году. Рассчитано при цене 411 млн руб.') ?
                 tr
                     td Окупаемость: 
                     td
-                        span.value 7 лет 9 месяцев
+                        +e.A.lock.tooltip(href='#' data-tippy-content='Информация доступна только для зарегистрированных пользователей. Нажмите, чтобы зарегистрироваться или авторизоваться')
+                            +icon('lock')
                 tr
                     td Мин. инвестиции:
                     td

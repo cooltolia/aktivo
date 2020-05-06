@@ -30,15 +30,12 @@
                         if (isIntersecting) {
                             const targetIndex = obserevedSteps.indexOf(entry.target);
                             const currentStep = stepsIcons.find(step => step.classList.contains('active'));
-
                             const currentStepIndex = stepsIcons.indexOf(currentStep);
+                            const targetStepIcon = stepsIcons[targetIndex];
 
                             if (currentStepIndex === targetIndex) return;
 
                             currentStep.classList.remove('active');
-
-                            const targetStepIcon = stepsIcons[targetIndex];
-
                             targetStepIcon.classList.add('active');
                         }
                     });

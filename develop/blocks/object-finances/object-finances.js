@@ -19,6 +19,11 @@
     const hr = document.querySelector('.object-finances__hr');
     const vr = document.querySelector('.object-finances__vr');
 
+    const formatValue = wNumb({
+        decimals: 2,
+        thousand: ' ',
+    });
+
     let labelFontSize = '12px';
     let showGridLine = false;
     let plotColumnWidth = 102;
@@ -89,9 +94,9 @@
 
     if (lineChart) {
         const data = [
-            3652630.28,
-            3806601.8,
-            2422776.77,
+            3650.28,
+            99999.8,
+            242277.779,
             3172259.31,
             1669890.65,
             1647254.72,
@@ -195,7 +200,7 @@
             yAxis: {
                 title: false,
                 gridLineColor: '#f2f2f2',
-                offset: 10,
+                // offset: 10,
                 labels: {
                     // padding: 5,
                     style: {
@@ -226,6 +231,14 @@
                             fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                             fontSize: '14px',
                             fontWeight: '400',
+                        },
+                        formatter: function (a) {
+                            const value = parseFloat(this.y);
+                            if (value < 100000) {
+                                return formatValue.to(+value.toFixed(2)) + ' \u20BD';
+                            } else {
+                                return formatValue.to(value.toFixed(2) / 1000) + ' тыс. \u20BD';
+                            }
                         },
                     },
                     point: {
@@ -363,7 +376,7 @@
                         enabled: true,
                         align: 'left',
                         y: -5,
-                        format: '{y} %',
+                        format: '{y} шт.',
                         style: {
                             fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                             fontSize: '14px',

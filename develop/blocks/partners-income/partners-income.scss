@@ -137,6 +137,24 @@
         font-size: 16px;
         line-height: 1.4;
     }
+
+    &__link {
+        display: block;
+        margin-top: 20px;
+
+        color: $theme-color;
+        font-size: 18px;
+        font-weight: 500;
+        text-decoration: none;
+
+        transition: opacity 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            opacity: 0.6;
+        }
+    }
 }
 
 @media #{$tablet} {
@@ -263,6 +281,10 @@
 
         &__advantage-desc {
             padding-right: 15px;
+        }
+
+        &__link {
+            margin-top: 0;
         }
     }
 }

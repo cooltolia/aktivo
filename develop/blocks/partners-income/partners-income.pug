@@ -4,14 +4,14 @@ mixin partners-income()
             +e.wrapper
                 +e.title
                     +title
-                        | Получайте <br>доход
+                        | Получайте <br>доход вместе с Aktivo
                     +e.step 3
-                +e.total
-                    +e.total-value 2 275 000 ₽
-                    +e.tatal-label Совокупный размер премии парнеров за 2019 год
-                +e.options-title
-                    | Расчет<br>премии
-                    span.highlight =₽
+                //- +e.total
+                //-     +e.total-value 2 275 000 ₽
+                //-     +e.tatal-label Совокупный размер премии парнеров за 2019 год
+                //- +e.options-title
+                //-     | Расчет<br>премии
+                //-     span.highlight =₽
                 +e.options
                     +e.data.smi
                         +e.option-label Для СМИ и блогеров
@@ -19,20 +19,20 @@ mixin partners-income()
                     +e.advantages.smi
                         +e.advantage
                             +e.advantage-label Первая сделка
-                            +e.advantage-value 1% <span class='divider'></span> 1,5%
-                            +e.advantage-desc При совокупном объеме продаж за квартал до 10 млн и больше 10 млн руб.
-                        +e.advantage
-                            +e.advantage-label Повторная продажа
-                            +e.advantage-value.huge 0,5%
-                            +e.advantage-desc от суммы при всех повторных сделках (в&nbsp;течение&nbsp;12&nbsp;месяцев)
-                    +e.data.sales
-                        +e.option-label Для продавцов
-                        +e.option-title Сертифици­&shy;рованный ID партнер
-                    +e.advantages.sales
-                        +e.advantage
-                            +e.advantage-label Первая сделка
                             +e.advantage-value 1%
                             +e.advantage-desc При любой сделке от&nbsp;1&nbsp;млн&nbsp;руб.
                         +e.advantage
                             +e.advantage-label Повторная продажа
-                            +e.advantage-value.huge.translate —
+                            +e.advantage-value.huge —
+                    +e.data.sales
+                        +e.option-label Для продавцов
+                        +e.option-title Сертифици­&shy;рованный партнер
+                    +e.advantages.sales
+                        +e.A.link(href='#') Узнать подробнее об условиях
+                        //- +e.advantage
+                        //-     +e.advantage-label Первая сделка
+                        //-     +e.advantage-value 1%
+                        //-     +e.advantage-desc При любой сделке от&nbsp;1&nbsp;млн&nbsp;руб.
+                        //- +e.advantage
+                        //-     +e.advantage-label Повторная продажа
+                        //-     +e.advantage-value

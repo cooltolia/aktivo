@@ -179,6 +179,10 @@
         .highcharts-scrolling {
             overflow: hidden !important;
         }
+
+        [data-highcharts-chart] {
+            position: relative;
+        }
     }
 
     &__column-chart {
@@ -188,6 +192,10 @@
 
         .highcharts-scrolling {
             overflow: hidden !important;
+        }
+
+        [data-highcharts-chart] {
+            position: relative;
         }
     }
 

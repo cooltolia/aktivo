@@ -818,10 +818,11 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
-      tippy('.object-card__tooltip', {
+      tippy('.object-card .tooltip', {
         placement: 'bottom',
         arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
       });
+      $('.object-card__play').modalVideo();
     })();
 
     (function () {
@@ -841,6 +842,10 @@ jQuery(document).ready(function ($) {
       console.log(regularCellWidth);
       var hr = document.querySelector('.object-finances__hr');
       var vr = document.querySelector('.object-finances__vr');
+      var formatValue = wNumb({
+        decimals: 2,
+        thousand: ' '
+      });
       var labelFontSize = '12px';
       var showGridLine = false;
       var plotColumnWidth = 102;
@@ -911,7 +916,7 @@ jQuery(document).ready(function ($) {
       }
 
       if (lineChart) {
-        var data = [3652630.28, 3806601.8, 2422776.77, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 2570890.35, 4195441.54, 1001971.62, 3348942.76, 4656600.96, 3395237.74, 2890238.47, 3082031.01, 2952247, 4196775.21, 3602760.57, 4025475.32, 2729290.73, 3654850.22, 1135382.72, 2504889.49, 2557290.57, 1795512.88, 3098144.21, null];
+        var data = [3650.28, 99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 2570890.35, 4195441.54, 1001971.62, 3348942.76, 4656600.96, 3395237.74, 2890238.47, 3082031.01, 2952247, 4196775.21, 3602760.57, 4025475.32, 2729290.73, 3654850.22, 1135382.72, 2504889.49, 2557290.57, 1795512.88, 3098144.21, null];
         var categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', 'Ноябрь 2018', 'Декабрь 2018', 'Январь 2019', 'Февраль 2019', 'Март 2019', 'Апрель 2019', 'Май 2019', 'Июнь 2019', 'Июль 2019', 'Август 2019', 'Сентябрь 2019', 'Октябрь 2019', 'Ноябрь 2019', 'Декабрь 2019', 'Январь 2020', ''];
         var columnWidth = regularCellWidth;
         var chartMinWidth = columnWidth * data.length;
@@ -953,7 +958,7 @@ jQuery(document).ready(function ($) {
           yAxis: {
             title: false,
             gridLineColor: '#f2f2f2',
-            offset: 10,
+            // offset: 10,
             labels: {
               // padding: 5,
               style: {
@@ -984,6 +989,15 @@ jQuery(document).ready(function ($) {
                   fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                   fontSize: '14px',
                   fontWeight: '400'
+                },
+                formatter: function formatter(a) {
+                  var value = parseFloat(this.y);
+
+                  if (value < 100000) {
+                    return formatValue.to(+value.toFixed(2)) + " \u20BD";
+                  } else {
+                    return formatValue.to(value.toFixed(2) / 1000) + " \u0442\u044B\u0441. \u20BD";
+                  }
                 }
               },
               point: {
@@ -1086,7 +1100,7 @@ jQuery(document).ready(function ($) {
               enabled: true,
               align: 'left',
               y: -5,
-              format: '{y} %',
+              format: '{y} шт.',
               style: {
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                 fontSize: '14px',
@@ -1248,9 +1262,9 @@ jQuery(document).ready(function ($) {
                   return step.classList.contains('active');
                 });
                 var currentStepIndex = stepsIcons.indexOf(currentStep);
+                var targetStepIcon = stepsIcons[targetIndex];
                 if (currentStepIndex === targetIndex) return;
                 currentStep.classList.remove('active');
-                var targetStepIcon = stepsIcons[targetIndex];
                 targetStepIcon.classList.add('active');
               }
             });
