@@ -66,9 +66,13 @@
     // scrollPrev.addEventListener('click', debouncedPrevClick);
 
     scrollNext.addEventListener('mousedown', debouncedNextClick);
+    scrollNext.addEventListener('touchstart', debouncedNextClick);
     scrollNext.addEventListener('mouseup', () => clearInterval(mouseTimer));
+    scrollNext.addEventListener('touchend', () => clearInterval(mouseTimer));
     scrollPrev.addEventListener('mousedown', debouncedPrevClick);
+    scrollPrev.addEventListener('touchstart', debouncedPrevClick);
     scrollPrev.addEventListener('mouseup', () => clearInterval(mouseTimer));
+    scrollPrev.addEventListener('touchend', () => clearInterval(mouseTimer));
 
     let mouseTimer;
 

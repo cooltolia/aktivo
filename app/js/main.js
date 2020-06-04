@@ -888,11 +888,19 @@ jQuery(document).ready(function ($) {
       // scrollPrev.addEventListener('click', debouncedPrevClick);
 
       scrollNext.addEventListener('mousedown', debouncedNextClick);
+      scrollNext.addEventListener('touchstart', debouncedNextClick);
       scrollNext.addEventListener('mouseup', function () {
         return clearInterval(mouseTimer);
       });
+      scrollNext.addEventListener('touchend', function () {
+        return clearInterval(mouseTimer);
+      });
       scrollPrev.addEventListener('mousedown', debouncedPrevClick);
+      scrollPrev.addEventListener('touchstart', debouncedPrevClick);
       scrollPrev.addEventListener('mouseup', function () {
+        return clearInterval(mouseTimer);
+      });
+      scrollPrev.addEventListener('touchend', function () {
         return clearInterval(mouseTimer);
       });
       var mouseTimer;
