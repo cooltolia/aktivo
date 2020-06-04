@@ -62,33 +62,58 @@
 
     const debouncedNextClick = debounce(nextClick, 200, true);
     const debouncedPrevClick = debounce(prevClick, 200, true);
-    scrollNext.addEventListener('click', debouncedNextClick);
-    scrollPrev.addEventListener('click', debouncedPrevClick);
+    // scrollNext.addEventListener('click', debouncedNextClick);
+    // scrollPrev.addEventListener('click', debouncedPrevClick);
 
-    function nextClick() {
-        const value = financesTable.scrollLeft + regularCellWidth;
+    scrollNext.addEventListener('mousedown', debouncedNextClick);
+    scrollNext.addEventListener('mouseup', () => clearInterval(mouseTimer));
+    scrollPrev.addEventListener('mousedown', debouncedPrevClick);
+    scrollPrev.addEventListener('mouseup', () => clearInterval(mouseTimer));
 
-        if (value > 0) {
+    let mouseTimer;
+
+    function nextClick(e) {
+        update();
+
+        mouseTimer = setInterval(update, 500);
+
+        function update() {
+            const value = financesTable.scrollLeft + regularCellWidth;
+
             scrollPrev.classList.add('active');
-        }
+            if (value > maxScrollLeft) {
+                clearInterval(mouseTimer);
+                return;
+            }
 
-        if (value >= maxScrollLeft - regularCellWidth) {
-            scrollNext.classList.remove('active');
+            if (value >= maxScrollLeft - regularCellWidth) {
+                scrollNext.classList.remove('active');
+            }
+            smoothLeftScroll(value);
         }
-
-        smoothLeftScroll(value);
     }
 
     function prevClick() {
-        const value = financesTable.scrollLeft - regularCellWidth;
-        smoothLeftScroll(value);
+        update();
 
-        if (value <= 0) {
-            scrollPrev.classList.remove('active');
-        }
+        mouseTimer = setInterval(update, 500);
 
-        if (value <= maxScrollLeft) {
-            scrollNext.classList.add('active');
+        function update() {
+            const value = financesTable.scrollLeft - regularCellWidth;
+            
+            if (value <= -regularCellWidth) {
+                clearInterval(mouseTimer);
+                return;
+            }
+
+            if (value <= 0) {
+                scrollPrev.classList.remove('active');
+            }
+
+            if (value <= maxScrollLeft) {
+                scrollNext.classList.add('active');
+                smoothLeftScroll(value);
+            }
         }
     }
 

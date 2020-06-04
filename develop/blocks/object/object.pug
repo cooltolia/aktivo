@@ -12,26 +12,25 @@ mixin object()
                             +e.LI.navigation-item
                                 +e.A.navigation-link(href='#' data-scroll-to='objectDescription') Описание
                             +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-scroll-to='objectEstimates') Прогноз доходности
-                            +e.LI.navigation-item
                                 +e.A.navigation-link(href='#' data-scroll-to='objectPlans') Планировка
                             +e.LI.navigation-item
                                 +e.A.navigation-link(href='#' data-scroll-to='objectLocation') Расположение
                             +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-scroll-to='objectFinances') Финансы
+                                +e.A.navigation-link.locked(href='#') Финансы
+                                    +icon('lock')
                             +e.LI.navigation-item
-                                +e.A.navigation-link(href='#' data-scroll-to='objectCalc') Рассчитать доход
+                                +e.A.navigation-link.locked(href='#') Рассчитать доход
+                                    +icon('lock')
                 +e.section.--top
                     +object-slider
                 +e.section(id='objectDescription')
                     +object-description
-                +e.section(id='objectEstimates')
-                    +object-estimates
                 +e.section(id='objectPlans')
                     +object-plans
                 +e.section(id='objectLocation')
                     +object-location
                 +e.section(id='objectFinances')
+                    +object-estimates
                     +object-finances
                 +e.section(id='objectCalc')
                     +object-calc

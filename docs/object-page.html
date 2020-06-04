@@ -110,15 +110,19 @@
                 <ul class="object__navigation-list">
                   <li class="object__navigation-item"><a class="object__navigation-link" href="#" data-scroll-to="objectDescription">Описание</a>
                   </li>
-                  <li class="object__navigation-item"><a class="object__navigation-link" href="#" data-scroll-to="objectEstimates">Прогноз доходности</a>
-                  </li>
                   <li class="object__navigation-item"><a class="object__navigation-link" href="#" data-scroll-to="objectPlans">Планировка</a>
                   </li>
                   <li class="object__navigation-item"><a class="object__navigation-link" href="#" data-scroll-to="objectLocation">Расположение</a>
                   </li>
-                  <li class="object__navigation-item"><a class="object__navigation-link" href="#" data-scroll-to="objectFinances">Финансы</a>
+                  <li class="object__navigation-item"><a class="object__navigation-link locked" href="#">Финансы
+                    <svg>
+                      <use xlink:href="images/redesign/html-sprite.svg#lock"></use>
+                    </svg></a>
                   </li>
-                  <li class="object__navigation-item"><a class="object__navigation-link" href="#" data-scroll-to="objectCalc">Рассчитать доход</a>
+                  <li class="object__navigation-item"><a class="object__navigation-link locked" href="#">Рассчитать доход
+                    <svg>
+                      <use xlink:href="images/redesign/html-sprite.svg#lock"></use>
+                    </svg></a>
                   </li>
                 </ul>
               </nav>
@@ -211,48 +215,6 @@
                 </div>
               </section><!--/ object-description --> 
             </div>
-            <div class="object__section" id="objectEstimates"><!-- object-estimates --> 
-              <section class="object-estimates">
-                <div class="object-estimates__title"><!-- title --> 
-                  <h2 class="title medium">Прогноз доходности
-                  </h2><!--/ title --> <span>январь 2019 — февраль 2020</span>
-                </div>
-                <div class="object-estimates__wrapper">
-                  <div class="object-estimates__main">
-                    <div class="object-estimates__sum-value">59 227 357 ₽
-                    </div>
-                    <div class="object-estimates__sum-label">Прибыль к распределению 
-                    </div>
-                  </div>
-                  <div class="object-estimates__aside">
-                    <div class="object-estimates__row">
-                      <div class="object-estimates__value object-estimates__value--positive">93 985 738 ₽
-                      </div>
-                      <div class="object-estimates__label">Валовый доход
-                      </div>
-                    </div>
-                    <div class="object-estimates__row">
-                      <div class="object-estimates__value object-estimates__value--minus">25 524 435 ₽
-                      </div>
-                      <div class="object-estimates__label">Расходы
-                      </div>
-                    </div>
-                    <div class="object-estimates__row">
-                      <div class="object-estimates__value object-estimates__value--equal">68 461 303 ₽
-                      </div>
-                      <div class="object-estimates__label">Чистый операционный доход
-                      </div>
-                    </div>
-                    <div class="object-estimates__row">
-                      <div class="object-estimates__value object-estimates__value--minus">9 233 946 ₽
-                      </div>
-                      <div class="object-estimates__label">Комиссия за управление
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section><!--/ object-estimates --> 
-            </div>
             <div class="object__section" id="objectPlans"><!-- object-plans --> 
               <section class="object-plans">
                 <div class="object-plans__title"><!-- title --> 
@@ -298,7 +260,47 @@
                 </div>
               </section><!--/ object-location --> 
             </div>
-            <div class="object__section" id="objectFinances"><!-- object-finances --> 
+            <div class="object__section" id="objectFinances"><!-- object-estimates --> 
+              <section class="object-estimates">
+                <div class="object-estimates__title"><!-- title --> 
+                  <h2 class="title medium">Прогноз доходности
+                  </h2><!--/ title --> <span>январь 2019 — февраль 2020</span>
+                </div>
+                <div class="object-estimates__wrapper">
+                  <div class="object-estimates__main">
+                    <div class="object-estimates__sum-value">59 227 357 ₽
+                    </div>
+                    <div class="object-estimates__sum-label">Прибыль к распределению 
+                    </div>
+                  </div>
+                  <div class="object-estimates__aside">
+                    <div class="object-estimates__row">
+                      <div class="object-estimates__value object-estimates__value--positive">93 985 738 ₽
+                      </div>
+                      <div class="object-estimates__label">Валовый доход
+                      </div>
+                    </div>
+                    <div class="object-estimates__row">
+                      <div class="object-estimates__value object-estimates__value--minus">25 524 435 ₽
+                      </div>
+                      <div class="object-estimates__label">Расходы
+                      </div>
+                    </div>
+                    <div class="object-estimates__row">
+                      <div class="object-estimates__value object-estimates__value--equal">68 461 303 ₽
+                      </div>
+                      <div class="object-estimates__label">Чистый операционный доход
+                      </div>
+                    </div>
+                    <div class="object-estimates__row">
+                      <div class="object-estimates__value object-estimates__value--minus">9 233 946 ₽
+                      </div>
+                      <div class="object-estimates__label">Комиссия за управление
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section><!--/ object-estimates --> <!-- object-finances --> 
               <section class="object-finances">
                 <div class="object-finances__title"><!-- title --> 
                   <h2 class="title medium">Финансы
@@ -317,10 +319,14 @@
                       <td>Декабрь 2017</td>
                       <td>Январь 2018</td>
                       <td>Февраль 2018</td>
+                      <td>Март 2018</td>
+                      <td>Апрель 2018</td>
                       <td>&nbsp;</td>
                     </tr>
                     <tr>
                       <th>Доход</th>
+                      <td>10 390 900.00 ₽</td>
+                      <td>10 390 900.00 ₽</td>
                       <td>10 390 900.00 ₽</td>
                       <td>10 390 900.00 ₽</td>
                       <td>10 390 900.00 ₽</td>
@@ -339,10 +345,14 @@
                       <td>0.00 ₽</td>
                       <td>0.00 ₽</td>
                       <td>0.00 ₽</td>
+                      <td>0.00 ₽</td>
+                      <td>0.00 ₽</td>
                       <td>&nbsp;</td>
                     </tr>
                     <tr>  
                       <th>ЧОД</th>
+                      <td>1 390 900.00 ₽</td>
+                      <td>1 390 900.00 ₽</td>
                       <td>1 390 900.00 ₽</td>
                       <td>1 390 900.00 ₽</td>
                       <td>1 390 900.00 ₽</td>
@@ -361,10 +371,14 @@
                       <td>99.99 ₽</td>
                       <td>99.99 ₽</td>
                       <td>99.99 ₽</td>
+                      <td>99.99 ₽</td>
+                      <td>99.99 ₽</td>
                       <td>&nbsp;</td>
                     </tr>
                     <tr>  
                       <th>Доход на распределение</th>
+                      <td>12 290.99 ₽</td>
+                      <td>12 290.99 ₽</td>
                       <td>12 290.99 ₽</td>
                       <td>12 290.99 ₽</td>
                       <td>12 290.99 ₽</td>
@@ -383,6 +397,8 @@
                       <td>1 700.01 ₽</td>
                       <td>1 700.01 ₽</td>
                       <td>1 700.01 ₽</td>
+                      <td>1 700.01 ₽</td>
+                      <td>1 700.01 ₽</td>
                       <td>&nbsp;</td>
                     </tr>
                   </table>
@@ -393,7 +409,7 @@
                   <div id="lineChart"></div>
                 </div>
                 <div class="object-finances__column-chart">
-                  <div class="object-finances__subtitle">Оборот паев
+                  <div class="object-finances__subtitle">Ликвидность
                   </div>
                   <div id="columnChart"></div>
                 </div>

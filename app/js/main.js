@@ -884,34 +884,60 @@ jQuery(document).ready(function ($) {
       var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
       console.log('maxScrollLeft: ', maxScrollLeft);
       var debouncedNextClick = debounce(nextClick, 200, true);
-      var debouncedPrevClick = debounce(prevClick, 200, true);
-      scrollNext.addEventListener('click', debouncedNextClick);
-      scrollPrev.addEventListener('click', debouncedPrevClick);
+      var debouncedPrevClick = debounce(prevClick, 200, true); // scrollNext.addEventListener('click', debouncedNextClick);
+      // scrollPrev.addEventListener('click', debouncedPrevClick);
 
-      function nextClick() {
-        var value = financesTable.scrollLeft + regularCellWidth;
+      scrollNext.addEventListener('mousedown', debouncedNextClick);
+      scrollNext.addEventListener('mouseup', function () {
+        return clearInterval(mouseTimer);
+      });
+      scrollPrev.addEventListener('mousedown', debouncedPrevClick);
+      scrollPrev.addEventListener('mouseup', function () {
+        return clearInterval(mouseTimer);
+      });
+      var mouseTimer;
 
-        if (value > 0) {
+      function nextClick(e) {
+        update();
+        mouseTimer = setInterval(update, 500);
+
+        function update() {
+          var value = financesTable.scrollLeft + regularCellWidth;
           scrollPrev.classList.add('active');
-        }
 
-        if (value >= maxScrollLeft - regularCellWidth) {
-          scrollNext.classList.remove('active');
-        }
+          if (value > maxScrollLeft) {
+            clearInterval(mouseTimer);
+            return;
+          }
 
-        smoothLeftScroll(value);
+          if (value >= maxScrollLeft - regularCellWidth) {
+            scrollNext.classList.remove('active');
+          }
+
+          smoothLeftScroll(value);
+        }
       }
 
       function prevClick() {
-        var value = financesTable.scrollLeft - regularCellWidth;
-        smoothLeftScroll(value);
+        update();
+        mouseTimer = setInterval(update, 500);
 
-        if (value <= 0) {
-          scrollPrev.classList.remove('active');
-        }
+        function update() {
+          var value = financesTable.scrollLeft - regularCellWidth;
 
-        if (value <= maxScrollLeft) {
-          scrollNext.classList.add('active');
+          if (value <= -regularCellWidth) {
+            clearInterval(mouseTimer);
+            return;
+          }
+
+          if (value <= 0) {
+            scrollPrev.classList.remove('active');
+          }
+
+          if (value <= maxScrollLeft) {
+            scrollNext.classList.add('active');
+            smoothLeftScroll(value);
+          }
         }
       }
 
@@ -1224,6 +1250,7 @@ jQuery(document).ready(function ($) {
       objectLinks.on('click', function (e) {
         e.preventDefault();
         var link = $(this);
+        if (link.hasClass('locked')) return;
         objectLinks.removeClass('active');
         link.addClass('active');
       });

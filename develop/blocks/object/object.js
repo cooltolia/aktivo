@@ -29,6 +29,8 @@
         e.preventDefault();
         const link = $(this);
 
+        if (link.hasClass('locked')) return;
+
         objectLinks.removeClass('active');
         link.addClass('active');
     });

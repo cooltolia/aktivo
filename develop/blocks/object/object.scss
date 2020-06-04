@@ -21,6 +21,7 @@
     }
 
     &__navigation-item {
+        position: relative;
         margin-bottom: 10px;
 
         &:last-child {
@@ -63,6 +64,17 @@
                 border-style: solid;
                 border-color: $theme-color;
             }
+        }
+
+        svg {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            fill: $theme-color;
         }
     }
 

@@ -3278,10 +3278,10 @@ th {
   .index-top__wrapper {
     padding-top: 100px;
     display: grid;
-    grid-template-areas: 'title title advantages' 'slider link advantages' 'slider . advantages';
+    grid-template-areas: 'slider title advantages' 'slider link advantages' 'slider . advantages';
     grid-template-columns: repeat(3, 33.33%);
     grid-template-rows: repeat(4, auto);
-    margin-bottom: -335px; }
+    margin-bottom: -200px; }
   .index-top__title {
     grid-area: title;
     position: relative;
@@ -3309,8 +3309,7 @@ th {
     width: 100%;
     min-width: 300px;
     height: 560px;
-    margin-right: 0;
-    top: -90px; } }
+    margin-right: 0; } }
 
 @media (min-width: 1024px) {
   .index-top__wrapper {
@@ -3327,11 +3326,12 @@ th {
 @media (min-width: 1200px) {
   .index-top__wrapper {
     padding-top: 165px;
-    margin-bottom: -375px;
+    margin-bottom: -245px;
     grid-template-columns: 400px 360px 400px; }
   .index-top__title {
-    top: -15px;
-    font-size: 50px; }
+    top: -15px; }
+    .index-top__title .title {
+      font-size: 40px; }
   .index-top__advantages {
     padding-left: 50px; }
   .index-top__advantage-value {
@@ -3339,7 +3339,7 @@ th {
   .index-top__link {
     width: 290px; }
   .index-top__slider {
-    top: -135px;
+    top: -10px;
     height: 690px; } }
 
 .inner {
@@ -5170,7 +5170,8 @@ th {
   .object-card__name {
     margin-bottom: 3px;
     font-size: 19px;
-    font-weight: 600; }
+    font-weight: 600;
+    text-decoration: underline; }
   .object-card__address {
     font-size: 10px;
     opacity: 0.5; }
@@ -6135,6 +6136,7 @@ th {
     margin: 0;
     list-style: none; }
   .object__navigation-item {
+    position: relative;
     margin-bottom: 10px; }
     .object__navigation-item:last-child {
       margin-bottom: 0; }
@@ -6166,6 +6168,17 @@ th {
         border-width: 0 1px 1px 0;
         border-style: solid;
         border-color: #fed63f; }
+    .object__navigation-link svg {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      right: -20px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+         -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+              transform: translateY(-50%);
+      fill: #fed63f; }
   .object__section {
     padding: 0 1px;
     margin-bottom: 35px; }
