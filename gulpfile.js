@@ -149,12 +149,11 @@ gulp.task('svgSprite', function() {
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: app
+            baseDir: app,
         },
         browser: 'chrome',
         notify: false,
         port: 8000,
-        // tunnel: 'ptkor'
     });
 });
 

@@ -65,14 +65,20 @@
     // scrollNext.addEventListener('click', debouncedNextClick);
     // scrollPrev.addEventListener('click', debouncedPrevClick);
 
-    scrollNext.addEventListener('mousedown', debouncedNextClick);
-    scrollNext.addEventListener('touchstart', debouncedNextClick);
-    scrollNext.addEventListener('mouseup', () => clearInterval(mouseTimer));
-    scrollNext.addEventListener('touchend', () => clearInterval(mouseTimer));
-    scrollPrev.addEventListener('mousedown', debouncedPrevClick);
-    scrollPrev.addEventListener('touchstart', debouncedPrevClick);
-    scrollPrev.addEventListener('mouseup', () => clearInterval(mouseTimer));
-    scrollPrev.addEventListener('touchend', () => clearInterval(mouseTimer));
+    const touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    console.log('touchDevice: ', touchDevice);
+
+    if (touchDevice) {
+        scrollNext.addEventListener('touchstart', debouncedNextClick);
+        scrollNext.addEventListener('touchend', () => clearInterval(mouseTimer));
+        scrollPrev.addEventListener('touchstart', debouncedPrevClick);
+        scrollPrev.addEventListener('touchend', () => clearInterval(mouseTimer));
+    } else {
+        scrollNext.addEventListener('mousedown', debouncedNextClick);
+        scrollNext.addEventListener('mouseup', () => clearInterval(mouseTimer));
+        scrollPrev.addEventListener('mousedown', debouncedPrevClick);
+        scrollPrev.addEventListener('mouseup', () => clearInterval(mouseTimer));
+    }
 
     let mouseTimer;
 
@@ -104,7 +110,7 @@
 
         function update() {
             const value = financesTable.scrollLeft - regularCellWidth;
-            
+
             if (value <= -regularCellWidth) {
                 clearInterval(mouseTimer);
                 return;

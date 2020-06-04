@@ -887,22 +887,29 @@ jQuery(document).ready(function ($) {
       var debouncedPrevClick = debounce(prevClick, 200, true); // scrollNext.addEventListener('click', debouncedNextClick);
       // scrollPrev.addEventListener('click', debouncedPrevClick);
 
-      scrollNext.addEventListener('mousedown', debouncedNextClick);
-      scrollNext.addEventListener('touchstart', debouncedNextClick);
-      scrollNext.addEventListener('mouseup', function () {
-        return clearInterval(mouseTimer);
-      });
-      scrollNext.addEventListener('touchend', function () {
-        return clearInterval(mouseTimer);
-      });
-      scrollPrev.addEventListener('mousedown', debouncedPrevClick);
-      scrollPrev.addEventListener('touchstart', debouncedPrevClick);
-      scrollPrev.addEventListener('mouseup', function () {
-        return clearInterval(mouseTimer);
-      });
-      scrollPrev.addEventListener('touchend', function () {
-        return clearInterval(mouseTimer);
-      });
+      var touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+      console.log('touchDevice: ', touchDevice);
+
+      if (touchDevice) {
+        scrollNext.addEventListener('touchstart', debouncedNextClick);
+        scrollNext.addEventListener('touchend', function () {
+          return clearInterval(mouseTimer);
+        });
+        scrollPrev.addEventListener('touchstart', debouncedPrevClick);
+        scrollPrev.addEventListener('touchend', function () {
+          return clearInterval(mouseTimer);
+        });
+      } else {
+        scrollNext.addEventListener('mousedown', debouncedNextClick);
+        scrollNext.addEventListener('mouseup', function () {
+          return clearInterval(mouseTimer);
+        });
+        scrollPrev.addEventListener('mousedown', debouncedPrevClick);
+        scrollPrev.addEventListener('mouseup', function () {
+          return clearInterval(mouseTimer);
+        });
+      }
+
       var mouseTimer;
 
       function nextClick(e) {
