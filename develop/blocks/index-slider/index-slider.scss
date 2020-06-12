@@ -149,9 +149,19 @@
     }
 }
 
+@media #{$tablet} {
+    .index-slider {
+        .slick-arrow {
+            top: 75%;
+        }
+    }
+}
+
 @media #{$laptop} {
     .index-slider {
         .slick-arrow {
+            top: 50%;
+
             &.slick-prev {
                 display: block !important;
                 left: 28px;
@@ -162,15 +172,15 @@
 }
 
 @media #{$desktop} {
-    .index-slider {
-        .slick-arrow {
-            &.slick-prev {
-                left: -50px;
-            }
+    // .index-slider {
+    //     .slick-arrow {
+    //         &.slick-prev {
+    //             left: -50px;
+    //         }
 
-            &.slick-next {
-                right: -50px;
-            }
-        }
-    }
+    //         &.slick-next {
+    //             right: -50px;
+    //         }
+    //     }
+    // }
 }
