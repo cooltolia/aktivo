@@ -937,8 +937,7 @@ th {
     margin-bottom: -225px; }
   .about-top__title {
     position: relative;
-    top: -3px;
-    margin: 0 0 12px; }
+    margin: 0 0 15px; }
     .about-top__title .title {
       font-size: 28px; }
   .about-top__link {
@@ -2257,7 +2256,6 @@ th {
     height: -moz-calc(100% + 5px);
     height: calc(100% + 5px); }
   .faq__title {
-    margin-top: -5px;
     margin-bottom: 20px; }
   .faq__aside {
     margin-bottom: 50px; }
@@ -2775,8 +2773,7 @@ th {
 .howitworks-top {
   overflow: hidden; }
   .howitworks-top__title {
-    margin-bottom: 32px;
-    margin-top: -5px; }
+    margin-bottom: 32px; }
   .howitworks-top__steps {
     position: relative;
     padding: 0;
@@ -3246,7 +3243,6 @@ th {
     margin-bottom: -200px; }
   .index-top__title {
     position: relative;
-    top: -6px;
     margin: 0 0 34px;
     overflow: hidden; }
   .index-top__advantages {
@@ -6247,7 +6243,6 @@ th {
     height: -moz-calc(100% + 5px);
     height: calc(100% + 5px); }
   .objects__title {
-    margin-top: -5px;
     margin-bottom: 12px; }
   .objects__aside {
     margin-bottom: 20px; }
@@ -6957,7 +6952,6 @@ th {
   background-image: url(../images/redesign/index-top/bg.jpg);
   background-size: cover; }
   .partners-top__title {
-    margin-top: -7px;
     margin-bottom: 25px; }
   .partners-top__link {
     width: 100%;
@@ -8190,7 +8184,6 @@ th {
     height: -moz-calc(100% - 75px);
     height: calc(100% - 75px); }
   .project-top__title {
-    margin-top: -5px;
     margin-bottom: 20px; }
   .project-top__button {
     width: 100%;
@@ -8257,8 +8250,7 @@ th {
   padding-bottom: 50px;
   overflow: hidden; }
   .security-advantages__title {
-    margin-bottom: 55px;
-    margin-top: -5px; }
+    margin-bottom: 55px; }
   .security-advantages__rating {
     margin: 0 0 20px;
     color: #fed63f;
@@ -8569,7 +8561,6 @@ th {
     height: -moz-calc(100% + 5px);
     height: calc(100% + 5px); }
   .vacancies__title {
-    margin-top: -5px;
     margin-bottom: 20px; }
   .vacancies__aside {
     margin-bottom: 50px; }
