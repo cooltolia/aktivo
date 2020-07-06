@@ -1298,6 +1298,29 @@ th {
     .advantages__appeal {
       margin-top: 32px; } }
 
+.alert-banner {
+  padding: 12px 0;
+  color: #000;
+  font-size: 14px;
+  background-color: #fed63f; }
+  .alert-banner__content {
+    text-align: center; }
+    .alert-banner__content span {
+      display: block; }
+
+@media (min-width: 1024px) {
+  .alert-banner {
+    font-size: 16px; }
+    .alert-banner__content span {
+      display: inline-block;
+      margin-right: 5px; }
+      .alert-banner__content span:last-child {
+        margin-right: 0; } }
+
+@media (min-width: 1200px) {
+  .alert-banner {
+    font-size: 16px; } }
+
 .authorization__login {
   display: block;
   padding-right: 10px;

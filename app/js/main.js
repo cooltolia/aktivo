@@ -643,6 +643,9 @@ jQuery(document).ready(function ($) {
 
     (function () {
       var $mainNav = $('.main-header__navigation');
+      var $alertBanner = $('.alert-banner');
+      var topPosition = $alertBanner.length > 0 ? $alertBanner.height() + 75 : 75;
+      $mainNav.css('top', topPosition + 'px');
       $('.hamburger').click(function () {
         $(this).toggleClass('active');
         $mainNav.toggleClass('active');

@@ -1,0 +1,39 @@
+.alert-banner {
+    padding: 12px 0;
+
+    color: $text-color;
+    font-size: 14px;
+
+    background-color: $theme-color;
+
+    &__content {
+        text-align: center;
+
+        span {
+            display: block;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .alert-banner {
+        font-size: 16px;
+
+        &__content {
+            span {
+                display: inline-block;
+                margin-right: 5px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+@media #{$desktop} {
+    .alert-banner {
+        font-size: 16px;
+    }
+}
