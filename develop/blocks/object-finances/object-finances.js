@@ -369,6 +369,7 @@
 
     if (columnChart) {
         const data = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
+        const percentage = [35, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
         const categories = [
             'Август 2017',
             'Сентябрь 2017',
@@ -505,6 +506,15 @@
                                 vr.classList.remove('active');
                             },
                         },
+                    },
+                },
+                {
+                    name: 'Доходность',
+                    type: 'line',
+                    data: percentage,
+                    color: '#ffd729',
+                    tooltip: {
+                        valueSuffix: '%',
                     },
                 },
             ],

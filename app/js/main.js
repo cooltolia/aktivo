@@ -1134,6 +1134,7 @@ jQuery(document).ready(function ($) {
 
       if (columnChart) {
         var _data = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
+        var percentage = [35, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
         var _categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', 'Ноябрь 2018', 'Декабрь 2018', 'Январь 2019', 'Февраль 2019', 'Март 2019', 'Апрель 2019', 'Май 2019', 'Июнь 2019', 'Июль 2019', 'Август 2019', 'Сентябрь 2019', 'Октябрь 2019', 'Ноябрь 2019', 'Декабрь 2019', 'Январь 2020', ''];
         var _columnWidth = regularCellWidth;
 
@@ -1232,6 +1233,14 @@ jQuery(document).ready(function ($) {
                 }
               }
             }
+          }, {
+            name: 'Доходность',
+            type: 'line',
+            data: percentage,
+            color: '#ffd729',
+            tooltip: {
+              valueSuffix: '%'
+            }
           }],
           legend: false
         });
@@ -1252,31 +1261,28 @@ jQuery(document).ready(function ($) {
           behavior: 'smooth'
         });
       }
-    })(); // (function () {
-    //     const objectLocation = $('.object-location');
-    //     if (objectLocation.length === 0) return;
-    //     ymaps.ready(function () {
-    //         const myMap = new ymaps.Map('map', {
-    //             center: [55.749511, 37.537083],
-    //             zoom: 15,
-    //             controls: ['zoomControl'],
-    //         });
-    //         const myPlacemark = new ymaps.Placemark(
-    //             [55.749511, 37.537083],
-    //             {
-    //                 hintContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
-    //                 balloonContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
-    //             },
-    //             {
-    //                 preset: 'islands#icon',
-    //                 iconColor: '#fed63f',
-    //             }
-    //         );
-    //         myMap.behaviors.disable('scrollZoom');
-    //         myMap.geoObjects.add(myPlacemark);
-    //     });
-    // })();
+    })();
 
+    (function () {
+      var objectLocation = $('.object-location');
+      if (objectLocation.length === 0) return;
+      ymaps.ready(function () {
+        var myMap = new ymaps.Map('map', {
+          center: [55.749511, 37.537083],
+          zoom: 15,
+          controls: ['zoomControl']
+        });
+        var myPlacemark = new ymaps.Placemark([55.749511, 37.537083], {
+          hintContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
+          balloonContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»'
+        }, {
+          preset: 'islands#icon',
+          iconColor: '#fed63f'
+        });
+        myMap.behaviors.disable('scrollZoom');
+        myMap.geoObjects.add(myPlacemark);
+      });
+    })();
 
     (function () {
       var objectPlans = $('.object-plans');
