@@ -17,40 +17,41 @@ mixin object-finances()
                     td Февраль 2018
                     td Март 2018
                     td Апрель 2018
+                    td Май 2018
                     td &nbsp;
                 tr
                     th Доход
-                    each val in Array.from(new Array(9))
+                    each val in Array.from(new Array(12))
                         td 10 390 900.00 ₽
                     td
                         | &nbsp;
                 tr   
                     th Расход
-                    each val in Array.from(new Array(9))
+                    each val in Array.from(new Array(12))
                         td 0.00 ₽
                     td
                         | &nbsp;
                 tr   
                     th ЧОД
-                    each val in Array.from(new Array(9))
+                    each val in Array.from(new Array(12))
                         td 1 390 900.00 ₽
                     td
                         | &nbsp;
                 tr   
                     th Комиссия за управление
-                    each val in Array.from(new Array(9))
+                    each val in Array.from(new Array(12))
                         td 99.99 ₽
                     td
                         | &nbsp;
                 tr   
                     th Доход на распределение
-                    each val in Array.from(new Array(9))
+                    each val in Array.from(new Array(12))
                         td 12 290.99 ₽
                     td
                         | &nbsp;
                 tr   
                     th Доход на пай до НДФЛ
-                    each val in Array.from(new Array(9))
+                    each val in Array.from(new Array(12))
                         td 1 700.01 ₽
                     td
                         | &nbsp;
@@ -66,5 +67,9 @@ mixin object-finances()
             +e.BUTTON.scroll-prev
         +e.scroll.--next
             +e.BUTTON.scroll-next.active
+        +e.jump.--prev
+            +e.BUTTON.jump-prev
+        +e.jump.--next
+            +e.BUTTON.jump-next.active
         +e.hr
         +e.vr

@@ -855,11 +855,11 @@ jQuery(document).ready(function ($) {
       });
       var labelFontSize = '12px';
       var showGridLine = false;
-      var plotColumnWidth = 102;
+      var plotColumnWidth = 52;
 
       if (window.matchMedia('(min-width: 1024px)').matches) {
         labelFontSize = '14px';
-        plotColumnWidth = 122;
+        plotColumnWidth = 62;
         showGridLine = true;
       }
 
@@ -888,12 +888,16 @@ jQuery(document).ready(function ($) {
       });
       var scrollNext = document.querySelector('.object-finances__scroll-next');
       var scrollPrev = document.querySelector('.object-finances__scroll-prev');
-      var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
-      console.log('maxScrollLeft: ', maxScrollLeft);
-      var debouncedNextClick = debounce(nextClick, 200, true);
-      var debouncedPrevClick = debounce(prevClick, 200, true); // scrollNext.addEventListener('click', debouncedNextClick);
-      // scrollPrev.addEventListener('click', debouncedPrevClick);
+      var jumpNext = document.querySelector('.object-finances__jump-next');
+      var jumpPrev = document.querySelector('.object-finances__jump-prev');
+      var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth; // console.log('maxScrollLeft: ', maxScrollLeft);
 
+      var debouncedNextClick = debounce(nextClick, 200, true);
+      var debouncedPrevClick = debounce(prevClick, 200, true);
+      var debouncedJumpNext = debounce(jumpingNext, 200, true);
+      var debouncedJumpPrev = debounce(jumpingPrev, 200, true);
+      jumpNext.addEventListener('click', debouncedJumpNext);
+      jumpPrev.addEventListener('click', debouncedJumpPrev);
       var touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
       console.log('touchDevice: ', touchDevice);
 
@@ -926,6 +930,7 @@ jQuery(document).ready(function ($) {
         function update() {
           var value = financesTable.scrollLeft + regularCellWidth;
           scrollPrev.classList.add('active');
+          jumpPrev.classList.add('active');
 
           if (value > maxScrollLeft) {
             clearInterval(mouseTimer);
@@ -934,6 +939,7 @@ jQuery(document).ready(function ($) {
 
           if (value >= maxScrollLeft - regularCellWidth) {
             scrollNext.classList.remove('active');
+            jumpNext.classList.remove('active');
           }
 
           smoothLeftScroll(value);
@@ -954,9 +960,60 @@ jQuery(document).ready(function ($) {
 
           if (value <= 0) {
             scrollPrev.classList.remove('active');
+            jumpPrev.classList.remove('active');
           }
 
           if (value <= maxScrollLeft) {
+            scrollNext.classList.add('active');
+            jumpNext.classList.add('active');
+            smoothLeftScroll(value);
+          }
+        }
+      }
+
+      function jumpingNext(e) {
+        update();
+        mouseTimer = setInterval(update, 500);
+
+        function update() {
+          var value = financesTable.scrollLeft + regularCellWidth * 6;
+          jumpPrev.classList.add('active');
+          scrollPrev.classList.add('active');
+
+          if (value > maxScrollLeft) {
+            smoothLeftScroll(maxScrollLeft);
+            clearInterval(mouseTimer);
+          }
+
+          if (value >= maxScrollLeft - regularCellWidth * 6) {
+            jumpNext.classList.remove('active');
+            scrollNext.classList.remove('active');
+          } // smoothLeftScroll(value);
+
+        }
+      }
+
+      function jumpingPrev() {
+        update();
+        mouseTimer = setInterval(update, 500);
+
+        function update() {
+          var value = financesTable.scrollLeft - regularCellWidth * 6;
+          debugger;
+
+          if (value <= -regularCellWidth) {
+            smoothLeftScroll(0);
+            clearInterval(mouseTimer);
+            return;
+          }
+
+          if (value <= 0) {
+            jumpPrev.classList.remove('active');
+            scrollPrev.classList.remove('active');
+          }
+
+          if (value <= maxScrollLeft) {
+            jumpNext.classList.add('active');
             scrollNext.classList.add('active');
             smoothLeftScroll(value);
           }
@@ -1136,7 +1193,7 @@ jQuery(document).ready(function ($) {
             column: {
               color: '#d8d8d8',
               pointWidth: plotColumnWidth,
-              pointPlacement: 0.37
+              pointPlacement: 0.22
             }
           },
           tooltip: {
@@ -1195,28 +1252,31 @@ jQuery(document).ready(function ($) {
           behavior: 'smooth'
         });
       }
-    })();
+    })(); // (function () {
+    //     const objectLocation = $('.object-location');
+    //     if (objectLocation.length === 0) return;
+    //     ymaps.ready(function () {
+    //         const myMap = new ymaps.Map('map', {
+    //             center: [55.749511, 37.537083],
+    //             zoom: 15,
+    //             controls: ['zoomControl'],
+    //         });
+    //         const myPlacemark = new ymaps.Placemark(
+    //             [55.749511, 37.537083],
+    //             {
+    //                 hintContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
+    //                 balloonContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
+    //             },
+    //             {
+    //                 preset: 'islands#icon',
+    //                 iconColor: '#fed63f',
+    //             }
+    //         );
+    //         myMap.behaviors.disable('scrollZoom');
+    //         myMap.geoObjects.add(myPlacemark);
+    //     });
+    // })();
 
-    (function () {
-      var objectLocation = $('.object-location');
-      if (objectLocation.length === 0) return;
-      ymaps.ready(function () {
-        var myMap = new ymaps.Map('map', {
-          center: [55.749511, 37.537083],
-          zoom: 15,
-          controls: ['zoomControl']
-        });
-        var myPlacemark = new ymaps.Placemark([55.749511, 37.537083], {
-          hintContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
-          balloonContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»'
-        }, {
-          preset: 'islands#icon',
-          iconColor: '#fed63f'
-        });
-        myMap.behaviors.disable('scrollZoom');
-        myMap.geoObjects.add(myPlacemark);
-      });
-    })();
 
     (function () {
       var objectPlans = $('.object-plans');

@@ -33,8 +33,6 @@
         }
 
         tr:first-child {
-            position: relative;
-
             td {
                 padding-bottom: 20px;
 
@@ -119,7 +117,8 @@
         }
     }
 
-    &__scroll {
+    &__scroll,
+    &__jump {
         position: absolute;
         width: 20px;
         top: 150px;
@@ -136,8 +135,14 @@
         }
     }
 
+    &__jump {
+        top: 200px;
+    }
+
     &__scroll-next,
-    &__scroll-prev {
+    &__scroll-prev,
+    &__jump-next,
+    &__jump-prev {
         @include btn-reset;
         position: sticky;
         top: 50px;
@@ -161,13 +166,37 @@
         }
     }
 
-    &__scroll-prev {
+    &__scroll-prev,
+    &__jump-prev {
         transform: rotate(-225deg);
         margin-left: 6px;
     }
 
     &__scroll-next {
         margin-left: -6px;
+    }
+
+    &__jump-next {
+        margin-left: -3px;
+    }
+
+    &__jump-prev,
+    &__jump-next {
+        top: 100px;
+
+        &::after {
+            content: '';
+            position: absolute;
+
+            width: 20px;
+            height: 20px;
+            top: -5px;
+            left: -5px;
+
+            border-width: 0 1px 1px 0;
+            border-style: solid;
+            border-color: $theme-color;
+        }
     }
 
     &__line-chart {
@@ -219,15 +248,12 @@
     .object-finances {
         &__table {
             tr:first-child {
-                position: relative;
-
                 td:first-child {
-                    position: absolute;
-                    width: 265px;
+                    width: 195px;
 
                     + td {
-                        padding-left: 265px;
-                        width: 415px;
+                        padding-left: 195px;
+                        width: 315px;
                     }
                 }
 
@@ -239,54 +265,79 @@
             }
 
             td {
-                width: 150px;
+                width: 120px;
                 height: 40px;
+                padding-right: 5px;
 
                 font-size: 14px;
                 line-height: 40px;
             }
 
             th {
-                width: 265px;
+                width: 195px;
                 height: 40px;
 
                 font-size: 14px;
                 line-height: 40px;
 
                 + td {
-                    padding-left: 265px;
-                    width: 415px;
+                    padding-left: 195px;
+                    width: 315px;
                 }
             }
         }
 
+        &__jump {
+            top: 220px;
+        }
+
         &__scroll-next,
-        &__scroll-prev {
+        &__scroll-prev,
+        &__jump-next,
+        &__jump-prev {
             width: 35px;
             height: 35px;
+        }
+
+        &__jump-next,
+        &__jump-prev {
+            top: 120px;
+
+            &::after {
+                width: 35px;
+                height: 35px;
+            }
         }
 
         &__scroll-prev {
             margin-left: 0;
         }
 
+        &__jump-prev {
+            margin-left: -6px;
+        }
+
         &__scroll-next {
             margin-left: -15px;
+        }
+
+        &__jump-next {
+            margin-left: -9px;
         }
 
         &__line-chart {
             position: relative;
             padding-top: 70px;
-            padding-left: 130px;
+            padding-left: 75px;
         }
 
         &__column-chart {
             padding-top: 40px;
-            padding-left: 130px;
+            padding-left: 75px;
         }
 
         &__subtitle {
-            width: 260px;
+            width: 180px;
             align-items: flex-start;
 
             font-size: 24px;
@@ -304,9 +355,5 @@
         padding-bottom: 55px;
         margin-top: -55px;
         margin-bottom: -55px;
-
-        &__scroll-next {
-            margin-left: 0px;
-        }
     }
 }

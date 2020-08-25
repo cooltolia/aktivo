@@ -26,11 +26,11 @@
 
     let labelFontSize = '12px';
     let showGridLine = false;
-    let plotColumnWidth = 102;
+    let plotColumnWidth = 52;
 
     if (window.matchMedia('(min-width: 1024px)').matches) {
         labelFontSize = '14px';
-        plotColumnWidth = 122;
+        plotColumnWidth = 62;
         showGridLine = true;
     }
 
@@ -57,13 +57,19 @@
 
     const scrollNext = document.querySelector('.object-finances__scroll-next');
     const scrollPrev = document.querySelector('.object-finances__scroll-prev');
+    const jumpNext = document.querySelector('.object-finances__jump-next');
+    const jumpPrev = document.querySelector('.object-finances__jump-prev');
     const maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
-    console.log('maxScrollLeft: ', maxScrollLeft);
+    // console.log('maxScrollLeft: ', maxScrollLeft);
 
     const debouncedNextClick = debounce(nextClick, 200, true);
     const debouncedPrevClick = debounce(prevClick, 200, true);
-    // scrollNext.addEventListener('click', debouncedNextClick);
-    // scrollPrev.addEventListener('click', debouncedPrevClick);
+    const debouncedJumpNext = debounce(jumpingNext, 200, true);
+    const debouncedJumpPrev = debounce(jumpingPrev, 200, true);
+
+
+    jumpNext.addEventListener('click', debouncedJumpNext);
+    jumpPrev.addEventListener('click', debouncedJumpPrev);
 
     const touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     console.log('touchDevice: ', touchDevice);
@@ -91,6 +97,7 @@
             const value = financesTable.scrollLeft + regularCellWidth;
 
             scrollPrev.classList.add('active');
+            jumpPrev.classList.add('active');
             if (value > maxScrollLeft) {
                 clearInterval(mouseTimer);
                 return;
@@ -98,6 +105,7 @@
 
             if (value >= maxScrollLeft - regularCellWidth) {
                 scrollNext.classList.remove('active');
+                jumpNext.classList.remove('active');
             }
             smoothLeftScroll(value);
         }
@@ -118,9 +126,62 @@
 
             if (value <= 0) {
                 scrollPrev.classList.remove('active');
+                jumpPrev.classList.remove('active');
             }
 
             if (value <= maxScrollLeft) {
+                scrollNext.classList.add('active');
+                jumpNext.classList.add('active');
+                smoothLeftScroll(value);
+            }
+        }
+    }
+    function jumpingNext(e) {
+        update();
+
+        mouseTimer = setInterval(update, 500);
+
+        function update() {
+            const value = financesTable.scrollLeft + (regularCellWidth * 6);
+
+            jumpPrev.classList.add('active');
+            scrollPrev.classList.add('active');
+            if (value > maxScrollLeft) {
+                smoothLeftScroll(maxScrollLeft);
+                clearInterval(mouseTimer);
+            }
+
+            if (value >= maxScrollLeft - (regularCellWidth * 6)) {
+                jumpNext.classList.remove('active');
+                scrollNext.classList.remove('active');
+
+            }
+            // smoothLeftScroll(value);
+        }
+    }
+
+    function jumpingPrev() {
+        update();
+
+        mouseTimer = setInterval(update, 500);
+
+        function update() {
+            const value = financesTable.scrollLeft - (regularCellWidth * 6);
+            debugger;
+
+            if (value <= -regularCellWidth) {
+                smoothLeftScroll(0);
+                clearInterval(mouseTimer);
+                return;
+            }
+
+            if (value <= 0) {
+                jumpPrev.classList.remove('active');
+                scrollPrev.classList.remove('active');
+            }
+
+            if (value <= maxScrollLeft) {
+                jumpNext.classList.add('active');
                 scrollNext.classList.add('active');
                 smoothLeftScroll(value);
             }
@@ -398,7 +459,7 @@
                 column: {
                     color: '#d8d8d8',
                     pointWidth: plotColumnWidth,
-                    pointPlacement: 0.37,
+                    pointPlacement: 0.22,
                 },
             },
             tooltip: {
