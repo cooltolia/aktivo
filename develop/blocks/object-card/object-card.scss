@@ -189,6 +189,28 @@
                 position: relative;
                 font-weight: 500;
             }
+
+            img {
+                display: block;
+                max-width: 100%;
+            }
+
+            &[colspan='2'] {
+                padding-top: 24px;
+                text-align: center;
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 1px;
+                    top: 12px;
+                    left: 0;
+
+                    background-color: #ddd;
+                }
+            }
         }
     }
 

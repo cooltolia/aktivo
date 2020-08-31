@@ -67,7 +67,6 @@
     const debouncedJumpNext = debounce(jumpingNext, 200, true);
     const debouncedJumpPrev = debounce(jumpingPrev, 200, true);
 
-
     jumpNext.addEventListener('click', debouncedJumpNext);
     jumpPrev.addEventListener('click', debouncedJumpPrev);
 
@@ -142,7 +141,7 @@
         mouseTimer = setInterval(update, 500);
 
         function update() {
-            const value = financesTable.scrollLeft + (regularCellWidth * 6);
+            const value = financesTable.scrollLeft + regularCellWidth * 6;
 
             jumpPrev.classList.add('active');
             scrollPrev.classList.add('active');
@@ -151,10 +150,9 @@
                 clearInterval(mouseTimer);
             }
 
-            if (value >= maxScrollLeft - (regularCellWidth * 6)) {
+            if (value >= maxScrollLeft - regularCellWidth * 6) {
                 jumpNext.classList.remove('active');
                 scrollNext.classList.remove('active');
-
             }
             // smoothLeftScroll(value);
         }
@@ -166,8 +164,7 @@
         mouseTimer = setInterval(update, 500);
 
         function update() {
-            const value = financesTable.scrollLeft - (regularCellWidth * 6);
-            debugger;
+            const value = financesTable.scrollLeft - regularCellWidth * 6;
 
             if (value <= -regularCellWidth) {
                 smoothLeftScroll(0);
@@ -369,7 +366,39 @@
 
     if (columnChart) {
         const data = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
-        const percentage = [35, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
+        const percentage = [
+            48,
+            8,
+            7,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            null,
+        ];
         const categories = [
             'Август 2017',
             'Сентябрь 2017',
@@ -408,7 +437,7 @@
 
         Highcharts.chart('columnChart', {
             chart: {
-                type: 'column',
+                // type: 'column',
                 scrollablePlotArea: {
                     minWidth: chartMinWidth,
                 },
@@ -440,27 +469,66 @@
                     },
                 },
             },
-            yAxis: {
-                title: false,
-                gridLineColor: '#f2f2f2',
-                // offset: 50,
-                labels: {
-                    padding: 0,
-                    style: {
-                        color: '#9e9e9e',
-                        fontSize: labelFontSize,
-                        fontWeight: '600',
-                        fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
-                        // paddingLeft: '5px',
-                        whiteSpace: 'nowrap',
+            yAxis: [
+                {
+                    title: false,
+                    gridLineColor: '#f2f2f2',
+                    // offset: 50,
+                    labels: {
+                        padding: 0,
+                        style: {
+                            color: '#9e9e9e',
+                            fontSize: labelFontSize,
+                            fontWeight: '600',
+                            fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                            // paddingLeft: '5px',
+                            whiteSpace: 'nowrap',
+                        },
                     },
                 },
-            },
+                {
+                    visible: true,
+                    gridLineColor: 'transparent',
+                    min: 0,
+                    max: 100,
+                    title: false,
+                    opposite: true,
+                    labels: {
+                        padding: 0,
+                        style: {
+                            color: '#9e9e9e',
+                            fontSize: labelFontSize,
+                            fontWeight: '600',
+                            fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                            // paddingLeft: '5px',
+                            whiteSpace: 'nowrap',
+                        },
+                    },
+                },
+            ],
             plotOptions: {
                 column: {
                     color: '#d8d8d8',
                     pointWidth: plotColumnWidth,
                     pointPlacement: 0.22,
+                },
+                line: {
+                    dataLabels: {
+                        // align: 'center',
+                        // enabled: true,
+                        // color: 'black',
+                        // padding: 5,
+                        // // crop: false,
+                        // // overflow: 'none',
+                        // style: {
+                        //     textOutline: 'none',
+                        //     fontSize: '14px',
+                        //     fontWeight: '400',
+                        // },
+                        formatter: function () {
+                            return this.y + '%';
+                        },
+                    },
                 },
             },
             tooltip: {
@@ -469,6 +537,7 @@
             series: [
                 {
                     data,
+                    type: 'column',
                     dataLabels: {
                         enabled: true,
                         align: 'left',
@@ -482,7 +551,11 @@
                     },
                     states: {
                         hover: {
-                            color: '#fed63f',
+                            enabled: false,
+                            // color: '#fed63f',
+                        },
+                        inactive: {
+                            opacity: 1,
                         },
                     },
                     minPointLength: 10,
@@ -512,9 +585,38 @@
                     name: 'Доходность',
                     type: 'line',
                     data: percentage,
-                    color: '#ffd729',
-                    tooltip: {
-                        valueSuffix: '%',
+                    color: '#000',
+                    dataLabels: {
+                        enabled: true,
+                        // align: 'center',
+                        // enabled: true,
+                        // color: 'black',
+                        // padding: 5,
+                        // crop: false,
+                        // overflow: 'none',
+                        // style: {
+                        //     textOutline: 'none',
+                        //     fontSize: '14px',
+                        //     fontWeight: '400',
+                        // },
+                        y: 30,
+                        format: '{y} %',
+                        style: {
+                            fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                            fontSize: '14px',
+                            fontWeight: '400',
+                        },
+                        // formatter: function () {
+                        //     return this.y + '%';
+                        // },
+                    },
+                    states: {
+                        hover: {
+                            enabled: false,
+                        },
+                        inactive: {
+                            opacity: 1,
+                        },
                     },
                 },
             ],

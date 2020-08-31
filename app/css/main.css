@@ -5015,7 +5015,8 @@ th {
     width: 100%;
     height: 100%;
     left: 0;
-    top: 0; }
+    top: 0;
+    pointer-events: none; }
     .object-calc__image img {
       display: block;
       width: 100%;
@@ -5037,8 +5038,7 @@ th {
     position: relative;
     margin-top: auto;
     z-index: 2;
-    color: #fff;
-    pointer-events: none; }
+    color: #fff; }
   .object-calc__data-row {
     margin-bottom: 16px; }
     .object-calc__data-row:last-child {
@@ -5298,6 +5298,21 @@ th {
         display: inline;
         position: relative;
         font-weight: 500; }
+      .object-card__table td img {
+        display: block;
+        max-width: 100%; }
+      .object-card__table td[colspan='2'] {
+        padding-top: 24px;
+        text-align: center;
+        position: relative; }
+        .object-card__table td[colspan='2']::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          top: 12px;
+          left: 0;
+          background-color: #ddd; }
   .object-card__tooltip {
     padding: 0;
     margin: 0;
@@ -5733,10 +5748,13 @@ th {
 
 @media (min-width: 1024px) {
   .object-finances__table tr:first-child td:first-child {
-    width: 195px; }
+    width: 180px; }
     .object-finances__table tr:first-child td:first-child + td {
-      padding-left: 195px;
-      width: 315px; }
+      padding-left: 180px;
+      width: 300px;
+      text-align: center; }
+  .object-finances__table tr:first-child td {
+    text-align: center; }
   .object-finances__table tr:first-child .heading {
     bottom: 30px;
     font-size: 24px; }
@@ -5745,15 +5763,16 @@ th {
     height: 40px;
     padding-right: 5px;
     font-size: 14px;
-    line-height: 40px; }
+    line-height: 40px;
+    text-align: right; }
   .object-finances__table th {
-    width: 195px;
+    width: 180px;
     height: 40px;
     font-size: 14px;
     line-height: 40px; }
     .object-finances__table th + td {
-      padding-left: 195px;
-      width: 315px; }
+      padding-left: 180px;
+      width: 300px; }
   .object-finances__jump {
     top: 220px; }
   .object-finances__scroll-next, .object-finances__scroll-prev, .object-finances__jump-next, .object-finances__jump-prev {
@@ -5787,7 +5806,8 @@ th {
             align-items: flex-start;
     font-size: 24px; }
   .object-finances__vr {
-    bottom: 70px; } }
+    bottom: 70px;
+    margin-left: 15px; } }
 
 @media (min-width: 1200px) {
   .object-finances {

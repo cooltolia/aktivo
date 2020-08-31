@@ -705,19 +705,19 @@ jQuery(document).ready(function ($) {
       var objectCalc = document.querySelector('.object-calc');
       if (!objectCalc) return;
       var investmentRangeSlider = document.querySelector('.object-calc__investment-range');
-      var invsestmentValue = document.querySelector('.object-calc__investment-value'); // const incomeRangeSlider = document.querySelector('.object-calc__income-range');
-
+      var invsestmentValue = document.querySelector('.object-calc__investment-value');
       var submitDataButton = document.querySelector('.object-calc__button');
       var format = wNumb({
         decimals: 0,
-        suffix: " \u20BD",
+        // suffix: ' \u20BD',
         thousand: ' '
       });
       var LIBERTY_MIN = 10000000;
       var dataWrapper = $('.object-calc__income-data');
-      var income = dataWrapper.find('.object-calc__income');
-      var share = dataWrapper.find('.object-calc__share');
+      var income = dataWrapper.find('.object-calc__income .value');
+      var share = dataWrapper.find('.object-calc__share .value');
       var rateNode = dataWrapper.find('.object-calc__rate');
+      var rateValue = rateNode.find('.value');
       var basicRate = rateNode.data('rate');
       var libetyRate = rateNode.data('liberty-rate');
       var initialValue = dataWrapper.data('initial');
@@ -727,6 +727,20 @@ jQuery(document).ready(function ($) {
       var libertyStep = dataWrapper.data('liberty-step');
       var stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
       initRangeSlider();
+      income.on('blur', function (e) {
+        var changedValue = format.from(e.target.textContent.trim());
+        income.text(format.to(changedValue));
+        var newSliderValue = changedValue * 12 / basicRate * 100;
+        investmentRangeSlider.noUiSlider.set(newSliderValue);
+        animateRangeSlider();
+      });
+      share.on('blur', function (e) {
+        var changedValue = parseInt(e.target.textContent.trim());
+        if (isNaN(changedValue)) changedValue = minValue / basicStep;
+        var newSliderValue = changedValue * basicStep;
+        investmentRangeSlider.noUiSlider.set(newSliderValue);
+        animateRangeSlider();
+      });
       submitDataButton.addEventListener('click', submitData);
       /**
        * interactions with range slider
@@ -736,22 +750,13 @@ jQuery(document).ready(function ($) {
         var value = +values[handle];
         invsestmentValue.textContent = format.to(value);
         var rate = value > LIBERTY_MIN ? libetyRate : basicRate;
-        rateNode.html(rate + '%');
-        updateData(value, rate); // incomeRangeSliderUpdate(value, rate);
+        rateValue.html(rate);
+        updateData(value, rate);
       });
       investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
         var value = +values[handle];
         updateRangesStep(value);
-      }); // incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
-      //     const value = +values[handle];
-      //     const rate = value > LIBERTY_MIN ? libetyRate : basicRate;
-      //     rateNode.html(rate + '%');
-      //     investmentRangeSliderUpdate(value, rate);
-      // });
-
-      investmentRangeSlider.noUiSlider.on('change', function () {
-        animateRangeSlider();
-      }); // incomeRangeSlider.noUiSlider.on('change', () => {
+      }); // investmentRangeSlider.noUiSlider.on('change', () => {
       //     animateRangeSlider();
       // });
       // helper functions
@@ -766,30 +771,8 @@ jQuery(document).ready(function ($) {
             min: minValue,
             max: maxValue
           }
-        }); // const rate = initialValue > LIBERTY_MIN ? libetyRate : basicRate;
-        // incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, rate);
-      } // function incomeRangeSliderInit(min, max, step, initial, rate) {
-      //     const minValue = (min * rate) / 100;
-      //     const maxValue = (max * rate) / 100;
-      //     const initialValue = (initial * rate) / 100;
-      //     const stepValue = (step * rate) / 100;
-      //     noUiSlider.create(incomeRangeSlider, {
-      //         start: initialValue,
-      //         step: stepValue,
-      //         animate: false,
-      //         range: {
-      //             min: minValue,
-      //             max: maxValue,
-      //         },
-      //     });
-      // }
-      // function incomeRangeSliderUpdate(value, rate) {
-      //     incomeRangeSlider.noUiSlider.set((value * rate) / 100);
-      // }
-      // function investmentRangeSliderUpdate(value, rate) {
-      //     investmentRangeSlider.noUiSlider.set((value / rate) * 100);
-      // }
-
+        });
+      }
 
       function updateData(value, rate) {
         share.text(Math.floor(value / stepValue));
@@ -798,8 +781,6 @@ jQuery(document).ready(function ($) {
 
       function updateRangesStep(value) {
         var step = value > LIBERTY_MIN ? libertyStep : basicStep;
-        console.log('step: ', step); // debugger;
-
         investmentRangeSlider.noUiSlider.updateOptions({
           step: step
         }, false);
@@ -999,7 +980,6 @@ jQuery(document).ready(function ($) {
 
         function update() {
           var value = financesTable.scrollLeft - regularCellWidth * 6;
-          debugger;
 
           if (value <= -regularCellWidth) {
             smoothLeftScroll(0);
@@ -1134,7 +1114,7 @@ jQuery(document).ready(function ($) {
 
       if (columnChart) {
         var _data = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
-        var percentage = [35, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
+        var percentage = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
         var _categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', 'Ноябрь 2018', 'Декабрь 2018', 'Январь 2019', 'Февраль 2019', 'Март 2019', 'Апрель 2019', 'Май 2019', 'Июнь 2019', 'Июль 2019', 'Август 2019', 'Сентябрь 2019', 'Октябрь 2019', 'Ноябрь 2019', 'Декабрь 2019', 'Январь 2020', ''];
         var _columnWidth = regularCellWidth;
 
@@ -1142,7 +1122,7 @@ jQuery(document).ready(function ($) {
 
         Highcharts.chart('columnChart', {
           chart: {
-            type: 'column',
+            // type: 'column',
             scrollablePlotArea: {
               minWidth: _chartMinWidth
             },
@@ -1174,7 +1154,7 @@ jQuery(document).ready(function ($) {
               }
             }
           },
-          yAxis: {
+          yAxis: [{
             title: false,
             gridLineColor: '#f2f2f2',
             // offset: 50,
@@ -1189,12 +1169,48 @@ jQuery(document).ready(function ($) {
                 whiteSpace: 'nowrap'
               }
             }
-          },
+          }, {
+            visible: true,
+            gridLineColor: 'transparent',
+            min: 0,
+            max: 100,
+            title: false,
+            opposite: true,
+            labels: {
+              padding: 0,
+              style: {
+                color: '#9e9e9e',
+                fontSize: labelFontSize,
+                fontWeight: '600',
+                fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                // paddingLeft: '5px',
+                whiteSpace: 'nowrap'
+              }
+            }
+          }],
           plotOptions: {
             column: {
               color: '#d8d8d8',
               pointWidth: plotColumnWidth,
               pointPlacement: 0.22
+            },
+            line: {
+              dataLabels: {
+                // align: 'center',
+                // enabled: true,
+                // color: 'black',
+                // padding: 5,
+                // // crop: false,
+                // // overflow: 'none',
+                // style: {
+                //     textOutline: 'none',
+                //     fontSize: '14px',
+                //     fontWeight: '400',
+                // },
+                formatter: function formatter() {
+                  return this.y + '%';
+                }
+              }
             }
           },
           tooltip: {
@@ -1202,6 +1218,7 @@ jQuery(document).ready(function ($) {
           },
           series: [{
             data: _data,
+            type: 'column',
             dataLabels: {
               enabled: true,
               align: 'left',
@@ -1215,7 +1232,11 @@ jQuery(document).ready(function ($) {
             },
             states: {
               hover: {
-                color: '#fed63f'
+                enabled: false // color: '#fed63f',
+
+              },
+              inactive: {
+                opacity: 1
               }
             },
             minPointLength: 10,
@@ -1237,9 +1258,38 @@ jQuery(document).ready(function ($) {
             name: 'Доходность',
             type: 'line',
             data: percentage,
-            color: '#ffd729',
-            tooltip: {
-              valueSuffix: '%'
+            color: '#000',
+            dataLabels: {
+              enabled: true,
+              // align: 'center',
+              // enabled: true,
+              // color: 'black',
+              // padding: 5,
+              // crop: false,
+              // overflow: 'none',
+              // style: {
+              //     textOutline: 'none',
+              //     fontSize: '14px',
+              //     fontWeight: '400',
+              // },
+              y: 30,
+              format: '{y} %',
+              style: {
+                fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
+                fontSize: '14px',
+                fontWeight: '400'
+              } // formatter: function () {
+              //     return this.y + '%';
+              // },
+
+            },
+            states: {
+              hover: {
+                enabled: false
+              },
+              inactive: {
+                opacity: 1
+              }
             }
           }],
           legend: false
@@ -1261,28 +1311,31 @@ jQuery(document).ready(function ($) {
           behavior: 'smooth'
         });
       }
-    })();
+    })(); // (function () {
+    //     const objectLocation = $('.object-location');
+    //     if (objectLocation.length === 0) return;
+    //     ymaps.ready(function () {
+    //         const myMap = new ymaps.Map('map', {
+    //             center: [55.749511, 37.537083],
+    //             zoom: 15,
+    //             controls: ['zoomControl'],
+    //         });
+    //         const myPlacemark = new ymaps.Placemark(
+    //             [55.749511, 37.537083],
+    //             {
+    //                 hintContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
+    //                 balloonContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
+    //             },
+    //             {
+    //                 preset: 'islands#icon',
+    //                 iconColor: '#fed63f',
+    //             }
+    //         );
+    //         myMap.behaviors.disable('scrollZoom');
+    //         myMap.geoObjects.add(myPlacemark);
+    //     });
+    // })();
 
-    (function () {
-      var objectLocation = $('.object-location');
-      if (objectLocation.length === 0) return;
-      ymaps.ready(function () {
-        var myMap = new ymaps.Map('map', {
-          center: [55.749511, 37.537083],
-          zoom: 15,
-          controls: ['zoomControl']
-        });
-        var myPlacemark = new ymaps.Placemark([55.749511, 37.537083], {
-          hintContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»',
-          balloonContent: '123112, Москва, Пресненская наб., д. 12, МФК «Федерация Восток»'
-        }, {
-          preset: 'islands#icon',
-          iconColor: '#fed63f'
-        });
-        myMap.behaviors.disable('scrollZoom');
-        myMap.geoObjects.add(myPlacemark);
-      });
-    })();
 
     (function () {
       var objectPlans = $('.object-plans');
