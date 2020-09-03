@@ -22,6 +22,7 @@
     const rateNode = dataWrapper.find('.object-calc__rate');
     const rateValue = rateNode.find('.value');
     const basicRate = rateNode.data('rate');
+    let customRate = null;
     const libetyRate = rateNode.data('liberty-rate');
 
     const initialValue = dataWrapper.data('initial');
@@ -33,12 +34,18 @@
     const stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
 
     initRangeSlider();
+    // income.on('input', e => {
+    //     let newVal = format.from(e.target.textContent.trim());
+    //     if (!newVal) newVal = 0;
+    //     console.log(newVal);
+    //     e.target.textContent = newVal.toLocaleString('ru-Ru');
+    // })
 
     income.on('blur', function (e) {
         const changedValue = format.from(e.target.textContent.trim());
         income.text(format.to(changedValue));
-
-        const newSliderValue = ((changedValue * 12) / basicRate) * 100;
+        const currentRate = parseInt(rateValue.text());
+        const newSliderValue = ((changedValue * 12) / currentRate) * 100;
 
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
@@ -54,6 +61,23 @@
         animateRangeSlider();
     });
 
+    rateValue.on('blur', function (e) {
+        let changedValue = parseFloat(e.target.textContent.trim());
+        if (isNaN(changedValue)) changedValue = +basicRate;
+
+        customRate = changedValue;
+
+        income.text(format.to((investmentRangeSlider.noUiSlider.get() * (changedValue / 100)) / 12));
+    });
+
+    document.addEventListener('keypress', (e) => {
+        if (e.keyCode === 13 && e.target.classList.contains('value') && e.target.isContentEditable) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.target.blur();
+        }
+    });
+
     submitDataButton.addEventListener('click', submitData);
 
     /**
@@ -63,7 +87,7 @@
         const value = +values[handle];
         invsestmentValue.textContent = format.to(value);
 
-        const rate = value > LIBERTY_MIN ? libetyRate : basicRate;
+        const rate = customRate ? customRate : value > LIBERTY_MIN ? libetyRate : basicRate;
         rateValue.html(rate);
 
         updateData(value, rate);
@@ -104,7 +128,7 @@
         investmentRangeSlider.noUiSlider.updateOptions({ step }, false);
     }
 
-    function  animateRangeSlider() {
+    function animateRangeSlider() {
         const rangeLine = $('.noUi-connect');
         const rangeHandle = $('.noUi-origin');
         rangeLine.addClass('transition');

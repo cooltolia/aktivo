@@ -29,7 +29,7 @@
     let plotColumnWidth = 52;
 
     if (window.matchMedia('(min-width: 1024px)').matches) {
-        labelFontSize = '14px';
+        labelFontSize = '15px';
         plotColumnWidth = 62;
         showGridLine = true;
     }
@@ -45,6 +45,7 @@
             }
             const offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
             vr.style.left = `${offsetLeft}px`;
+            vr.style.marginLeft = '16px';
 
             hr.classList.add('active');
             vr.classList.add('active');
@@ -52,6 +53,7 @@
         cell.addEventListener('mouseout', () => {
             hr.classList.remove('active');
             vr.classList.remove('active');
+            
         });
     });
 
@@ -60,7 +62,6 @@
     const jumpNext = document.querySelector('.object-finances__jump-next');
     const jumpPrev = document.querySelector('.object-finances__jump-prev');
     const maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
-    // console.log('maxScrollLeft: ', maxScrollLeft);
 
     const debouncedNextClick = debounce(nextClick, 200, true);
     const debouncedPrevClick = debounce(prevClick, 200, true);
@@ -169,7 +170,6 @@
             if (value <= -regularCellWidth) {
                 smoothLeftScroll(0);
                 clearInterval(mouseTimer);
-                return;
             }
 
             if (value <= 0) {
@@ -253,6 +253,7 @@
             '',
         ];
         const columnWidth = regularCellWidth;
+        console.log(columnWidth);
         const chartMinWidth = columnWidth * data.length;
 
         Highcharts.chart('lineChart', {
@@ -260,6 +261,7 @@
                 type: 'line',
                 scrollablePlotArea: {
                     minWidth: chartMinWidth,
+                    // opacity: 0,
                 },
                 marginTop: 60,
                 marginLeft: 60,
@@ -342,6 +344,7 @@
                                 vr.style.left = `${
                                     target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft
                                 }px`;
+                                vr.style.marginLeft = '';
                                 vr.classList.add('active');
                             },
                             mouseOut: () => {
@@ -440,6 +443,7 @@
                 // type: 'column',
                 scrollablePlotArea: {
                     minWidth: chartMinWidth,
+                    // opacity: 0,
                 },
                 marginTop: 60,
                 marginLeft: 60,
@@ -551,8 +555,8 @@
                     },
                     states: {
                         hover: {
-                            enabled: false,
-                            // color: '#fed63f',
+                            // enabled: false,
+                            color: '#fed63f',
                         },
                         inactive: {
                             opacity: 1,
@@ -572,7 +576,7 @@
                                     magicNumber -
                                     scrolledColumnChart.scrollLeft
                                 }px`;
-
+                                vr.style.marginLeft = '';
                                 vr.classList.add('active');
                             },
                             mouseOut: () => {

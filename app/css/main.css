@@ -5748,31 +5748,33 @@ th {
 
 @media (min-width: 1024px) {
   .object-finances__table tr:first-child td:first-child {
-    width: 180px; }
+    width: 188px; }
     .object-finances__table tr:first-child td:first-child + td {
-      padding-left: 180px;
-      width: 300px;
+      padding-left: 188px;
+      width: 313px;
       text-align: center; }
   .object-finances__table tr:first-child td {
-    text-align: center; }
+    text-align: right;
+    font-size: 15px; }
   .object-finances__table tr:first-child .heading {
     bottom: 30px;
     font-size: 24px; }
   .object-finances__table td {
-    width: 120px;
+    width: 126px;
     height: 40px;
-    padding-right: 5px;
+    padding-left: 5px;
+    padding-right: 0;
     font-size: 14px;
     line-height: 40px;
     text-align: right; }
   .object-finances__table th {
-    width: 180px;
+    width: 188px;
     height: 40px;
     font-size: 14px;
     line-height: 40px; }
     .object-finances__table th + td {
-      padding-left: 180px;
-      width: 300px; }
+      padding-left: 188px;
+      width: 313px; }
   .object-finances__jump {
     top: 220px; }
   .object-finances__scroll-next, .object-finances__scroll-prev, .object-finances__jump-next, .object-finances__jump-prev {
@@ -5794,10 +5796,10 @@ th {
   .object-finances__line-chart {
     position: relative;
     padding-top: 70px;
-    padding-left: 75px; }
+    padding-left: 80px; }
   .object-finances__column-chart {
     padding-top: 40px;
-    padding-left: 75px; }
+    padding-left: 80px; }
   .object-finances__subtitle {
     width: 195px;
     -webkit-box-align: start;
@@ -5806,8 +5808,7 @@ th {
             align-items: flex-start;
     font-size: 24px; }
   .object-finances__vr {
-    bottom: 70px;
-    margin-left: 15px; } }
+    bottom: 70px; } }
 
 @media (min-width: 1200px) {
   .object-finances {
@@ -6291,11 +6292,11 @@ th {
 @media (min-width: 1200px) {
   .object .lines .line {
     width: 542px;
-    left: 260px; }
+    left: 208px; }
   .object__wrapper {
     width: 100%;
     display: grid;
-    grid-template-columns: 260px minmax(0, 1fr); }
+    grid-template-columns: 208px minmax(0, 1fr); }
   .object__section {
     margin-bottom: 55px; } }
 

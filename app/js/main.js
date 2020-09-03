@@ -719,6 +719,7 @@ jQuery(document).ready(function ($) {
       var rateNode = dataWrapper.find('.object-calc__rate');
       var rateValue = rateNode.find('.value');
       var basicRate = rateNode.data('rate');
+      var customRate = null;
       var libetyRate = rateNode.data('liberty-rate');
       var initialValue = dataWrapper.data('initial');
       var minValue = dataWrapper.data('min');
@@ -726,11 +727,18 @@ jQuery(document).ready(function ($) {
       var basicStep = dataWrapper.data('step');
       var libertyStep = dataWrapper.data('liberty-step');
       var stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
-      initRangeSlider();
+      initRangeSlider(); // income.on('input', e => {
+      //     let newVal = format.from(e.target.textContent.trim());
+      //     if (!newVal) newVal = 0;
+      //     console.log(newVal);
+      //     e.target.textContent = newVal.toLocaleString('ru-Ru');
+      // })
+
       income.on('blur', function (e) {
         var changedValue = format.from(e.target.textContent.trim());
         income.text(format.to(changedValue));
-        var newSliderValue = changedValue * 12 / basicRate * 100;
+        var currentRate = parseInt(rateValue.text());
+        var newSliderValue = changedValue * 12 / currentRate * 100;
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
       });
@@ -741,6 +749,19 @@ jQuery(document).ready(function ($) {
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
       });
+      rateValue.on('blur', function (e) {
+        var changedValue = parseFloat(e.target.textContent.trim());
+        if (isNaN(changedValue)) changedValue = +basicRate;
+        customRate = changedValue;
+        income.text(format.to(investmentRangeSlider.noUiSlider.get() * (changedValue / 100) / 12));
+      });
+      document.addEventListener('keypress', function (e) {
+        if (e.keyCode === 13 && e.target.classList.contains('value') && e.target.isContentEditable) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.target.blur();
+        }
+      });
       submitDataButton.addEventListener('click', submitData);
       /**
        * interactions with range slider
@@ -749,7 +770,7 @@ jQuery(document).ready(function ($) {
       investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
         var value = +values[handle];
         invsestmentValue.textContent = format.to(value);
-        var rate = value > LIBERTY_MIN ? libetyRate : basicRate;
+        var rate = customRate ? customRate : value > LIBERTY_MIN ? libetyRate : basicRate;
         rateValue.html(rate);
         updateData(value, rate);
       });
@@ -839,7 +860,7 @@ jQuery(document).ready(function ($) {
       var plotColumnWidth = 52;
 
       if (window.matchMedia('(min-width: 1024px)').matches) {
-        labelFontSize = '14px';
+        labelFontSize = '15px';
         plotColumnWidth = 62;
         showGridLine = true;
       }
@@ -859,6 +880,7 @@ jQuery(document).ready(function ($) {
 
           var offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
           vr.style.left = "".concat(offsetLeft, "px");
+          vr.style.marginLeft = '16px';
           hr.classList.add('active');
           vr.classList.add('active');
         });
@@ -871,8 +893,7 @@ jQuery(document).ready(function ($) {
       var scrollPrev = document.querySelector('.object-finances__scroll-prev');
       var jumpNext = document.querySelector('.object-finances__jump-next');
       var jumpPrev = document.querySelector('.object-finances__jump-prev');
-      var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth; // console.log('maxScrollLeft: ', maxScrollLeft);
-
+      var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
       var debouncedNextClick = debounce(nextClick, 200, true);
       var debouncedPrevClick = debounce(prevClick, 200, true);
       var debouncedJumpNext = debounce(jumpingNext, 200, true);
@@ -984,7 +1005,6 @@ jQuery(document).ready(function ($) {
           if (value <= -regularCellWidth) {
             smoothLeftScroll(0);
             clearInterval(mouseTimer);
-            return;
           }
 
           if (value <= 0) {
@@ -1004,12 +1024,14 @@ jQuery(document).ready(function ($) {
         var data = [3650.28, 99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 2570890.35, 4195441.54, 1001971.62, 3348942.76, 4656600.96, 3395237.74, 2890238.47, 3082031.01, 2952247, 4196775.21, 3602760.57, 4025475.32, 2729290.73, 3654850.22, 1135382.72, 2504889.49, 2557290.57, 1795512.88, 3098144.21, null];
         var categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', 'Ноябрь 2018', 'Декабрь 2018', 'Январь 2019', 'Февраль 2019', 'Март 2019', 'Апрель 2019', 'Май 2019', 'Июнь 2019', 'Июль 2019', 'Август 2019', 'Сентябрь 2019', 'Октябрь 2019', 'Ноябрь 2019', 'Декабрь 2019', 'Январь 2020', ''];
         var columnWidth = regularCellWidth;
+        console.log(columnWidth);
         var chartMinWidth = columnWidth * data.length;
         Highcharts.chart('lineChart', {
           chart: {
             type: 'line',
             scrollablePlotArea: {
-              minWidth: chartMinWidth
+              minWidth: chartMinWidth // opacity: 0,
+
             },
             marginTop: 60,
             marginLeft: 60
@@ -1092,6 +1114,7 @@ jQuery(document).ready(function ($) {
                     if (!showGridLine) return;
                     var magicNumber = 54;
                     vr.style.left = "".concat(target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft, "px");
+                    vr.style.marginLeft = '';
                     vr.classList.add('active');
                   },
                   mouseOut: function mouseOut() {
@@ -1124,7 +1147,8 @@ jQuery(document).ready(function ($) {
           chart: {
             // type: 'column',
             scrollablePlotArea: {
-              minWidth: _chartMinWidth
+              minWidth: _chartMinWidth // opacity: 0,
+
             },
             marginTop: 60,
             marginLeft: 60
@@ -1232,8 +1256,8 @@ jQuery(document).ready(function ($) {
             },
             states: {
               hover: {
-                enabled: false // color: '#fed63f',
-
+                // enabled: false,
+                color: '#fed63f'
               },
               inactive: {
                 opacity: 1
@@ -1247,6 +1271,7 @@ jQuery(document).ready(function ($) {
                   if (!showGridLine) return;
                   var magicNumber = 59;
                   vr.style.left = "".concat(target.clientX - target.pointWidth / 2 + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft, "px");
+                  vr.style.marginLeft = '';
                   vr.classList.add('active');
                 },
                 mouseOut: function mouseOut() {
