@@ -716,10 +716,10 @@ jQuery(document).ready(function ($) {
       var dataWrapper = $('.object-calc__income-data');
       var income = dataWrapper.find('.object-calc__income .value');
       var share = dataWrapper.find('.object-calc__share .value');
+      var step = dataWrapper.find('.object-calc__step .value');
       var rateNode = dataWrapper.find('.object-calc__rate');
       var rateValue = rateNode.find('.value');
       var basicRate = rateNode.data('rate');
-      var customRate = null;
       var libetyRate = rateNode.data('liberty-rate');
       var initialValue = dataWrapper.data('initial');
       var minValue = dataWrapper.data('min');
@@ -727,13 +727,16 @@ jQuery(document).ready(function ($) {
       var basicStep = dataWrapper.data('step');
       var libertyStep = dataWrapper.data('liberty-step');
       var stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
-      initRangeSlider(); // income.on('input', e => {
-      //     let newVal = format.from(e.target.textContent.trim());
-      //     if (!newVal) newVal = 0;
-      //     console.log(newVal);
-      //     e.target.textContent = newVal.toLocaleString('ru-Ru');
-      // })
-
+      var customRate = null;
+      var customStep = null;
+      initRangeSlider();
+      income.on('input', function (e) {
+        var newVal = format.from(e.target.textContent.trim());
+        var caretPosition = getCaretPosition(e.target);
+        if (!newVal) newVal = 0;
+        e.target.textContent = format.to(newVal);
+        setCaretPosition(e.target, caretPosition);
+      });
       income.on('blur', function (e) {
         var changedValue = format.from(e.target.textContent.trim());
         income.text(format.to(changedValue));
@@ -748,6 +751,12 @@ jQuery(document).ready(function ($) {
         var newSliderValue = changedValue * basicStep;
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
+      });
+      step.on('blur', function (e) {
+        var changedValue = format.from(e.target.textContent.trim());
+        if (isNaN(changedValue)) changedValue = +basicStep;
+        customStep = changedValue;
+        updateRangesStep(customStep); // income.text(format.to((investmentRangeSlider.noUiSlider.get() * (changedValue / 100)) / 12));
       });
       rateValue.on('blur', function (e) {
         var changedValue = parseFloat(e.target.textContent.trim());
@@ -771,8 +780,8 @@ jQuery(document).ready(function ($) {
         var value = +values[handle];
         invsestmentValue.textContent = format.to(value);
         var rate = customRate ? customRate : value > LIBERTY_MIN ? libetyRate : basicRate;
-        rateValue.html(rate);
-        updateData(value, rate);
+        var step = customStep ? customStep : value > LIBERTY_MIN ? libertyStep : basicStep;
+        updateData(value, rate, step);
       });
       investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
         var value = +values[handle];
@@ -795,13 +804,15 @@ jQuery(document).ready(function ($) {
         });
       }
 
-      function updateData(value, rate) {
+      function updateData(value, rate, stepValue) {
         share.text(Math.floor(value / stepValue));
         income.text(format.to(value * rate / 100 / 12));
+        rateValue.text(rate);
+        step.text(format.to(stepValue));
       }
 
       function updateRangesStep(value) {
-        var step = value > LIBERTY_MIN ? libertyStep : basicStep;
+        var step = customStep ? customStep : value > LIBERTY_MIN ? libertyStep : basicStep;
         investmentRangeSlider.noUiSlider.updateOptions({
           step: step
         }, false);
@@ -821,6 +832,47 @@ jQuery(document).ready(function ($) {
       function submitData() {
         var finalSelectedValue = investmentRangeSlider.noUiSlider.get();
         postData('url', "investment=".concat(finalSelectedValue)).then(function (data) {});
+      }
+
+      function setCaretPosition(el, position) {
+        var range = document.createRange();
+        var sel = window.getSelection();
+        debugger;
+        range.setStart(el.childNodes[0], position);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+
+      function getCaretPosition(elem) {
+        var caretPos = 0,
+            sel,
+            range;
+
+        if (window.getSelection) {
+          sel = window.getSelection();
+
+          if (sel.rangeCount) {
+            range = sel.getRangeAt(0);
+
+            if (range.commonAncestorContainer.parentNode == elem) {
+              caretPos = range.endOffset;
+            }
+          }
+        } else if (document.selection && document.selection.createRange) {
+          range = document.selection.createRange();
+
+          if (range.parentElement() == elem) {
+            var tempEl = document.createElement('span');
+            elem.insertBefore(tempEl, elem.firstChild);
+            var tempRange = range.duplicate();
+            tempRange.moveToElementText(tempEl);
+            tempRange.setEndPoint('EndToEnd', range);
+            caretPos = tempRange.text.length;
+          }
+        }
+
+        return caretPos;
       }
     })();
 

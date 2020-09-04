@@ -25,6 +25,10 @@ mixin object-calc()
                             span.value(contenteditable='true') 0
                         +e.data-label Приобретенных паев
                     +e.data-row
+                        +e.data-value.__step
+                            span.value(contenteditable='true') 0
+                        +e.data-label Стоимость пая
+                    +e.data-row
                         +e.data-value.__rate(data-rate='12.8' data-liberty-rate='13.8') 
                             span.value(contenteditable='true') 12.8
                             span.suffix %

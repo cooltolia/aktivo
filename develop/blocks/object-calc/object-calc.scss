@@ -211,6 +211,10 @@
 
         font-size: 28px;
         font-weight: 600;
+
+        .value {
+            outline-offset: 2px;
+        }
     }
 
     &__data-label {

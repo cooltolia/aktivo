@@ -5047,6 +5047,8 @@ th {
     margin: 0 0 5px;
     font-size: 28px;
     font-weight: 600; }
+    .object-calc__data-value .value {
+      outline-offset: 2px; }
   .object-calc__data-label {
     font-size: 14px; }
   .object-calc__button {
@@ -5751,10 +5753,9 @@ th {
     width: 188px; }
     .object-finances__table tr:first-child td:first-child + td {
       padding-left: 188px;
-      width: 313px;
-      text-align: center; }
+      width: 313px; }
   .object-finances__table tr:first-child td {
-    text-align: right;
+    text-align: center;
     font-size: 15px; }
   .object-finances__table tr:first-child .heading {
     bottom: 30px;

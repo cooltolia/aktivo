@@ -18,11 +18,12 @@
     const dataWrapper = $('.object-calc__income-data');
     const income = dataWrapper.find('.object-calc__income .value');
     const share = dataWrapper.find('.object-calc__share .value');
+    const step = dataWrapper.find('.object-calc__step .value');
 
     const rateNode = dataWrapper.find('.object-calc__rate');
     const rateValue = rateNode.find('.value');
     const basicRate = rateNode.data('rate');
-    let customRate = null;
+
     const libetyRate = rateNode.data('liberty-rate');
 
     const initialValue = dataWrapper.data('initial');
@@ -33,13 +34,18 @@
 
     const stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
 
+    let customRate = null;
+    let customStep = null;
+
     initRangeSlider();
-    // income.on('input', e => {
-    //     let newVal = format.from(e.target.textContent.trim());
-    //     if (!newVal) newVal = 0;
-    //     console.log(newVal);
-    //     e.target.textContent = newVal.toLocaleString('ru-Ru');
-    // })
+    
+    income.on('input', (e) => {
+        let newVal = format.from(e.target.textContent.trim());
+        const caretPosition = getCaretPosition(e.target);
+        if (!newVal) newVal = 0;
+        e.target.textContent = format.to(newVal);
+        setCaretPosition(e.target, caretPosition)
+    });
 
     income.on('blur', function (e) {
         const changedValue = format.from(e.target.textContent.trim());
@@ -59,6 +65,15 @@
 
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
+    });
+
+    step.on('blur', function (e) {
+        let changedValue = format.from(e.target.textContent.trim());
+        if (isNaN(changedValue)) changedValue = +basicStep;
+        customStep = changedValue;
+        updateRangesStep(customStep);
+
+        // income.text(format.to((investmentRangeSlider.noUiSlider.get() * (changedValue / 100)) / 12));
     });
 
     rateValue.on('blur', function (e) {
@@ -88,9 +103,9 @@
         invsestmentValue.textContent = format.to(value);
 
         const rate = customRate ? customRate : value > LIBERTY_MIN ? libetyRate : basicRate;
-        rateValue.html(rate);
+        const step = customStep ? customStep : value > LIBERTY_MIN ? libertyStep : basicStep;
 
-        updateData(value, rate);
+        updateData(value, rate, step);
     });
 
     investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
@@ -117,13 +132,15 @@
         });
     }
 
-    function updateData(value, rate) {
+    function updateData(value, rate, stepValue) {
         share.text(Math.floor(value / stepValue));
         income.text(format.to((value * rate) / 100 / 12));
+        rateValue.text(rate);
+        step.text(format.to(stepValue));
     }
 
     function updateRangesStep(value) {
-        const step = value > LIBERTY_MIN ? libertyStep : basicStep;
+        const step = customStep ? customStep : value > LIBERTY_MIN ? libertyStep : basicStep;
 
         investmentRangeSlider.noUiSlider.updateOptions({ step }, false);
     }
@@ -143,5 +160,43 @@
     function submitData() {
         const finalSelectedValue = investmentRangeSlider.noUiSlider.get();
         postData('url', `investment=${finalSelectedValue}`).then((data) => {});
+    }
+
+    function setCaretPosition(el, position) {
+        var range = document.createRange();
+        var sel = window.getSelection();
+        debugger;
+
+        range.setStart(el.childNodes[0], position);
+        range.collapse(true);
+
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+
+    function getCaretPosition(elem) {
+        var caretPos = 0,
+            sel,
+            range;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                if (range.commonAncestorContainer.parentNode == elem) {
+                    caretPos = range.endOffset;
+                }
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            if (range.parentElement() == elem) {
+                var tempEl = document.createElement('span');
+                elem.insertBefore(tempEl, elem.firstChild);
+                var tempRange = range.duplicate();
+                tempRange.moveToElementText(tempEl);
+                tempRange.setEndPoint('EndToEnd', range);
+                caretPos = tempRange.text.length;
+            }
+        }
+        return caretPos;
     }
 })();
