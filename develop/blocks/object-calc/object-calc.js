@@ -2,90 +2,90 @@
     const objectCalc = document.querySelector('.object-calc');
     if (!objectCalc) return;
 
+    /** DOM varaibles */
+
     const investmentRangeSlider = document.querySelector('.object-calc__investment-range');
     const invsestmentValue = document.querySelector('.object-calc__investment-value');
 
     const submitDataButton = document.querySelector('.object-calc__button');
 
-    const format = wNumb({
-        decimals: 0,
-        // suffix: ' \u20BD',
-        thousand: ' ',
-    });
+    /**
+     * result column nodes
+     */
 
-    const LIBERTY_MIN = 10000000;
+    const dataWrapper = document.querySelector('.object-calc__income-data');
+    const $incomeValue = dataWrapper.querySelector('.object-calc__income .value');
+    const $shareValue = dataWrapper.querySelector('.object-calc__share .value');
+    const $stepValue = dataWrapper.querySelector('.object-calc__step .value');
+    const $rateValue = dataWrapper.querySelector('.object-calc__rate .value');
 
-    const dataWrapper = $('.object-calc__income-data');
-    const income = dataWrapper.find('.object-calc__income .value');
-    const share = dataWrapper.find('.object-calc__share .value');
-    const step = dataWrapper.find('.object-calc__step .value');
+    /**
+     *  initial values for calculation
+     */
 
-    const rateNode = dataWrapper.find('.object-calc__rate');
-    const rateValue = rateNode.find('.value');
-    const basicRate = rateNode.data('rate');
+    const initialValue = parseInt(dataWrapper.dataset.initial);
+    const minValue = parseInt(dataWrapper.dataset.min);
+    const maxValue = parseInt(dataWrapper.dataset.max);
+    const basicStep = parseInt(dataWrapper.dataset.step);
+    const basicRate = parseFloat(dataWrapper.dataset.rate);
 
-    const libetyRate = rateNode.data('liberty-rate');
+    const minStepDivider = minValue / basicStep;
 
-    const initialValue = dataWrapper.data('initial');
-    const minValue = dataWrapper.data('min');
-    const maxValue = dataWrapper.data('max');
-    const basicStep = dataWrapper.data('step');
-    const libertyStep = dataWrapper.data('liberty-step');
-
-    const stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
-
+    /** step and rate can be overwritten by user */
     let customRate = null;
     let customStep = null;
 
-    initRangeSlider();
-    
-    income.on('input', (e) => {
-        let newVal = format.from(e.target.textContent.trim());
-        const caretPosition = getCaretPosition(e.target);
-        if (!newVal) newVal = 0;
-        e.target.textContent = format.to(newVal);
-        setCaretPosition(e.target, caretPosition)
+    const format = wNumb({
+        decimals: 0,
+        thousand: ' ',
     });
 
-    income.on('blur', function (e) {
-        const changedValue = format.from(e.target.textContent.trim());
-        income.text(format.to(changedValue));
-        const currentRate = parseInt(rateValue.text());
-        const newSliderValue = ((changedValue * 12) / currentRate) * 100;
+    /**
+     *editing default values
+     */
+
+    $incomeValue.addEventListener('blur', function (e) {
+        const newIncome = format.from($incomeValue.textContent.trim());
+        $incomeValue.textContent = format.to(newIncome);
+
+        debugger;
+
+        const currentRate = parseFloat($rateValue.textContent);
+        const newSliderValue = ((newIncome * 12) / currentRate) * 100;
 
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
     });
 
-    share.on('blur', function (e) {
-        let changedValue = parseInt(e.target.textContent.trim());
-        if (isNaN(changedValue)) changedValue = minValue / basicStep;
+    $shareValue.addEventListener('blur', function (e) {
+        let newShare = parseInt($shareValue.textContent.trim());
+        if (isNaN(newShare)) newShare = minValue / basicStep;
 
-        const newSliderValue = changedValue * basicStep;
+        const newSliderValue = newShare * basicStep;
 
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
     });
 
-    step.on('blur', function (e) {
-        let changedValue = format.from(e.target.textContent.trim());
-        if (isNaN(changedValue)) changedValue = +basicStep;
-        customStep = changedValue;
+    $stepValue.addEventListener('blur', function (e) {
+        let newStep = format.from($stepValue.textContent.trim());
+        if (isNaN(newStep)) newStep = parseInt(basicStep);
+
+        customStep = newStep;
+
         updateRangesStep(customStep);
-
-        // income.text(format.to((investmentRangeSlider.noUiSlider.get() * (changedValue / 100)) / 12));
     });
 
-    rateValue.on('blur', function (e) {
-        let changedValue = parseFloat(e.target.textContent.trim());
-        if (isNaN(changedValue)) changedValue = +basicRate;
+    $rateValue.addEventListener('blur', function (e) {
+        let newRate = parseFloat($rateValue.textContent.trim());
+        if (isNaN(newRate)) newRate = parseFloat(basicRate);
 
-        customRate = changedValue;
+        customRate = newRate;
 
-        income.text(format.to((investmentRangeSlider.noUiSlider.get() * (changedValue / 100)) / 12));
+        $incomeValue.textContent = format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12);
     });
 
-    document.addEventListener('keypress', (e) => {
+    document.addEventListener('keypress', function (e) {
         if (e.keyCode === 13 && e.target.classList.contains('value') && e.target.isContentEditable) {
             e.preventDefault();
             e.stopPropagation();
@@ -93,67 +93,73 @@
         }
     });
 
+    initRangeSlider();
+
     submitDataButton.addEventListener('click', submitData);
 
-    /**
+    /*
      * interactions with range slider
      */
+
     investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
-        const value = +values[handle];
+        console.log('update');
+        let value = +values[handle];
         invsestmentValue.textContent = format.to(value);
 
-        const rate = customRate ? customRate : value > LIBERTY_MIN ? libetyRate : basicRate;
-        const step = customStep ? customStep : value > LIBERTY_MIN ? libertyStep : basicStep;
-
-        updateData(value, rate, step);
+        const rate = customRate ? customRate : basicRate;
+        const step = customStep ? customStep : basicStep;
+       
+        updateResultData(value, rate, step);
+        
     });
 
-    investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
-        const value = +values[handle];
-        updateRangesStep(value);
-    });
-
-    // investmentRangeSlider.noUiSlider.on('change', () => {
-    //     animateRangeSlider();
-    // });
-
-    // helper functions
+    /**
+     * helper functions
+     */
 
     function initRangeSlider() {
         noUiSlider.create(investmentRangeSlider, {
             start: initialValue,
-            step: stepValue,
+            step: basicStep,
             animate: false,
             connect: 'lower',
             range: {
-                min: minValue,
+                min: 0,
                 max: maxValue,
             },
+            padding: [minValue, 0],
         });
     }
 
-    function updateData(value, rate, stepValue) {
-        share.text(Math.floor(value / stepValue));
-        income.text(format.to((value * rate) / 100 / 12));
-        rateValue.text(rate);
-        step.text(format.to(stepValue));
+    function updateResultData(value, rate, step) {
+        $incomeValue.textContent = format.to((value * rate) / 100 / 12);
+        $shareValue.textContent = Math.floor(value / step);
+        $rateValue.textContent = rate;
+        $stepValue.textContent = format.to(step);
     }
 
-    function updateRangesStep(value) {
-        const step = customStep ? customStep : value > LIBERTY_MIN ? libertyStep : basicStep;
-
-        investmentRangeSlider.noUiSlider.updateOptions({ step }, false);
+    function updateRangesStep(step) {
+        const minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
+        const maxPadding = (maxValue % step === 0) ? 0 : step;
+        console.log(maxPadding);
+        investmentRangeSlider.noUiSlider.updateOptions(
+            {
+                step,
+                padding: [minPadding, maxPadding],
+            },
+            false
+        );
     }
 
     function animateRangeSlider() {
-        const rangeLine = $('.noUi-connect');
-        const rangeHandle = $('.noUi-origin');
-        rangeLine.addClass('transition');
-        rangeHandle.addClass('transition');
+        const rangeLine = document.querySelector('.noUi-connect');
+        const rangeHandle = document.querySelector('.noUi-origin');
+        rangeLine.classList.add('transition');
+        rangeHandle.classList.add('transition');
 
         setTimeout(() => {
-            rangeLine.removeClass('transition');
-            rangeHandle.removeClass('transition');
+            rangeLine.classList.remove('transition');
+            rangeHandle.classList.remove('transition');
         }, 300);
     }
 
@@ -162,41 +168,4 @@
         postData('url', `investment=${finalSelectedValue}`).then((data) => {});
     }
 
-    function setCaretPosition(el, position) {
-        var range = document.createRange();
-        var sel = window.getSelection();
-        debugger;
-
-        range.setStart(el.childNodes[0], position);
-        range.collapse(true);
-
-        sel.removeAllRanges();
-        sel.addRange(range);
-    }
-
-    function getCaretPosition(elem) {
-        var caretPos = 0,
-            sel,
-            range;
-        if (window.getSelection) {
-            sel = window.getSelection();
-            if (sel.rangeCount) {
-                range = sel.getRangeAt(0);
-                if (range.commonAncestorContainer.parentNode == elem) {
-                    caretPos = range.endOffset;
-                }
-            }
-        } else if (document.selection && document.selection.createRange) {
-            range = document.selection.createRange();
-            if (range.parentElement() == elem) {
-                var tempEl = document.createElement('span');
-                elem.insertBefore(tempEl, elem.firstChild);
-                var tempRange = range.duplicate();
-                tempRange.moveToElementText(tempEl);
-                tempRange.setEndPoint('EndToEnd', range);
-                caretPos = tempRange.text.length;
-            }
-        }
-        return caretPos;
-    }
 })();

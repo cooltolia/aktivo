@@ -704,65 +704,69 @@ jQuery(document).ready(function ($) {
     (function () {
       var objectCalc = document.querySelector('.object-calc');
       if (!objectCalc) return;
+      /** DOM varaibles */
+
       var investmentRangeSlider = document.querySelector('.object-calc__investment-range');
       var invsestmentValue = document.querySelector('.object-calc__investment-value');
       var submitDataButton = document.querySelector('.object-calc__button');
-      var format = wNumb({
-        decimals: 0,
-        // suffix: ' \u20BD',
-        thousand: ' '
-      });
-      var LIBERTY_MIN = 10000000;
-      var dataWrapper = $('.object-calc__income-data');
-      var income = dataWrapper.find('.object-calc__income .value');
-      var share = dataWrapper.find('.object-calc__share .value');
-      var step = dataWrapper.find('.object-calc__step .value');
-      var rateNode = dataWrapper.find('.object-calc__rate');
-      var rateValue = rateNode.find('.value');
-      var basicRate = rateNode.data('rate');
-      var libetyRate = rateNode.data('liberty-rate');
-      var initialValue = dataWrapper.data('initial');
-      var minValue = dataWrapper.data('min');
-      var maxValue = dataWrapper.data('max');
-      var basicStep = dataWrapper.data('step');
-      var libertyStep = dataWrapper.data('liberty-step');
-      var stepValue = initialValue > LIBERTY_MIN ? libertyStep : basicStep;
+      /**
+       * result column nodes
+       */
+
+      var dataWrapper = document.querySelector('.object-calc__income-data');
+      var $incomeValue = dataWrapper.querySelector('.object-calc__income .value');
+      var $shareValue = dataWrapper.querySelector('.object-calc__share .value');
+      var $stepValue = dataWrapper.querySelector('.object-calc__step .value');
+      var $rateValue = dataWrapper.querySelector('.object-calc__rate .value');
+      /**
+       *  initial values for calculation
+       */
+
+      var initialValue = parseInt(dataWrapper.dataset.initial);
+      var minValue = parseInt(dataWrapper.dataset.min);
+      var maxValue = parseInt(dataWrapper.dataset.max);
+      var basicStep = parseInt(dataWrapper.dataset.step);
+      var basicRate = parseFloat(dataWrapper.dataset.rate);
+      var minStepDivider = minValue / basicStep;
+      /** step and rate can be overwritten by user */
+
       var customRate = null;
       var customStep = null;
-      initRangeSlider();
-      income.on('input', function (e) {
-        var newVal = format.from(e.target.textContent.trim());
-        var caretPosition = getCaretPosition(e.target);
-        if (!newVal) newVal = 0;
-        e.target.textContent = format.to(newVal);
-        setCaretPosition(e.target, caretPosition);
+      var format = wNumb({
+        decimals: 0,
+        thousand: ' '
       });
-      income.on('blur', function (e) {
-        var changedValue = format.from(e.target.textContent.trim());
-        income.text(format.to(changedValue));
-        var currentRate = parseInt(rateValue.text());
-        var newSliderValue = changedValue * 12 / currentRate * 100;
+      /**
+       *editing default values
+       */
+
+      $incomeValue.addEventListener('blur', function (e) {
+        var newIncome = format.from($incomeValue.textContent.trim());
+        $incomeValue.textContent = format.to(newIncome);
+        debugger;
+        var currentRate = parseFloat($rateValue.textContent);
+        var newSliderValue = newIncome * 12 / currentRate * 100;
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
       });
-      share.on('blur', function (e) {
-        var changedValue = parseInt(e.target.textContent.trim());
-        if (isNaN(changedValue)) changedValue = minValue / basicStep;
-        var newSliderValue = changedValue * basicStep;
+      $shareValue.addEventListener('blur', function (e) {
+        var newShare = parseInt($shareValue.textContent.trim());
+        if (isNaN(newShare)) newShare = minValue / basicStep;
+        var newSliderValue = newShare * basicStep;
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
       });
-      step.on('blur', function (e) {
-        var changedValue = format.from(e.target.textContent.trim());
-        if (isNaN(changedValue)) changedValue = +basicStep;
-        customStep = changedValue;
-        updateRangesStep(customStep); // income.text(format.to((investmentRangeSlider.noUiSlider.get() * (changedValue / 100)) / 12));
+      $stepValue.addEventListener('blur', function (e) {
+        var newStep = format.from($stepValue.textContent.trim());
+        if (isNaN(newStep)) newStep = parseInt(basicStep);
+        customStep = newStep;
+        updateRangesStep(customStep);
       });
-      rateValue.on('blur', function (e) {
-        var changedValue = parseFloat(e.target.textContent.trim());
-        if (isNaN(changedValue)) changedValue = +basicRate;
-        customRate = changedValue;
-        income.text(format.to(investmentRangeSlider.noUiSlider.get() * (changedValue / 100) / 12));
+      $rateValue.addEventListener('blur', function (e) {
+        var newRate = parseFloat($rateValue.textContent.trim());
+        if (isNaN(newRate)) newRate = parseFloat(basicRate);
+        customRate = newRate;
+        $incomeValue.textContent = format.to(investmentRangeSlider.noUiSlider.get() * (newRate / 100) / 12);
       });
       document.addEventListener('keypress', function (e) {
         if (e.keyCode === 13 && e.target.classList.contains('value') && e.target.isContentEditable) {
@@ -771,108 +775,69 @@ jQuery(document).ready(function ($) {
           e.target.blur();
         }
       });
+      initRangeSlider();
       submitDataButton.addEventListener('click', submitData);
-      /**
+      /*
        * interactions with range slider
        */
 
       investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
+        console.log('update');
         var value = +values[handle];
         invsestmentValue.textContent = format.to(value);
-        var rate = customRate ? customRate : value > LIBERTY_MIN ? libetyRate : basicRate;
-        var step = customStep ? customStep : value > LIBERTY_MIN ? libertyStep : basicStep;
-        updateData(value, rate, step);
+        var rate = customRate ? customRate : basicRate;
+        var step = customStep ? customStep : basicStep;
+        updateResultData(value, rate, step);
       });
-      investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
-        var value = +values[handle];
-        updateRangesStep(value);
-      }); // investmentRangeSlider.noUiSlider.on('change', () => {
-      //     animateRangeSlider();
-      // });
-      // helper functions
+      /**
+       * helper functions
+       */
 
       function initRangeSlider() {
         noUiSlider.create(investmentRangeSlider, {
           start: initialValue,
-          step: stepValue,
+          step: basicStep,
           animate: false,
           connect: 'lower',
           range: {
-            min: minValue,
+            min: 0,
             max: maxValue
-          }
+          },
+          padding: [minValue, 0]
         });
       }
 
-      function updateData(value, rate, stepValue) {
-        share.text(Math.floor(value / stepValue));
-        income.text(format.to(value * rate / 100 / 12));
-        rateValue.text(rate);
-        step.text(format.to(stepValue));
+      function updateResultData(value, rate, step) {
+        $incomeValue.textContent = format.to(value * rate / 100 / 12);
+        $shareValue.textContent = Math.floor(value / step);
+        $rateValue.textContent = rate;
+        $stepValue.textContent = format.to(step);
       }
 
-      function updateRangesStep(value) {
-        var step = customStep ? customStep : value > LIBERTY_MIN ? libertyStep : basicStep;
+      function updateRangesStep(step) {
+        var minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
+        var maxPadding = maxValue % step === 0 ? 0 : step;
+        console.log(maxPadding);
         investmentRangeSlider.noUiSlider.updateOptions({
-          step: step
+          step: step,
+          padding: [minPadding, maxPadding]
         }, false);
       }
 
       function animateRangeSlider() {
-        var rangeLine = $('.noUi-connect');
-        var rangeHandle = $('.noUi-origin');
-        rangeLine.addClass('transition');
-        rangeHandle.addClass('transition');
+        var rangeLine = document.querySelector('.noUi-connect');
+        var rangeHandle = document.querySelector('.noUi-origin');
+        rangeLine.classList.add('transition');
+        rangeHandle.classList.add('transition');
         setTimeout(function () {
-          rangeLine.removeClass('transition');
-          rangeHandle.removeClass('transition');
+          rangeLine.classList.remove('transition');
+          rangeHandle.classList.remove('transition');
         }, 300);
       }
 
       function submitData() {
         var finalSelectedValue = investmentRangeSlider.noUiSlider.get();
         postData('url', "investment=".concat(finalSelectedValue)).then(function (data) {});
-      }
-
-      function setCaretPosition(el, position) {
-        var range = document.createRange();
-        var sel = window.getSelection();
-        debugger;
-        range.setStart(el.childNodes[0], position);
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-
-      function getCaretPosition(elem) {
-        var caretPos = 0,
-            sel,
-            range;
-
-        if (window.getSelection) {
-          sel = window.getSelection();
-
-          if (sel.rangeCount) {
-            range = sel.getRangeAt(0);
-
-            if (range.commonAncestorContainer.parentNode == elem) {
-              caretPos = range.endOffset;
-            }
-          }
-        } else if (document.selection && document.selection.createRange) {
-          range = document.selection.createRange();
-
-          if (range.parentElement() == elem) {
-            var tempEl = document.createElement('span');
-            elem.insertBefore(tempEl, elem.firstChild);
-            var tempRange = range.duplicate();
-            tempRange.moveToElementText(tempEl);
-            tempRange.setEndPoint('EndToEnd', range);
-            caretPos = tempRange.text.length;
-          }
-        }
-
-        return caretPos;
       }
     })();
 
@@ -899,8 +864,6 @@ jQuery(document).ready(function ($) {
       var dataCells = financesTable.querySelectorAll('tr:not(:first-child) td');
       var cellHeight = dataCells[0].getBoundingClientRect().height;
       var regularCellWidth = dataCells[1].getBoundingClientRect().width;
-      var firstCellWidth = dataCells[0].getBoundingClientRect().width;
-      console.log(regularCellWidth);
       var hr = document.querySelector('.object-finances__hr');
       var vr = document.querySelector('.object-finances__vr');
       var formatValue = wNumb({

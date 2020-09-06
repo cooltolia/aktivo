@@ -13,8 +13,6 @@
     const dataCells = financesTable.querySelectorAll('tr:not(:first-child) td');
     const cellHeight = dataCells[0].getBoundingClientRect().height;
     const regularCellWidth = dataCells[1].getBoundingClientRect().width;
-    const firstCellWidth = dataCells[0].getBoundingClientRect().width;
-    console.log(regularCellWidth);
 
     const hr = document.querySelector('.object-finances__hr');
     const vr = document.querySelector('.object-finances__vr');
