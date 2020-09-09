@@ -51,7 +51,6 @@
         cell.addEventListener('mouseout', () => {
             hr.classList.remove('active');
             vr.classList.remove('active');
-            
         });
     });
 
@@ -98,7 +97,7 @@
             jumpPrev.classList.add('active');
             if (value > maxScrollLeft) {
                 clearInterval(mouseTimer);
-                return;
+                // return;
             }
 
             if (value >= maxScrollLeft - regularCellWidth) {
@@ -135,57 +134,41 @@
         }
     }
     function jumpingNext(e) {
-        update();
+        const value = financesTable.scrollLeft + regularCellWidth * 6;
 
-        mouseTimer = setInterval(update, 500);
+        jumpPrev.classList.add('active');
+        scrollPrev.classList.add('active');
 
-        function update() {
-            const value = financesTable.scrollLeft + regularCellWidth * 6;
-
-            jumpPrev.classList.add('active');
-            scrollPrev.classList.add('active');
-            if (value > maxScrollLeft) {
-                smoothLeftScroll(maxScrollLeft);
-                clearInterval(mouseTimer);
-            }
-
-            if (value >= maxScrollLeft - regularCellWidth * 6) {
-                jumpNext.classList.remove('active');
-                scrollNext.classList.remove('active');
-            }
-            // smoothLeftScroll(value);
+        if (value >= maxScrollLeft - regularCellWidth * 6) {
+            smoothLeftScroll(maxScrollLeft);
+            jumpNext.classList.remove('active');
+            scrollNext.classList.remove('active');
+        } else {
+            smoothLeftScroll(value);
         }
     }
 
     function jumpingPrev() {
-        update();
+        const value = financesTable.scrollLeft - regularCellWidth * 6;
 
-        mouseTimer = setInterval(update, 500);
+        if (value <= -regularCellWidth) {
+            smoothLeftScroll(0);
+        }
 
-        function update() {
-            const value = financesTable.scrollLeft - regularCellWidth * 6;
+        if (value <= 0) {
+            jumpPrev.classList.remove('active');
+            scrollPrev.classList.remove('active');
+        }
 
-            if (value <= -regularCellWidth) {
-                smoothLeftScroll(0);
-                clearInterval(mouseTimer);
-            }
-
-            if (value <= 0) {
-                jumpPrev.classList.remove('active');
-                scrollPrev.classList.remove('active');
-            }
-
-            if (value <= maxScrollLeft) {
-                jumpNext.classList.add('active');
-                scrollNext.classList.add('active');
-                smoothLeftScroll(value);
-            }
+        if (value <= maxScrollLeft) {
+            jumpNext.classList.add('active');
+            scrollNext.classList.add('active');
+            smoothLeftScroll(value);
         }
     }
 
     if (lineChart) {
         const data = [
-            3650.28,
             99999.8,
             242277.779,
             3172259.31,
@@ -196,25 +179,35 @@
             2795352.5,
             4823505.42,
             2925765.61,
-            2570890.35,
-            4195441.54,
-            1001971.62,
-            3348942.76,
-            4656600.96,
-            3395237.74,
-            2890238.47,
-            3082031.01,
-            2952247,
-            4196775.21,
-            3602760.57,
-            4025475.32,
-            2729290.73,
-            3654850.22,
-            1135382.72,
-            2504889.49,
-            2557290.57,
-            1795512.88,
-            3098144.21,
+            99999.8,
+            242277.779,
+            3172259.31,
+            1669890.65,
+            1647254.72,
+            2863786.35,
+            2513992.47,
+            2795352.5,
+            4823505.42,
+            2925765.61,
+            // 2570890.35,
+            // 4195441.54,
+            // 1001971.62,
+            // 3348942.76,
+            // 4656600.96,
+            // 3395237.74,
+            // 2890238.47,
+            // 3082031.01,
+            // 2952247,
+            // 4196775.21,
+            // 3602760.57,
+            // 4025475.32,
+            // 2729290.73,
+            // 3654850.22,
+            // 1135382.72,
+            // 2504889.49,
+            // 2557290.57,
+            // 1795512.88,
+            // 3098144.21,
             null,
         ];
         const categories = [
@@ -228,26 +221,36 @@
             'Март 2018',
             'Апрель 2018',
             'Май 2018',
-            'Июнь 2018',
-            'Июль 2018',
-            'Август 2018',
-            'Сентябрь 2018',
-            'Октябрь 2018',
-            'Ноябрь 2018',
-            'Декабрь 2018',
-            'Январь 2019',
-            'Февраль 2019',
-            'Март 2019',
-            'Апрель 2019',
-            'Май 2019',
-            'Июнь 2019',
-            'Июль 2019',
-            'Август 2019',
-            'Сентябрь 2019',
-            'Октябрь 2019',
-            'Ноябрь 2019',
-            'Декабрь 2019',
-            'Январь 2020',
+            'Август 2017',
+            'Сентябрь 2017',
+            'Октябрь 2017',
+            'Ноябрь 2017',
+            'Декабрь 2017',
+            'Январь 2018',
+            'Февраль 2018',
+            'Март 2018',
+            'Апрель 2018',
+            'Май 2018',
+            // 'Июнь 2018',
+            // 'Июль 2018',
+            // 'Август 2018',
+            // 'Сентябрь 2018',
+            // 'Октябрь 2018',
+            // 'Ноябрь 2018',
+            // 'Декабрь 2018',
+            // 'Январь 2019',
+            // 'Февраль 2019',
+            // 'Март 2019',
+            // 'Апрель 2019',
+            // 'Май 2019',
+            // 'Июнь 2019',
+            // 'Июль 2019',
+            // 'Август 2019',
+            // 'Сентябрь 2019',
+            // 'Октябрь 2019',
+            // 'Ноябрь 2019',
+            // 'Декабрь 2019',
+            // 'Январь 2020',
             '',
         ];
         const columnWidth = regularCellWidth;
@@ -366,40 +369,8 @@
     }
 
     if (columnChart) {
-        const data = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
-        const percentage = [
-            48,
-            8,
-            7,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            null,
-        ];
+        const data = [480, 80, 70, 0, 0, 0, 0, 0, 0, 70, 489, 89, 70, 0, 0, 0, 0, 0, 0, 7, null];
+        const percentage = [48, 8, 7, 0, 0, 0, 0, 0, 0, 7, 48, 8, 7, 0, 0, 0, 0, 0, 0, 7, null];
         const categories = [
             'Август 2017',
             'Сентябрь 2017',
@@ -411,26 +382,36 @@
             'Март 2018',
             'Апрель 2018',
             'Май 2018',
-            'Июнь 2018',
-            'Июль 2018',
-            'Август 2018',
-            'Сентябрь 2018',
-            'Октябрь 2018',
-            'Ноябрь 2018',
-            'Декабрь 2018',
-            'Январь 2019',
-            'Февраль 2019',
-            'Март 2019',
-            'Апрель 2019',
-            'Май 2019',
-            'Июнь 2019',
-            'Июль 2019',
-            'Август 2019',
-            'Сентябрь 2019',
-            'Октябрь 2019',
-            'Ноябрь 2019',
-            'Декабрь 2019',
-            'Январь 2020',
+            'Август 2017',
+            'Сентябрь 2017',
+            'Октябрь 2017',
+            'Ноябрь 2017',
+            'Декабрь 2017',
+            'Январь 2018',
+            'Февраль 2018',
+            'Март 2018',
+            'Апрель 2018',
+            'Май 2018',
+            // 'Июнь 2018',
+            // 'Июль 2018',
+            // 'Август 2018',
+            // 'Сентябрь 2018',
+            // 'Октябрь 2018',
+            // 'Ноябрь 2018',
+            // 'Декабрь 2018',
+            // 'Январь 2019',
+            // 'Февраль 2019',
+            // 'Март 2019',
+            // 'Апрель 2019',
+            // 'Май 2019',
+            // 'Июнь 2019',
+            // 'Июль 2019',
+            // 'Август 2019',
+            // 'Сентябрь 2019',
+            // 'Октябрь 2019',
+            // 'Ноябрь 2019',
+            // 'Декабрь 2019',
+            // 'Январь 2020',
             '',
         ];
         const columnWidth = regularCellWidth;
@@ -438,7 +419,6 @@
 
         Highcharts.chart('columnChart', {
             chart: {
-                // type: 'column',
                 scrollablePlotArea: {
                     minWidth: chartMinWidth,
                     // opacity: 0,
@@ -456,7 +436,6 @@
                 tickPixelInterval: columnWidth,
                 width: columnWidth * data.length,
                 offset: 30,
-                // height: 40,
                 lineWidth: 0,
                 tickWidth: 0,
                 labels: {
@@ -475,7 +454,6 @@
                 {
                     title: false,
                     gridLineColor: '#f2f2f2',
-                    // offset: 50,
                     labels: {
                         padding: 0,
                         style: {
@@ -483,7 +461,6 @@
                             fontSize: labelFontSize,
                             fontWeight: '600',
                             fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
-                            // paddingLeft: '5px',
                             whiteSpace: 'nowrap',
                         },
                     },
@@ -491,8 +468,6 @@
                 {
                     visible: true,
                     gridLineColor: 'transparent',
-                    min: 0,
-                    max: 100,
                     title: false,
                     opposite: true,
                     labels: {
@@ -502,7 +477,6 @@
                             fontSize: labelFontSize,
                             fontWeight: '600',
                             fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
-                            // paddingLeft: '5px',
                             whiteSpace: 'nowrap',
                         },
                     },
@@ -516,17 +490,6 @@
                 },
                 line: {
                     dataLabels: {
-                        // align: 'center',
-                        // enabled: true,
-                        // color: 'black',
-                        // padding: 5,
-                        // // crop: false,
-                        // // overflow: 'none',
-                        // style: {
-                        //     textOutline: 'none',
-                        //     fontSize: '14px',
-                        //     fontWeight: '400',
-                        // },
                         formatter: function () {
                             return this.y + '%';
                         },
@@ -540,6 +503,7 @@
                 {
                     data,
                     type: 'column',
+
                     dataLabels: {
                         enabled: true,
                         align: 'left',
@@ -584,23 +548,13 @@
                     },
                 },
                 {
+                    data: percentage,
                     name: 'Доходность',
                     type: 'line',
-                    data: percentage,
                     color: '#000',
+                    yAxis: 1,
                     dataLabels: {
                         enabled: true,
-                        // align: 'center',
-                        // enabled: true,
-                        // color: 'black',
-                        // padding: 5,
-                        // crop: false,
-                        // overflow: 'none',
-                        // style: {
-                        //     textOutline: 'none',
-                        //     fontSize: '14px',
-                        //     fontWeight: '400',
-                        // },
                         y: 30,
                         format: '{y} %',
                         style: {
@@ -608,9 +562,6 @@
                             fontSize: '14px',
                             fontWeight: '400',
                         },
-                        // formatter: function () {
-                        //     return this.y + '%';
-                        // },
                     },
                     states: {
                         hover: {

@@ -48,8 +48,6 @@
         const newIncome = format.from($incomeValue.textContent.trim());
         $incomeValue.textContent = format.to(newIncome);
 
-        debugger;
-
         const currentRate = parseFloat($rateValue.textContent);
         const newSliderValue = ((newIncome * 12) / currentRate) * 100;
 
@@ -61,7 +59,8 @@
         let newShare = parseInt($shareValue.textContent.trim());
         if (isNaN(newShare)) newShare = minValue / basicStep;
 
-        const newSliderValue = newShare * basicStep;
+        const step = customStep ? customStep : basicStep;
+        const newSliderValue = newShare * step;
 
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
@@ -133,7 +132,7 @@
 
     function updateResultData(value, rate, step) {
         $incomeValue.textContent = format.to((value * rate) / 100 / 12);
-        $shareValue.textContent = Math.floor(value / step);
+        $shareValue.textContent = value / step;
         $rateValue.textContent = rate;
         $stepValue.textContent = format.to(step);
     }
@@ -141,7 +140,7 @@
     function updateRangesStep(step) {
         const minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
         const maxPadding = (maxValue % step === 0) ? 0 : step;
-        console.log(maxPadding);
+
         investmentRangeSlider.noUiSlider.updateOptions(
             {
                 step,

@@ -743,7 +743,6 @@ jQuery(document).ready(function ($) {
       $incomeValue.addEventListener('blur', function (e) {
         var newIncome = format.from($incomeValue.textContent.trim());
         $incomeValue.textContent = format.to(newIncome);
-        debugger;
         var currentRate = parseFloat($rateValue.textContent);
         var newSliderValue = newIncome * 12 / currentRate * 100;
         investmentRangeSlider.noUiSlider.set(newSliderValue);
@@ -752,7 +751,8 @@ jQuery(document).ready(function ($) {
       $shareValue.addEventListener('blur', function (e) {
         var newShare = parseInt($shareValue.textContent.trim());
         if (isNaN(newShare)) newShare = minValue / basicStep;
-        var newSliderValue = newShare * basicStep;
+        var step = customStep ? customStep : basicStep;
+        var newSliderValue = newShare * step;
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
       });
@@ -809,7 +809,7 @@ jQuery(document).ready(function ($) {
 
       function updateResultData(value, rate, step) {
         $incomeValue.textContent = format.to(value * rate / 100 / 12);
-        $shareValue.textContent = Math.floor(value / step);
+        $shareValue.textContent = value / step;
         $rateValue.textContent = rate;
         $stepValue.textContent = format.to(step);
       }
@@ -817,7 +817,6 @@ jQuery(document).ready(function ($) {
       function updateRangesStep(step) {
         var minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
         var maxPadding = maxValue % step === 0 ? 0 : step;
-        console.log(maxPadding);
         investmentRangeSlider.noUiSlider.updateOptions({
           step: step,
           padding: [minPadding, maxPadding]
@@ -950,8 +949,7 @@ jQuery(document).ready(function ($) {
           jumpPrev.classList.add('active');
 
           if (value > maxScrollLeft) {
-            clearInterval(mouseTimer);
-            return;
+            clearInterval(mouseTimer); // return;
           }
 
           if (value >= maxScrollLeft - regularCellWidth) {
@@ -989,55 +987,80 @@ jQuery(document).ready(function ($) {
       }
 
       function jumpingNext(e) {
-        update();
-        mouseTimer = setInterval(update, 500);
+        var value = financesTable.scrollLeft + regularCellWidth * 6;
+        jumpPrev.classList.add('active');
+        scrollPrev.classList.add('active');
 
-        function update() {
-          var value = financesTable.scrollLeft + regularCellWidth * 6;
-          jumpPrev.classList.add('active');
-          scrollPrev.classList.add('active');
-
-          if (value > maxScrollLeft) {
-            smoothLeftScroll(maxScrollLeft);
-            clearInterval(mouseTimer);
-          }
-
-          if (value >= maxScrollLeft - regularCellWidth * 6) {
-            jumpNext.classList.remove('active');
-            scrollNext.classList.remove('active');
-          } // smoothLeftScroll(value);
-
+        if (value >= maxScrollLeft - regularCellWidth * 6) {
+          smoothLeftScroll(maxScrollLeft);
+          jumpNext.classList.remove('active');
+          scrollNext.classList.remove('active');
+        } else {
+          smoothLeftScroll(value);
         }
       }
 
       function jumpingPrev() {
-        update();
-        mouseTimer = setInterval(update, 500);
+        var value = financesTable.scrollLeft - regularCellWidth * 6;
 
-        function update() {
-          var value = financesTable.scrollLeft - regularCellWidth * 6;
+        if (value <= -regularCellWidth) {
+          smoothLeftScroll(0);
+        }
 
-          if (value <= -regularCellWidth) {
-            smoothLeftScroll(0);
-            clearInterval(mouseTimer);
-          }
+        if (value <= 0) {
+          jumpPrev.classList.remove('active');
+          scrollPrev.classList.remove('active');
+        }
 
-          if (value <= 0) {
-            jumpPrev.classList.remove('active');
-            scrollPrev.classList.remove('active');
-          }
-
-          if (value <= maxScrollLeft) {
-            jumpNext.classList.add('active');
-            scrollNext.classList.add('active');
-            smoothLeftScroll(value);
-          }
+        if (value <= maxScrollLeft) {
+          jumpNext.classList.add('active');
+          scrollNext.classList.add('active');
+          smoothLeftScroll(value);
         }
       }
 
       if (lineChart) {
-        var data = [3650.28, 99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 2570890.35, 4195441.54, 1001971.62, 3348942.76, 4656600.96, 3395237.74, 2890238.47, 3082031.01, 2952247, 4196775.21, 3602760.57, 4025475.32, 2729290.73, 3654850.22, 1135382.72, 2504889.49, 2557290.57, 1795512.88, 3098144.21, null];
-        var categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', 'Ноябрь 2018', 'Декабрь 2018', 'Январь 2019', 'Февраль 2019', 'Март 2019', 'Апрель 2019', 'Май 2019', 'Июнь 2019', 'Июль 2019', 'Август 2019', 'Сентябрь 2019', 'Октябрь 2019', 'Ноябрь 2019', 'Декабрь 2019', 'Январь 2020', ''];
+        var data = [99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, // 2570890.35,
+        // 4195441.54,
+        // 1001971.62,
+        // 3348942.76,
+        // 4656600.96,
+        // 3395237.74,
+        // 2890238.47,
+        // 3082031.01,
+        // 2952247,
+        // 4196775.21,
+        // 3602760.57,
+        // 4025475.32,
+        // 2729290.73,
+        // 3654850.22,
+        // 1135382.72,
+        // 2504889.49,
+        // 2557290.57,
+        // 1795512.88,
+        // 3098144.21,
+        null];
+        var categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', // 'Июнь 2018',
+        // 'Июль 2018',
+        // 'Август 2018',
+        // 'Сентябрь 2018',
+        // 'Октябрь 2018',
+        // 'Ноябрь 2018',
+        // 'Декабрь 2018',
+        // 'Январь 2019',
+        // 'Февраль 2019',
+        // 'Март 2019',
+        // 'Апрель 2019',
+        // 'Май 2019',
+        // 'Июнь 2019',
+        // 'Июль 2019',
+        // 'Август 2019',
+        // 'Сентябрь 2019',
+        // 'Октябрь 2019',
+        // 'Ноябрь 2019',
+        // 'Декабрь 2019',
+        // 'Январь 2020',
+        ''];
         var columnWidth = regularCellWidth;
         console.log(columnWidth);
         var chartMinWidth = columnWidth * data.length;
@@ -1151,16 +1174,35 @@ jQuery(document).ready(function ($) {
       }
 
       if (columnChart) {
-        var _data = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
-        var percentage = [48, 8, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null];
-        var _categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Июнь 2018', 'Июль 2018', 'Август 2018', 'Сентябрь 2018', 'Октябрь 2018', 'Ноябрь 2018', 'Декабрь 2018', 'Январь 2019', 'Февраль 2019', 'Март 2019', 'Апрель 2019', 'Май 2019', 'Июнь 2019', 'Июль 2019', 'Август 2019', 'Сентябрь 2019', 'Октябрь 2019', 'Ноябрь 2019', 'Декабрь 2019', 'Январь 2020', ''];
+        var _data = [480, 80, 70, 0, 0, 0, 0, 0, 0, 70, 489, 89, 70, 0, 0, 0, 0, 0, 0, 7, null];
+        var percentage = [48, 8, 7, 0, 0, 0, 0, 0, 0, 7, 48, 8, 7, 0, 0, 0, 0, 0, 0, 7, null];
+        var _categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', // 'Июнь 2018',
+        // 'Июль 2018',
+        // 'Август 2018',
+        // 'Сентябрь 2018',
+        // 'Октябрь 2018',
+        // 'Ноябрь 2018',
+        // 'Декабрь 2018',
+        // 'Январь 2019',
+        // 'Февраль 2019',
+        // 'Март 2019',
+        // 'Апрель 2019',
+        // 'Май 2019',
+        // 'Июнь 2019',
+        // 'Июль 2019',
+        // 'Август 2019',
+        // 'Сентябрь 2019',
+        // 'Октябрь 2019',
+        // 'Ноябрь 2019',
+        // 'Декабрь 2019',
+        // 'Январь 2020',
+        ''];
         var _columnWidth = regularCellWidth;
 
         var _chartMinWidth = _columnWidth * _data.length;
 
         Highcharts.chart('columnChart', {
           chart: {
-            // type: 'column',
             scrollablePlotArea: {
               minWidth: _chartMinWidth // opacity: 0,
 
@@ -1178,7 +1220,6 @@ jQuery(document).ready(function ($) {
             tickPixelInterval: _columnWidth,
             width: _columnWidth * _data.length,
             offset: 30,
-            // height: 40,
             lineWidth: 0,
             tickWidth: 0,
             labels: {
@@ -1196,7 +1237,6 @@ jQuery(document).ready(function ($) {
           yAxis: [{
             title: false,
             gridLineColor: '#f2f2f2',
-            // offset: 50,
             labels: {
               padding: 0,
               style: {
@@ -1204,15 +1244,12 @@ jQuery(document).ready(function ($) {
                 fontSize: labelFontSize,
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
-                // paddingLeft: '5px',
                 whiteSpace: 'nowrap'
               }
             }
           }, {
             visible: true,
             gridLineColor: 'transparent',
-            min: 0,
-            max: 100,
             title: false,
             opposite: true,
             labels: {
@@ -1222,7 +1259,6 @@ jQuery(document).ready(function ($) {
                 fontSize: labelFontSize,
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
-                // paddingLeft: '5px',
                 whiteSpace: 'nowrap'
               }
             }
@@ -1235,17 +1271,6 @@ jQuery(document).ready(function ($) {
             },
             line: {
               dataLabels: {
-                // align: 'center',
-                // enabled: true,
-                // color: 'black',
-                // padding: 5,
-                // // crop: false,
-                // // overflow: 'none',
-                // style: {
-                //     textOutline: 'none',
-                //     fontSize: '14px',
-                //     fontWeight: '400',
-                // },
                 formatter: function formatter() {
                   return this.y + '%';
                 }
@@ -1295,33 +1320,20 @@ jQuery(document).ready(function ($) {
               }
             }
           }, {
+            data: percentage,
             name: 'Доходность',
             type: 'line',
-            data: percentage,
             color: '#000',
+            yAxis: 1,
             dataLabels: {
               enabled: true,
-              // align: 'center',
-              // enabled: true,
-              // color: 'black',
-              // padding: 5,
-              // crop: false,
-              // overflow: 'none',
-              // style: {
-              //     textOutline: 'none',
-              //     fontSize: '14px',
-              //     fontWeight: '400',
-              // },
               y: 30,
               format: '{y} %',
               style: {
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                 fontSize: '14px',
                 fontWeight: '400'
-              } // formatter: function () {
-              //     return this.y + '%';
-              // },
-
+              }
             },
             states: {
               hover: {
