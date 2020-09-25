@@ -1518,11 +1518,14 @@ jQuery(document).ready(function ($) {
       var objectLink = document.querySelector('.profit-calc__object-link');
       var format = wNumb({
         decimals: 0,
-        suffix: " \u20BD",
         thousand: ' '
       });
       var objectsNav = $('.profit-calc__objects-nav');
       var objectsSlider = $('.profit-calc__objects-slider');
+      var objects = objectsSlider.find('.profit-object');
+      objects.each(function (_, object) {
+        initValueEdit($(object));
+      });
       var initialValue = 1000000;
       initRangeSlider();
       /** init and interact with sliders */
@@ -1539,33 +1542,18 @@ jQuery(document).ready(function ($) {
         var object = $(slide.children()[0]);
         var minValue = object.data('min');
         var maxValue = object.data('max');
-        var rateNode = object.find('.profit-object__rate');
-        var basicRate = rateNode.data('rate');
-        var libertyRate = rateNode.data('liberty-rate');
+        var step = object.data('step');
         var currentRangeValue = parseInt(investmentRangeSlider.noUiSlider.get());
-        var rate = currentRangeValue > LIBERTY_MIN ? libertyRate : basicRate;
-        var stepValue = currentRangeValue > LIBERTY_MIN ? object.data('liberty-step') : object.data('step');
         var startValue = maxValue < currentRangeValue ? maxValue : currentRangeValue;
         investmentRangeSlider.noUiSlider.updateOptions({
           start: startValue,
-          step: stepValue,
+          step: step,
           range: {
-            min: minValue,
+            min: 0,
             max: maxValue
-          }
-        }); // const incomeMinValue = (minValue * rate) / 100;
-        // const incomeMaxValue = (maxValue * rate) / 100;
-        // const incomeInitialValue = (startValue * rate) / 100;
-        // const incomeStepValue = (stepValue * rate) / 100;
-        // incomeRangeSlider.noUiSlider.updateOptions({
-        //     start: incomeInitialValue,
-        //     step: incomeStepValue,
-        //     range: {
-        //         min: incomeMinValue,
-        //         max: incomeMaxValue,
-        //     },
-        // });
-
+          },
+          padding: [minValue, 0]
+        });
         animateRangeSlider();
         updateObjectData(object, startValue);
         updateObjectLink(object);
@@ -1594,93 +1582,121 @@ jQuery(document).ready(function ($) {
         invsestmentValue.textContent = format.to(value);
         var currentSlide = objectsSlider.find('.slick-current');
         var object = $(currentSlide.children()[0]);
-        updateObjectData(object, value); // incomeRangeSliderUpdate(object, value);
-
+        updateObjectData(object, value);
         updateObjectLink(object);
       });
-      investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
-        var value = +values[handle];
-        var currentSlide = objectsSlider.find('.slick-current');
-        var object = $(currentSlide.children()[0]);
-        updateRangesStep(object, value);
-      }); // incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
-      //     const currentSlide = objectsSlider.find('.slick-current');
-      //     const object = $(currentSlide.children()[0]);
-      //     investmentRangeSliderUpdate(object, values[handle]);
-      // });
-
       investmentRangeSlider.noUiSlider.on('change', function () {
         animateRangeSlider();
-      }); // incomeRangeSlider.noUiSlider.on('change', () => {
-      //     animateRangeSlider();
-      // });
-      // helper functions
+      }); // helper functions
 
       function initRangeSlider() {
         var firstObject = $($(profitCalc).find('.profit-object')[0]);
         var minValue = firstObject.data('min');
         var maxValue = firstObject.data('max');
         var stepValue = firstObject.data('step');
-        var rateNode = firstObject.find('.profit-object__rate');
-        var basicRate = rateNode.data('rate');
         noUiSlider.create(investmentRangeSlider, {
           start: initialValue,
           step: stepValue,
           animate: false,
           connect: 'lower',
           range: {
-            min: minValue,
+            min: 0,
             max: maxValue
-          }
+          },
+          padding: [minValue, 0]
         });
         updateObjectData(firstObject, initialValue); // incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, basicRate);
       }
 
-      function incomeRangeSliderInit(min, max, step, initial, rate) {
-        var minValue = min * rate / 100;
-        var maxValue = max * rate / 100;
-        var initialValue = initial * rate / 100;
-        var stepValue = step * rate / 100;
-        noUiSlider.create(incomeRangeSlider, {
-          start: initialValue,
-          step: stepValue,
-          animate: false,
-          range: {
-            min: minValue,
-            max: maxValue
-          }
+      function initValueEdit(object) {
+        var incomeNode = object.find('.profit-object__income .value');
+        var shareNode = object.find('.profit-object__share .value');
+        var rateNode = object.find('.profit-object__rate .value');
+        var stepNode = object.find('.profit-object__step .value');
+        var minValue = object.data('min');
+        var maxValue = object.data('max');
+        var stepValue = object.data('step');
+        var rateValue = object.data('rate');
+        incomeNode.on('blur', function (e) {
+          var newIncome = format.from(incomeNode.text().trim());
+          incomeNode.text(format.to(newIncome));
+          var currentRate = parseFloat(rateNode.text());
+          var newSliderValue = newIncome * 12 / currentRate * 100;
+          investmentRangeSlider.noUiSlider.set(newSliderValue);
+          animateRangeSlider();
+        });
+        shareNode.on('blur', function (e) {
+          var newShare = parseInt(shareNode.text().trim());
+          if (isNaN(newShare)) newShare = minValue / stepValue;
+          var newSliderValue = newShare * stepValue;
+          investmentRangeSlider.noUiSlider.set(newSliderValue);
+          animateRangeSlider();
+        });
+        stepNode.on('blur', function (e) {
+          var newStep = format.from(stepNode.text().trim());
+          if (isNaN(newStep)) newStep = parseInt(stepValue);
+          object.attr('data-custom-step', newStep);
+          updateRangesStep(object, newStep);
+        });
+        rateNode.on('blur', function (e) {
+          var newRate = parseFloat(rateNode.text().trim());
+          if (isNaN(newRate)) newRate = parseFloat(rateValue);
+          object.attr('data-custom-rate', newRate);
+          incomeNode.text(format.to(investmentRangeSlider.noUiSlider.get() * (newRate / 100) / 12));
         });
       }
 
-      function incomeRangeSliderUpdate(object, value) {
-        var rateNode = object.find('.profit-object__rate');
-        var basicRate = rateNode.data('rate');
-        var libertyRate = rateNode.data('liberty-rate');
-        var rate = value > LIBERTY_MIN ? libertyRate : basicRate;
-        incomeRangeSlider.noUiSlider.set(value * rate / 100);
-      }
-
-      function investmentRangeSliderUpdate(object, value) {
-        var rateNode = object.find('.profit-object__rate');
-        var basicRate = rateNode.data('rate');
-        var libertyRate = rateNode.data('liberty-rate');
-        var rate = value > LIBERTY_MIN ? libertyRate : basicRate;
-        investmentRangeSlider.noUiSlider.set(value / rate * 100);
-      }
+      document.addEventListener('keypress', function (e) {
+        if (e.keyCode === 13 && e.target.classList.contains('value') && e.target.isContentEditable) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.target.blur();
+        }
+      }); // function incomeRangeSliderInit(min, max, step, initial, rate) {
+      //     const minValue = (min * rate) / 100;
+      //     const maxValue = (max * rate) / 100;
+      //     const initialValue = (initial * rate) / 100;
+      //     const stepValue = (step * rate) / 100;
+      //     noUiSlider.create(incomeRangeSlider, {
+      //         start: initialValue,
+      //         step: stepValue,
+      //         animate: false,
+      //         range: {
+      //             min: minValue,
+      //             max: maxValue,
+      //         },
+      //     });
+      // }
+      // function incomeRangeSliderUpdate(object, value) {
+      //     const rateNode = object.find('.profit-object__rate');
+      //     const basicRate = rateNode.data('rate');
+      //     const libertyRate = rateNode.data('liberty-rate');
+      //     const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+      //     incomeRangeSlider.noUiSlider.set((value * rate) / 100);
+      // }
+      // function investmentRangeSliderUpdate(object, value) {
+      //     const rateNode = object.find('.profit-object__rate');
+      //     const basicRate = rateNode.data('rate');
+      //     const libertyRate = rateNode.data('liberty-rate');
+      //     const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+      //     investmentRangeSlider.noUiSlider.set((value / rate) * 100);
+      // }
 
       function updateObjectData(object, value) {
-        var income = object.find('.profit-object__income');
-        var share = object.find('.profit-object__share');
-        var rateNode = object.find('.profit-object__rate');
-        var basicRate = rateNode.data('rate');
-        var libertyRate = rateNode.data('liberty-rate');
-        var rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+        var incomeNode = object.find('.profit-object__income .value');
+        var shareNode = object.find('.profit-object__share .value');
+        var rateNode = object.find('.profit-object__rate .value');
+        var stepNode = object.find('.profit-object__step .value');
+        var basicRate = object.data('rate');
+        var customRate = parseInt(object.attr('data-custom-rate'));
         var basicStep = object.data('step');
-        var libertyStep = object.data('liberty-step');
-        var step = +value > LIBERTY_MIN ? libertyStep : basicStep;
-        share.text(Math.floor(value / step));
-        income.text(format.to(value * rate / 100 / 12));
-        rateNode.text(rate + '%');
+        var customStep = parseInt(object.attr('data-custom-step'));
+        var rate = customRate ? customRate : basicRate;
+        var step = customStep ? customStep : basicStep;
+        shareNode.text(Math.floor(value / step));
+        incomeNode.text(format.to(value * rate / 100 / 12));
+        rateNode.text(rate);
+        stepNode.text(format.to(step));
       }
 
       function updateObjectLink(object) {
@@ -1688,14 +1704,14 @@ jQuery(document).ready(function ($) {
         objectLink.href = object.data('link') + '/' + value;
       }
 
-      function updateRangesStep(object, value) {
-        var basicStep = object.data('step');
-        var libertyStep = object.data('liberty-step');
-        var step = value > LIBERTY_MIN ? libertyStep : basicStep;
-        console.log('step: ', step); // debugger;
-
+      function updateRangesStep(object, step) {
+        var minValue = object.data('min');
+        var maxValue = object.data('max');
+        var minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
+        var maxPadding = maxValue % step === 0 ? 0 : step;
         investmentRangeSlider.noUiSlider.updateOptions({
-          step: step
+          step: step,
+          padding: [minPadding, maxPadding]
         }, false);
       }
 

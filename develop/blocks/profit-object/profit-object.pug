@@ -6,13 +6,24 @@ mixin profit-object(id, name, rate, libertyRate)
             +e.title Сколько получить
             +e.data
                 +e.data-row
-                    +e.data-value.__income 0
+                    +e.data-value.__income
+                        span.value(contenteditable='true') 0
+                        span.suffix  ₽
                     +e.data-label Ежемесячный доход
                 +e.data-row
-                    +e.data-value.__share 0
+                    +e.data-value.__share
+                        span.value(contenteditable='true') 0
+                        span.suffix &nbsp;
                     +e.data-label Приобретенных паев
                 +e.data-row
-                    +e.data-value.__rate(data-rate=rate data-liberty-rate=libertyRate)= rate + '%'
+                    +e.data-value.__step
+                        span.value(contenteditable='true') 0
+                        span.suffix  ₽
+                    +e.data-label Стоимость пая
+                +e.data-row
+                    +e.data-value.__rate 
+                        span.value(contenteditable='true')= rate
+                        span.suffix %
                     +e.data-label Доходность
         +e.footer
             +e.name= name

@@ -13,12 +13,15 @@
 
     const format = wNumb({
         decimals: 0,
-        suffix: ' \u20BD',
         thousand: ' ',
     });
 
     const objectsNav = $('.profit-calc__objects-nav');
     const objectsSlider = $('.profit-calc__objects-slider');
+    const objects = objectsSlider.find('.profit-object');
+    objects.each(function (_, object) {
+        initValueEdit($(object));
+    });
 
     const initialValue = 1000000;
 
@@ -41,39 +44,22 @@
 
         const minValue = object.data('min');
         const maxValue = object.data('max');
+        const step = object.data('step');
 
-        const rateNode = object.find('.profit-object__rate');
-        const basicRate = rateNode.data('rate');
-        const libertyRate = rateNode.data('liberty-rate');
-        
         const currentRangeValue = parseInt(investmentRangeSlider.noUiSlider.get());
-        
-        const rate = currentRangeValue > LIBERTY_MIN ? libertyRate : basicRate;
-        const stepValue = currentRangeValue > LIBERTY_MIN ? object.data('liberty-step') : object.data('step');
+
         const startValue = maxValue < currentRangeValue ? maxValue : currentRangeValue;
 
         investmentRangeSlider.noUiSlider.updateOptions({
             start: startValue,
-            step: stepValue,
+            step: step,
             range: {
-                min: minValue,
+                min: 0,
                 max: maxValue,
             },
+            padding: [minValue, 0],
         });
 
-        // const incomeMinValue = (minValue * rate) / 100;
-        // const incomeMaxValue = (maxValue * rate) / 100;
-        // const incomeInitialValue = (startValue * rate) / 100;
-        // const incomeStepValue = (stepValue * rate) / 100;
-
-        // incomeRangeSlider.noUiSlider.updateOptions({
-        //     start: incomeInitialValue,
-        //     step: incomeStepValue,
-        //     range: {
-        //         min: incomeMinValue,
-        //         max: incomeMaxValue,
-        //     },
-        // });
         animateRangeSlider();
         updateObjectData(object, startValue);
         updateObjectLink(object);
@@ -107,33 +93,13 @@
         const object = $(currentSlide.children()[0]);
 
         updateObjectData(object, value);
-        // incomeRangeSliderUpdate(object, value);
 
         updateObjectLink(object);
     });
 
-    investmentRangeSlider.noUiSlider.on('set', function (values, handle) {
-        const value = +values[handle];
-        const currentSlide = objectsSlider.find('.slick-current');
-        const object = $(currentSlide.children()[0]);
-
-        updateRangesStep(object, value);
-    });
-
-    // incomeRangeSlider.noUiSlider.on('slide', function (values, handle) {
-    //     const currentSlide = objectsSlider.find('.slick-current');
-    //     const object = $(currentSlide.children()[0]);
-
-    //     investmentRangeSliderUpdate(object, values[handle]);
-    // });
-
     investmentRangeSlider.noUiSlider.on('change', () => {
         animateRangeSlider();
     });
-
-    // incomeRangeSlider.noUiSlider.on('change', () => {
-    //     animateRangeSlider();
-    // });
 
     // helper functions
 
@@ -144,18 +110,16 @@
         const maxValue = firstObject.data('max');
         const stepValue = firstObject.data('step');
 
-        const rateNode = firstObject.find('.profit-object__rate')
-        const basicRate = rateNode.data('rate');
-
         noUiSlider.create(investmentRangeSlider, {
             start: initialValue,
             step: stepValue,
             animate: false,
             connect: 'lower',
             range: {
-                min: minValue,
+                min: 0,
                 max: maxValue,
             },
+            padding: [minValue, 0],
         });
 
         updateObjectData(firstObject, initialValue);
@@ -163,59 +127,119 @@
         // incomeRangeSliderInit(minValue, maxValue, stepValue, initialValue, basicRate);
     }
 
-    function incomeRangeSliderInit(min, max, step, initial, rate) {
-        const minValue = (min * rate) / 100;
-        const maxValue = (max * rate) / 100;
-        const initialValue = (initial * rate) / 100;
-        const stepValue = (step * rate) / 100;
+    function initValueEdit(object) {
+        const incomeNode = object.find('.profit-object__income .value');
+        const shareNode = object.find('.profit-object__share .value');
+        const rateNode = object.find('.profit-object__rate .value');
+        const stepNode = object.find('.profit-object__step .value');
 
-        noUiSlider.create(incomeRangeSlider, {
-            start: initialValue,
-            step: stepValue,
-            animate: false,
-            range: {
-                min: minValue,
-                max: maxValue,
-            },
+        const minValue = object.data('min');
+        const maxValue = object.data('max');
+        const stepValue = object.data('step');
+        const rateValue = object.data('rate');
+
+        incomeNode.on('blur', function (e) {
+            const newIncome = format.from(incomeNode.text().trim());
+            incomeNode.text(format.to(newIncome));
+
+            const currentRate = parseFloat(rateNode.text());
+            const newSliderValue = ((newIncome * 12) / currentRate) * 100;
+
+            investmentRangeSlider.noUiSlider.set(newSliderValue);
+            animateRangeSlider();
+        });
+
+        shareNode.on('blur', function (e) {
+            let newShare = parseInt(shareNode.text().trim());
+            if (isNaN(newShare)) newShare = minValue / stepValue;
+
+            const newSliderValue = newShare * stepValue;
+
+            investmentRangeSlider.noUiSlider.set(newSliderValue);
+            animateRangeSlider();
+        });
+
+        stepNode.on('blur', function (e) {
+            let newStep = format.from(stepNode.text().trim());
+            if (isNaN(newStep)) newStep = parseInt(stepValue);
+
+            object.attr('data-custom-step', newStep);
+
+            updateRangesStep(object, newStep);
+        });
+
+        rateNode.on('blur', function (e) {
+            let newRate = parseFloat(rateNode.text().trim());
+            if (isNaN(newRate)) newRate = parseFloat(rateValue);
+
+            object.attr('data-custom-rate', newRate);
+
+            incomeNode.text(format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12));
         });
     }
 
-    function incomeRangeSliderUpdate(object, value) {
-        const rateNode = object.find('.profit-object__rate')
-        const basicRate = rateNode.data('rate');
-        const libertyRate = rateNode.data('liberty-rate');
-        const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+    document.addEventListener('keypress', function (e) {
+        if (e.keyCode === 13 && e.target.classList.contains('value') && e.target.isContentEditable) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.target.blur();
+        }
+    });
 
-        incomeRangeSlider.noUiSlider.set((value * rate) / 100);
-    }
+    // function incomeRangeSliderInit(min, max, step, initial, rate) {
+    //     const minValue = (min * rate) / 100;
+    //     const maxValue = (max * rate) / 100;
+    //     const initialValue = (initial * rate) / 100;
+    //     const stepValue = (step * rate) / 100;
 
-    function investmentRangeSliderUpdate(object, value) {
-        const rateNode = object.find('.profit-object__rate')
-        const basicRate = rateNode.data('rate');
-        const libertyRate = rateNode.data('liberty-rate');
+    //     noUiSlider.create(incomeRangeSlider, {
+    //         start: initialValue,
+    //         step: stepValue,
+    //         animate: false,
+    //         range: {
+    //             min: minValue,
+    //             max: maxValue,
+    //         },
+    //     });
+    // }
 
-        const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+    // function incomeRangeSliderUpdate(object, value) {
+    //     const rateNode = object.find('.profit-object__rate');
+    //     const basicRate = rateNode.data('rate');
+    //     const libertyRate = rateNode.data('liberty-rate');
+    //     const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
 
-        investmentRangeSlider.noUiSlider.set((value / rate) * 100);
-    }
+    //     incomeRangeSlider.noUiSlider.set((value * rate) / 100);
+    // }
+
+    // function investmentRangeSliderUpdate(object, value) {
+    //     const rateNode = object.find('.profit-object__rate');
+    //     const basicRate = rateNode.data('rate');
+    //     const libertyRate = rateNode.data('liberty-rate');
+
+    //     const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
+
+    //     investmentRangeSlider.noUiSlider.set((value / rate) * 100);
+    // }
 
     function updateObjectData(object, value) {
-        const income = object.find('.profit-object__income');
-        const share = object.find('.profit-object__share');
-        
-        const rateNode = object.find('.profit-object__rate');
-        const basicRate = rateNode.data('rate');
-        const libertyRate = rateNode.data('liberty-rate');
+        const incomeNode = object.find('.profit-object__income .value');
+        const shareNode = object.find('.profit-object__share .value');
+        const rateNode = object.find('.profit-object__rate .value');
+        const stepNode = object.find('.profit-object__step .value');
 
-        const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
-        
+        const basicRate = object.data('rate');
+        const customRate = parseInt(object.attr('data-custom-rate'));
         const basicStep = object.data('step');
-        const libertyStep = object.data('liberty-step');
-        const step = +value > LIBERTY_MIN ? libertyStep : basicStep;
-        
-        share.text(Math.floor(value / step));
-        income.text(format.to((value * rate) / 100 / 12));
-        rateNode.text(rate + '%');
+        const customStep = parseInt(object.attr('data-custom-step'));
+
+        const rate = customRate ? customRate : basicRate;
+        const step = customStep ? customStep : basicStep;
+
+        shareNode.text(Math.floor(value / step));
+        incomeNode.text(format.to((value * rate) / 100 / 12));
+        rateNode.text(rate);
+        stepNode.text(format.to(step));
     }
 
     function updateObjectLink(object) {
@@ -223,15 +247,20 @@
         objectLink.href = object.data('link') + '/' + value;
     }
 
-    function updateRangesStep(object, value) {
-        const basicStep = object.data('step');
-        const libertyStep = object.data('liberty-step');
-        const step = value > LIBERTY_MIN ? libertyStep : basicStep;
-        console.log('step: ', step);
+    function updateRangesStep(object, step) {
+        const minValue = object.data('min');
+        const maxValue = object.data('max');
 
-        // debugger;
+        const minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
+        const maxPadding = maxValue % step === 0 ? 0 : step;
 
-        investmentRangeSlider.noUiSlider.updateOptions({ step }, false);
+        investmentRangeSlider.noUiSlider.updateOptions(
+            {
+                step,
+                padding: [minPadding, maxPadding],
+            },
+            false
+        );
     }
 
     function animateRangeSlider() {
