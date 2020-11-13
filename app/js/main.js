@@ -8,6 +8,12 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 /**
  * some global settings and functions
  */
@@ -45,8 +51,6 @@ jQuery(document).ready(function ($) {
   }
 
   function globalInitFunction() {
-    $.fancybox.defaults.hash = false;
-
     var debounce = function debounce(func, wait, immediate) {
       var timeout;
       return function () {
@@ -393,6 +397,114 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
+      var accountDetails = document.querySelector('.account__details');
+      var $dropdown = $('.tt-dropdown-menu');
+      if ($dropdown.length == 0) return;
+      new SimpleBar($dropdown[0], {
+        autoHide: false
+      });
+    })();
+
+    function accountSettingsModalLogic(modal) {
+      var form = modal.querySelector('.account-settings__form');
+      var inputs = form.querySelectorAll('input');
+      var inputEmail = $('#settingsEmail');
+      var inputPhone = $('#settingsPhone');
+      var phoneMask = '+7 (f99) 999-99-99';
+      inputPhone.inputmask({
+        mask: phoneMask,
+        showMaskOnHover: false
+      });
+
+      function inputPhoneValidate() {
+        var enteredPhone = inputPhone.val();
+        return Inputmask.isValid(enteredPhone, {
+          mask: phoneMask
+        });
+      }
+
+      inputs.forEach(function (input) {
+        return input.addEventListener('focus', function () {
+          return hideSingleInputError(input);
+        });
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!inputPhoneValidate()) {
+          showInputError(inputPhone, 'Неверно указан телефон');
+          return;
+        }
+
+        var formData = $(form).serialize();
+        postData('url', formData).then(function (data) {
+          MicroModal.close('accountSettingsModal');
+        });
+      });
+    }
+
+    {
+      var triggerButtons = document.querySelectorAll('.application-trigger');
+
+      if (triggerButtons.length > 0) {
+        triggerButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            MicroModal.show('applicationModal', {
+              disableScroll: true,
+              awaitCloseAnimation: true,
+              onShow: function onShow(modal) {
+                onModalOpen(modal);
+                applicationModalLogic(modal);
+              },
+              onClose: function onClose(modal) {
+                onModalClose(modal, false);
+              }
+            });
+          });
+        });
+      }
+    }
+
+    function applicationModalLogic(modal) {
+      var form = modal.querySelector('.modal__form');
+      var inputs = form.querySelectorAll('input');
+      console.log(inputs);
+      var inputEmail = $('#applicationEmail');
+      var inputPhone = $('#applicationPhone');
+      var phoneMask = '+7 (f99) 999-99-99';
+      inputPhone.inputmask({
+        mask: phoneMask,
+        showMaskOnHover: false
+      });
+
+      function inputPhoneValidate() {
+        var enteredPhone = inputPhone.val();
+        return Inputmask.isValid(enteredPhone, {
+          mask: phoneMask
+        });
+      }
+
+      inputs.forEach(function (input) {
+        return input.addEventListener('focus', function () {
+          return hideSingleInputError(input);
+        });
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!inputPhoneValidate()) {
+          showInputError(inputPhone, 'Неверно указан телефон');
+          return;
+        }
+
+        var formData = $(form).serialize();
+        postData('url', formData).then(function (data) {
+          MicroModal.close('applicationModal');
+        });
+      });
+    }
+
+    (function () {
       var btn = $('.authorization__toggle');
       var btnAccount = $('.authorization__logged');
       var btnAccountMenu = $('.authorization__list');
@@ -406,6 +518,24 @@ jQuery(document).ready(function ($) {
           btnAccountMenu.slideDown();
           btnAccountMenu.addClass('active');
         }
+      });
+      var settingsTriggers = document.querySelectorAll('.authorization__settings');
+      settingsTriggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+          e.preventDefault();
+          MicroModal.show('accountSettingsModal', {
+            disableScroll: true,
+            disableFocus: true,
+            awaitCloseAnimation: true,
+            onShow: function onShow(modal) {
+              onModalOpen(modal);
+              accountSettingsModalLogic(modal);
+            },
+            onClose: function onClose(modal) {
+              onModalClose(modal, false);
+            }
+          });
+        });
       });
     })();
 
@@ -547,6 +677,268 @@ jQuery(document).ready(function ($) {
       });
     })();
 
+    var CustomSelect =
+    /*#__PURE__*/
+    function () {
+      /**
+       * @param {HTMLElement} select
+       * @param {Object} options
+       * @param {Boolean} options.multiple - multiple choises
+       * @param {String} options.multipleCounterLabel
+       * @param {Function} options.onSelect - callback for selected element
+       */
+      function CustomSelect(select) {
+        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, CustomSelect);
+
+        if (!select) {
+          throw new Error('No element has been passed');
+        }
+
+        this.select = select;
+        this.options = options;
+        this.setup();
+      }
+
+      _createClass(CustomSelect, [{
+        key: "setup",
+        value: function setup() {
+          this.valueInput = this.select.querySelector('.custom-select__value');
+          this.selected = this.select.querySelector('.custom-select__selected');
+          this.dropdown = this.select.querySelector('.custom-select__dropdown');
+          this.optionsList = this.select.querySelector('.custom-select__options');
+          this.inititalPlaceholder = this.selected.textContent.trim();
+          new SimpleBar(this.dropdown, {
+            autoHide: false
+          });
+          /** keycodes */
+
+          this.keyCodes = {
+            enter: 13,
+            down_arrow: 40,
+            up_arrow: 38,
+            escape: 27
+          };
+
+          if (this.options.multiple) {
+            this.multipleCounter = 0;
+            this.optionsList.classList.add('multiple');
+          }
+
+          this.setEventHandlers();
+        }
+      }, {
+        key: "setEventHandlers",
+        value: function setEventHandlers() {
+          var _this = this;
+
+          this.selected.addEventListener('keydown', function (e) {
+            return _this.toggleOptionsList(e);
+          });
+          this.selected.addEventListener('click', function (e) {
+            return _this.toggleOptionsList(e);
+          });
+          this.optionsList.addEventListener('click', function (e) {
+            var target = e.target;
+
+            if (target.classList.contains('custom-select__option')) {
+              _this.selectItem(e);
+            }
+          });
+          this.optionsList.addEventListener('keydown', function (e) {
+            var target = e.target;
+
+            if (target.classList.contains('custom-select__option')) {
+              switch (e.keyCode) {
+                case _this.keyCodes.enter:
+                  _this.selectItem(e);
+
+                  return;
+
+                case _this.keyCodes.down_arrow:
+                  e.preventDefault();
+
+                  _this.focusNextListItem(_this.keyCodes.down_arrow);
+
+                  return;
+
+                case _this.keyCodes.up_arrow:
+                  e.preventDefault();
+
+                  _this.focusNextListItem(_this.keyCodes.up_arrow);
+
+                  return;
+
+                case _this.keyCodes.escape:
+                  _this.closeOptionsList();
+
+                  return;
+
+                default:
+                  return;
+              }
+            }
+          });
+          document.addEventListener('click', function (e) {
+            if (!_this.select.contains(e.target) && _this.dropdown.classList.contains('opened')) {
+              _this.closeOptionsList();
+            }
+          });
+        }
+      }, {
+        key: "toggleOptionsList",
+        value: function toggleOptionsList(e) {
+          if (e.keyCode === this.keyCodes.escape) {
+            this.closeOptionsList();
+          }
+
+          if (e.type === 'click') {
+            this.dropdown.classList.toggle('opened');
+            this.selected.classList.toggle('opened');
+            this.dropdown.setAttribute('aria-expanded', this.dropdown.classList.contains('opened'));
+            $$.fadeToggle(this.dropdown);
+          }
+
+          if (e.keyCode === this.keyCodes.down_arrow) {
+            e.preventDefault();
+            this.focusNextListItem(this.keyCodes.down_arrow);
+          }
+
+          if (e.keyCode === this.keyCodes.up_arrow) {
+            e.preventDefault();
+            this.focusNextListItem(this.keyCodes.up_arrow);
+          }
+        }
+      }, {
+        key: "closeOptionsList",
+        value: function closeOptionsList() {
+          this.dropdown.classList.remove('opened');
+          this.selected.classList.remove('opened');
+          this.dropdown.setAttribute('aria-expanded', false);
+          $$.fadeOut(this.dropdown);
+        }
+      }, {
+        key: "focusNextListItem",
+        value: function focusNextListItem(direction) {
+          var activeElement = document.activeElement;
+
+          var options = _toConsumableArray(this.optionsList.children);
+
+          if (activeElement.classList.contains('custom-select__selected')) {
+            this.optionsList.children[0].focus();
+          } else {
+            var currentActiveElementIndex = options.indexOf(activeElement);
+
+            if (direction === this.keyCodes.down_arrow) {
+              var currentActiveElementIsNotLastItem = currentActiveElementIndex < options.length - 1;
+
+              if (currentActiveElementIsNotLastItem) {
+                var nextListItem = options[currentActiveElementIndex + 1];
+                nextListItem.focus();
+              }
+            } else if (direction === this.keyCodes.up_arrow) {
+              var currentActiveElementIsNotFirstItem = currentActiveElementIndex > 0;
+
+              if (currentActiveElementIsNotFirstItem) {
+                var _nextListItem = options[currentActiveElementIndex - 1];
+
+                _nextListItem.focus();
+              }
+            }
+          }
+        }
+      }, {
+        key: "selectItem",
+        value: function selectItem(e) {
+          var selectedValue = e.target.textContent.trim();
+
+          if (this.options.multiple) {
+            this.multipleSelectLogic(e, selectedValue);
+          } else {
+            this.singleSelectLogic(e, selectedValue);
+          }
+        }
+      }, {
+        key: "setSelected",
+        value: function setSelected(value) {
+          this.selected.textContent = value;
+          if (this.valueInput) this.valueInput.value = value;
+        }
+      }, {
+        key: "clearSelected",
+        value: function clearSelected() {
+          this.selected.textContent = this.inititalPlaceholder;
+
+          if (this.valueInput) {
+            this.valueInput.value = null;
+          }
+
+          if (this.multipleCounter) {
+            this.multipleCounter = 0;
+          }
+        }
+      }, {
+        key: "singleSelectLogic",
+        value: function singleSelectLogic(e, selectedValue) {
+          /** clicked item was already selected */
+          if (this.selected.textContent === selectedValue) {
+            this.closeOptionsList();
+            return;
+          }
+
+          this.selected.textContent = selectedValue;
+          if (this.valueInput) this.valueInput.value = selectedValue;
+          this.closeOptionsList();
+
+          if (typeof this.options.onSelect === 'function') {
+            this.options.onSelect(selectedValue);
+          }
+        }
+      }, {
+        key: "multipleSelectLogic",
+        value: function multipleSelectLogic(e, selectedValue) {
+          var valueDivider = ';';
+          var action = e.target.classList.contains('selected') ? 'remove' : 'add';
+
+          if (action === 'remove') {
+            e.target.classList.remove('selected');
+            this.multipleCounter--;
+
+            if (this.valueInput) {
+              this.valueInput.value = this.valueInput.value.split(valueDivider).filter(function (val) {
+                return val !== selectedValue;
+              }).join(valueDivider);
+            }
+          } else {
+            e.target.classList.add('selected');
+            this.multipleCounter++;
+
+            if (this.valueInput) {
+              this.valueInput.value += selectedValue + valueDivider;
+            }
+          }
+
+          if (this.multipleCounter === 0) {
+            this.selected.textContent = this.inititalPlaceholder;
+          } else {
+            this.selected.textContent = "".concat(this.options.multipleCounterLabel, ": ").concat(this.multipleCounter);
+          }
+
+          if (typeof this.options.onSelect === 'function') {
+            var selectedItem = {
+              value: selectedValue,
+              id: e.target.dataset.id,
+              action: action
+            };
+            this.options.onSelect(selectedItem);
+          }
+        }
+      }]);
+
+      return CustomSelect;
+    }();
+
     (function () {
       var faq = $('.faq');
       if (faq.length === 0) return;
@@ -579,67 +971,6 @@ jQuery(document).ready(function ($) {
         });
       });
     })();
-
-    {
-      var triggerButtons = document.querySelectorAll('.application-trigger');
-
-      if (triggerButtons.length > 0) {
-        triggerButtons.forEach(function (btn) {
-          btn.addEventListener('click', function (e) {
-            MicroModal.show('applicationModal', {
-              disableScroll: true,
-              awaitCloseAnimation: true,
-              onShow: function onShow(modal) {
-                onModalOpen(modal);
-                applicationModalLogic(modal);
-              },
-              onClose: function onClose(modal) {
-                onModalClose(modal, false);
-              }
-            });
-          });
-        });
-      }
-    }
-
-    function applicationModalLogic(modal) {
-      var form = modal.querySelector('.modal__form');
-      var inputs = form.querySelectorAll('input');
-      console.log(inputs);
-      var inputEmail = $('#applicationEmail');
-      var inputPhone = $('#applicationPhone');
-      var phoneMask = '+7 (f99) 999-99-99';
-      inputPhone.inputmask({
-        mask: phoneMask,
-        showMaskOnHover: false
-      });
-
-      function inputPhoneValidate() {
-        var enteredPhone = inputPhone.val();
-        return Inputmask.isValid(enteredPhone, {
-          mask: phoneMask
-        });
-      }
-
-      inputs.forEach(function (input) {
-        return input.addEventListener('focus', function () {
-          return hideSingleInputError(input);
-        });
-      });
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        if (!inputPhoneValidate()) {
-          showInputError(inputPhone, 'Неверно указан телефон');
-          return;
-        }
-
-        var formData = $(form).serialize();
-        postData('url', formData).then(function (data) {
-          MicroModal.close('applicationModal');
-        });
-      });
-    }
 
     (function () {
       var $mainNav = $('.main-header__navigation');
@@ -1514,7 +1845,6 @@ jQuery(document).ready(function ($) {
       var investmentRangeSlider = document.querySelector('.profit-calc__investment-range');
       var invsestmentValue = document.querySelector('.profit-calc__investment-value'); // const incomeRangeSlider = document.querySelector('.profit-calc__income-range');
 
-      var LIBERTY_MIN = 10000000;
       var objectLink = document.querySelector('.profit-calc__object-link');
       var format = wNumb({
         decimals: 0,
@@ -1536,9 +1866,9 @@ jQuery(document).ready(function ($) {
         updateObjectData(object, initialValue);
         updateObjectLink(object);
       });
-      objectsSlider.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
-        if (currentSlide === nextSlide) return;
-        var slide = $(slick.$slides[nextSlide]);
+      objectsSlider.on('afterChange', function (e, slick, currentSlide, nextSlide) {
+        // if (currentSlide === nextSlide) return;
+        var slide = $(slick.$slides[currentSlide]);
         var object = $(slide.children()[0]);
         var minValue = object.data('min');
         var maxValue = object.data('max');
@@ -1554,9 +1884,8 @@ jQuery(document).ready(function ($) {
           },
           padding: [minValue, 0]
         });
-        animateRangeSlider();
-        updateObjectData(object, startValue);
-        updateObjectLink(object);
+        animateRangeSlider(); // updateObjectData(object, startValue);
+        // updateObjectLink(object);
       });
       objectsNav.slick({
         rows: 0,
@@ -1571,6 +1900,7 @@ jQuery(document).ready(function ($) {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
+        accessibility: false,
         asNavFor: objectsNav
       });
       /**
@@ -1652,35 +1982,7 @@ jQuery(document).ready(function ($) {
           e.stopPropagation();
           e.target.blur();
         }
-      }); // function incomeRangeSliderInit(min, max, step, initial, rate) {
-      //     const minValue = (min * rate) / 100;
-      //     const maxValue = (max * rate) / 100;
-      //     const initialValue = (initial * rate) / 100;
-      //     const stepValue = (step * rate) / 100;
-      //     noUiSlider.create(incomeRangeSlider, {
-      //         start: initialValue,
-      //         step: stepValue,
-      //         animate: false,
-      //         range: {
-      //             min: minValue,
-      //             max: maxValue,
-      //         },
-      //     });
-      // }
-      // function incomeRangeSliderUpdate(object, value) {
-      //     const rateNode = object.find('.profit-object__rate');
-      //     const basicRate = rateNode.data('rate');
-      //     const libertyRate = rateNode.data('liberty-rate');
-      //     const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
-      //     incomeRangeSlider.noUiSlider.set((value * rate) / 100);
-      // }
-      // function investmentRangeSliderUpdate(object, value) {
-      //     const rateNode = object.find('.profit-object__rate');
-      //     const basicRate = rateNode.data('rate');
-      //     const libertyRate = rateNode.data('liberty-rate');
-      //     const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
-      //     investmentRangeSlider.noUiSlider.set((value / rate) * 100);
-      // }
+      });
 
       function updateObjectData(object, value) {
         var incomeNode = object.find('.profit-object__income .value');

@@ -53,6 +53,16 @@
 				"link": "error-page.html",
 				"text": "404 ошибка"
 			}
+		],
+		"account": [
+			{
+				"link": "account-page-1.html",
+				"text": "Личный кабинет — визард"
+			},
+			{
+				"link": "account-page-2.html",
+				"text": "Личный кабинет — реквизиты — основная информация"
+			}
 		]
 	},
 	"mainNav": [

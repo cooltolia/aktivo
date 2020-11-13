@@ -7,8 +7,6 @@
 
     // const incomeRangeSlider = document.querySelector('.profit-calc__income-range');
 
-    const LIBERTY_MIN = 10000000;
-
     const objectLink = document.querySelector('.profit-calc__object-link');
 
     const format = wNumb({
@@ -36,10 +34,10 @@
         updateObjectLink(object);
     });
 
-    objectsSlider.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
-        if (currentSlide === nextSlide) return;
+    objectsSlider.on('afterChange', function (e, slick, currentSlide, nextSlide) {
+        // if (currentSlide === nextSlide) return;
 
-        const slide = $(slick.$slides[nextSlide]);
+        const slide = $(slick.$slides[currentSlide]);
         const object = $(slide.children()[0]);
 
         const minValue = object.data('min');
@@ -49,7 +47,7 @@
         const currentRangeValue = parseInt(investmentRangeSlider.noUiSlider.get());
 
         const startValue = maxValue < currentRangeValue ? maxValue : currentRangeValue;
-
+       
         investmentRangeSlider.noUiSlider.updateOptions({
             start: startValue,
             step: step,
@@ -61,8 +59,8 @@
         });
 
         animateRangeSlider();
-        updateObjectData(object, startValue);
-        updateObjectLink(object);
+        // updateObjectData(object, startValue);
+        // updateObjectLink(object);
     });
 
     objectsNav.slick({
@@ -79,6 +77,7 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
+        accessibility: false,
         asNavFor: objectsNav,
     });
 
@@ -185,42 +184,6 @@
             e.target.blur();
         }
     });
-
-    // function incomeRangeSliderInit(min, max, step, initial, rate) {
-    //     const minValue = (min * rate) / 100;
-    //     const maxValue = (max * rate) / 100;
-    //     const initialValue = (initial * rate) / 100;
-    //     const stepValue = (step * rate) / 100;
-
-    //     noUiSlider.create(incomeRangeSlider, {
-    //         start: initialValue,
-    //         step: stepValue,
-    //         animate: false,
-    //         range: {
-    //             min: minValue,
-    //             max: maxValue,
-    //         },
-    //     });
-    // }
-
-    // function incomeRangeSliderUpdate(object, value) {
-    //     const rateNode = object.find('.profit-object__rate');
-    //     const basicRate = rateNode.data('rate');
-    //     const libertyRate = rateNode.data('liberty-rate');
-    //     const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
-
-    //     incomeRangeSlider.noUiSlider.set((value * rate) / 100);
-    // }
-
-    // function investmentRangeSliderUpdate(object, value) {
-    //     const rateNode = object.find('.profit-object__rate');
-    //     const basicRate = rateNode.data('rate');
-    //     const libertyRate = rateNode.data('liberty-rate');
-
-    //     const rate = value > LIBERTY_MIN ? libertyRate : basicRate;
-
-    //     investmentRangeSlider.noUiSlider.set((value / rate) * 100);
-    // }
 
     function updateObjectData(object, value) {
         const incomeNode = object.find('.profit-object__income .value');

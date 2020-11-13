@@ -1,0 +1,80 @@
+mixin account-details()
+    +b.SECTION.account-details
+        +e.step.active
+            +e.step-header
+                +e.A.step-link(href='#')
+                +e.step-title Основная информация
+                +e.step-status.--waiting Заполнить
+            +e.step-body
+                +e.form
+                    +e.inputs-row
+                        +e.input
+                            +base-input('text', 'surname', 'surname', 'Фамилия')
+                        +e.input
+                            +base-input('text', 'name', 'name', 'Имя')
+                        +e.input
+                            +base-input('text', 'patronym', 'patronym', 'Отчество')(value='Петрович')
+                    +e.inputs-row
+                        +e.radios-block.--2x
+                            +e.radios-label Инвестировать как
+                            +e.radios-row
+                                +e.radio
+                                    +base-radio('radio00', 'radio0', '0', 'Физическое лицо / ИП', true)
+                                +e.radio
+                                    +base-radio('radio01', 'radio0', '1', 'Юридическое лицо')
+                        +e.radios-block
+                            +e.radios-label Есть ли у вас граждантсво РФ
+                            +e.radios-row
+                                +e.radio
+                                    +base-radio('radio10', 'radio1', '0', 'Да', true)
+                                +e.radio
+                                    +base-radio('radio11', 'radio1', '1', 'Нет')
+                    +e.BUTTON.submit(type='button') Далее
+        +e.step
+            +e.step-header
+                +e.A.step-link(href='#')
+                +e.step-title Паспортные данные
+                +e.step-status.--ready Заполнено
+            +e.step-body
+                +e.form
+                    +e.inputs-row
+                        +e.input
+                            +base-input('text', 'passportSeries', 'passport_series', 'Серия', false)
+                        +e.input
+                            +base-input('text', 'passportNumber', 'passport_number', 'Номер', false)
+                        +e.input
+                            +base-input('text', 'passportIssueDate', 'passport_issue-date', 'Дата выдачи', false)
+                    +e.inputs-row
+                        +e.input
+                            +base-input-autocomplete('text', 'passportDepartmentAddress', 'passport_department-addresss', 'Кем выдан', false)
+                                //- +test-address-autocomplete
+                    +e.inputs-row
+                        +e.input
+                            +base-input('text', 'passportDepartmentCode', 'passport_department-code', 'Код подразделения', false)
+                        +e.input
+                            +base-input('text', 'passportBirthDate', 'passport_birth-date', 'Дата рождения', false)
+                    +e.inputs-row
+                        +e.input
+                            +base-input('text', 'passportBirthAddress', 'passport_birth-address', 'Место рождения', false)
+                    +e.subtitle Адрес регистрации
+                    +e.inputs-row
+                        +e.input
+                            +base-input('text', 'addressIndex', 'address_index', 'Индекс', false)
+                        +e.input
+                            +base-input-autocomplete('text', 'addressCity', 'address_city', 'Город', false)
+                                +test-address-autocomplete
+                        +e.input
+                            +base-input('text', 'addressStreet', 'address_street', 'Улица', false)
+                    +e.inputs-row
+                        +e.input
+                            +base-input('text', 'addressHouse', 'address_house', 'Дом', false)
+                        +e.input
+                            +base-input('text', 'addressLetter', 'address_letter', 'Строение', false)
+                        +e.input
+                            +base-input('text', 'addressBuilding', 'address_building', 'Корпус', false)
+                        +e.input
+                            +base-input('text', 'addressAppartment', 'address_appartment', 'Квартира', false)
+                    +e.inputs-row
+                        +e.input
+                            +base-checkbox('address_same', 'addressSame', 'Совпадает с адресом проживания')
+                    +e.BUTTON.submit(type='button') Далее

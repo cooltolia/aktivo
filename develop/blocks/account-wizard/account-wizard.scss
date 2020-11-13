@@ -1,0 +1,151 @@
+.account-wizard {
+    &__title {
+        margin-bottom: 30px;
+    }
+
+    &__steps {
+        margin-bottom: -32px;
+    }
+
+    &__step {
+        padding: 16px 20px 24px;
+        margin-bottom: 32px;
+        min-height: 234px;
+        display: flex;
+        flex-flow: column nowrap;
+
+        color: #b4b4b4;
+        font-size: 14px;
+        line-height: 1.4;
+
+        background: #f7f7f7;
+        border-radius: 8px;
+
+        &.current {
+            background-color: #fffbe7;
+
+            .account-wizard__step-status,
+            .account-wizard__step-text {
+                color: #696969;
+            }
+
+            .account-wizard__step-title {
+                color: $text-color;
+            }
+        }
+    }
+
+    &__step-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    &__step-label {
+        padding-right: 6px;
+    }
+
+    &__step-status {
+        position: relative;
+        padding-left: 20px;
+
+        color: #696969;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+
+            background-size: cover;
+
+            border-radius: 50%;
+        }
+
+        &--ready::before {
+            background-image: url(../images/redesign/account/success-icon.svg);
+        }
+
+        &--current::before {
+            background-image: url(../images/redesign/account/clock-icon.svg);
+        }
+    }
+
+    &__step-title {
+        margin-bottom: 12px;
+
+        font-size: 20px;
+        line-height: 1.2;
+        font-weight: 600;
+    }
+
+    &__step-text {
+        margin-bottom: 24px;
+    }
+
+    &__step-action {
+        align-self: flex-start;
+        margin-top: auto;
+    }
+}
+
+@media #{$tablet} {
+    .account-wizard {
+    }
+}
+
+@media #{$laptop} {
+    .account-wizard {
+        &__steps {
+            display: flex;
+            margin: 0 -6px;
+        }
+
+        &__step {
+            width: 30%;
+            flex: 1 1 auto;
+            min-height: 334px;
+            margin: 0 6px;
+            padding: 16px 12px 24px;
+
+            @media (hover) {
+                &.current {
+                    cursor: pointer;
+
+                    &:hover {
+                        .account-wizard__step-action {
+                            opacity: 1;
+                        }
+                    }
+
+                    .account-wizard__step-action {
+                        opacity: 0;
+
+                        transition: opacity 300ms ease;
+                    }
+                }
+            }
+        }
+
+        &__step-action.btn {
+            font-size: 16px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .account-wizard {
+        &__steps {
+            margin: 0 -12px;
+        }
+
+        &__step {
+            margin: 0 12px;
+            padding: 16px 20px 24px;
+        }
+    }
+}

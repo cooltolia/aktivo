@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
 
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     line-height: normal;
 
@@ -13,94 +13,177 @@
             display: none;
         }
     }
-}
-
-.base-input__input {
-    width: 100%;
-    padding: 9px 0;
-    border: none;
-    outline: none;
-
-    border-bottom: 1px solid #d2d2d2;
-
-    transition: border-color 300ms ease;
-
-    &:focus {
-        border-bottom-color: $theme-color;
-
-        ~ .base-input__label {
-            transform: scale(0.5) translateY(-200%);
-            color: #000;
-            left: 0;
-        }
-    }
-
-    &.hasValue {
-        ~ .base-input__label {
-            transform: scale(0.5) translateY(-200%);
-            color: #000;
-            left: 0;
-        }
-    }
-
-    &::placeholder {
-        color: $text-color-light;
-    }
-
-    &:disabled {
-        background-color: #fff;
-        opacity: 0.5;
-    }
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    &[type='number'] {
-        -moz-appearance: textfield;
-    }
-}
-
-.base-input__label {
-    position: absolute;
-    left: 0;
-    top: 12px;
-    font-size: 16px;
-    color: $text-color-light;
-
-    transition: transform 200ms ease, color 200ms ease;
-    transform-origin: left center;
-
-    pointer-events: none;
-
-    &.js-focus {
-        transform: scale(0.5) translateY(-200%);
-        color: #000;
-        left: 0;
-    }
-}
-
-.base-input.has-error {
-    .base-input__input {
-        border-bottom-color: #f52f4b;
-    }
-
-    .base-input__label {
-        color: #f52f4b;
-    }
-}
-
-.base-input__errors {
-    display: none;
-    position: relative;
-    margin-top: 5px;
-
-    font-size: 14px;
-    color: #f52f4b;
 
     &.has-error {
-        display: block;
+        .base-input__input {
+            border-bottom-color: #f52f4b;
+        }
+
+        .base-input__label {
+            color: #f52f4b;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding: 7px 0;
+        border: none;
+        outline: none;
+        background-color: transparent;
+
+        border-bottom: 1px solid #696969;
+
+        transition: border-color 300ms ease;
+
+        &:focus {
+            border-bottom-color: $theme-color;
+
+            ~ .base-input__label {
+                transform: scale(0.7) translateY(-145%);
+                color: #000;
+                left: 0;
+            }
+        }
+
+        &.hasValue {
+            ~ .base-input__label {
+                transform: scale(0.7) translateY(-145%);
+                color: #000;
+                left: 0;
+            }
+        }
+
+        &::placeholder {
+            color: #696969;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+        }
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        &[type='number'] {
+            -moz-appearance: textfield;
+        }
+    }
+
+    &__label {
+        position: absolute;
+        left: 0;
+        top: 8px;
+        font-size: 14px;
+        color: #696969;
+
+        transition: transform 200ms ease, color 200ms ease;
+        transform-origin: left center;
+
+        pointer-events: none;
+
+        &.js-focus {
+            transform: scale(0.7) translateY(-145%);
+            color: #000;
+            left: 0;
+        }
+    }
+
+    &__errors {
+        display: none;
+        position: relative;
+        margin-top: 5px;
+
+        font-size: 14px;
+        color: #f52f4b;
+
+        &.has-error {
+            display: block;
+        }
+    }
+}
+
+/* additional styles for input with autocomplete functionality */
+.base-input-autocomplete {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        margin-top: -3px;
+
+        border: solid #000;
+        border-width: 0 1px 1px 0;
+        padding: 3px;
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    .base-input__input {
+        padding-right: 32px;
+    }
+
+    .tt-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        z-index: 100;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        width: 100%;
+        max-height: 155px;
+        overflow: auto;
+
+        background-color: #fdfdfd;
+
+        .simplebar-track {
+            width: 3px;
+
+            background-color: transparent;
+
+            &.horizontal {
+                display: none;
+            }
+        }
+
+        .simplebar-scrollbar {
+            width: 3px;
+            right: 0;
+
+            &::before {
+                opacity: 1;
+                background-color: #979797;
+                border-radius: 0;
+            }
+        }
+    }
+
+    .tt-suggestion {
+        position: relative;
+        padding: 6px 20px;
+
+        font-size: 12px;
+        color: $text-color;
+
+        background-color: #fdfdfd;
+
+        cursor: pointer;
+
+        transition: background-color 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: #efefef;
+        }
+
+        .value {
+            + div {
+                color: #7c7c7c;
+                font-size: 8px;
+            }
+        }
     }
 }

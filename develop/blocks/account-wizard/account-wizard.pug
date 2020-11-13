@@ -1,0 +1,24 @@
+mixin account-wizard()
+    +b.SECTION.account-wizard
+        +e.title
+            +title('h1', 'account')
+                | Здравствуйте, мы поможем вам&nbsp;инвестировать в первый объект
+        +e.steps
+            +e.step
+                +e.step-header
+                    +e.step-label первый шаг
+                    +e.step-status.--ready готово
+                +e.step-title Добавьте свои реквизиты
+                +e.step-text Для оформления договоров и счетов на&nbsp;оплату
+            +e.step.current
+                +e.step-header
+                    +e.step-label второй шаг
+                    +e.step-status.--current текущий
+                +e.step-title Выберите объект и размер пая
+                +e.step-text Все объекты для инвестирования можно найти в разделе доступной недвижимости
+                +e.BUTTON.step-action.btn(type='button') Выбрать
+            +e.step
+                +e.step-header
+                    +e.step-label третий шаг
+                +e.step-title Подпишите документы и&nbsp;оплатите счет
+                +e.step-text После подписи документов и оплаты вы сможете управлять своим портефлем

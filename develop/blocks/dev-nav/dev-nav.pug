@@ -7,9 +7,9 @@ mixin dev-nav()
                 each page in devNav.main
                     +e.LI.item
                         +e.A.link(href=page.link)= page.text
-        //- +e.block
-        //-     +e.H2.block-title Личный кабинет
-        //-     +e.UL.list
-        //-         each accountPage in devNav.account
-        //-             +e.LI.item
-        //-                 +e.A.link(href=accountPage.link)= accountPage.text
+        +e.block
+            +e.H2.block-title Личный кабинет
+            +e.UL.list
+                each accountPage in devNav.account
+                    +e.LI.item
+                        +e.A.link(href=accountPage.link)= accountPage.text

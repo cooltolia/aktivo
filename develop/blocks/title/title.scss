@@ -13,7 +13,8 @@
         font-size: 32px;
     }
 
-    &.small {
+    &.small,
+    &.account {
         font-size: 20px;
     }
 
@@ -30,7 +31,8 @@
     .title {
         font-size: 32px;
 
-        &.small {
+        &.small,
+        &.account {
             font-size: 26px;
         }
 
@@ -44,7 +46,8 @@
     .title {
         font-size: 40px;
 
-        &.small {
+        &.small,
+        &.account {
             font-size: 30px;
         }
 

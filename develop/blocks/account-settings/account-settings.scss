@@ -1,0 +1,106 @@
+.modal {
+    .account-settings {
+        &__submit {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        &__submit-tip {
+            font-size: 12px;
+            line-height: 1.2;
+            color: $text-color-medium;
+        }
+
+        &__title {
+            margin-bottom: 24px;
+        }
+
+        &__action {
+            margin-bottom: 24px;
+        }
+
+        &__block {
+            margin-bottom: 32px;
+        }
+
+        &__subtitle {
+            margin-bottom: 16px;
+
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        &__input {
+            margin-bottom: 20px;
+        }
+
+        &__tip {
+            margin: 0;
+            margin-top: -8px;
+
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        &__subs-checkbox {
+            margin-bottom: 10px;
+        }
+    }
+
+    @media #{$laptop} {
+        .account-settings {
+            .modal__dialog {
+                max-width: 768px;
+            }
+
+            &__header {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                margin-bottom: 40px;
+            }
+
+            &__submit-tip {
+                text-align: center;
+            }
+
+            &__form {
+                display: flex;
+                align-items: flex-start;
+            }
+
+            &__data {
+                width: 232px;
+                flex: 0 0 auto;
+            }
+
+            &__subs {
+                padding-left: 50px;
+                flex: 1 1 auto;
+            }
+
+            &__subs-list {
+                display: flex;
+                flex-flow: row wrap;
+                margin: 0 -16px;
+            }
+
+            &__subs-checkbox {
+                width: 50%;
+                padding: 0 16px;
+            }
+        }
+    }
+    @media #{$desktop} {
+        .account-settings {
+            .modal__dialog {
+                max-width: 920px;
+                padding: 90px 60px 70px 90px;
+            }
+
+            &__subs-checkbox {
+                width: 33%;
+            }
+        }
+    }
+}

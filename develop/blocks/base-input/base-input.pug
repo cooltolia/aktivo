@@ -5,12 +5,11 @@ mixin base-input(inputType, id, name, label, required)
         +e.errors
             +e.error-message Текст ошибки
 
-
 mixin base-input-autocomplete(inputType, id, name, label, required)
     +b.base-input.base-input-autocomplete&attributes(attributes)
         span
             block
-            +e.INPUT.input(type=inputType id=id name=name required=required)
+            +e.INPUT.input(inputType, id, name, label, required)
         +e.LABEL.label(for=id)= label
         +e.errors
             +e.error-message Текст ошибки

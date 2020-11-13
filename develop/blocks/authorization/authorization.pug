@@ -5,7 +5,12 @@ mixin authorization()
             +e.A.login(href='#') Вход
         else
             +e.logged
-                +e.A.account(title='admin@aktivo.ru') admin@aktivo.ru
+                +e.A.inner-link(href='#' title='Документы')
+                    +icon('bubble')
+                +e.A.inner-link.__settings(href='#' title='Настройки')
+                    +icon('settings')
+                +e.A.account(href='#' title='admin@aktivo.ru') 
+                    span admin@aktivo.ru
                 //- +e.UL.list
                 //-     +e.LI.item
                 //-         +e.A.link(href='/realty') Недвижимость

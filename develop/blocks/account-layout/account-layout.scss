@@ -1,0 +1,54 @@
+.account-layout {
+    position: relative;
+    padding-top: 24px;
+    padding-bottom: 40px;
+
+    .lines {
+        height: calc(100% + 20px);
+
+        .line::after {
+            opacity: 0;
+        }
+    }
+
+    &__sidebar {
+        margin-bottom: 50px;
+    }
+}
+
+@media #{$tablet} {
+    .account-layout {
+        padding-top: 64px;
+        padding-bottom: 64px;
+
+        .lines {
+            top: 0;
+            height: 100%;
+        }
+
+        &__wrapper {
+            display: flex;
+        }
+
+        &__sidebar {
+            width: calc(100% / 3);
+            padding-right: 10px;
+        }
+
+        &__main {
+            width: calc(100% / 3 * 2);
+        }
+    }
+}
+
+@media #{$desktop} {
+    .account-layout {
+        &__sidebar {
+            width: 400px;
+        }
+
+        &__main {
+            width: 760px;
+        }
+    }
+}
