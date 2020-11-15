@@ -172,7 +172,7 @@
                     </div>
                     <div class="account-details__inputs-row">
                       <div class="account-details__radios-block account-details__radios-block--2x">
-                        <div class="account-details__radios-label">Инвестировать как
+                        <div class="account-details__input-label">Инвестировать как
                         </div>
                         <div class="account-details__radios-row">
                           <div class="account-details__radio"><!-- base-radio --> 
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                       <div class="account-details__radios-block">
-                        <div class="account-details__radios-label">Есть ли у вас граждантсво РФ
+                        <div class="account-details__input-label">Есть ли у вас граждантсво РФ
                         </div>
                         <div class="account-details__radios-row">
                           <div class="account-details__radio"><!-- base-radio --> 
@@ -273,7 +273,7 @@
                     <div class="account-details__inputs-row">
                       <div class="account-details__input"><!-- base-input --> 
                         <div class="base-input base-input-autocomplete"><span><input class="base-input__input" inputType="true" id="true" name="true" label="true" required="true" type="text"/></span>
-                          <label class="base-input__label" for="passportDepartmentAddress">Кем выдан
+                          <label class="base-input__label" for="passportDepartmentAddress" title="Кем выдан">Кем выдан
                           </label>
                           <div class="base-input__errors">
                             <div class="base-input__error-message">Текст ошибки
@@ -356,7 +356,7 @@
                                     <div class="value" style="white-space: normal;">село Санки</div>
                                     <div style="white-space: normal;">Нижегородская обл Лукояновский р-н</div>
                                   </div></span></div></span><input class="base-input__input" inputType="true" id="true" name="true" label="true" required="true" type="text"/></span>
-                          <label class="base-input__label" for="addressCity">Город
+                          <label class="base-input__label" for="addressCity" title="Город">Город
                           </label>
                           <div class="base-input__errors">
                             <div class="base-input__error-message">Текст ошибки
@@ -423,6 +423,288 @@
                           <label class="base-checkbox__label" for="addressSame">Совпадает с адресом проживания
                           </label>
                         </div><!--/ base-checkbox --> 
+                      </div>
+                    </div>
+                    <button class="account-details__submit" type="button">Далее
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="account-details__step">
+                <div class="account-details__step-header"><a class="account-details__step-link" href="#"></a>
+                  <div class="account-details__step-title">Банковские реквизиты
+                  </div>
+                  <div class="account-details__step-status account-details__step-status--ready">Заполнено
+                  </div>
+                </div>
+                <div class="account-details__step-body">
+                  <div class="account-details__form">
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__input"><!-- base-input --> 
+                        <div class="base-input"><input class="base-input__input" type="text" id="bankReceiver" name="bank_receiver"/>
+                          <label class="base-input__label" for="bankReceiver">Получатель
+                          </label>
+                          <div class="base-input__errors">
+                            <div class="base-input__error-message">Текст ошибки
+                            </div>
+                          </div>
+                        </div><!--/ base-input --> 
+                      </div>
+                      <div class="account-details__input"><!-- base-input --> 
+                        <div class="base-input"><input class="base-input__input" type="text" id="bankInn" name="bank_inn"/>
+                          <label class="base-input__label" for="bankInn">Ваш ИНН (не Банка)
+                          </label>
+                          <div class="base-input__errors">
+                            <div class="base-input__error-message">Текст ошибки
+                            </div>
+                          </div>
+                        </div><!--/ base-input --> 
+                      </div>
+                    </div>
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__input"><!-- base-input --> 
+                        <div class="base-input base-input-autocomplete"><span><input class="base-input__input" inputType="true" id="true" name="true" label="true" required="true" type="text"/></span>
+                          <label class="base-input__label" for="bankBik" title="БИК Вашего отделения банка">БИК Вашего отделения банка
+                          </label>
+                          <div class="base-input__errors">
+                            <div class="base-input__error-message">Текст ошибки
+                            </div>
+                          </div>
+                        </div><!--/ base-input --> 
+                      </div>
+                      <div class="account-details__input"><!-- base-input --> 
+                        <div class="base-input"><input class="base-input__input" type="text" id="bankAccount" name="bank_account"/>
+                          <label class="base-input__label" for="bankAccount">Расчетный счет
+                          </label>
+                          <div class="base-input__errors">
+                            <div class="base-input__error-message">Текст ошибки
+                            </div>
+                          </div>
+                        </div><!--/ base-input --> 
+                      </div>
+                    </div>
+                    <button class="account-details__submit" type="button">Далее
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="account-details__step">
+                <div class="account-details__step-header"><a class="account-details__step-link" href="#"></a>
+                  <div class="account-details__step-title">Дополнительные сведения
+                  </div>
+                  <div class="account-details__step-status account-details__step-status--waiting">Заполнить
+                  </div>
+                </div>
+                <div class="account-details__step-body">
+                  <div class="account-details__form">
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__checkboxes-block">
+                        <div class="account-details__input-label">Укажите источники происхождения денежных средств и иного имущества
+                        </div>
+                        <div class="account-details__checkbox"><!-- base-checkbox --> 
+                          <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="checklist" id="checklist1"/>
+                            <label class="base-checkbox__label" for="checklist1">отчуждение имущества (движимое, недвижимое, ценные бумаги)
+                            </label>
+                          </div><!--/ base-checkbox --> 
+                        </div>
+                        <div class="account-details__checkbox"><!-- base-checkbox --> 
+                          <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="checklist" id="checklist2"/>
+                            <label class="base-checkbox__label" for="checklist2">доход от предпринимательской деятельности
+                            </label>
+                          </div><!--/ base-checkbox --> 
+                        </div>
+                        <div class="account-details__checkbox"><!-- base-checkbox --> 
+                          <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="checklist" id="checklist3"/>
+                            <label class="base-checkbox__label" for="checklist3">заработная плата
+                            </label>
+                          </div><!--/ base-checkbox --> 
+                        </div>
+                        <div class="account-details__checkbox"><!-- base-checkbox --> 
+                          <div class="base-checkbox" checked=""><input class="base-checkbox__input" type="checkbox" name="checklist" id="checklist4" checked=""/>
+                            <label class="base-checkbox__label" for="checklist4">пенсия
+                            </label>
+                          </div><!--/ base-checkbox --> 
+                        </div>
+                        <div class="account-details__checkbox"><!-- base-checkbox --> 
+                          <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="checklist" id="checklist5"/>
+                            <label class="base-checkbox__label" for="checklist5">дивиденды
+                            </label>
+                          </div><!--/ base-checkbox --> 
+                        </div>
+                        <div class="account-details__checkbox"><!-- base-checkbox --> 
+                          <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="checklist" id="checklist6"/>
+                            <label class="base-checkbox__label" for="checklist6">иные доходы
+                            </label>
+                          </div><!--/ base-checkbox --> 
+                        </div>
+                      </div>
+                    </div>
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__radios-block">
+                        <div class="account-details__input-label">Являетесь ли вы ИПДЛ (Иностранное публичное должностное лицо)?
+                        </div>
+                        <div class="account-details__radios-row">
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio20" name="radio2" value="0"/>
+                              <label class="base-radio__label" for="radio20">Да
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio21" name="radio2" value="1" checked="true"/>
+                              <label class="base-radio__label" for="radio21">Нет
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__radios-block">
+                        <div class="account-details__input-label">Состоите ли вы в родстве с ИПДЛ?
+                        </div>
+                        <div class="account-details__radios-row">
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio30" name="radio3" value="0"/>
+                              <label class="base-radio__label" for="radio30">Да
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio31" name="radio3" value="1" checked="true"/>
+                              <label class="base-radio__label" for="radio31">Нет
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__radios-block">
+                        <div class="account-details__input-label">Являетесь ли вы должностным лицом публичной международной организации (ДЛПМО)?
+                        </div>
+                        <div class="account-details__radios-row">
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio40" name="radio4" value="0"/>
+                              <label class="base-radio__label" for="radio40">Да
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio41" name="radio4" value="1" checked="true"/>
+                              <label class="base-radio__label" for="radio41">Нет
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__radios-block">
+                        <div class="account-details__input-label">Состоите ли вы в родстве с ДЛПМО?
+                        </div>
+                        <div class="account-details__radios-row">
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio50" name="radio5" value="0"/>
+                              <label class="base-radio__label" for="radio50">Да
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio51" name="radio5" value="1" checked="true"/>
+                              <label class="base-radio__label" for="radio51">Нет
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__radios-block">
+                        <div class="account-details__input-label">Являетесь ли вы российским публичным должностным лицом (РПДЛ)?
+                        </div>
+                        <div class="account-details__radios-row">
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio60" name="radio6" value="0"/>
+                              <label class="base-radio__label" for="radio60">Да
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio61" name="radio6" value="1" checked="true"/>
+                              <label class="base-radio__label" for="radio61">Нет
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="account-details__inputs-row">
+                      <div class="account-details__radios-block">
+                        <div class="account-details__input-label">Состоите ли вы в родстве с РПДЛ?
+                        </div>
+                        <div class="account-details__radios-row">
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio70" name="radio7" value="0"/>
+                              <label class="base-radio__label" for="radio70">Да
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                          <div class="account-details__radio"><!-- base-radio --> 
+                            <div class="base-radio"><input class="base-radio__input" type="radio" id="radio71" name="radio7" value="1" checked="true"/>
+                              <label class="base-radio__label" for="radio71">Нет
+                              </label>
+                              <div class="base-radio__errors">
+                                <div class="base-radio__error-message">Текст ошибки
+                                </div>
+                              </div>
+                            </div><!--/ base-radio --> 
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <button class="account-details__submit" type="button">Далее

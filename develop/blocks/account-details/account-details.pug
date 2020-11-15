@@ -16,14 +16,14 @@ mixin account-details()
                             +base-input('text', 'patronym', 'patronym', 'Отчество')(value='Петрович')
                     +e.inputs-row
                         +e.radios-block.--2x
-                            +e.radios-label Инвестировать как
+                            +e.input-label Инвестировать как
                             +e.radios-row
                                 +e.radio
                                     +base-radio('radio00', 'radio0', '0', 'Физическое лицо / ИП', true)
                                 +e.radio
                                     +base-radio('radio01', 'radio0', '1', 'Юридическое лицо')
                         +e.radios-block
-                            +e.radios-label Есть ли у вас граждантсво РФ
+                            +e.input-label Есть ли у вас граждантсво РФ
                             +e.radios-row
                                 +e.radio
                                     +base-radio('radio10', 'radio1', '0', 'Да', true)
@@ -77,4 +77,93 @@ mixin account-details()
                     +e.inputs-row
                         +e.input
                             +base-checkbox('address_same', 'addressSame', 'Совпадает с адресом проживания')
+                    +e.BUTTON.submit(type='button') Далее
+        +e.step
+            +e.step-header
+                +e.A.step-link(href='#')
+                +e.step-title Банковские реквизиты
+                +e.step-status.--ready Заполнено
+            +e.step-body
+                +e.form
+                    +e.inputs-row
+                        +e.input
+                            +base-input('text', 'bankReceiver', 'bank_receiver', 'Получатель', false)
+                        +e.input
+                            +base-input('text', 'bankInn', 'bank_inn', 'Ваш ИНН (не Банка)', false)
+                    +e.inputs-row
+                        +e.input
+                            +base-input-autocomplete('text', 'bankBik', 'bank_bik', 'БИК Вашего отделения банка', false)
+                        +e.input
+                            +base-input('text', 'bankAccount', 'bank_account', 'Расчетный счет', false)
+                    +e.BUTTON.submit(type='button') Далее
+        +e.step
+            +e.step-header
+                +e.A.step-link(href='#')
+                +e.step-title Дополнительные сведения
+                +e.step-status.--waiting Заполнить
+            +e.step-body
+                +e.form
+                    +e.inputs-row
+                        +e.checkboxes-block
+                            +e.input-label Укажите источники происхождения денежных средств и иного имущества
+                            +e.checkbox
+                                +base-checkbox('checklist', 'checklist1', 'отчуждение имущества (движимое, недвижимое, ценные бумаги)')
+                            +e.checkbox
+                                +base-checkbox('checklist', 'checklist2', 'доход от предпринимательской деятельности')
+                            +e.checkbox
+                                +base-checkbox('checklist', 'checklist3', 'заработная плата')
+                            +e.checkbox
+                                +base-checkbox('checklist', 'checklist4', 'пенсия')(checked='')
+                            +e.checkbox
+                                +base-checkbox('checklist', 'checklist5', 'дивиденды')
+                            +e.checkbox
+                                +base-checkbox('checklist', 'checklist6', 'иные доходы')
+                    +e.inputs-row
+                        +e.radios-block
+                            +e.input-label Являетесь ли вы ИПДЛ (Иностранное публичное должностное лицо)?
+                            +e.radios-row
+                                +e.radio
+                                    +base-radio('radio20', 'radio2', '0', 'Да')
+                                +e.radio
+                                    +base-radio('radio21', 'radio2', '1', 'Нет', true)
+                    +e.inputs-row
+                        +e.radios-block
+                            +e.input-label Состоите ли вы в родстве с ИПДЛ?
+                            +e.radios-row
+                                +e.radio
+                                    +base-radio('radio30', 'radio3', '0', 'Да')
+                                +e.radio
+                                    +base-radio('radio31', 'radio3', '1', 'Нет', true)
+                    +e.inputs-row
+                        +e.radios-block
+                            +e.input-label Являетесь ли вы должностным лицом публичной международной организации (ДЛПМО)?
+                            +e.radios-row
+                                +e.radio
+                                    +base-radio('radio40', 'radio4', '0', 'Да')
+                                +e.radio
+                                    +base-radio('radio41', 'radio4', '1', 'Нет', true)
+                    +e.inputs-row
+                        +e.radios-block
+                            +e.input-label Состоите ли вы в родстве с ДЛПМО?
+                            +e.radios-row
+                                +e.radio
+                                    +base-radio('radio50', 'radio5', '0', 'Да')
+                                +e.radio
+                                    +base-radio('radio51', 'radio5', '1', 'Нет', true)
+                    +e.inputs-row
+                        +e.radios-block
+                            +e.input-label Являетесь ли вы российским публичным должностным лицом (РПДЛ)?
+                            +e.radios-row
+                                +e.radio
+                                    +base-radio('radio60', 'radio6', '0', 'Да')
+                                +e.radio
+                                    +base-radio('radio61', 'radio6', '1', 'Нет', true)
+                    +e.inputs-row
+                        +e.radios-block
+                            +e.input-label Состоите ли вы в родстве с РПДЛ?
+                            +e.radios-row
+                                +e.radio
+                                    +base-radio('radio70', 'radio7', '0', 'Да')
+                                +e.radio
+                                    +base-radio('radio71', 'radio7', '1', 'Нет', true)
                     +e.BUTTON.submit(type='button') Далее

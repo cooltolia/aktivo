@@ -7,7 +7,7 @@
 
     &__step-header {
         position: relative;
-        padding: 14px 24px 15px 48px;
+        padding: 14px 24px 15px 24px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -18,12 +18,12 @@
             content: '';
             position: absolute;
             top: 50%;
-            left: 16px;
+            left: 8px;
             margin-top: -3px;
 
             border: solid #000;
             border-width: 0 1px 1px 0;
-            padding: 5px;
+            padding: 3px;
             transform: translateY(-50%) rotate(45deg);
         }
     }
@@ -32,7 +32,7 @@
         position: relative;
         padding-right: 12px;
 
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 600;
     }
 
@@ -76,7 +76,7 @@
     }
 
     &__step-body {
-        padding: 8px 32px 32px 48px;
+        padding: 8px 32px 32px 24px;
     }
 
     &__inputs-row {
@@ -86,25 +86,25 @@
     }
 
     &__input {
-        flex: 1 1 auto;
         margin-bottom: 28px;
     }
 
-    &__radios-block {
-        margin-bottom: 28px;
-
-        &--2x {
-            grid-column: span 2;
-        }
-    }
-
-    &__radios-label {
+    &__input-label {
         display: block;
         margin-bottom: 8px;
 
         font-size: 14px;
         color: #696969;
         line-height: 1.4;
+    }
+
+    &__radios-block,
+    &__checkboxes-block {
+        margin-bottom: 28px;
+
+        &--2x {
+            grid-column: span 2;
+        }
     }
 
     &__radios-row {
@@ -116,6 +116,14 @@
     &__radio {
         flex: 0 0 auto;
         margin-right: 12px;
+        margin-bottom: 12px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &__checkbox {
         margin-bottom: 12px;
 
         &:last-child {
@@ -152,6 +160,22 @@
 
 @media #{$tablet} {
     .account-details {
+        &__step-header {
+            padding-left: 48px;
+
+            &::before {
+                left: 16px;
+                padding: 5px;
+            }
+        }
+
+        &__step-title {
+            font-size: 16px;
+        }
+        
+        &__step-body {
+            padding-left: 48px;
+        }
     }
 }
 
