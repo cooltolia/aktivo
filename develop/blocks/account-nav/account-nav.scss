@@ -10,6 +10,7 @@
     &__list {
         padding: 0;
         margin: 0;
+        margin-top: -9px;
         list-style: none;
         display: flex;
 
@@ -25,7 +26,7 @@
     &__link {
         display: block;
         position: relative;
-        padding: 3px 6px;
+        padding: 12px 6px 3px;
 
         font-size: 12px;
         white-space: nowrap;
@@ -42,7 +43,7 @@
             text-decoration: none;
         }
 
-        &::after {
+        &::before {
             content: '';
             position: absolute;
             width: 100%;
@@ -66,6 +67,28 @@
                 transform: scaleX(1);
             }
         }
+
+        &--notify {
+            &::after {
+                content: '!';
+                position: absolute;
+                top: 5px;
+                right: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 9px;
+                height: 9px;
+
+                color: $text-color;
+                line-height: 1;
+                font-size: 7px;
+                font-weight: 700;
+
+                background-color: $theme-color;
+                border-radius: 50%;
+            }
+        }
     }
 }
 
@@ -83,6 +106,12 @@
 
             font-size: 14px;
             text-align: center;
+
+            &--notify {
+                &::after {
+                    right: 12px;
+                }
+            }
         }
     }
 }
@@ -128,7 +157,6 @@
 
                 &::before {
                     content: '';
-                    position: absolute;
                     width: 12px;
                     height: 12px;
                     left: -25px;
@@ -139,10 +167,19 @@
                     border-width: 0 1px 1px 0;
                     border-style: solid;
                     border-color: $theme-color;
+                    background: transparent;
                 }
+            }
 
+            &--notify {
                 &::after {
-                    display: none;
+                    top: 50%;
+                    right: -25px;
+                    width: 15px;
+                    height: 15px;
+                    transform: translateY(-50%);
+
+                    font-size: 11px;
                 }
             }
         }

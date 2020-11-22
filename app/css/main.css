@@ -1386,6 +1386,7 @@ th {
   .account-nav__list {
     padding: 0;
     margin: 0;
+    margin-top: -9px;
     list-style: none;
     display: -webkit-box;
     display: -moz-box;
@@ -1399,7 +1400,7 @@ th {
   .account-nav__link {
     display: block;
     position: relative;
-    padding: 3px 6px;
+    padding: 12px 6px 3px;
     font-size: 12px;
     white-space: nowrap;
     color: #000;
@@ -1410,7 +1411,7 @@ th {
     .account-nav__link:hover, .account-nav__link:active, .account-nav__link:focus {
       color: #fed63f;
       text-decoration: none; }
-    .account-nav__link::after {
+    .account-nav__link::before {
       content: '';
       position: absolute;
       width: 100%;
@@ -1434,6 +1435,31 @@ th {
          -moz-transform: scaleX(1);
           -ms-transform: scaleX(1);
               transform: scaleX(1); }
+    .account-nav__link--notify::after {
+      content: '!';
+      position: absolute;
+      top: 5px;
+      right: 0px;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+         -moz-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+         -moz-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 9px;
+      height: 9px;
+      color: #000;
+      line-height: 1;
+      font-size: 7px;
+      font-weight: 700;
+      background-color: #fed63f;
+      border-radius: 50%; }
 
 @media (min-width: 768px) {
   .account-nav {
@@ -1447,7 +1473,9 @@ th {
     .account-nav__link {
       padding: 5px 12px;
       font-size: 14px;
-      text-align: center; } }
+      text-align: center; }
+      .account-nav__link--notify::after {
+        right: 12px; } }
 
 @media (min-width: 1200px) {
   .account-nav {
@@ -1477,7 +1505,6 @@ th {
         font-weight: 600; }
         .account-nav__link.active::before {
           content: '';
-          position: absolute;
           width: 12px;
           height: 12px;
           left: -25px;
@@ -1488,9 +1515,18 @@ th {
                   transform: rotate(-45deg);
           border-width: 0 1px 1px 0;
           border-style: solid;
-          border-color: #fed63f; }
-        .account-nav__link.active::after {
-          display: none; } }
+          border-color: #fed63f;
+          background: transparent; }
+      .account-nav__link--notify::after {
+        top: 50%;
+        right: -25px;
+        width: 15px;
+        height: 15px;
+        -webkit-transform: translateY(-50%);
+           -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+        font-size: 11px; } }
 
 .modal .account-settings .modal__dialog {
   padding: 0;
