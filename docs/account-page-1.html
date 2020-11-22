@@ -114,13 +114,13 @@
           <aside class="account-layout__sidebar"><!-- account-nav --> 
             <nav class="account-nav">
               <ul class="account-nav__list">
-                <li class="account-nav__item"><a class="account-nav__link active" href="#">Мониторинг</a>
+                <li class="account-nav__item"><a class="account-nav__link" href="#">Мониторинг</a>
                 </li>
                 <li class="account-nav__item"><a class="account-nav__link" href="#">Документы</a>
                 </li>
                 <li class="account-nav__item"><a class="account-nav__link" href="#">Новости</a>
                 </li>
-                <li class="account-nav__item"><a class="account-nav__link" href="#">Реквизиты</a>
+                <li class="account-nav__item"><a class="account-nav__link active" href="#">Реквизиты</a>
                 </li>
                 <li class="account-nav__item"><a class="account-nav__link" href="#">Партнерская программа</a>
                 </li>
@@ -130,7 +130,7 @@
           <main class="account-layout__main" role="main"><!-- account-wizard --> 
             <section class="account-wizard">
               <div class="account-wizard__title"><!-- title --> 
-                <h1 class="title account">Здравствуйте, мы поможем вам&nbsp;инвестировать в первый объект
+                <h1 class="title account">Здравствуйте, мы&nbsp;поможем&nbsp;вам инвестировать в&nbsp;первый&nbsp;объект
                 </h1><!--/ title --> 
               </div>
               <div class="account-wizard__steps">
@@ -153,7 +153,7 @@
                     <div class="account-wizard__step-status account-wizard__step-status--current">текущий
                     </div>
                   </div>
-                  <div class="account-wizard__step-title">Выберите объект и размер пая
+                  <div class="account-wizard__step-title">Выберите объект и размер&nbsp;пая
                   </div>
                   <div class="account-wizard__step-text">Все объекты для инвестирования можно найти в разделе доступной недвижимости
                   </div>
@@ -184,15 +184,7 @@
               <use xlink:href="images/redesign/html-sprite.svg#close"></use>
             </svg>
           </button>
-          <div class="account-settings__header">
-            <div class="account-settings__title modal__title">Настройки
-            </div>
-            <div class="account-settings__action">
-              <button class="account-settings__submit btn" type="submit" form="accountSettingsForm">Сохранить
-              </button>
-              <div class="account-settings__submit-tip">Настройки изменены
-              </div>
-            </div>
+          <div class="account-settings__title modal__title">Настройки
           </div>
           <form class="account-settings__form" method="post" action="#" id="accountSettingsForm">
             <div class="account-settings__data">
@@ -356,6 +348,12 @@
               </div>
             </div>
           </form>
+          <div class="account-settings__action">
+            <button class="account-settings__submit btn" type="submit" form="accountSettingsForm">Сохранить
+            </button>
+            <div class="account-settings__submit-tip">Настройки изменены
+            </div>
+          </div>
         </div>
       </div><!--/ account-settings --> 
     </div><!-- main-footer --> 

@@ -114,13 +114,13 @@
           <aside class="account-layout__sidebar"><!-- account-nav --> 
             <nav class="account-nav">
               <ul class="account-nav__list">
-                <li class="account-nav__item"><a class="account-nav__link active" href="#">Мониторинг</a>
+                <li class="account-nav__item"><a class="account-nav__link" href="#">Мониторинг</a>
                 </li>
                 <li class="account-nav__item"><a class="account-nav__link" href="#">Документы</a>
                 </li>
                 <li class="account-nav__item"><a class="account-nav__link" href="#">Новости</a>
                 </li>
-                <li class="account-nav__item"><a class="account-nav__link" href="#">Реквизиты</a>
+                <li class="account-nav__item"><a class="account-nav__link active" href="#">Реквизиты</a>
                 </li>
                 <li class="account-nav__item"><a class="account-nav__link" href="#">Партнерская программа</a>
                 </li>
@@ -137,7 +137,7 @@
                   </div>
                 </div>
                 <div class="account-details__step-body">
-                  <div class="account-details__form">
+                  <form class="account-details__form" method="post" action="#">
                     <div class="account-details__inputs-row">
                       <div class="account-details__input"><!-- base-input --> 
                         <div class="base-input"><input class="base-input__input" type="text" id="surname" name="surname"/>
@@ -226,7 +226,7 @@
                     </div>
                     <button class="account-details__submit" type="button">Далее
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
               <div class="account-details__step">
@@ -237,7 +237,7 @@
                   </div>
                 </div>
                 <div class="account-details__step-body">
-                  <div class="account-details__form">
+                  <form class="account-details__form" method="post" action="#">
                     <div class="account-details__inputs-row">
                       <div class="account-details__input"><!-- base-input --> 
                         <div class="base-input"><input class="base-input__input" type="text" id="passportSeries" name="passport_series"/>
@@ -272,7 +272,7 @@
                     </div>
                     <div class="account-details__inputs-row">
                       <div class="account-details__input"><!-- base-input --> 
-                        <div class="base-input base-input-autocomplete"><span><input class="base-input__input" inputType="true" id="true" name="true" label="true" required="true" type="text"/></span>
+                        <div class="base-input base-input-autocomplete"><span><input class="base-input__input" type="text" id="passportDepartmentAddress" name="passport_department-addresss"/></span>
                           <label class="base-input__label" for="passportDepartmentAddress" title="Кем выдан">Кем выдан
                           </label>
                           <div class="base-input__errors">
@@ -355,7 +355,7 @@
                                   <div class="tt-suggestion">
                                     <div class="value" style="white-space: normal;">село Санки</div>
                                     <div style="white-space: normal;">Нижегородская обл Лукояновский р-н</div>
-                                  </div></span></div></span><input class="base-input__input" inputType="true" id="true" name="true" label="true" required="true" type="text"/></span>
+                                  </div></span></div></span><input class="base-input__input" type="text" id="addressCity" name="address_city"/></span>
                           <label class="base-input__label" for="addressCity" title="Город">Город
                           </label>
                           <div class="base-input__errors">
@@ -427,7 +427,7 @@
                     </div>
                     <button class="account-details__submit" type="button">Далее
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
               <div class="account-details__step">
@@ -438,7 +438,7 @@
                   </div>
                 </div>
                 <div class="account-details__step-body">
-                  <div class="account-details__form">
+                  <form class="account-details__form" method="post" action="#">
                     <div class="account-details__inputs-row">
                       <div class="account-details__input"><!-- base-input --> 
                         <div class="base-input"><input class="base-input__input" type="text" id="bankReceiver" name="bank_receiver"/>
@@ -463,7 +463,7 @@
                     </div>
                     <div class="account-details__inputs-row">
                       <div class="account-details__input"><!-- base-input --> 
-                        <div class="base-input base-input-autocomplete"><span><input class="base-input__input" inputType="true" id="true" name="true" label="true" required="true" type="text"/></span>
+                        <div class="base-input base-input-autocomplete"><span><input class="base-input__input" type="text" id="bankBik" name="bank_bik"/></span>
                           <label class="base-input__label" for="bankBik" title="БИК Вашего отделения банка">БИК Вашего отделения банка
                           </label>
                           <div class="base-input__errors">
@@ -485,7 +485,7 @@
                     </div>
                     <button class="account-details__submit" type="button">Далее
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
               <div class="account-details__step">
@@ -496,7 +496,7 @@
                   </div>
                 </div>
                 <div class="account-details__step-body">
-                  <div class="account-details__form">
+                  <form class="account-details__form" method="post" action="#">
                     <div class="account-details__inputs-row">
                       <div class="account-details__checkboxes-block">
                         <div class="account-details__input-label">Укажите источники происхождения денежных средств и иного имущества
@@ -709,7 +709,47 @@
                     </div>
                     <button class="account-details__submit" type="button">Далее
                     </button>
+                  </form>
+                </div>
+              </div>
+              <div class="account-details__step">
+                <div class="account-details__step-header"><a class="account-details__step-link" href="#"></a>
+                  <div class="account-details__step-title">Загрузка документов
                   </div>
+                  <div class="account-details__step-status account-details__step-status--waiting">Заполнить
+                  </div>
+                </div>
+                <div class="account-details__step-body">
+                  <div class="account-details__files-row">
+                    <div class="account-details__file-block">
+                      <label class="account-details__upload-label">Главная страница паспорта
+                      </label>
+                      <form class="account-details__file-upload has-data" id="dropzone1"><span class="account-details__upload-status"></span>
+                      </form>
+                    </div>
+                    <div class="account-details__file-block">
+                      <label class="account-details__upload-label">Полный разворот страницы паспорта с адресом регистрации
+                      </label>
+                      <form class="account-details__file-upload" id="dropzone2"><span class="account-details__upload-status"></span>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="account-details__files-row">
+                    <div class="account-details__file-block">
+                      <label class="account-details__upload-label">ИНН
+                      </label>
+                      <form class="account-details__file-upload" id="dropzone3"><span class="account-details__upload-status"></span>
+                      </form>
+                    </div>
+                    <div class="account-details__file-block">
+                      <label class="account-details__upload-label">СНИЛС
+                      </label>
+                      <form class="account-details__file-upload" id="dropzone4"><span class="account-details__upload-status"></span>
+                      </form>
+                    </div>
+                  </div>
+                  <button class="account-details__submit" type="button">Далее
+                  </button>
                 </div>
               </div>
             </section><!--/ account-details --> 
@@ -725,15 +765,7 @@
               <use xlink:href="images/redesign/html-sprite.svg#close"></use>
             </svg>
           </button>
-          <div class="account-settings__header">
-            <div class="account-settings__title modal__title">Настройки
-            </div>
-            <div class="account-settings__action">
-              <button class="account-settings__submit btn" type="submit" form="accountSettingsForm">Сохранить
-              </button>
-              <div class="account-settings__submit-tip">Настройки изменены
-              </div>
-            </div>
+          <div class="account-settings__title modal__title">Настройки
           </div>
           <form class="account-settings__form" method="post" action="#" id="accountSettingsForm">
             <div class="account-settings__data">
@@ -897,6 +929,12 @@
               </div>
             </div>
           </form>
+          <div class="account-settings__action">
+            <button class="account-settings__submit btn" type="submit" form="accountSettingsForm">Сохранить
+            </button>
+            <div class="account-settings__submit-tip">Настройки изменены
+            </div>
+          </div>
         </div>
       </div><!--/ account-settings --> 
     </div><!-- main-footer --> 
