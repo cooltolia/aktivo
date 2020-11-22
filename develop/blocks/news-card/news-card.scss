@@ -1,0 +1,45 @@
+.news-card {
+    padding: 8px 20px 20px;
+
+    font-size: 14px;
+
+    background-color: #FCFCFC;
+    border-radius: 8px;
+
+    &__title {
+        margin: 0 0 4px;
+
+        font-weight: 600;
+        line-height: 1.6;
+    }
+
+    &__excerpt {
+        margin: 0;
+
+        line-height: 1.45;
+    }
+
+    &__link {
+        display: inline;
+
+        color: $blue;
+        font-weight: 600;
+        text-decoration: none;
+    }
+}
+
+@media #{$tablet} {
+    .news-card {
+        padding: 20px 36px 26px;
+
+        &__title {
+            font-size: 16px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .news-card {
+
+    }
+}

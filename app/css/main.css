@@ -1484,7 +1484,8 @@ th {
     top: 20px; }
     .account-nav__list {
       display: block;
-      border: none; }
+      border: none;
+      margin-top: 0; }
     .account-nav__item {
       margin-bottom: 10px; }
       .account-nav__item:last-child {
@@ -1527,6 +1528,76 @@ th {
             -ms-transform: translateY(-50%);
                 transform: translateY(-50%);
         font-size: 11px; } }
+
+.account-news__column {
+  margin-bottom: 40px; }
+  .account-news__column:last-child {
+    margin-bottom: 0; }
+
+.account-news__column-title {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 600; }
+
+.account-news__date {
+  display: block;
+  margin-bottom: 12px;
+  color: #838282;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6; }
+
+.account-news__block {
+  margin-bottom: 32px; }
+
+.account-news__card {
+  margin-bottom: 16px; }
+  .account-news__card:last-child {
+    margin-bottom: 0; }
+
+.account-news__load {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 600;
+  border: 1px solid #fed63f;
+  border-radius: 8px; }
+
+@media (min-width: 768px) {
+  .account-news {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 16px; }
+    .account-news__column {
+      margin: 0;
+      width: 50%;
+      padding: 0 8px; }
+      .account-news__column:only-child {
+        width: 100%;
+        margin: 0 -12px;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+        .account-news__column:only-child .account-news__column-title {
+          width: 100%;
+          padding-left: 12px; }
+        .account-news__column:only-child .account-news__block {
+          width: 50%;
+          padding: 0 12px; }
+    .account-news__column-title {
+      margin-bottom: 32px;
+      font-size: 18px; } }
 
 .modal .account-settings .modal__dialog {
   padding: 0;
@@ -5806,6 +5877,30 @@ th {
     -webkit-transform: translateX(100%);
        -moz-transform: translateX(100%);
             transform: translateX(100%); } }
+
+.news-card {
+  padding: 8px 20px 20px;
+  font-size: 14px;
+  background-color: #FCFCFC;
+  border-radius: 8px; }
+  .news-card__title {
+    margin: 0 0 4px;
+    font-weight: 600;
+    line-height: 1.6; }
+  .news-card__excerpt {
+    margin: 0;
+    line-height: 1.45; }
+  .news-card__link {
+    display: inline;
+    color: #3F76FE;
+    font-weight: 600;
+    text-decoration: none; }
+
+@media (min-width: 768px) {
+  .news-card {
+    padding: 20px 36px 26px; }
+    .news-card__title {
+      font-size: 16px; } }
 
 .object-calc {
   position: relative;

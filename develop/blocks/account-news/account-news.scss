@@ -1,0 +1,92 @@
+.account-news {
+    &__column {
+        margin-bottom: 40px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__column-title {
+        margin: 0 0 16px;
+
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    &__date {
+        display: block;
+        margin-bottom: 12px;
+
+        color: #838282;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+    }
+
+    &__block {
+        margin-bottom: 32px;
+    }
+
+    &__card {
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__load {
+        @include btn-reset;
+        width: 100%;
+        padding: 16px;
+
+        font-size: 14px;
+        line-height: 1.45;
+        font-weight: 600;
+
+        border: 1px solid $theme-color;
+        border-radius: 8px;
+    }
+}
+
+@media #{$tablet} {
+    .account-news {
+        display: flex;
+        padding: 0 16px;
+
+        &__column {
+            margin: 0;
+            width: 50%;
+            padding: 0 8px;
+
+            &:only-child {
+                width: 100%;
+                margin: 0 -12px;
+                display: flex;
+                flex-wrap: wrap;
+
+                .account-news__column-title {
+                    width: 100%;
+                    padding-left: 12px;
+                }
+
+                .account-news__block {
+                    width: 50%;
+                    padding: 0 12px;
+                }
+            }
+        }
+
+        &__column-title {
+            margin-bottom: 32px;
+
+            font-size: 18px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .account-news {
+    }
+}

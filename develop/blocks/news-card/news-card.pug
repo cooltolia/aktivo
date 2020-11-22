@@ -1,0 +1,8 @@
+mixin news-card(title, text, link=false)
+    +b.ARTICLE.news-card
+        +e.title !{title}
+        +e.P.excerpt !{text}
+            if (link)
+                +e.A.link(href='#') 
+                    | 
+                    | Здесь будет ссылка
