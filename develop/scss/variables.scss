@@ -16,6 +16,7 @@ $text-color-white: #fff;
 // $accent-color-light: #fee7ea;
 
 $green: #5fce67;
+$red: #ff2b2b;
 
 @mixin btn-theme($themecolor: $themecolor) {
     position: relative;
@@ -42,18 +43,8 @@ $green: #5fce67;
     box-shadow: 0px 4px 15px rgba($themecolor, 0.2);
 
     &:hover {
-        background-color: adjust-color(
-            $themecolor,
-            $red: -32%,
-            $green: -30%,
-            $blue: -30%
-        );
-        border-color: adjust-color(
-            $themecolor,
-            $red: -32%,
-            $green: -30%,
-            $blue: -30%
-        );
+        background-color: adjust-color($themecolor, $red: -32%, $green: -30%, $blue: -30%);
+        border-color: adjust-color($themecolor, $red: -32%, $green: -30%, $blue: -30%);
         text-decoration: none;
         color: $text-color-white;
     }
@@ -62,18 +53,8 @@ $green: #5fce67;
     &:focus {
         text-decoration: none;
         color: $text-color-white;
-        background-color: adjust-color(
-            $themecolor,
-            $red: -58%,
-            $green: -78%,
-            $blue: -78%
-        );
-            border-color: adjust-color(
-                $themecolor,
-                $red: -58%,
-                $green: -78%,
-                $blue: -78%
-            );
+        background-color: adjust-color($themecolor, $red: -58%, $green: -78%, $blue: -78%);
+        border-color: adjust-color($themecolor, $red: -58%, $green: -78%, $blue: -78%);
     }
 
     @media #{$desktop} {

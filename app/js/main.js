@@ -1,5 +1,11 @@
 "use strict";
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -7,12 +13,6 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 /**
  * some global settings and functions
@@ -397,12 +397,98 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
-      var accountDetails = document.querySelector('.account__details');
+      var accountDetails = document.querySelector('.account-details');
+      if (!accountDetails) return;
       var $dropdown = $('.tt-dropdown-menu');
       if ($dropdown.length == 0) return;
       new SimpleBar($dropdown[0], {
         autoHide: false
       });
+      /** upload files logic */
+
+      $('.account-details__file-upload').each(function () {
+        initNewDropZone($(this)[0]);
+      });
+
+      function initNewDropZone(target) {
+        var status = target.querySelector('.account-details__upload-status');
+        var dropz = new Dropzone(target, {
+          url: 'upload.php',
+          maxFiles: 1,
+          maxFilesize: 2,
+          autoProcessQueue: false,
+          acceptedFiles: 'image/*',
+          dictFileTooBig: 'Слишком большой вес файла',
+          dictInvalidFileType: 'Выберите изображение' // addRemoveLinks: true,
+          // thumbnailWidth: '190',
+          // thumbnailHeight: '250',
+
+        });
+        dropz.on('uploadprogress', function (file) {
+          debugger; // const $add = $(file.previewElement).siblings('.add');
+          // const $progressBar = $(file.previewElement).find('.dz-upload');
+          // $progressBar.css('opacity', 1);
+          // $add.css('opacity', 0);
+        });
+        dropz.on('addedfile', function (file, e) {
+          target.classList.remove('error');
+          target.classList.add('success');
+          status.textContent = '';
+        });
+        dropz.on('success', function (file) {
+          debugger; // const $progressBar = $(file.previewElement).find('.dz-upload');
+          // $progressBar.css('opacity', 0);
+        });
+        dropz.on('error', function (file, reason) {
+          debugger;
+          target.classList.remove('success');
+          target.classList.add('error');
+          status.textContent = reason; // const $progressBar = $(file.previewElement).find('.dz-upload');
+          // $progressBar.css('opacity', 0);
+        });
+      }
+    })();
+
+    (function () {
+      var accountNav = document.querySelector('.account-nav');
+      if (!accountNav) return;
+
+      if (window.matchMedia('(max-width: 1199px)').matches) {
+        var navList = accountNav.querySelector('.account-nav__list');
+        var activeNavLink = accountNav.querySelector('.account-nav__link.active');
+
+        var navItems = _toConsumableArray(navList.children);
+
+        var navItemsLength = 0;
+        navItems.forEach(function (item) {
+          navItemsLength += item.getBoundingClientRect().width;
+        });
+        var $navList = $(navList);
+
+        if (navItemsLength > navList.clientWidth + 1) {
+          $navList.slick({
+            dots: false,
+            rows: 0,
+            arrows: false,
+            infinite: false,
+            variableWidth: true,
+            touchThreshold: 10,
+            speed: 200,
+            swipeToSlide: true // edgeFriction: 1,
+
+          });
+
+          if (activeNavLink) {
+            var parentSlide = activeNavLink.parentNode;
+
+            var index = _toConsumableArray($navList.slick('getSlick').$slides).indexOf(parentSlide);
+
+            $navList.slick('slickGoTo', index);
+          }
+        } else {
+          accountNav.classList.add('full');
+        }
+      }
     })();
 
     function accountSettingsModalLogic(modal) {

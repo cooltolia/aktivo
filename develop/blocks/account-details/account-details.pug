@@ -6,7 +6,7 @@ mixin account-details()
                 +e.step-title Основная информация
                 +e.step-status.--waiting Заполнить
             +e.step-body
-                +e.form
+                +e.FORM.form(method='post' action='#')
                     +e.inputs-row
                         +e.input
                             +base-input('text', 'surname', 'surname', 'Фамилия')
@@ -36,7 +36,7 @@ mixin account-details()
                 +e.step-title Паспортные данные
                 +e.step-status.--ready Заполнено
             +e.step-body
-                +e.form
+                +e.FORM.form(method='post' action='#')
                     +e.inputs-row
                         +e.input
                             +base-input('text', 'passportSeries', 'passport_series', 'Серия', false)
@@ -84,7 +84,7 @@ mixin account-details()
                 +e.step-title Банковские реквизиты
                 +e.step-status.--ready Заполнено
             +e.step-body
-                +e.form
+                +e.FORM.form(method='post' action='#')
                     +e.inputs-row
                         +e.input
                             +base-input('text', 'bankReceiver', 'bank_receiver', 'Получатель', false)
@@ -102,7 +102,7 @@ mixin account-details()
                 +e.step-title Дополнительные сведения
                 +e.step-status.--waiting Заполнить
             +e.step-body
-                +e.form
+                +e.FORM.form(method='post' action='#')
                     +e.inputs-row
                         +e.checkboxes-block
                             +e.input-label Укажите источники происхождения денежных средств и иного имущества
@@ -167,3 +167,28 @@ mixin account-details()
                                 +e.radio
                                     +base-radio('radio71', 'radio7', '1', 'Нет', true)
                     +e.BUTTON.submit(type='button') Далее
+        +e.step
+            +e.step-header
+                +e.A.step-link(href='#')
+                +e.step-title Загрузка документов
+                +e.step-status.--waiting Заполнить
+            +e.step-body
+                +e.files-row
+                    +e.file-block
+                        +e.LABEL.upload-label Главная страница паспорта
+                        +e.FORM.file-upload.has-data#dropzone1
+                            +e.SPAN.upload-status
+                    +e.file-block
+                        +e.LABEL.upload-label Полный разворот страницы паспорта с адресом регистрации
+                        +e.FORM.file-upload#dropzone2
+                            +e.SPAN.upload-status
+                +e.files-row
+                    +e.file-block
+                        +e.LABEL.upload-label ИНН
+                        +e.FORM.file-upload#dropzone3
+                            +e.SPAN.upload-status
+                    +e.file-block
+                        +e.LABEL.upload-label СНИЛС
+                        +e.FORM.file-upload#dropzone4
+                            +e.SPAN.upload-status
+                +e.BUTTON.submit(type='button') Далее

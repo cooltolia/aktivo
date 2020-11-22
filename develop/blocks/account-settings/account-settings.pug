@@ -4,11 +4,7 @@ mixin account-settings()
             .modal__dialog(role="dialog" aria-modal="true" aria-labelledby="Настройки")
                 +e.close.BUTTON.modal__close(aria-label="Закрыть окно" data-micromodal-close="")
                     +icon('close')
-                +e.header
-                    +e.title.modal__title Настройки
-                    +e.action
-                        +e.BUTTON.submit.btn(type='submit' form='accountSettingsForm') Сохранить
-                        +e.submit-tip Настройки изменены
+                +e.title.modal__title Настройки
                 +e.FORM.form(method='post' action='#' id='accountSettingsForm')
                     +e.data
                         +e.block
@@ -60,3 +56,6 @@ mixin account-settings()
                                 +base-checkbox('subs[]', 'subs11', 'Активо одиннадцать')
                             +e.subs-checkbox
                                 +base-checkbox('subs[]', 'subs12', 'Активо двенадцать')
+                +e.action
+                    +e.BUTTON.submit.btn(type='submit' form='accountSettingsForm') Сохранить
+                    +e.submit-tip Настройки изменены

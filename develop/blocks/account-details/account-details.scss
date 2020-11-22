@@ -138,6 +138,107 @@
         font-weight: 600;
     }
 
+    &__files-row {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 -24px;
+
+        &:last-child {
+            margin-bottom: -32px;
+        }
+
+        &:first-child {
+            padding-top: 24px;
+        }
+    }
+
+    &__file-block {
+        position: relative;
+        width: 50%;
+        min-width: 300px;
+        padding: 0 24px 32px;
+    }
+
+    &__file-upload {
+        position: relative;
+        width: 235px;
+        height: 226px;
+
+        color: #979797;
+
+        border: 1px solid currentColor;
+
+        cursor: pointer;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 1px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            transition: 300ms ease 200ms;
+
+            background-color: currentColor;
+        }
+
+        &::after {
+            transform: translate(-50%, -50%) rotate(-90deg);
+        }
+
+        .dz-preview {
+            display: none;
+        }
+
+        &.error {
+            color: $red;
+
+            &::before {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            &::after {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+        }
+
+        &.success,
+        &.has-data {
+            color: $green;
+
+            &::before {
+                top: 65%;
+                left: 30%;
+                transform: scaleX(0.45) scaleY(1.3) rotate(15deg) translate(-50%, -50%);
+            }
+
+            &::after {
+                transform: translate(-23%, 150%) rotate(125deg);
+                top: 48%;
+            }
+        }
+    }
+
+    &__upload-label {
+        display: block;
+        margin-bottom: 4px;
+        min-height: 34px;
+
+        font-size: 14px;
+        color: #696969;
+    }
+
+    &__upload-status {
+        position: absolute;
+        top: 6px;
+        left: 12px;
+
+        font-size: 8px;
+    }
+
     &__submit {
         @include btn-reset;
         width: 96px;
@@ -172,7 +273,7 @@
         &__step-title {
             font-size: 16px;
         }
-        
+
         &__step-body {
             padding-left: 48px;
         }

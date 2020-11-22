@@ -1,6 +1,6 @@
 .account-wizard {
     &__title {
-        margin-bottom: 30px;
+        margin-bottom: 16px;
     }
 
     &__steps {
@@ -8,8 +8,8 @@
     }
 
     &__step {
-        padding: 16px 20px 24px;
-        margin-bottom: 32px;
+        padding: 16px 20px 20px;
+        margin-bottom: 16px;
         min-height: 234px;
         display: flex;
         flex-flow: column nowrap;
@@ -78,7 +78,7 @@
     &__step-title {
         margin-bottom: 12px;
 
-        font-size: 20px;
+        font-size: 18px;
         line-height: 1.2;
         font-weight: 600;
     }
@@ -100,6 +100,10 @@
 
 @media #{$laptop} {
     .account-wizard {
+        &__title {
+            margin-bottom: 30px;
+        }
+
         &__steps {
             display: flex;
             margin: 0 -6px;
