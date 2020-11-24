@@ -1,0 +1,110 @@
+mixin account-documents()
+    +b.SECTION.account-documents
+        +e.block
+            +e.TIME.date(datetime='2020-01-17') 17 января 2020 г.
+            +e.document
+                +account-document('Покупка №403246 Активо четырнадцать', 'buy', '122 525 313.90 ₽', 'Не завершена', false)
+                    +e.row
+                        +e.name Договор купли-продажи паев
+                        +e.status.--highlight на подпись
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('check')
+                                | Подписать
+                            +e.A.action(href='#')
+                                +icon('view')
+                                | Ознакомиться
+                    +e.row
+                        +e.name Счет на оплату — 10%
+                        +e.status оплачено
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+                    +e.row
+                        +e.name Счет на оплату — 90%
+                        +e.status.--highlight оплатить
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+                    +e.row
+                        +e.name Заявление и анкета для открытия счета в спец. депозитарий
+                        +e.status для ознакомления
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+                    +e.row
+                        +e.name Анкета ФЛ в реестре владельцев инвестиционных паев
+                        +e.status подписано
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+                    +e.account
+                        +e.account-logo
+                            img(src="images/redesign/alfacapital.png", alt="Альфа-Капитал")
+                        +e.P.account-text 
+                            | Откройте лицевой счет на сайте управляющей компании
+                        +e.BUTTON.account-button.btn(type='button') Открыть счет
+        +e.block
+            +e.TIME.date(datetime='2020-01-02') 2 января 2020 г.
+            +account-document('Продажа №403241 Активо один', 'sell', '525 313.90 ₽', 'Завершена', true)
+                    +e.row
+                        +e.name Договор купли-продажи паев
+                        +e.status.--highlight на подпись
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('check')
+                                | Подписать
+                    +e.row
+                        +e.name Счет на оплату — 10%
+                        +e.status оплачено
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+                    +e.row
+                        +e.name Счет на оплату — 90%
+                        +e.status.--highlight оплатить
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+                    +e.row
+                        +e.name Заявление и анкета для открытия счета в спец. депозитарий
+                        +e.status для ознакомления
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+                    +e.row
+                        +e.name Анкета ФЛ в реестре владельцев инвестиционных паев
+                        +e.status подписано
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+            +account-document('Продажа №403241', 'sell', '2 525 313.90 ₽', 'Завершена', true)
+                    +e.row
+                        +e.name Договор купли-продажи паев
+                        +e.status.--highlight на подпись
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('check')
+                                | Подписать
+                    +e.row
+                        +e.name Счет на оплату — 10%
+                        +e.status оплачено
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать
+                    +e.row
+                        +e.name Счет на оплату — 90%
+                        +e.status.--highlight оплатить
+                        +e.actions
+                            +e.A.action(href='#')
+                                +icon('d-arrow')
+                                | скачать

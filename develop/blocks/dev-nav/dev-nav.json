@@ -66,6 +66,10 @@
             {
                 "link": "account-page-3.html",
                 "text": "Личный кабинет — новости"
+            },
+            {
+                "link": "account-page-4.html",
+                "text": "Личный кабинет — документы"
             }
             
         ]

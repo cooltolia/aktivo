@@ -2,16 +2,17 @@
     const accountDetails = document.querySelector('.account-details');
     if (!accountDetails) return;
 
-    const $dropdown = $('.tt-dropdown-menu');
-    if ($dropdown.length == 0) return;
-
-    new SimpleBar($dropdown[0], {
-        autoHide: false,
+    const dropdowns = document.querySelectorAll('.tt-dropdown-menu');
+    dropdowns.forEach((dd) => {
+        new SimpleBar(dd, {
+            autoHide: false,
+        });
     });
 
     /** upload files logic */
-    $('.account-details__file-upload').each(function () {
-        initNewDropZone($(this)[0]);
+    const dropzones = document.querySelectorAll('.account-details__file-upload');
+    dropzones.forEach((dz) => {
+        initNewDropZone(dz);
     });
 
     function initNewDropZone(target) {
@@ -24,42 +25,26 @@
             autoProcessQueue: false,
             acceptedFiles: 'image/*',
             dictFileTooBig: 'Слишком большой вес файла',
-            dictInvalidFileType: 'Выберите изображение'
+            dictInvalidFileType: 'Выберите изображение',
             // addRemoveLinks: true,
             // thumbnailWidth: '190',
             // thumbnailHeight: '250',
         });
 
-        dropz.on('uploadprogress', function (file) {
-            debugger;
-            // const $add = $(file.previewElement).siblings('.add');
-            // const $progressBar = $(file.previewElement).find('.dz-upload');
-
-            // $progressBar.css('opacity', 1);
-            // $add.css('opacity', 0);
-        });
+        dropz.on('uploadprogress', function (file) {});
 
         dropz.on('addedfile', function (file, e) {
             target.classList.remove('error');
             target.classList.add('success');
-            status.textContent = ''
+            status.textContent = '';
         });
 
-        dropz.on('success', function (file) {
-            debugger;
-            // const $progressBar = $(file.previewElement).find('.dz-upload');
-
-            // $progressBar.css('opacity', 0);
-        });
+        dropz.on('success', function (file) {});
 
         dropz.on('error', function (file, reason) {
-            debugger;
             target.classList.remove('success');
             target.classList.add('error');
             status.textContent = reason;
-            // const $progressBar = $(file.previewElement).find('.dz-upload');
-
-            // $progressBar.css('opacity', 0);
         });
     }
 })();

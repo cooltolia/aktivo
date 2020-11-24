@@ -1,0 +1,12 @@
+mixin account-document(title, type, price, statusText, status)
+    +b.account-document
+        +e.header
+            +e.title !{title}
+            +e.data
+                +e.price(class=type)
+                    .icon
+                        +icon('l-arrow')
+                    | !{price}
+                +e.header-status(class=status ? 'ready' : 'waiting') !{statusText}
+        +e.body
+            block
