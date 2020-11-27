@@ -28,6 +28,27 @@
         margin-bottom: 32px;
     }
 
+    &__empty {
+        max-width: 360px;
+        padding: 24px;
+
+        text-align: center;
+
+        border: 1px solid $theme-color;
+        border-radius: 8px;
+    }
+
+    &__empty-title {
+        margin-bottom: 20px;
+
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    &__empty-link.btn {
+        font-size: 16px;
+    }
+
     &__card {
         margin-bottom: 16px;
 
@@ -82,6 +103,10 @@
             margin-bottom: 32px;
 
             font-size: 18px;
+        }
+
+        &__empty {
+            padding: 56px 24px;
         }
     }
 }
