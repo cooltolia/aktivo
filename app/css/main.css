@@ -2029,12 +2029,8 @@ th {
     margin-bottom: 25px;
     border-bottom: none;
     font-size: 30px; }
-  .modal .account-settings__action {
-    padding: 0;
-    position: absolute;
-    margin-top: -12px;
-    right: 60px; }
   .modal .account-settings__form {
+    position: relative;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -2043,7 +2039,13 @@ th {
        -moz-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    padding: 0; }
+    padding: 30px 0 0; }
+  .modal .account-settings__action {
+    padding: 0;
+    position: absolute;
+    margin-top: -12px;
+    right: 60px;
+    top: -50px; }
   .modal .account-settings__data {
     width: 232px;
     -webkit-box-flex: 0;
