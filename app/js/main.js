@@ -1877,6 +1877,16 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
+      var partnerFriends = document.querySelector('.partner-friends');
+      if (!partnerFriends) return;
+    })();
+
+    (function () {
+      var partnerLinks = document.querySelector('.partner-links');
+      if (!partnerLinks) return;
+    })();
+
+    (function () {
       var partnersWrapper = document.querySelector('.partners-wrapper');
       if (!partnersWrapper) return;
 
