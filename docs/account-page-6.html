@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
-  <body theme="dark-theme"><!-- main-header --> 
+  <body><!-- main-header --> 
     <header class="main-header">
-      <div class="main-header__inner"><a class="main-header__logo" href="./"><img src="images/redesign/logo-white.svg" width="88" alt="Aktivo" data-aos="fade-up" data-aos-delay="0"/></a>
+      <div class="main-header__inner"><a class="main-header__logo" href="./"><img src="images/redesign/logo.svg" width="88" alt="Aktivo" data-aos="fade-up" data-aos-delay="0"/></a>
         <div class="main-header__navigation"><!-- main-nav --> 
           <nav class="main-nav">
             <ul class="main-nav__list">
@@ -105,102 +105,205 @@
           </div><!--/ hamburger --> 
         </div>
       </div>
-    </header><!--/ main-header --> 
-    <div class="page"><!-- liberty-club --> 
-      <div class="liberty-club"><!-- lines --> 
-        <div class="lines"><span class="line"></span>
-        </div><!--/ lines --> <!-- liberty-top --> 
-        <section class="liberty-top">
-          <div class="inner">
-            <div class="liberty-top__wrapper">
-              <div class="liberty-top__title"><!-- title --> 
-                <h1 class="title light">Liberty – <br> сообщество <br>инвесторов
-                </h1><!--/ title --> 
+    </header><!--/ main-header --> <!-- account-layout --> 
+    <div class="account-layout"><!-- lines --> 
+      <div class="lines"><span class="line"></span>
+      </div><!--/ lines --> 
+      <div class="inner">
+        <div class="account-layout__wrapper">
+          <aside class="account-layout__sidebar"><!-- account-nav --> 
+            <nav class="account-nav">
+              <ul class="account-nav__list">
+                <li class="account-nav__item"><a class="account-nav__link" href="#">Мониторинг</a>
+                </li>
+                <li class="account-nav__item"><a class="account-nav__link account-nav__link--notify" href="#">Документы</a>
+                </li>
+                <li class="account-nav__item"><a class="account-nav__link" href="#">Новости</a>
+                </li>
+                <li class="account-nav__item"><a class="account-nav__link active" href="#">Реквизиты</a>
+                </li>
+                <li class="account-nav__item"><a class="account-nav__link account-nav__link--notify" href="#">Партнерская программа</a>
+                </li>
+              </ul>
+            </nav><!--/ account-nav --> 
+          </aside>
+          <main class="account-layout__main" role="main"><!-- account-settings --> 
+            <div class="account-settings">
+              <div class="account-settings__title">Настройки
               </div>
-              <div class="liberty-top__content">
-                <div class="liberty-top__subtitle">Свобода инвестиций
-                </div>
-                <p class="liberty-top__text">Закрытое сообщеcтво предпринимателей, крупных инвесторов и топ-менеджеров, разделяющих идею создания единого российского marketplace коммерческой недвижимости AKTIVO
-                </p>
-                <button class="liberty-top__button btn" type="button">Вступить
-                </button>
-                <div class="liberty-top__tip">Размер единовременных <br> инвестиций должен <br>быть не менее 10&nbsp;000&nbsp;000&nbsp;руб.
-                </div>
-              </div>
-            </div>
-          </div>
-        </section><!--/ liberty-top --> <!-- liberty-target --> 
-        <section class="liberty-target">
-          <div class="inner">
-            <div class="liberty-target__wrapper">
-              <div class="liberty-target__image">
-                <figure class="liberty-target__figure"><img src="images/redesign/liberty/ceo.jpg" alt=""/>
-                  <figcaption class="liberty-target__figcaption"><span class="name">Оскар Хартманн</span><span class="post">Президент Aktivo</span>
-                  </figcaption>
-                </figure>
-              </div>
-              <div class="liberty-target__content">
-                <div class="liberty-target__title"><!-- title --> 
-                  <h2 class="title light medium">Для чего создано <br> сообщество liberty?
-                  </h2><!--/ title --> 
-                </div>
-                <blockquote class="liberty-target__blockquote">Aktivo liberty будет объединять успешных владельцев собственного бизнеса и топ-менеджеров, которые планируют обеспечить себе и своей семье финансовую свободу посредством инвестиций в коммерческую недвижимость
-                </blockquote>
-              </div>
-            </div>
-          </div>
-        </section><!--/ liberty-target --> <!-- liberty-advantages --> 
-        <section class="liberty-advantages">
-          <div class="inner">
-            <div class="liberty-advantages__wrapper">
-              <div class="liberty-advantages__title"><!-- title --> 
-                <h2 class="title light medium">
-                   Liberty <br>это свобода
-                </h2><!--/ title --> 
-              </div>
-              <div class="liberty-advantages__list">
-                <div class="liberty-advantages__item">
-                  <div class="liberty-advantages__item-title liberty-advantages__item-title--ruble">Свобода <br> инвестиций
+              <form class="account-settings__form" method="post" action="#">
+                <div class="account-settings__data">
+                  <div class="account-settings__block">
+                    <div class="account-settings__subtitle">Личные данные
+                    </div>
+                    <div class="account-settings__input"><!-- base-input --> 
+                      <div class="base-input"><input class="base-input__input" type="text" id="settingsSurname" name="surname"/>
+                        <label class="base-input__label" for="settingsSurname">Фамилия
+                        </label>
+                        <div class="base-input__errors">
+                          <div class="base-input__error-message">Текст ошибки
+                          </div>
+                        </div>
+                      </div><!--/ base-input --> 
+                    </div>
+                    <div class="account-settings__input"><!-- base-input --> 
+                      <div class="base-input"><input class="base-input__input" type="text" id="settingsName" name="name"/>
+                        <label class="base-input__label" for="settingsName">Имя
+                        </label>
+                        <div class="base-input__errors">
+                          <div class="base-input__error-message">Текст ошибки
+                          </div>
+                        </div>
+                      </div><!--/ base-input --> 
+                    </div>
+                    <div class="account-settings__input"><!-- base-input --> 
+                      <div class="base-input"><input class="base-input__input" type="text" id="settingsPhone" name="phone"/>
+                        <label class="base-input__label" for="settingsPhone">Телефон
+                        </label>
+                        <div class="base-input__errors">
+                          <div class="base-input__error-message">Текст ошибки
+                          </div>
+                        </div>
+                      </div><!--/ base-input --> 
+                    </div>
+                    <div class="account-settings__input"><!-- base-input --> 
+                      <div class="base-input"><input class="base-input__input" type="email" id="settingsEmail" name="email"/>
+                        <label class="base-input__label" for="settingsEmail">E-mail
+                        </label>
+                        <div class="base-input__errors">
+                          <div class="base-input__error-message">Текст ошибки
+                          </div>
+                        </div>
+                      </div><!--/ base-input --> 
+                    </div>
                   </div>
-                  <div class="liberty-advantages__item-text">
-                    <p>Доступ к эксклюзивным объектам недвижимости</p>
-                    <p>Право предварительного доступа ко всем предложениям AKTIVO </p>
-                    <p>Инфраструктуру для создания фондов недвижимости, а также полное сопровождение каждой сделки по приобретению объекта </p>
+                  <div class="account-settings__block">
+                    <div class="account-settings__subtitle">Изменение пароля
+                    </div>
+                    <div class="account-settings__input"><!-- base-input --> 
+                      <div class="base-input"><input class="base-input__input" type="password" id="settingsPassOld" name="pass-old"/>
+                        <label class="base-input__label" for="settingsPassOld">Старый пароль
+                        </label>
+                        <div class="base-input__errors">
+                          <div class="base-input__error-message">Текст ошибки
+                          </div>
+                        </div>
+                      </div><!--/ base-input --> 
+                    </div>
+                    <div class="account-settings__input"><!-- base-input --> 
+                      <div class="base-input"><input class="base-input__input" type="password" id="settingsPassNew" name="pass-new"/>
+                        <label class="base-input__label" for="settingsPassNew">Новый пароль
+                        </label>
+                        <div class="base-input__errors">
+                          <div class="base-input__error-message">Текст ошибки
+                          </div>
+                        </div>
+                      </div><!--/ base-input --> 
+                    </div>
+                  </div>
+                  <div class="account-settings__block">
+                    <div class="account-settings__subtitle">Подписки:
+                    </div>
+                    <div class="account-settings__input"><!-- base-checkbox --> 
+                      <div class="base-checkbox" checked=""><input class="base-checkbox__input" type="checkbox" name="feedback" id="feedback" checked=""/>
+                        <label class="base-checkbox__label" for="feedback">Получать рассылку на почту
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <p class="account-settings__tip">Обратите внимание, что отписка действует только на маркетинговые рассылки. Функционирование транзакционных писем (восстановление пароля, подтверждение оплаты и т.д.) не будет затронуто.
+                    </p>
                   </div>
                 </div>
-                <div class="liberty-advantages__item">
-                  <div class="liberty-advantages__item-title liberty-advantages__item-title--parentheses">Свобода <br>нетворкинга
+                <div class="account-settings__subs">
+                  <div class="account-settings__subtitle">Оповещения о паях:
                   </div>
-                  <div class="liberty-advantages__item-text">
-                    <p>Сообщество людей равного уровня </p>
-                    <p>Доступ на закрытые мероприятия с участием лидирующих экспертов в области инвестиций и персональных финансов </p>
-                    <p>Индивидуальное консультирование каждого клиента по вопросам управления капиталом</p>
+                  <div class="account-settings__subs-list">
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs1"/>
+                        <label class="base-checkbox__label" for="subs1">Активо один
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs2"/>
+                        <label class="base-checkbox__label" for="subs2">Активо два
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs3"/>
+                        <label class="base-checkbox__label" for="subs3">Активо три
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs4"/>
+                        <label class="base-checkbox__label" for="subs4">Активо четыре
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs5"/>
+                        <label class="base-checkbox__label" for="subs5">Активо пять
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs6"/>
+                        <label class="base-checkbox__label" for="subs6">Активо шесть
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs7"/>
+                        <label class="base-checkbox__label" for="subs7">Активо семь
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs8"/>
+                        <label class="base-checkbox__label" for="subs8">Активо восемь
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs9"/>
+                        <label class="base-checkbox__label" for="subs9">Активо девять
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs10"/>
+                        <label class="base-checkbox__label" for="subs10">Активо десять
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs11"/>
+                        <label class="base-checkbox__label" for="subs11">Активо одиннадцать
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
+                    <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
+                      <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs12"/>
+                        <label class="base-checkbox__label" for="subs12">Активо двенадцать
+                        </label>
+                      </div><!--/ base-checkbox --> 
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section><!--/ liberty-advantages --> <!-- liberty-appeal --> 
-        <section class="liberty-appeal">
-          <div class="inner">
-            <div class="liberty-appeal__wrapper">
-              <div class="liberty-appeal__content">
-                <div class="liberty-appeal__title"><!-- title --> 
-                  <h2 class="title light medium">Liberty это <br>только начало
-                  </h2><!--/ title --> 
+                <div class="account-settings__action">
+                  <button class="account-settings__submit btn" type="submit" form="accountSettingsForm">Сохранить
+                  </button>
+                  <div class="account-settings__submit-tip">Настройки изменены
+                  </div>
                 </div>
-                <p class="liberty-appeal__text">Для того, чтобы стать членом клуба Либерти, размер ваших единовременных инвестиций в объект должен быть не менее 10&nbsp;000&nbsp;000&nbsp;руб.
-                </p>
-                <button class="liberty-appeal__button btn" type="button">Вступить
-                </button>
-              </div>
-              <div class="liberty-appeal__number" aria-hidden="true">10000000
-              </div>
-            </div>
-          </div>
-        </section><!--/ liberty-appeal --> 
-      </div><!--/ liberty-club --> 
-    </div><!-- main-footer --> 
+              </form>
+            </div><!--/ account-settings --> 
+          </main>
+        </div>
+      </div>
+    </div><!--/ account-layout --> <!-- main-footer --> 
     <footer class="main-footer"><!-- lines --> 
       <div class="lines"><span class="line"></span>
       </div><!--/ lines --> 

@@ -1,2 +1,47 @@
 mixin partner-links()
     +b.partner-links
+        +e.BUTTON.add Добавить партнерскую ссылку
+        +e.block
+            +e.header
+                input(type='text' disabled value='https://aktivo.ru/?ref=0k01n4ivq2312')
+                button.copy(type='button')
+                    +icon('copy')
+            +e.content
+                +e.data
+                    +e.data-block
+                        +e.data-title Переходы:
+                        +e.data-value 110
+                    +e.data-block
+                        +e.data-title Регистрации:
+                        +e.data-value 30
+                    +e.data-block
+                        +e.data-title Сделки:
+                        +e.data-value 2
+                +e.form
+                    +e.input
+                        +base-input-autocomplete('text', 'comment1Page', 'comment1_page', 'Открывать страницу', false)(value='Главная')
+                            //- +test-address-autocomplete
+                    +e.input
+                        +base-textarea('link1Comment', 'link1_comment', 'Комментарий к ссылке')
+        +e.block
+            +e.header
+                input(type='text' disabled value='https://aktivo.ru/?ref=0k01n4ivcxf')
+                button.copy(type='button')
+                    +icon('copy')
+            +e.content
+                +e.data
+                    +e.data-block
+                        +e.data-title Переходы:
+                        +e.data-value 110
+                    +e.data-block
+                        +e.data-title Регистрации:
+                        +e.data-value 30
+                    +e.data-block
+                        +e.data-title Сделки:
+                        +e.data-value 2
+                +e.form
+                    +e.input
+                        +base-input-autocomplete('text', 'comment1Page', 'comment1_page', 'Открывать страницу', false)(value='Главная')
+                            //- +test-address-autocomplete
+                    +e.input
+                        +base-textarea('link1Comment', 'link1_comment', 'Комментарий к ссылке')

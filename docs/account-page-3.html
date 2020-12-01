@@ -74,7 +74,7 @@
               <div class="authorization__logged"><a class="authorization__inner-link" href="#" title="Документы">
                 <svg>
                   <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
-                </svg></a><a class="authorization__inner-link authorization__settings" href="#" title="Настройки">
+                </svg></a><a class="authorization__inner-link" href="./account-page-6.html" title="Настройки">
                 <svg>
                   <use xlink:href="images/redesign/html-sprite.svg#settings"></use>
                 </svg></a><a class="authorization__account" href="#" title="admin@aktivo.ru"> <span>admin@aktivo.ru</span></a>
@@ -87,7 +87,7 @@
             <div class="authorization__logged"><a class="authorization__inner-link" href="#" title="Документы">
               <svg>
                 <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
-              </svg></a><a class="authorization__inner-link authorization__settings" href="#" title="Настройки">
+              </svg></a><a class="authorization__inner-link" href="./account-page-6.html" title="Настройки">
               <svg>
                 <use xlink:href="images/redesign/html-sprite.svg#settings"></use>
               </svg></a><a class="authorization__account" href="#" title="admin@aktivo.ru"> <span>admin@aktivo.ru</span></a>
@@ -195,188 +195,7 @@
           </main>
         </div>
       </div>
-    </div><!--/ account-layout --> 
-    <div class="modal" id="accountSettingsModal" aria-hidden="true"><!-- account-settings --> 
-      <div class="account-settings modal__overlay" tabindex="-1" data-micromodal-close="">
-        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="Настройки">
-          <button class="account-settings__close modal__close" aria-label="Закрыть окно" data-micromodal-close="">
-            <svg>
-              <use xlink:href="images/redesign/html-sprite.svg#close"></use>
-            </svg>
-          </button>
-          <div class="account-settings__title modal__title">Настройки
-          </div>
-          <form class="account-settings__form" method="post" action="#" id="accountSettingsForm">
-            <div class="account-settings__data">
-              <div class="account-settings__block">
-                <div class="account-settings__subtitle">Личные данные
-                </div>
-                <div class="account-settings__input"><!-- base-input --> 
-                  <div class="base-input"><input class="base-input__input" type="text" id="settingsSurname" name="surname"/>
-                    <label class="base-input__label" for="settingsSurname">Фамилия
-                    </label>
-                    <div class="base-input__errors">
-                      <div class="base-input__error-message">Текст ошибки
-                      </div>
-                    </div>
-                  </div><!--/ base-input --> 
-                </div>
-                <div class="account-settings__input"><!-- base-input --> 
-                  <div class="base-input"><input class="base-input__input" type="text" id="settingsName" name="name"/>
-                    <label class="base-input__label" for="settingsName">Имя
-                    </label>
-                    <div class="base-input__errors">
-                      <div class="base-input__error-message">Текст ошибки
-                      </div>
-                    </div>
-                  </div><!--/ base-input --> 
-                </div>
-                <div class="account-settings__input"><!-- base-input --> 
-                  <div class="base-input"><input class="base-input__input" type="text" id="settingsPhone" name="phone"/>
-                    <label class="base-input__label" for="settingsPhone">Телефон
-                    </label>
-                    <div class="base-input__errors">
-                      <div class="base-input__error-message">Текст ошибки
-                      </div>
-                    </div>
-                  </div><!--/ base-input --> 
-                </div>
-                <div class="account-settings__input"><!-- base-input --> 
-                  <div class="base-input"><input class="base-input__input" type="email" id="settingsEmail" name="email"/>
-                    <label class="base-input__label" for="settingsEmail">E-mail
-                    </label>
-                    <div class="base-input__errors">
-                      <div class="base-input__error-message">Текст ошибки
-                      </div>
-                    </div>
-                  </div><!--/ base-input --> 
-                </div>
-              </div>
-              <div class="account-settings__block">
-                <div class="account-settings__subtitle">Изменение пароля
-                </div>
-                <div class="account-settings__input"><!-- base-input --> 
-                  <div class="base-input"><input class="base-input__input" type="password" id="settingsPassOld" name="pass-old"/>
-                    <label class="base-input__label" for="settingsPassOld">Старый пароль
-                    </label>
-                    <div class="base-input__errors">
-                      <div class="base-input__error-message">Текст ошибки
-                      </div>
-                    </div>
-                  </div><!--/ base-input --> 
-                </div>
-                <div class="account-settings__input"><!-- base-input --> 
-                  <div class="base-input"><input class="base-input__input" type="password" id="settingsPassNew" name="pass-new"/>
-                    <label class="base-input__label" for="settingsPassNew">Новый пароль
-                    </label>
-                    <div class="base-input__errors">
-                      <div class="base-input__error-message">Текст ошибки
-                      </div>
-                    </div>
-                  </div><!--/ base-input --> 
-                </div>
-              </div>
-              <div class="account-settings__block">
-                <div class="account-settings__subtitle">Подписки:
-                </div>
-                <div class="account-settings__input"><!-- base-checkbox --> 
-                  <div class="base-checkbox" checked=""><input class="base-checkbox__input" type="checkbox" name="feedback" id="feedback" checked=""/>
-                    <label class="base-checkbox__label" for="feedback">Получать рассылку на почту
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <p class="account-settings__tip">Обратите внимание, что отписка действует только на маркетинговые рассылки. Функционирование транзакционных писем (восстановление пароля, подтверждение оплаты и т.д.) не будет затронуто.
-                </p>
-              </div>
-            </div>
-            <div class="account-settings__subs">
-              <div class="account-settings__subtitle">Оповещения о паях:
-              </div>
-              <div class="account-settings__subs-list">
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs1"/>
-                    <label class="base-checkbox__label" for="subs1">Активо один
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs2"/>
-                    <label class="base-checkbox__label" for="subs2">Активо два
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs3"/>
-                    <label class="base-checkbox__label" for="subs3">Активо три
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs4"/>
-                    <label class="base-checkbox__label" for="subs4">Активо четыре
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs5"/>
-                    <label class="base-checkbox__label" for="subs5">Активо пять
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs6"/>
-                    <label class="base-checkbox__label" for="subs6">Активо шесть
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs7"/>
-                    <label class="base-checkbox__label" for="subs7">Активо семь
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs8"/>
-                    <label class="base-checkbox__label" for="subs8">Активо восемь
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs9"/>
-                    <label class="base-checkbox__label" for="subs9">Активо девять
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs10"/>
-                    <label class="base-checkbox__label" for="subs10">Активо десять
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs11"/>
-                    <label class="base-checkbox__label" for="subs11">Активо одиннадцать
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-                <div class="account-settings__subs-checkbox"><!-- base-checkbox --> 
-                  <div class="base-checkbox"><input class="base-checkbox__input" type="checkbox" name="subs[]" id="subs12"/>
-                    <label class="base-checkbox__label" for="subs12">Активо двенадцать
-                    </label>
-                  </div><!--/ base-checkbox --> 
-                </div>
-              </div>
-            </div>
-            <div class="account-settings__action">
-              <button class="account-settings__submit btn" type="submit" form="accountSettingsForm">Сохранить
-              </button>
-              <div class="account-settings__submit-tip">Настройки изменены
-              </div>
-            </div>
-          </form>
-        </div>
-      </div><!--/ account-settings --> 
-    </div><!-- main-footer --> 
+    </div><!--/ account-layout --> <!-- main-footer --> 
     <footer class="main-footer"><!-- lines --> 
       <div class="lines"><span class="line"></span>
       </div><!--/ lines --> 

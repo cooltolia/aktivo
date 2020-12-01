@@ -1,6 +1,9 @@
 (function() {
-    const $inputs = $('.base-input__input');
+    const $inputs = $('.base-input__input, .base-input__textarea');
+    console.log('$inputs: ', $inputs);
     const $autocompleteInputs = $('.base-input-autocomplete');
+
+
 
     $inputs.each(function() {
         if (
@@ -8,7 +11,7 @@
                 .val()
                 .trim() !== ''
         ) {
-            $(this).addClass('hasValue');
+            $(this).closest('.base-input').addClass('hasValue');
         }
 
         $(this).on('blur', function() {
@@ -17,9 +20,9 @@
                     .val()
                     .trim() !== ''
             ) {
-                $(this).addClass('hasValue');
+                $(this).closest('.base-input').addClass('hasValue');
             } else {
-                $(this).removeClass('hasValue');
+                $(this).closest('.base-input').removeClass('hasValue');
             }
         });
     });

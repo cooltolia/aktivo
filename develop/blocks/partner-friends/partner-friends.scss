@@ -1,15 +1,224 @@
 .partner-friends {
+    &__add {
+        @include btn-reset;
+        position: relative;
+        height: 50px;
+        width: 100%;
+        padding-left: 20px;
 
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+        text-decoration: none;
+
+        background-color: $theme-color;
+
+        transition: opacity 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            opacity: 0.6;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 9px;
+            height: 1px;
+            left: 7px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            background-color: currentColor;
+        }
+
+        &::after {
+            transform: translateY(-50%) rotate(90deg);
+        }
+    }
+
+    &__block {
+        transition: background-color 300ms ease;
+
+        &.active {
+            background-color: #fcfcfc;
+        }
+    }
+
+    &__header {
+        position: relative;
+        padding: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &.active {
+            &::before {
+                transform: translateY(20%) rotate(225deg);
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 8px;
+            margin-top: -2px;
+
+            border: solid currentColor;
+            border-width: 0 1px 1px 0;
+            padding: 3px;
+            transform: translateY(-50%) rotate(45deg);
+
+            transition: transform 300ms ease;
+        }
+    }
+
+    &__name {
+        padding-right: 12px;
+        flex: 1;
+
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    &__status {
+        position: relative;
+        margin-left: auto;
+        flex: 0 0 auto;
+        padding-left: 14px;
+
+        font-size: 10px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+
+            border-radius: 50%;
+
+            background-size: cover;
+        }
+
+        &--active {
+            &::before {
+                background-image: url(../images/redesign/account/success-icon.svg);
+            }
+        }
+
+        &--waiting {
+            &::before {
+                background-image: url(../images/redesign/account/clock-icon.svg);
+            }
+        }
+    }
+
+    &__content {
+        display: none;
+        padding: 0 20px 32px;
+    }
+
+    &__input {
+        margin-bottom: 24px;
+
+        &--phone {
+            position: relative;
+
+            .partner-friends__checkbox {
+                position: absolute;
+                margin-bottom: 0;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    &__checkbox {
+        margin-bottom: 14px;
+    }
+
+    &__actions {
+        margin-top: 24px;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        margin-bottom: -16px;
+    }
+
+    &__submit {
+        width: 160px;
+        padding: 8px 20px;
+        margin-bottom: 16px;
+
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &__remove {
+        @include btn-reset;
+        padding: 8px 20px;
+        margin-bottom: 16px;
+
+        font-size: 14px;
+        font-weight: 500;
+        color: $blue;
+    }
 }
 
 @media #{$tablet} {
     .partner-friends {
+        &__add {
+            padding-left: 48px;
+
+            &::before,
+            &::after {
+                left: 16px;
+                width: 18px;
+            }
+        }
+
+        &__header {
+            padding-left: 48px;
+
+            &::before {
+                padding: 5px;
+                left: 20px;
+                margin-top: -3px;
+            }
+        }
+
+        &__content {
+            padding-left: 48px;
+            padding-right: 40px;
+            padding-bottom: 48px;
+        }
+
+        &__name {
+            font-size: 16px;
+        }
+
+        &__status {
+            font-size: 12px;
+            padding-left: 20px;
+
+            &::before {
+                width: 14px;
+                height: 14px;
+            }
+        }
         
     }
 }
 
 @media #{$desktop} {
     .partner-friends {
-
     }
 }

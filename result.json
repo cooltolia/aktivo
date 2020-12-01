@@ -70,6 +70,14 @@
 			{
 				"link": "account-page-4.html",
 				"text": "Личный кабинет — документы"
+			},
+			{
+				"link": "account-page-5.html",
+				"text": "Личный кабинет — партнерка"
+			},
+			{
+				"link": "account-page-6.html",
+				"text": "Личный кабинет — настройки"
 			}
 		]
 	},

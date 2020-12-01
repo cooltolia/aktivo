@@ -500,6 +500,44 @@ jQuery(document).ready(function ($) {
     })();
 
     function accountSettingsModalLogic(modal) {
+      var form = modal.querySelector('.account-settings-modal__form');
+      var inputs = form.querySelectorAll('input');
+      var inputEmail = $('#settingsEmail');
+      var inputPhone = $('#settingsPhone');
+      var phoneMask = '+7 (f99) 999-99-99';
+      inputPhone.inputmask({
+        mask: phoneMask,
+        showMaskOnHover: false
+      });
+
+      function inputPhoneValidate() {
+        var enteredPhone = inputPhone.val();
+        return Inputmask.isValid(enteredPhone, {
+          mask: phoneMask
+        });
+      }
+
+      inputs.forEach(function (input) {
+        return input.addEventListener('focus', function () {
+          return hideSingleInputError(input);
+        });
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!inputPhoneValidate()) {
+          showInputError(inputPhone, 'Неверно указан телефон');
+          return;
+        }
+
+        var formData = $(form).serialize();
+        postData('url', formData).then(function (data) {
+          MicroModal.close('accountSettingsModal');
+        });
+      });
+    }
+
+    function accountSettingsLogic(modal) {
       var form = modal.querySelector('.account-settings__form');
       var inputs = form.querySelectorAll('input');
       var inputEmail = $('#settingsEmail');
@@ -537,6 +575,7 @@ jQuery(document).ready(function ($) {
       });
     }
 
+    accountSettingsLogic();
     {
       var triggerButtons = document.querySelectorAll('.application-trigger');
 
@@ -634,18 +673,19 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
-      var $inputs = $('.base-input__input');
+      var $inputs = $('.base-input__input, .base-input__textarea');
+      console.log('$inputs: ', $inputs);
       var $autocompleteInputs = $('.base-input-autocomplete');
       $inputs.each(function () {
         if ($(this).val().trim() !== '') {
-          $(this).addClass('hasValue');
+          $(this).closest('.base-input').addClass('hasValue');
         }
 
         $(this).on('blur', function () {
           if ($(this).val().trim() !== '') {
-            $(this).addClass('hasValue');
+            $(this).closest('.base-input').addClass('hasValue');
           } else {
-            $(this).removeClass('hasValue');
+            $(this).closest('.base-input').removeClass('hasValue');
           }
         });
       });
@@ -1879,11 +1919,41 @@ jQuery(document).ready(function ($) {
     (function () {
       var partnerFriends = document.querySelector('.partner-friends');
       if (!partnerFriends) return;
+      var headers = partnerFriends.querySelectorAll('.partner-friends__header');
+      headers.forEach(function (header) {
+        header.addEventListener('click', function (e) {
+          var content = header.nextElementSibling;
+          header.classList.toggle('active');
+          header.parentElement.classList.toggle('active');
+          $(content).slideToggle(200);
+        });
+      });
     })();
 
     (function () {
       var partnerLinks = document.querySelector('.partner-links');
       if (!partnerLinks) return;
+      var copyBtns = partnerLinks.querySelectorAll('.copy');
+      copyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var input = btn.previousElementSibling;
+          input.disabled = false;
+          input.select();
+          input.setSelectionRange(0, 99999);
+          document.execCommand('copy');
+          input.disabled = true;
+        });
+      });
+      var headers = partnerLinks.querySelectorAll('.partner-links__header');
+      headers.forEach(function (header) {
+        header.addEventListener('click', function (e) {
+          var content = header.nextElementSibling;
+          header.classList.toggle('active');
+          header.parentElement.classList.toggle('active');
+          $(content).slideToggle(200);
+        });
+      });
     })();
 
     (function () {

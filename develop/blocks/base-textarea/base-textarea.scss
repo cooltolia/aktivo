@@ -1,4 +1,4 @@
-.base-input {
+.base-textarea {
     position: relative;
     width: 100%;
 
@@ -9,39 +9,31 @@
     -webkit-tap-highlight-color: transparent;
 
     &.no-label {
-        .base-input__label {
+        .base-textarea__label {
             display: none;
         }
     }
 
     &.has-error {
-        .base-input__input {
+        .base-textarea__input {
             border-bottom-color: #f52f4b;
         }
 
-        .base-input__label {
+        .base-textarea__label {
             color: #f52f4b;
-        }
-    }
-
-    &.hasValue {
-        .base-input__label {
-            transform: scale(0.7) translateY(-145%);
-            color: #000;
-            left: 0;
-        }
-
-        .base-input__input {
-            border-color: $theme-color;
         }
     }
 
     &__input {
         width: 100%;
         padding: 7px 0;
+        height: 70px;
+
         border: none;
         outline: none;
         background-color: transparent;
+        appearance: none;
+        resize: none;
 
         border-bottom: 1px solid #696969;
 
@@ -50,7 +42,15 @@
         &:focus {
             border-bottom-color: $theme-color;
 
-            ~ .base-input__label {
+            ~ .base-textarea__label {
+                transform: scale(0.7) translateY(-145%);
+                color: #000;
+                left: 0;
+            }
+        }
+
+        &.hasValue {
+            ~ .base-textarea__label {
                 transform: scale(0.7) translateY(-145%);
                 color: #000;
                 left: 0;
@@ -115,7 +115,7 @@
 }
 
 /* additional styles for input with autocomplete functionality */
-.base-input-autocomplete {
+.base-textarea-autocomplete {
     position: relative;
 
     &::after {
@@ -131,8 +131,8 @@
         transform: translateY(-50%) rotate(45deg);
     }
 
-    .base-input__input,
-    .base-input__label {
+    .base-textarea__input,
+    .base-textarea__label {
         padding-right: 32px;
     }
 

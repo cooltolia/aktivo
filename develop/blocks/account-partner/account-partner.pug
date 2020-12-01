@@ -1,2 +1,27 @@
 mixin account-partner()
     +b.SECTION.account-partner
+        +e.header
+            +e.name Ундесов Николай Александрович
+            +e.status.--active активен
+            +e.data
+                +e.data-block
+                    +e.data-title Заработано:
+                    +e.data-value 1 344 000 ₽ 
+                +e.data-block
+                    +e.data-title Выплачено:
+                    +e.data-value 1 344 000 ₽ 
+                +e.data-block
+                    +e.data-title Остаток:
+                    +e.data-value 1 344 000 ₽ 
+                +e.data-block
+                    +e.data-title Вознаграждение:
+                    +e.data-value.--flex
+                        div 0.50%
+                            span за первую сделку
+                        div 0%
+                            span за повторную
+        +e.wrapper
+            +e.col
+                +partner-links
+            +e.col
+                +partner-friends

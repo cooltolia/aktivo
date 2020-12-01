@@ -1,5 +1,5 @@
-function accountSettingsLogic(modal) {
-    const form = modal.querySelector('.account-settings__form');
+function accountSettingsModalLogic(modal) {
+    const form = modal.querySelector('.account-settings-modal__form');
     const inputs = form.querySelectorAll('input');
 
     const inputEmail = $('#settingsEmail');
@@ -28,5 +28,3 @@ function accountSettingsLogic(modal) {
         })
     });
 }
-
-accountSettingsLogic();

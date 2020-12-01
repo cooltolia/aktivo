@@ -1,0 +1,61 @@
+mixin account-settings-modal()
+    .modal#accountSettingsModal(aria-hidden="true")
+        +b.account-settings-modal.modal__overlay(tabindex="-1" data-micromodal-close="")
+            .modal__dialog(role="dialog" aria-modal="true" aria-labelledby="Настройки")
+                +e.close.BUTTON.modal__close(aria-label="Закрыть окно" data-micromodal-close="")
+                    +icon('close')
+                +e.title.modal__title Настройки
+                +e.FORM.form(method='post' action='#' id='accountSettingsForm')
+                    +e.data
+                        +e.block
+                            +e.subtitle Личные данные
+                            +e.input
+                                +base-input('text', 'settingsSurname', 'surname', 'Фамилия')
+                            +e.input
+                                +base-input('text', 'settingsName', 'name', 'Имя')
+                            +e.input
+                                +base-input('text', 'settingsPhone', 'phone', 'Телефон')
+                            +e.input
+                                +base-input('email', 'settingsEmail', 'email', 'E-mail')
+                        +e.block
+                            +e.subtitle Изменение пароля
+                            +e.input
+                                +base-input('password', 'settingsPassOld', 'pass-old', 'Старый пароль')
+                            +e.input
+                                +base-input('password', 'settingsPassNew', 'pass-new', 'Новый пароль')
+                        +e.block
+                            +e.subtitle Подписки:
+                            +e.input
+                                +base-checkbox('feedback', 'feedback', 'Получать рассылку на почту')(checked='')
+                            +e.P.tip
+                                | Обратите внимание, что отписка действует только на маркетинговые рассылки. Функционирование транзакционных писем (восстановление пароля, подтверждение оплаты и т.д.) не будет затронуто.
+                    +e.subs
+                        +e.subtitle Оповещения о паях:
+                        +e.subs-list
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs1', 'Активо один')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs2', 'Активо два')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs3', 'Активо три')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs4', 'Активо четыре')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs5', 'Активо пять')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs6', 'Активо шесть')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs7', 'Активо семь')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs8', 'Активо восемь')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs9', 'Активо девять')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs10', 'Активо десять')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs11', 'Активо одиннадцать')
+                            +e.subs-checkbox
+                                +base-checkbox('subs[]', 'subs12', 'Активо двенадцать')
+                    +e.action
+                        +e.BUTTON.submit.btn(type='submit' form='accountSettingsForm') Сохранить
+                        +e.submit-tip Настройки изменены
