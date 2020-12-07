@@ -537,8 +537,9 @@ jQuery(document).ready(function ($) {
       });
     }
 
-    function accountSettingsLogic(modal) {
-      var form = modal.querySelector('.account-settings__form');
+    function accountSettingsLogic() {
+      var form = document.querySelector('.account-settings__form');
+      if (!form) return;
       var inputs = form.querySelectorAll('input');
       var inputEmail = $('#settingsEmail');
       var inputPhone = $('#settingsPhone');

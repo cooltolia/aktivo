@@ -1,0 +1,133 @@
+.partner-table {
+    padding: 24px 0;
+
+    &__desktop {
+        display: none;
+    }
+
+    &__mobile {
+        table {
+            width: 100%;
+            max-width: 380px;
+            // table-layout: fixed;
+
+            td {
+                padding: 10px;
+                vertical-align: top;
+
+                font-size: 10px;
+                line-height: 1.2;
+
+                span {
+                    display: block;
+                    margin-bottom: 5px;
+                    text-align: left;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+
+            thead {
+                td {
+                    font-size: 8px;
+                    color: #696969;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    &__select {
+        width: 50px;
+        margin-right: 24px;
+    }
+
+    &__arrow {
+        @include btn-reset;
+        position: relative;
+        width: 24px;
+        height: 24px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            border: solid #000;
+            border-width: 0 1px 1px 0;
+            padding: 5px;
+            transform: translate(-50%, -50%) rotate(135deg);
+        }
+
+        &.prev {
+            margin-right: 16px;
+        }
+
+        &.next::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+    }
+}
+
+@media #{$tablet} {
+    .partner-table {
+        padding-top: 40px;
+
+        &__mobile {
+            display: none;
+        }
+
+        &__desktop {
+            display: block;
+            padding: 0 10px;
+
+            table {
+                width: 100%;
+                // table-layout: fixed;
+
+                td {
+                    padding: 15px 10px;
+                    vertical-align: top;
+
+                    font-size: 16px;
+                    line-height: 1.2;
+                }
+
+                thead {
+                    td {
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #696969;
+                    }
+                }
+            }
+        }
+
+        &__actions {
+            padding-right: 30px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .partner-table {
+    }
+}

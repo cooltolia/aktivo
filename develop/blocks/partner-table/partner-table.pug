@@ -1,0 +1,127 @@
+mixin partner-table()
+    +b.partner-table
+        +e.mobile
+            table
+                thead
+                    tr
+                        td № сделки
+                        td Дата оплаты
+                        td 
+                            span Дата передачи
+                            span подписи
+                        td 
+                            span Сумма сделки
+                            span Заработок
+                tbody
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 
+                            span 20.01.20
+                            span 23.01.20
+                        td 
+                            span 4 243 235 ₽
+                            span 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 
+                            span 20.01.20
+                            span 23.01.20
+                        td 
+                            span 4 243 235 ₽
+                            span 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 
+                            span 20.01.20
+                            span 23.01.20
+                        td 
+                            span 4 243 235 ₽
+                            span 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 
+                            span 20.01.20
+                            span 23.01.20
+                        td 
+                            span 4 243 235 ₽
+                            span 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 
+                            span 20.01.20
+                            span 23.01.20
+                        td 
+                            span 4 243 235 ₽
+                            span 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 
+                            span 20.01.20
+                            span 23.01.20
+                        td 
+                            span 4 243 235 ₽
+                            span 30 000 ₽ 
+        +e.desktop
+            table
+                thead
+                    tr
+                        td № сделки
+                        td Дата оплаты
+                        td Дата передачи
+                        td Дата подписи
+                        td  Сумма сделки
+                        td Заработок
+                tbody
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 20.01.20
+                        td 23.01.20
+                        td 4 243 235 ₽
+                        td 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 20.01.20
+                        td 23.01.20
+                        td 4 243 235 ₽
+                        td 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 20.01.20
+                        td 23.01.20
+                        td 4 243 235 ₽
+                        td 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 20.01.20
+                        td 23.01.20
+                        td 4 243 235 ₽
+                        td 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 20.01.20
+                        td 23.01.20
+                        td 4 243 235 ₽
+                        td 30 000 ₽ 
+                    tr
+                        td 455N3495
+                        td 24.01.20
+                        td 20.01.20
+                        td 23.01.20
+                        td 4 243 235 ₽
+                        td 30 000 ₽ 
+        +e.actions
+            +e.select
+                +base-input-autocomplete('text', 'tableRows', 'table-rows')(value='6' readonly='')
+            +e.BUTTON.arrow.prev(type='button')
+            +e.BUTTON.arrow.next(type='button')

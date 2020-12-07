@@ -1,5 +1,6 @@
-function accountSettingsLogic(modal) {
-    const form = modal.querySelector('.account-settings__form');
+function accountSettingsLogic() {
+    const form = document.querySelector('.account-settings__form');
+    if (!form) return;
     const inputs = form.querySelectorAll('input');
 
     const inputEmail = $('#settingsEmail');
@@ -23,9 +24,9 @@ function accountSettingsLogic(modal) {
         }
 
         const formData = $(form).serialize();
-        postData('url', formData).then(data => {
+        postData('url', formData).then((data) => {
             MicroModal.close('accountSettingsModal');
-        })
+        });
     });
 }
 
