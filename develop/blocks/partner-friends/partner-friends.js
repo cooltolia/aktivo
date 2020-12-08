@@ -12,4 +12,9 @@
             $(content).slideToggle(200);
         });
     });
+
+    const wrapper = partnerFriends.querySelector('.partner-friends__wrapper');
+    new SimpleBar(wrapper, {
+        autoHide: false,
+    });
 })();

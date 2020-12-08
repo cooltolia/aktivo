@@ -5,7 +5,7 @@ mixin authorization()
             +e.A.login(href='#') Вход
         else
             +e.logged
-                +e.A.inner-link(href='#' title='Документы')
+                +e.A.inner-link.feedback-trigger(href='#' title='Документы')
                     +icon('bubble')
                 +e.A.inner-link(href='./account-page-6.html' title='Настройки')
                     +icon('settings')

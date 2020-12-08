@@ -1,0 +1,16 @@
+mixin account-feedback-modal()
+    .modal#accountFeedbackModal(aria-hidden="true")
+        +b.account-feedback-modal.modal__overlay(tabindex="-1" data-micromodal-close="")
+            .modal__dialog(role="dialog" aria-modal="true" aria-labelledby="Обратная связь")
+                +e.close.BUTTON.modal__close(aria-label="Закрыть окно" data-micromodal-close="")
+                    +icon('close')
+                +e.title.modal__title Обратная связь
+                +e.P.description Оставьте отзыв о работе компании, чтобы мы могли сделать сервис комфортнее и удобнее для вас.
+                +e.FORM.form(method='post' action='#')
+                    +e.input
+                        +base-input('text', 'feedbackFio', 'surname', 'Фамилия и имя')
+                    +e.input
+                        +base-input('email', 'feedbackEmail', 'email', 'E-mail')
+                    +e.input
+                        +base-textarea('feedbackComment', 'comment', 'Сообщение')
+                    +e.BUTTON.submit.btn(type='submit' form='accountfeedbackForm') Отправить

@@ -1,77 +1,78 @@
 mixin partner-friends()
     +b.partner-friends
         +e.BUTTON.add Пригласить друга
-        +e.block
-            +e.header
-                +e.name Анатолий Фамилия
-            +e.content
-                +e.FORM.form
-                    +e.input
-                        +base-input('text', 'friend1Surname', 'friend1_surname', 'Фамилия')
-                    +e.input
-                        +base-input('text', 'friend1Name', 'friend1_Name', 'Имя')
-                    +e.input
-                        +base-input('text', 'friend1Patronym', 'friend1_patronym', 'Отчество')
-                    +e.input.--phone
-                        +base-input('text', 'friend1Phone', 'friend1_phone', 'Телефон')
+        +e.wrapper
+            +e.block
+                +e.header
+                    +e.name Анатолий Фамилия
+                +e.content
+                    +e.FORM.form
+                        +e.input
+                            +base-input('text', 'friend1Surname', 'friend1_surname', 'Фамилия')
+                        +e.input
+                            +base-input('text', 'friend1Name', 'friend1_Name', 'Имя')
+                        +e.input
+                            +base-input('text', 'friend1Patronym', 'friend1_patronym', 'Отчество')
+                        +e.input.--phone
+                            +base-input('text', 'friend1Phone', 'friend1_phone', 'Телефон')
+                            +e.checkbox
+                                +base-checkbox('friend1_agree1', 'friend1Agree1', 'Можно звонить')(checked='')
+                        +e.input
+                            +base-input('email', 'friend1Email', 'friend1_email', 'E-mail')
                         +e.checkbox
-                            +base-checkbox('friend1_agree1', 'friend1Agree1', 'Можно звонить')(checked='')
-                    +e.input
-                        +base-input('email', 'friend1Email', 'friend1_email', 'E-mail')
-                    +e.checkbox
-                        +base-checkbox('friend1_agree2', 'friend1Agree2', 'На меня можно ссылаться')(checked='')
-                    +e.checkbox
-                        +base-checkbox('friend1_agree3', 'friend1Agree3', 'Подписать на рассылку новостей от Aktivo')(checked='')
-                    +e.actions
-                        +e.BUTTON.submit.btn(type='submit') Пригласить
-                        +e.BUTTON.remove(type='button') Удалить
-        +e.block
-            +e.header
-                +e.name Алла Васильева
-                +e.status.--active Клиент Активо
-            +e.content
-                +e.FORM.form
-                    +e.input
-                        +base-input('text', 'friend1Surname', 'friend1_surname', 'Фамилия')
-                    +e.input
-                        +base-input('text', 'friend1Name', 'friend1_Name', 'Имя')
-                    +e.input
-                        +base-input('text', 'friend1Patronym', 'friend1_patronym', 'Отчество')
-                    +e.input.--phone
-                        +base-input('text', 'friend1Phone', 'friend1_phone', 'Телефон')
+                            +base-checkbox('friend1_agree2', 'friend1Agree2', 'На меня можно ссылаться')(checked='')
                         +e.checkbox
-                            +base-checkbox('friend1_agree1', 'friend1Agree1', 'Можно звонить')(checked='')
-                    +e.input
-                        +base-input('email', 'friend1Email', 'friend1_email', 'E-mail')
-                    +e.checkbox
-                        +base-checkbox('friend1_agree2', 'friend1Agree2', 'На меня можно ссылаться')(checked='')
-                    +e.checkbox
-                        +base-checkbox('friend1_agree3', 'friend1Agree3', 'Подписать на рассылку новостей от Aktivo')(checked='')
-                    +e.actions
-                        +e.BUTTON.submit.btn(type='submit') Пригласить
-                        +e.BUTTON.remove(type='button') Удалить
-        +e.block
-            +e.header
-                +e.name Николай Ундесов
-                +e.status.--waiting Проверяется
-            +e.content
-                +e.FORM.form
-                    +e.input
-                        +base-input('text', 'friend1Surname', 'friend1_surname', 'Фамилия')
-                    +e.input
-                        +base-input('text', 'friend1Name', 'friend1_Name', 'Имя')
-                    +e.input
-                        +base-input('text', 'friend1Patronym', 'friend1_patronym', 'Отчество')
-                    +e.input.--phone
-                        +base-input('text', 'friend1Phone', 'friend1_phone', 'Телефон')
+                            +base-checkbox('friend1_agree3', 'friend1Agree3', 'Подписать на рассылку новостей от Aktivo')(checked='')
+                        +e.actions
+                            +e.BUTTON.submit.btn(type='submit') Пригласить
+                            +e.BUTTON.remove(type='button') Удалить
+            +e.block
+                +e.header
+                    +e.name Алла Васильева
+                    +e.status.--active Клиент Активо
+                +e.content
+                    +e.FORM.form
+                        +e.input
+                            +base-input('text', 'friend1Surname', 'friend1_surname', 'Фамилия')
+                        +e.input
+                            +base-input('text', 'friend1Name', 'friend1_Name', 'Имя')
+                        +e.input
+                            +base-input('text', 'friend1Patronym', 'friend1_patronym', 'Отчество')
+                        +e.input.--phone
+                            +base-input('text', 'friend1Phone', 'friend1_phone', 'Телефон')
+                            +e.checkbox
+                                +base-checkbox('friend1_agree1', 'friend1Agree1', 'Можно звонить')(checked='')
+                        +e.input
+                            +base-input('email', 'friend1Email', 'friend1_email', 'E-mail')
                         +e.checkbox
-                            +base-checkbox('friend1_agree1', 'friend1Agree1', 'Можно звонить')(checked='')
-                    +e.input
-                        +base-input('email', 'friend1Email', 'friend1_email', 'E-mail')
-                    +e.checkbox
-                        +base-checkbox('friend1_agree2', 'friend1Agree2', 'На меня можно ссылаться')(checked='')
-                    +e.checkbox
-                        +base-checkbox('friend1_agree3', 'friend1Agree3', 'Подписать на рассылку новостей от Aktivo')(checked='')
-                    +e.actions
-                        +e.BUTTON.submit.btn(type='submit') Пригласить
-                        +e.BUTTON.remove(type='button') Удалить
+                            +base-checkbox('friend1_agree2', 'friend1Agree2', 'На меня можно ссылаться')(checked='')
+                        +e.checkbox
+                            +base-checkbox('friend1_agree3', 'friend1Agree3', 'Подписать на рассылку новостей от Aktivo')(checked='')
+                        +e.actions
+                            +e.BUTTON.submit.btn(type='submit') Пригласить
+                            +e.BUTTON.remove(type='button') Удалить
+            +e.block
+                +e.header
+                    +e.name Николай Ундесов
+                    +e.status.--waiting Проверяется
+                +e.content
+                    +e.FORM.form
+                        +e.input
+                            +base-input('text', 'friend1Surname', 'friend1_surname', 'Фамилия')
+                        +e.input
+                            +base-input('text', 'friend1Name', 'friend1_Name', 'Имя')
+                        +e.input
+                            +base-input('text', 'friend1Patronym', 'friend1_patronym', 'Отчество')
+                        +e.input.--phone
+                            +base-input('text', 'friend1Phone', 'friend1_phone', 'Телефон')
+                            +e.checkbox
+                                +base-checkbox('friend1_agree1', 'friend1Agree1', 'Можно звонить')(checked='')
+                        +e.input
+                            +base-input('email', 'friend1Email', 'friend1_email', 'E-mail')
+                        +e.checkbox
+                            +base-checkbox('friend1_agree2', 'friend1Agree2', 'На меня можно ссылаться')(checked='')
+                        +e.checkbox
+                            +base-checkbox('friend1_agree3', 'friend1Agree3', 'Подписать на рассылку новостей от Aktivo')(checked='')
+                        +e.actions
+                            +e.BUTTON.submit.btn.disabled(type='submit') Приглашен
+                            +e.BUTTON.remove(type='button') Отозвать приглашение

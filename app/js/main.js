@@ -455,7 +455,10 @@ jQuery(document).ready(function ($) {
           });
         });
       }
-    })();
+    })(); // function accountFeedbackModalLogic(modal) {
+    //     const form = modal.querySelector('.account-feedback-modal__form');
+    // }
+
 
     (function () {
       var accountNav = document.querySelector('.account-nav');
@@ -664,6 +667,23 @@ jQuery(document).ready(function ($) {
             onShow: function onShow(modal) {
               onModalOpen(modal);
               accountSettingsModalLogic(modal);
+            },
+            onClose: function onClose(modal) {
+              onModalClose(modal, false);
+            }
+          });
+        });
+      });
+      var feedbackTriggers = document.querySelectorAll('.feedback-trigger');
+      feedbackTriggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+          e.preventDefault();
+          MicroModal.show('accountFeedbackModal', {
+            disableScroll: true,
+            disableFocus: true,
+            awaitCloseAnimation: true,
+            onShow: function onShow(modal) {
+              onModalOpen(modal);
             },
             onClose: function onClose(modal) {
               onModalClose(modal, false);
@@ -1929,6 +1949,10 @@ jQuery(document).ready(function ($) {
           $(content).slideToggle(200);
         });
       });
+      var wrapper = partnerFriends.querySelector('.partner-friends__wrapper');
+      new SimpleBar(wrapper, {
+        autoHide: false
+      });
     })();
 
     (function () {
@@ -1954,6 +1978,10 @@ jQuery(document).ready(function ($) {
           header.parentElement.classList.toggle('active');
           $(content).slideToggle(200);
         });
+      });
+      var wrapper = partnerLinks.querySelector('.partner-links__wrapper');
+      new SimpleBar(wrapper, {
+        autoHide: false
       });
     })();
 

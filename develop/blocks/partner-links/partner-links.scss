@@ -39,6 +39,24 @@
         }
     }
 
+    &__wrapper {
+        max-height: 320px;
+
+        .simplebar-track.simplebar-vertical {
+            width: 3px;
+
+            .simplebar-scrollbar {
+                width: 3px;
+                right: 0;
+
+                &::before {
+                    background-color: #c2c2c2;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
     &__block {
         transition: background-color 300ms ease;
 

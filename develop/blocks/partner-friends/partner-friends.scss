@@ -39,6 +39,24 @@
         }
     }
 
+    &__wrapper {
+        max-height: 320px;
+
+        .simplebar-track.simplebar-vertical {
+            width: 3px;
+
+            .simplebar-scrollbar {
+                width: 3px;
+                right: 0;
+
+                &::before {
+                    background-color: #c2c2c2;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
     &__block {
         transition: background-color 300ms ease;
 
@@ -162,16 +180,24 @@
 
         font-size: 14px;
         font-weight: 500;
+
+        &.disabled {
+            background-color: #c1c1c1;
+            border-color: #c1c1c1;
+        }
     }
 
     &__remove {
         @include btn-reset;
+        flex: 1;
         padding: 8px 20px;
+        padding-right: 0;
         margin-bottom: 16px;
 
         font-size: 14px;
         font-weight: 500;
         color: $blue;
+        text-align: left;
     }
 }
 

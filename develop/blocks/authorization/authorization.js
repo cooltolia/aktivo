@@ -32,4 +32,24 @@
             });
         });
     });
+
+    const feedbackTriggers = document.querySelectorAll('.feedback-trigger');
+    feedbackTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            MicroModal.show('accountFeedbackModal', {
+                disableScroll: true,
+                disableFocus: true,
+                awaitCloseAnimation: true,
+                onShow(modal) {
+                    onModalOpen(modal);
+                },
+                onClose(modal) {
+                    onModalClose(modal, false);
+                },
+            });
+        });
+    });
+
+    
 })();

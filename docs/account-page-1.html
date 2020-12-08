@@ -71,7 +71,7 @@
           </nav><!--/ main-nav --> 
           <div class="main-header__authorization main-header__authorization--mobile"><!-- authorization --> 
             <div class="authorization">
-              <div class="authorization__logged"><a class="authorization__inner-link" href="#" title="Документы">
+              <div class="authorization__logged"><a class="authorization__inner-link feedback-trigger" href="#" title="Документы">
                 <svg>
                   <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
                 </svg></a><a class="authorization__inner-link" href="./account-page-6.html" title="Настройки">
@@ -84,7 +84,7 @@
         </div><a class="main-header__phone" href="tel: 8 800 500-64-64" data-aos="fade-left" data-aos-delay="350">8 800 500-64-64</a>
         <div class="main-header__authorization main-header__authorization--desktop" data-aos="fade-left" data-aos-delay="400"><!-- authorization --> 
           <div class="authorization">
-            <div class="authorization__logged"><a class="authorization__inner-link" href="#" title="Документы">
+            <div class="authorization__logged"><a class="authorization__inner-link feedback-trigger" href="#" title="Документы">
               <svg>
                 <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
               </svg></a><a class="authorization__inner-link" href="./account-page-6.html" title="Настройки">
@@ -175,7 +175,56 @@
           </main>
         </div>
       </div>
-    </div><!--/ account-layout --> <!-- main-footer --> 
+    </div><!--/ account-layout --> 
+    <div class="modal" id="accountFeedbackModal" aria-hidden="true"><!-- account-feedback-modal --> 
+      <div class="account-feedback-modal modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="Обратная связь">
+          <button class="account-feedback-modal__close modal__close" aria-label="Закрыть окно" data-micromodal-close="">
+            <svg>
+              <use xlink:href="images/redesign/html-sprite.svg#close"></use>
+            </svg>
+          </button>
+          <div class="account-feedback-modal__title modal__title">Обратная связь
+          </div>
+          <p class="account-feedback-modal__description">Оставьте отзыв о работе компании, чтобы мы могли сделать сервис комфортнее и удобнее для вас.
+          </p>
+          <form class="account-feedback-modal__form" method="post" action="#">
+            <div class="account-feedback-modal__input"><!-- base-input --> 
+              <div class="base-input"><input class="base-input__input" type="text" id="feedbackFio" name="surname"/>
+                <label class="base-input__label" for="feedbackFio">Фамилия и имя
+                </label>
+                <div class="base-input__errors">
+                  <div class="base-input__error-message">Текст ошибки
+                  </div>
+                </div>
+              </div><!--/ base-input --> 
+            </div>
+            <div class="account-feedback-modal__input"><!-- base-input --> 
+              <div class="base-input"><input class="base-input__input" type="email" id="feedbackEmail" name="email"/>
+                <label class="base-input__label" for="feedbackEmail">E-mail
+                </label>
+                <div class="base-input__errors">
+                  <div class="base-input__error-message">Текст ошибки
+                  </div>
+                </div>
+              </div><!--/ base-input --> 
+            </div>
+            <div class="account-feedback-modal__input"><!-- base-input --> 
+              <div class="base-input"><textarea class="base-input__input" id="feedbackComment" name="comment"></textarea>
+                <label class="base-input__label" for="feedbackComment">Сообщение
+                </label>
+                <div class="base-input__errors">
+                  <div class="base-input__error-message">Текст ошибки
+                  </div>
+                </div>
+              </div><!--/ base-input --> 
+            </div>
+            <button class="account-feedback-modal__submit btn" type="submit" form="accountfeedbackForm">Отправить
+            </button>
+          </form>
+        </div>
+      </div><!--/ account-feedback-modal --> 
+    </div><!-- main-footer --> 
     <footer class="main-footer"><!-- lines --> 
       <div class="lines"><span class="line"></span>
       </div><!--/ lines --> 
