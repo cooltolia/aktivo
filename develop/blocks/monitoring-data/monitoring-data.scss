@@ -1,0 +1,234 @@
+.monitoring-data {
+    &__title {
+        margin: 0 0 6px;
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: 600;
+    }
+
+    &__link {
+        position: relative;
+        display: inline-block;
+        padding: 6px 0;
+
+        padding-right: 14px;
+
+        font-size: 12px;
+        color: $blue;
+        font-weight: 500;
+        text-decoration: none;
+
+        transition: opacity 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            opacity: 0.6;
+        }
+
+        svg {
+            position: absolute;
+            width: 9px;
+            height: 8px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+
+            stroke: currentColor;
+        }
+    }
+
+    &__data-list {
+        padding-top: 30px;
+    }
+
+    &__data-block {
+        margin-bottom: 12px;
+    }
+
+    &__data-label {
+        margin: 0 0 4px;
+
+        font-size: 12px;
+        line-height: 1.4;
+        color: #696969;
+    }
+
+    &__data-value {
+        margin: 0 0 4px;
+
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+
+        &--green {
+            color: $green;
+        }
+
+        &--yellow {
+            color: $theme-color;
+        }
+
+        &--red {
+            color: $red;
+        }
+
+        a {
+            color: $text-color;
+            font-weight: 400;
+            text-decoration: underline;
+
+            transition: opacity 300ms ease;
+
+            &:hover,
+            &:active,
+            &:focus {
+                opacity: 0.6;
+            }
+        }
+    }
+
+    &__toggles {
+        padding-top: 20px;
+    }
+
+    &__toggle {
+        margin-bottom: 15px;
+    }
+
+    &__toggle-title {
+        margin-bottom: 8px;
+
+        font-size: 12px;
+        color: #696969;
+        line-height: 1.4;
+    }
+
+    &__toggle-inputs {
+        display: flex;
+
+        border: 1px solid var(--fund-color);
+        border-radius: 999px;
+        overflow: hidden;
+    }
+
+    &__toggle-input {
+        flex: 1 1 auto;
+
+        cursor: pointer;
+
+        input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+
+            &:checked {
+                + span {
+                    background-color: var(--fund-color);
+                }
+            }
+        }
+
+        span {
+            display: block;
+            width: 100%;
+            padding: 10px;
+
+            font-size: 10px;
+            line-height: 1;
+            text-align: center;
+
+            border-right: 1px solid var(--fund-color);
+
+            transition: background-color 300ms ease;
+        }
+
+        &:last-child {
+            span {
+                border-right: none;
+            }
+        }
+    }
+
+    &__table {
+        padding-top: 30px;
+    }
+
+    &__graph {
+        padding-top: 30px;
+    }
+
+    &__steps {
+        padding-top: 20px;
+        width: calc(100% + 40px);
+        margin-left: -20px;
+    }
+}
+
+@media #{$tablet} {
+    .monitoring-data {
+        &__header {
+            padding: 0 16px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        &__title {
+            padding-right: 12px;
+            margin-bottom: 0;
+            flex: 1 1 auto;
+        }
+
+        &__link {
+            flex: 0 0 auto;
+            margin-top: -4px;
+        }
+
+        &__toggles {
+            padding: 20px 16px 0 16px;
+        }
+
+        &__data-list {
+            padding-left: 16px;
+            padding-right: 16px;
+            column-count: 2;
+        }
+
+        &__steps {
+            padding-top: 30px;
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .monitoring-data {
+        &__header {
+            padding: 0 36px;
+        }
+
+        &__toggles {
+            padding: 20px 36px 0 36px;
+            display: flex;
+            flex-flow: row wrap;
+            margin: 0 -12px;
+        }
+
+        &__toggle {
+            width: 50%;
+            padding: 0 12px;
+        }
+
+        &__table {
+            padding-top: 40px;
+        }
+
+        &__data-list {
+            padding-left: 36px;
+            padding-right: 36px;
+        }
+    }
+}

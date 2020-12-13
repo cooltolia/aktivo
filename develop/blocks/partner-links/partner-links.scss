@@ -74,6 +74,8 @@
         color: $blue;
         display: flex;
 
+        cursor: pointer;
+
         &.active {
             &::before {
                 transform: translateY(20%) rotate(225deg);
@@ -81,11 +83,15 @@
         }
 
         input {
+            position: relative;
+            z-index: 0;
             width: 100%;
             padding: 0;
             border: none;
             appearance: none;
             background-color: transparent;
+
+            pointer-events: none;
 
             outline-color: $blue;
         }

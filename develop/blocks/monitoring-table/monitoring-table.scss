@@ -1,0 +1,219 @@
+.monitoring-table {
+    &__desktop {
+        display: none;
+    }
+
+    &__mobile {
+        table {
+            width: 100%;
+            max-width: 380px;
+            // table-layout: fixed;
+
+            td {
+                padding: 10px;
+                vertical-align: top;
+
+                font-size: 10px;
+                line-height: 1.2;
+
+                span,
+                a {
+                    display: block;
+                    margin-bottom: 5px;
+                    text-align: left;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
+                a {
+                    position: relative;
+                    display: inline-block;
+                    padding-right: 10px;
+                    color: $blue;
+                    font-weight: 500;
+                    text-decoration: none;
+
+                    transition: opacity 300ms ease;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        opacity: 0.6;
+                    }
+
+                    svg {
+                        position: absolute;
+                        width: 6px;
+                        height: 8px;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+
+                        stroke: currentColor;
+                    }
+                }
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+
+            thead {
+                td {
+                    font-size: 8px;
+                    color: #696969;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    &__actions {
+        max-width: 380px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    &__select {
+        width: 50px;
+        margin-right: 24px;
+    }
+
+    &__arrow {
+        @include btn-reset;
+        position: relative;
+        width: 24px;
+        height: 24px;
+
+        color: #696969;
+        transition: color 300ms ease;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            border: solid currentColor;
+            border-width: 0 1px 1px 0;
+            padding: 5px;
+            transform: translate(-50%, -50%) rotate(135deg);
+        }
+
+        &.prev {
+            margin-right: 16px;
+        }
+
+        &.next::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $theme-color;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .monitoring-table {
+        &__mobile {
+            display: none;
+        }
+
+        &__desktop {
+            display: block;
+
+            table {
+                width: 100%;
+                // table-layout: fixed;
+
+                td {
+                    padding: 10px 5px;
+                    vertical-align: top;
+
+                    font-size: 11px;
+                    line-height: 1.2;
+
+                    &:first-child {
+                        padding-left: 15px;
+                    }
+
+                    &:last-child {
+                        padding-right: 15px;
+                    }
+
+                    a {
+                        position: relative;
+                        display: block;
+                        height: 12px;
+                        padding-right: 10px;
+                        color: $blue;
+                        font-weight: 500;
+                        text-decoration: none;
+
+                        transition: opacity 300ms ease;
+
+                        &:hover,
+                        &:active,
+                        &:focus {
+                            opacity: 0.6;
+                        }
+
+                        svg {
+                            position: absolute;
+                            width: 6px;
+                            height: 8px;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+
+                            stroke: currentColor;
+                        }
+                    }
+                }
+
+                thead {
+                    td {
+                        font-size: 8px;
+                        font-weight: 500;
+                        color: #696969;
+                    }
+                }
+
+                tbody {
+                    td {
+                        transition: background-color 300ms ease, text-shadow 300ms ease;
+                    }
+
+                    tr:hover {
+                        td {
+                            text-shadow: 0 1px 1px currentColor;
+
+                            background-color: #f4f4f4;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__actions {
+            max-width: none;
+            padding-right: 30px;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .monitoring-table {
+    }
+}

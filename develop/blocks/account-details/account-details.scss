@@ -241,12 +241,16 @@
 
     &__submit {
         @include btn-reset;
+        display: block;
         width: 96px;
         height: 28px;
         margin-top: 32px;
+        margin-right: 16px;
 
+        color: $text-color;
         font-size: 14px;
         font-weight: 500;
+        text-decoration: none;
 
         background: #e1e1e1;
         border-radius: 8px;

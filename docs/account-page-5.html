@@ -74,7 +74,7 @@
               <div class="authorization__logged"><a class="authorization__inner-link feedback-trigger" href="#" title="Документы">
                 <svg>
                   <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
-                </svg></a><a class="authorization__inner-link" href="./account-page-6.html" title="Настройки">
+                </svg></a><a class="authorization__inner-link authorization__settings" href="./account-page-6.html" title="Настройки">
                 <svg>
                   <use xlink:href="images/redesign/html-sprite.svg#settings"></use>
                 </svg></a><a class="authorization__account" href="#" title="admin@aktivo.ru"> <span>admin@aktivo.ru</span></a>
@@ -87,7 +87,7 @@
             <div class="authorization__logged"><a class="authorization__inner-link feedback-trigger" href="#" title="Документы">
               <svg>
                 <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
-              </svg></a><a class="authorization__inner-link" href="./account-page-6.html" title="Настройки">
+              </svg></a><a class="authorization__inner-link authorization__settings" href="./account-page-6.html" title="Настройки">
               <svg>
                 <use xlink:href="images/redesign/html-sprite.svg#settings"></use>
               </svg></a><a class="authorization__account" href="#" title="admin@aktivo.ru"> <span>admin@aktivo.ru</span></a>
@@ -200,18 +200,19 @@
                             </div>
                           </div>
                           <div class="partner-links__form">
-                            <div class="partner-links__input"><!-- base-input --> 
-                              <div class="base-input base-input-autocomplete" value="Главная"><span><input class="base-input__input" type="text" id="comment1Page" name="comment1_page" value="Главная"/></span>
-                                <label class="base-input__label" for="comment1Page" title="Открывать страницу">Открывать страницу
+                            <div class="partner-links__input"><!-- native-select --> 
+                              <div class="native-select">
+                                <label class="native-select__label">Открывать страницу
                                 </label>
-                                <div class="base-input__errors">
-                                  <div class="base-input__error-message">Текст ошибки
-                                  </div>
-                                </div>
-                              </div><!--/ base-input --> 
+                                <select name="page">
+                                  <option value="Главная" selected="">Главная</option>
+                                  <option value="Внутренняя">Внутренняя</option>
+                                  <option value="Другая">Другая</option>
+                                </select>
+                              </div><!--/ native-select --> 
                             </div>
                             <div class="partner-links__input"><!-- base-input --> 
-                              <div class="base-input"><textarea class="base-input__input" id="link1Comment" name="link1_comment"></textarea>
+                              <div class="base-input"><textarea class="base-input__textarea" id="link1Comment" name="link1_comment"></textarea>
                                 <label class="base-input__label" for="link1Comment">Комментарий к ссылке
                                 </label>
                                 <div class="base-input__errors">
@@ -265,7 +266,7 @@
                               </div><!--/ base-input --> 
                             </div>
                             <div class="partner-links__input"><!-- base-input --> 
-                              <div class="base-input"><textarea class="base-input__input" id="link1Comment" name="link1_comment"></textarea>
+                              <div class="base-input"><textarea class="base-input__textarea" id="link1Comment" name="link1_comment"></textarea>
                                 <label class="base-input__label" for="link1Comment">Комментарий к ссылке
                                 </label>
                                 <div class="base-input__errors">
@@ -662,15 +663,14 @@
                     </table>
                   </div>
                   <div class="partner-table__actions">
-                    <div class="partner-table__select"><!-- base-input --> 
-                      <div class="base-input base-input-autocomplete" value="6" readonly=""><span><input class="base-input__input" type="text" id="tableRows" name="table-rows" value="6" readonly=""/></span>
-                        <label class="base-input__label" for="tableRows">
-                        </label>
-                        <div class="base-input__errors">
-                          <div class="base-input__error-message">Текст ошибки
-                          </div>
-                        </div>
-                      </div><!--/ base-input --> 
+                    <div class="partner-table__select"><!-- native-select --> 
+                      <div class="native-select">
+                        <select name="table-rows">
+                          <option value="6" selected="">6</option>
+                          <option value="10">10</option>
+                          <option value="100">100</option>
+                        </select>
+                      </div><!--/ native-select --> 
                     </div>
                     <button class="partner-table__arrow prev" type="button">
                     </button>

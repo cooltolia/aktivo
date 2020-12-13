@@ -1,0 +1,42 @@
+.account-monitoring {
+    &__sidebar {
+        width: calc(100% + 40px);
+        margin-left: -20px;
+    }
+
+    &__body {
+        padding-top: 32px;
+    }
+}
+
+@media #{$tablet} {
+    .account-monitoring {
+        &__header {
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(#919191, 0.2);
+        }
+
+        &__wrapper {
+            display: flex;
+        }
+
+        &__sidebar {
+            margin: 0;
+            width: 260px;
+            flex: 0 0 auto;
+        }
+
+        &__body {
+            padding-top: 42px;
+            width: 50%;
+            flex: 1 1 auto;
+
+            border-left: 1px solid rgba(#919191, 0.2);
+        }
+    }
+}
+
+@media #{$desktop} {
+    .account-monitoring {
+    }
+}

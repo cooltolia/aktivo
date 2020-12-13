@@ -1,0 +1,161 @@
+mixin monitoring-table()
+    +b.monitoring-table
+        +e.mobile
+            table
+                thead
+                    tr
+                        td Период
+                      
+                        td Инвестиции<br> и выплаты
+                        td Доходность<br> за все время<br> % годовых,
+                        td за период/<br>12 месяцев
+                tbody
+                    tr
+                        td 
+                            span 07.20
+                            a(download href='#') Отчет
+                                +icon('d-arrow')
+                        td 
+                            span 6 006 122.46 ₽ 
+                            span 100 460.56 ₽ 
+                        td 9.84%
+                        td
+                            span 12.10%
+                            span 28.10%
+                    tr
+                        td 
+                            span 08.20
+                            a(download href='#') Отчет
+                                +icon('d-arrow')
+                        td 
+                            span 5 671 676.13 ₽ 
+                            span 670 536.51 ₽
+                        td 10.84%
+                        td
+                            span 25.40%
+                            span 12.67%
+                    tr
+                        td 
+                            span 07.20
+                            a(download href='#') Отчет
+                                +icon('d-arrow')
+                        td 
+                            span 6 006 122.46 ₽ 
+                            span 100 460.56 ₽ 
+                        td 9.84%
+                        td
+                            span 12.10%
+                            span 28.10%
+                    tr
+                        td 
+                            span 08.20
+                            a(download href='#') Отчет
+                                +icon('d-arrow')
+                        td 
+                            span 5 671 676.13 ₽ 
+                            span 670 536.51 ₽
+                        td 10.84%
+                        td
+                            span 25.40%
+                            span 12.67%
+                    tr
+                        td 
+                            span 07.20
+                            a(download href='#') Отчет
+                                +icon('d-arrow')
+                        td 
+                            span 6 006 122.46 ₽ 
+                            span 100 460.56 ₽ 
+                        td 9.84%
+                        td
+                            span 12.10%
+                            span 28.10%
+                    tr
+                        td 
+                            span 08.20
+                            a(download href='#') Отчет
+                                +icon('d-arrow')
+                        td 
+                            span 5 671 676.13 ₽ 
+                            span 670 536.51 ₽
+                        td 10.84%
+                        td
+                            span 25.40%
+                            span 12.67%
+        +e.desktop
+            table
+                thead
+                    tr
+                        td Период
+                        td Инвестиции
+                        td Выплаты
+                        td Доходность <br>за период, <br>% годовых
+                        td Доходность<br>12 месяцев,<br>% годовых
+                        td Доходность<br>все время,<br>% годовых
+                        td Отчет
+                tbody
+                    tr
+                        td 07.20
+                        td 6 006 122.46 ₽ 
+                        td 100 460.56 ₽ 
+                        td 9.84%
+                        td 28.10%
+                        td 28.10%
+                        td
+                            a(href='#' download)
+                                +icon('d-arrow')
+                    tr
+                        td 08.20
+                        td 1 006 122.46 ₽ 
+                        td 40 460.56 ₽ 
+                        td 19.84%
+                        td 28.10%
+                        td 28.10%
+                        td
+                            a(href='#' download)
+                                +icon('d-arrow')
+                    tr
+                        td 07.20
+                        td 6 006 122.46 ₽ 
+                        td 100 460.56 ₽ 
+                        td 9.84%
+                        td 28.10%
+                        td 28.10%
+                        td
+                            a(href='#' download)
+                                +icon('d-arrow')
+                    tr
+                        td 08.20
+                        td 1 006 122.46 ₽ 
+                        td 40 460.56 ₽ 
+                        td 19.84%
+                        td 28.10%
+                        td 28.10%
+                        td
+                            a(href='#' download)
+                                +icon('d-arrow')
+                    tr
+                        td 07.20
+                        td 6 006 122.46 ₽ 
+                        td 100 460.56 ₽ 
+                        td 9.84%
+                        td 28.10%
+                        td 28.10%
+                        td
+                            a(href='#' download)
+                                +icon('d-arrow')
+                    tr
+                        td 08.20
+                        td 1 006 122.46 ₽ 
+                        td 40 460.56 ₽ 
+                        td 19.84%
+                        td 28.10%
+                        td 28.10%
+                        td
+                            a(href='#' download)
+                                +icon('d-arrow')
+        +e.actions
+            +e.select
+                +native-select('table-rows', [6, 10, 100])
+            +e.BUTTON.arrow.prev(type='button')
+            +e.BUTTON.arrow.next(type='button')

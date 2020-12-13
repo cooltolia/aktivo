@@ -122,6 +122,6 @@ mixin partner-table()
                         td 30 000 ₽ 
         +e.actions
             +e.select
-                +base-input-autocomplete('text', 'tableRows', 'table-rows')(value='6' readonly='')
+                +native-select('table-rows', [6, 10, 100])
             +e.BUTTON.arrow.prev(type='button')
             +e.BUTTON.arrow.next(type='button')

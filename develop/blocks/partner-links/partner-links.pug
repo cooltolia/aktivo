@@ -20,8 +20,8 @@ mixin partner-links()
                             +e.data-value 2
                     +e.form
                         +e.input
-                            +base-input-autocomplete('text', 'comment1Page', 'comment1_page', 'Открывать страницу', false)(value='Главная')
-                                //- +test-address-autocomplete
+                            +native-select('page', ['Главная', 'Внутренняя', 'Другая'], 'Открывать страницу')
+                            //- +base-input-autocomplete('text', 'comment1Page', 'comment1_page', 'Открывать страницу', false)(value='Главная')
                         +e.input
                             +base-textarea('link1Comment', 'link1_comment', 'Комментарий к ссылке')
             +e.block

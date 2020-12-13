@@ -1,0 +1,61 @@
+.monitoring-header {
+    &__title {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: flex-end;
+
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
+
+        span {
+            padding-left: 12px;
+            white-space: nowrap;
+        }
+    }
+    &__chart {
+        position: relative;
+        overflow: hidden;
+        width: calc(100% + 40px);
+        margin-left: -20px;
+        margin-top: -15px;
+
+        .line {
+            position: absolute;
+            height: 10px;
+            width: 20px;
+
+            transform: scaleY(0);
+            transform-origin: top right;
+
+            // transition: transform 300ms ease, background-color 300ms ease;
+            transition: all 300ms ease;
+
+            will-change: width, right, transform;
+
+            &.visible {
+                transform: scaleY(1);
+            }
+        }
+    }
+}
+
+@media #{$tablet} {
+    .monitoring-header {
+        &__title {
+            font-size: 18px;
+            padding-left: 24px;
+        }
+
+        &__chart {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .monitoring-header {
+    }
+}

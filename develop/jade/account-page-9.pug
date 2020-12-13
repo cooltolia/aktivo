@@ -1,0 +1,21 @@
+include template/header
+include template/footer
+include ../blocks/**/*
+- const alias = "m"
+- const theme = 'light'
+doctype html
+html(lang='ru')
+    +doc-header
+    body
+        +main-header
+        +account-layout
+            +account-monitoring
+                +e.header
+                    +e.title Активо шесть
+                    +e.A.link(href='#') На продажу
+                        +icon('l-arrow')
+                +e.steps
+                    +monitoring-steps
+        +main-footer
+            +lines
+        +doc-footer

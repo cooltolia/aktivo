@@ -1,0 +1,90 @@
+include template/header
+include template/footer
+include ../blocks/**/*
+- const alias = "m"
+- const theme = 'light'
+doctype html
+html(lang='ru')
+    +doc-header
+    body
+        +main-header
+        +account-layout
+            +account-monitoring('#FF9BC6')
+                +e.header
+                    +e.title Активо три — торговый центр Эко&nbsp;видное
+                    +e.A.link(href='#') На продажу
+                        +icon('l-arrow')
+                +e.data-list
+                    +e.data-block
+                        +e.data-label Вам принадлежит:
+                        +e.data-value 18 из 1990 паев
+                    +e.data-block
+                        +e.data-label Инвестиции:
+                        +e.data-value 4 344 132.00 ₽
+                    +e.data-block
+                        +e.data-label Ближайшая выплата:
+                        +e.data-value до 30.09.2020
+                    +e.data-block
+                        +e.data-label Рейтинг фонда:
+                        +e.data-value.--green А1
+                    +e.data-block
+                        +e.data-label Документы:
+                        +e.data-value
+                            a(href='#') Очень длинное название документа номер два
+                        +e.data-value
+                            a(href='#') Самое длинное длинное название документа 
+                        +e.data-value
+                            a(href='#') Очень длинное название документа три
+                        +e.data-value
+                            a(href='#') Очень длинное название документа пять
+
+                +e.toggles
+                    +e.toggle
+                        +e.toggle-title Тип доходности
+                        +e.toggle-inputs
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle1' checked='')
+                                span номинальная
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle1')
+                                span эффективная
+                    +e.toggle
+                        +e.toggle-title Показатели за
+                        +e.toggle-inputs
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle2' checked='')
+                                span 12 месяцев
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle2')
+                                span все время
+                    +e.toggle
+                        +e.toggle-title Доходность за
+                        +e.toggle-inputs
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle3')
+                                span период
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle3' checked='')
+                                span год
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle3')
+                                span 12 месяцев
+                    +e.toggle
+                        +e.toggle-title Период
+                        +e.toggle-inputs
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle4')
+                                span месяц
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle4' checked='')
+                                span квартал
+                            +e.LABEL.toggle-input
+                                input(type='radio' name='toggle4')
+                                span год
+                +e.graph
+                    +monitoring-graph
+                +e.table
+                    +monitoring-table
+        +main-footer
+            +lines
+        +doc-footer

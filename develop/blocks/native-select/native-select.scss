@@ -1,0 +1,51 @@
+.native-select {
+    width: 100%;
+
+    &__label {
+        font-size: 10px;
+        color: #696969;
+
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    select {
+        width: 100%;
+        padding: 0 20px 7px 0;
+
+        color: #696969;
+        font-size: 14px;
+        font-weight: 400;
+
+        background-image: url(../images/redesign/chevron.svg);
+        background-size: auto;
+        background-position: top 6px right;
+        background-repeat: no-repeat;
+
+        border: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        border-bottom: 1px solid #696969;
+
+        transition: border-color 300ms ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            border-color: $theme-color;
+        }
+    }
+}
+
+@media #{$tablet} {
+    .native-select {
+    }
+}
+
+@media #{$desktop} {
+    .native-select {
+    }
+}

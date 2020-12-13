@@ -1,0 +1,7 @@
+mixin native-select(name, options, label)
+    +b.native-select
+        if (label)
+            +e.LABEL.label !{label}
+        select(name=name)
+            each opt, index in options
+                option(value=opt selected=(index === 0) ? '' : false) !{opt}

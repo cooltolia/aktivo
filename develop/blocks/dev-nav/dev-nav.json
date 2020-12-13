@@ -78,6 +78,18 @@
             {
                 "link": "account-page-6.html",
                 "text": "Личный кабинет — настройки"
+            },
+            {
+                "link": "account-page-7.html",
+                "text": "Мониторинг — общее"
+            },
+            {
+                "link": "account-page-8.html",
+                "text": "Мониторинг — объект-1"
+            },
+            {
+                "link": "account-page-9.html",
+                "text": "Мониторинг — объект-2"
             }
             
         ]

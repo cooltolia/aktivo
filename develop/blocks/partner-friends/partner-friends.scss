@@ -75,6 +75,8 @@
         align-items: center;
         justify-content: space-between;
 
+        cursor: pointer;
+
         &.active {
             &::before {
                 transform: translateY(20%) rotate(225deg);

@@ -1,6 +1,6 @@
 mixin base-textarea(id, name, label, required)
     +b.base-input&attributes(attributes)
-        +e.TEXTAREA.input(id=id name=name required=required)&attributes(attributes)
+        +e.TEXTAREA.textarea(id=id name=name required=required)&attributes(attributes)
         +e.LABEL.label(for=id)= label
         +e.errors
             +e.error-message Текст ошибки

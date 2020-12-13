@@ -19,6 +19,7 @@
     const headers = partnerLinks.querySelectorAll('.partner-links__header');
     headers.forEach((header) => {
         header.addEventListener('click', (e) => {
+            console.log(e.target);
             const content = header.nextElementSibling;
             header.classList.toggle('active');
             header.parentElement.classList.toggle('active');

@@ -1188,6 +1188,360 @@ jQuery(document).ready(function ($) {
     }
 
     (function () {
+      var chart = document.getElementById('income-monitoring');
+      if (!chart) return;
+      var profitData = [2500, 1700, 1200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
+      var dividendsData = [5, 10, 20, 35, 20, 15, 5, 20, 20, 35, 20, 15];
+      var chartDates = ['02.18', '03.18', '04.18', '05.18', '06.18', '07.18', '08.18', '09.18', '10.18', '11.18', '12.18', '01.19'];
+      var dividendsMax = Math.max.apply(Math, dividendsData);
+      var profitMax = Math.max.apply(Math, profitData);
+      var styles = getComputedStyle(chart);
+      var fundColor = styles.getPropertyValue('--fund-color').trim();
+      setTimeout(function () {
+        var scrolledArea = chart.querySelector('.highcharts-scrolling');
+        if (scrolledArea.length === 0) return;
+        new SimpleBar(scrolledArea, {
+          autoHide: false
+        });
+      }, 1000);
+      var columnWidth = 50;
+      var chartMinWidth = columnWidth * 1.1 * profitData.length;
+
+      var onChartLoad = function onChartLoad() {
+        var points0 = this.series[0].data;
+        var points1 = this.series[1].data;
+        points0.forEach(function (point, i) {
+          var _point$dataLabel$attr = point.dataLabel.attr(),
+              x = _point$dataLabel$attr.x,
+              y = _point$dataLabel$attr.y;
+
+          var _point$dataLabel$getB = point.dataLabel.getBBox(),
+              height = _point$dataLabel$getB.height;
+
+          var _points1$i$dataLabel$ = points1[i].dataLabel.attr(),
+              x1 = _points1$i$dataLabel$.x,
+              y1 = _points1$i$dataLabel$.y;
+
+          var _points1$i$dataLabel$2 = points1[i].dataLabel.getBBox(),
+              height1 = _points1$i$dataLabel$2.height;
+
+          if (y + height * 1.1 > y1 && y < y1 + height1 * 1.1) {
+            if (y < y1) {
+              y1 = y - height * 1.25;
+            } else {
+              y = y1 + height1 * 1.25;
+            }
+          }
+
+          points1[i].dataLabel.attr({
+            x: x1,
+            y: y1
+          });
+          point.dataLabel.attr({
+            x: x,
+            y: y
+          });
+        });
+      };
+
+      Highcharts.chart('income-monitoring', {
+        chart: {
+          marginTop: 20,
+          scrollablePlotArea: {
+            minWidth: chartMinWidth
+          },
+          events: {
+            load: onChartLoad
+          }
+        },
+        title: {
+          text: ''
+        },
+        exporting: {
+          enabled: false
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              allowOverlap: true
+            }
+          },
+          line: {
+            dataLabels: {
+              align: 'center',
+              enabled: true,
+              color: 'black',
+              padding: 10,
+              crop: false,
+              overflow: 'none',
+              style: {
+                textOutline: 'none',
+                fontSize: '10px',
+                fontWeight: 500,
+                fontFamily: 'Montserrat'
+              },
+              formatter: function formatter() {
+                return this.y + '%';
+              }
+            }
+          },
+          column: {
+            pointWidth: columnWidth,
+            dataLabels: {
+              align: 'center',
+              enabled: true,
+              color: 'black',
+              padding: 2,
+              crop: false,
+              overflow: 'none',
+              style: {
+                textOutline: 'none',
+                fontSize: '10px',
+                fontWeight: 500,
+                fontFamily: 'Montserrat'
+              },
+              formatter: function formatter() {
+                return this.y + 'k';
+              }
+            }
+          }
+        },
+        xAxis: [{
+          categories: chartDates,
+          crosshair: false,
+          labels: {
+            style: {
+              color: '#696969',
+              fontSize: '8px',
+              fontFamily: 'Montserrat',
+              fontWeight: 500
+            }
+          }
+        }],
+        yAxis: [{
+          visible: false,
+          min: 0,
+          max: dividendsMax
+        }, {
+          max: profitMax,
+          visible: false
+        }],
+        legend: {
+          enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+        series: [{
+          name: 'Сумма выплат',
+          type: 'column',
+          yAxis: 1,
+          data: profitData,
+          color: fundColor,
+          tooltip: {
+            // valueSuffix: " 000 руб"
+            pointFormatter: function pointFormatter() {
+              return 'Сумма выплат: <b>' + this.y.toLocaleString() + ' 000 руб</b><br>' + 'Доля от общих выплат: <b>' + Math.floor(this.y / profitData.reduce(function (x, y) {
+                return x + y;
+              }, 0) * 100) + '%</b>';
+            }
+          }
+        }, {
+          name: 'Доходность',
+          type: 'line',
+          data: dividendsData,
+          color: '#000',
+          tooltip: {
+            valueSuffix: '%'
+          }
+        }]
+      });
+    })();
+
+    (function () {
+      var chart = document.querySelector('.monitoring-header__chart');
+      if (!chart) return;
+      var line = chart.querySelector('.line');
+      var barData = [{
+        name: 'Активо восемь',
+        data: [{
+          y: 20,
+          url: '/aktivo-8'
+        }]
+      }, {
+        name: 'Активо семь',
+        data: [{
+          y: 16,
+          url: '/aktivo-7'
+        }]
+      }, {
+        name: 'Активо шесть',
+        data: [{
+          y: 16,
+          url: '/aktivo-6'
+        }]
+      }, {
+        name: 'Активо пять',
+        data: [{
+          y: 14,
+          url: '/aktivo-5'
+        }]
+      }, {
+        name: 'Активо четыре',
+        data: [{
+          y: 12,
+          url: '/aktivo-4'
+        }]
+      }, {
+        name: 'Активо три',
+        data: [{
+          y: 9,
+          url: '/aktivo-3'
+        }]
+      }, {
+        name: 'Активо два',
+        data: [{
+          y: 7,
+          url: '/aktivo-2'
+        }]
+      }, {
+        name: 'Активо один',
+        data: [{
+          y: 6,
+          url: '/aktivo-1'
+        }]
+      }];
+      var barColors = ['#79A0FF', '#C29BF6', '#F598E2', '#FF9BC6', '#FFA9AB', '#FFBD96', '#FFD48C', '#FFEB93'].reverse();
+      /** to save hovered point */
+
+      var selectedPoint = null;
+      Highcharts.chart('funds-chart', {
+        chart: {
+          type: 'bar',
+          height: 90,
+          margin: 0
+        },
+        colors: barColors,
+        title: {
+          text: ''
+        },
+        exporting: {
+          enabled: false
+        },
+        xAxis: [{
+          categories: ['Фонды'],
+          crosshair: false,
+          labels: {
+            enabled: false
+          },
+          title: {
+            enabled: false
+          },
+          visible: false // labels: {
+          //     style: {
+          //         color: 'rgba(0, 0, 0, 0.4)',
+          //         fontSize: '9px',
+          //     },
+          // },
+
+        }],
+        yAxis: {
+          max: 100,
+          labels: {
+            enabled: false
+          },
+          title: {
+            enabled: false
+          },
+          visible: false
+        },
+        legend: {
+          enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+        plotOptions: {
+          bar: {
+            pointWidth: 30
+          },
+          series: {
+            stacking: 'normal',
+            borderWidth: 0,
+            cursor: 'pointer',
+            point: {
+              events: {
+                mouseOver: function mouseOver(e) {
+                  selectedPoint = this;
+                  line.style.backgroundColor = this.color;
+                  line.style.right = this.shapeArgs.y + 'px';
+                  line.style.top = this.shapeArgs.x + this.shapeArgs.width + 'px';
+                  line.style.width = this.shapeArgs.height + 'px';
+                  line.classList.add('visible');
+                },
+                mouseOut: function mouseOut() {
+                  selectedPoint = null;
+                  line.classList.remove('visible');
+                },
+                click: function click(e) {
+                  window.location.href = e.point.url;
+                }
+              }
+            },
+            // pointPadding: 0,
+            // groupPadding: 0,
+            states: {
+              hover: {
+                enabled: false
+              },
+              inactive: {
+                opacity: 1
+              }
+            }
+          }
+        },
+        tooltip: {
+          positioner: function positioner(lw, lh, point) {
+            var chartWidth = this.chart.plotSizeY;
+            var pointWidth = selectedPoint.shapeArgs.height;
+            var pointLeftPosition = chartWidth - selectedPoint.plotY - pointWidth;
+            var leftOffset = pointLeftPosition + (pointWidth - lw) / 2;
+            leftOffset = leftOffset < 0 ? 6 : leftOffset;
+            leftOffset = leftOffset + lw > chartWidth ? chartWidth - lw : leftOffset;
+            return {
+              x: leftOffset,
+              y: point.plotY + 30
+            };
+          },
+          shadow: false,
+          padding: 0,
+          borderWidth: 0,
+          style: {
+            fontSize: '10px',
+            fontWeight: 600,
+            fontFamily: 'Montserrat'
+          },
+          backgroundColor: 'transparent',
+          headerFormat: '',
+          hideDelay: 100,
+          pointFormatter: function pointFormatter() {
+            return "".concat(this.series.name, " | ").concat(this.y, " %");
+          }
+        },
+        series: barData
+      });
+    })();
+
+    (function () {
+      var steps = document.querySelector('.monitoring-steps');
+      if (!steps) return;
+      var container = steps.querySelector('.monitoring-steps__container');
+      new SimpleBar(container, {
+        autoHide: false
+      });
+    })();
+
+    (function () {
       var objectCalc = document.querySelector('.object-calc');
       if (!objectCalc) return;
       /** DOM varaibles */
@@ -1973,6 +2327,7 @@ jQuery(document).ready(function ($) {
       var headers = partnerLinks.querySelectorAll('.partner-links__header');
       headers.forEach(function (header) {
         header.addEventListener('click', function (e) {
+          console.log(e.target);
           var content = header.nextElementSibling;
           header.classList.toggle('active');
           header.parentElement.classList.toggle('active');
