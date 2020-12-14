@@ -1517,6 +1517,10 @@ th {
     .account-document__action:hover, .account-document__action:active, .account-document__action:focus {
       color: #fed63f; }
     .account-document__action svg {
+      -webkit-box-flex: 0;
+         -moz-box-flex: 0;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
       max-width: 5px;
       max-height: 8px;
       margin-right: 3px;
@@ -1599,7 +1603,11 @@ th {
     font-size: 12px; }
   .account-document__actions {
     display: block;
-    width: 102px; }
+    width: 162px;
+    -webkit-box-flex: 0;
+       -moz-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto; }
   .account-document__action {
     margin: 0;
     margin-bottom: 4px;
@@ -1652,6 +1660,19 @@ th {
   width: -moz-calc(100% + 40px);
   width: calc(100% + 40px);
   margin-left: -20px; }
+  .account-documents__empty {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid #fed63f;
+    border-radius: 8px; }
+  .account-documents__empty-title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600; }
+  .account-documents__empty-link.btn {
+    font-size: 16px; }
   .account-documents__date {
     display: block;
     padding-left: 16px;
@@ -1667,7 +1688,9 @@ th {
 @media (min-width: 768px) {
   .account-documents {
     width: 100%;
-    margin: 0; } }
+    margin: 0; }
+    .account-documents__empty {
+      padding: 56px 24px; } }
 
 .modal .account-feedback-modal .modal__dialog {
   padding: 0;

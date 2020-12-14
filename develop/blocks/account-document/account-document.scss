@@ -173,6 +173,7 @@
         }
 
         svg {
+            flex: 0 0 auto;
             max-width: 5px;
             max-height: 8px;
             margin-right: 3px;
@@ -281,7 +282,8 @@
 
         &__actions {
             display: block;
-            width: 102px;
+            width: 162px;
+            flex: 0 0 auto;
         }
 
         &__action {
@@ -324,7 +326,6 @@
             margin-right: 10px;
             margin-bottom: 0;
         }
-        
     }
 }
 
