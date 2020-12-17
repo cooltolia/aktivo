@@ -16,6 +16,14 @@
                 font-size: 10px;
                 line-height: 1.2;
 
+                &.right {
+                    text-align: right;
+                }
+
+                &.center {
+                    text-align: center;
+                }
+
                 span,
                 a {
                     display: block;
@@ -75,23 +83,25 @@
     }
 
     &__actions {
+        position: relative;
         max-width: 380px;
+        margin-top: 20px;
         display: flex;
         justify-content: flex-end;
-        align-items: center;
-        margin-top: 20px;
     }
 
     &__select {
         width: 50px;
-        margin-right: 24px;
+        margin-right: 80px;
     }
 
     &__arrow {
         @include btn-reset;
-        position: relative;
+        position: absolute;
         width: 24px;
         height: 24px;
+        top: 50%;
+        transform: translateY(-50%);
 
         color: #696969;
         transition: color 300ms ease;
@@ -109,7 +119,11 @@
         }
 
         &.prev {
-            margin-right: 16px;
+            right: 32px;
+        }
+
+        &.next {
+            right: 0px;
         }
 
         &.next::after {
@@ -141,8 +155,16 @@
                     padding: 10px 5px;
                     vertical-align: top;
 
-                    font-size: 11px;
+                    font-size: 12px;
                     line-height: 1.2;
+
+                    &.right {
+                        text-align: right;
+                    }
+
+                    &.center {
+                        text-align: center;
+                    }
 
                     &:first-child {
                         padding-left: 15px;
@@ -184,7 +206,7 @@
 
                 thead {
                     td {
-                        font-size: 8px;
+                        font-size: 10px;
                         font-weight: 500;
                         color: #696969;
                     }
@@ -208,7 +230,7 @@
 
         &__actions {
             max-width: none;
-            padding-right: 30px;
+            margin: 30px;
         }
     }
 }

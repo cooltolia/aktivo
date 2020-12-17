@@ -36,7 +36,10 @@
     }
 }
 
-@media #{$desktop} {
+@media #{$laptop} {
     .account-monitoring {
+        &__sidebar {
+            width: 290px;
+        }
     }
 }

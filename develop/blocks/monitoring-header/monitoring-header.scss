@@ -13,6 +13,20 @@
             padding-left: 12px;
             white-space: nowrap;
         }
+
+        a {
+            color: $text-color;
+            text-decoration: none;
+
+            transition: color 300ms ease;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $theme-color;
+                text-decoration: none;
+            }
+        }
     }
     &__chart {
         position: relative;

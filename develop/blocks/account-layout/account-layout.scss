@@ -22,7 +22,7 @@
 @media #{$tablet} {
     .account-layout {
         &__wrapper {
-            max-width: 760px;
+            max-width: 960px;
             margin: 0 auto;
             padding-top: 55px;
             padding-bottom: 55px;
@@ -52,11 +52,11 @@
         }
 
         &__sidebar {
-            width: 400px;
+            width: 320px;
         }
 
         &__main {
-            width: 760px;
+            width: 840px;
         }
     }
 }

@@ -80,7 +80,10 @@
     }
 }
 
-@media #{$desktop} {
+@media #{$laptop} {
     .monitoring-funds {
+        &__row {
+            font-size: 12px;
+        }
     }
 }

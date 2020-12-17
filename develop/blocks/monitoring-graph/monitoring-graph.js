@@ -46,7 +46,6 @@
             const { height: height1 } = points1[i].dataLabel.getBBox();
 
             if (y + height * 1.1 > y1 && y < y1 + height1 * 1.1) {
-
                 if (y < y1) {
                     y1 = y - height * 1.25;
                 } else {
@@ -79,6 +78,11 @@
             series: {
                 dataLabels: {
                     allowOverlap: true,
+                },
+                states: {
+                    inactive: {
+                        opacity: 1,
+                    },
                 },
             },
             line: {
@@ -128,7 +132,7 @@
                 labels: {
                     style: {
                         color: '#696969',
-                        fontSize: '8px',
+                        fontSize: '10px',
                         fontFamily: 'Montserrat',
                         fontWeight: 500,
                     },

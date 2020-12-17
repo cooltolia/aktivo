@@ -130,6 +130,13 @@
             }
         }
 
+        &.account {
+            .line {
+                width: 320px;
+                left: 320px;
+            }
+        }
+
         .line {
             position: absolute;
             width: 360px;

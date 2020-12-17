@@ -18,6 +18,14 @@
                 font-size: 10px;
                 line-height: 1.2;
 
+                &.right {
+                    text-align: right;
+                }
+
+                &.center {
+                    text-align: center;
+                }
+
                 span {
                     display: block;
                     margin-bottom: 5px;
@@ -48,22 +56,25 @@
     }
 
     &__actions {
+        position: relative;
+        max-width: 380px;
+        margin-top: 20px;
         display: flex;
         justify-content: flex-end;
-        align-items: center;
-        margin-top: 20px;
     }
 
     &__select {
         width: 50px;
-        margin-right: 24px;
+        margin-right: 80px;
     }
 
     &__arrow {
         @include btn-reset;
-        position: relative;
+        position: absolute;
         width: 24px;
         height: 24px;
+        top: 50%;
+        transform: translateY(-50%);
 
         color: #696969;
         transition: color 300ms ease;
@@ -81,7 +92,11 @@
         }
 
         &.prev {
-            margin-right: 16px;
+            right: 32px;
+        }
+
+        &.next {
+            right: 0px;
         }
 
         &.next::after {
@@ -118,6 +133,14 @@
 
                     font-size: 16px;
                     line-height: 1.2;
+
+                    &.right {
+                        text-align: right;
+                    }
+
+                    &.center {
+                        text-align: center;
+                    }
                 }
 
                 thead {
@@ -131,7 +154,7 @@
         }
 
         &__actions {
-            padding-right: 30px;
+            margin-right: 30px;
         }
     }
 }

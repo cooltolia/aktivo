@@ -1264,6 +1264,11 @@ jQuery(document).ready(function ($) {
           series: {
             dataLabels: {
               allowOverlap: true
+            },
+            states: {
+              inactive: {
+                opacity: 1
+              }
             }
           },
           line: {
@@ -1312,7 +1317,7 @@ jQuery(document).ready(function ($) {
           labels: {
             style: {
               color: '#696969',
-              fontSize: '8px',
+              fontSize: '10px',
               fontFamily: 'Montserrat',
               fontWeight: 500
             }

@@ -114,20 +114,14 @@
 
     &__toggle-input {
         flex: 1 1 auto;
+        color: $text-color;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        cursor: pointer;
-
-        input {
-            position: absolute;
-            width: 0;
-            height: 0;
-            opacity: 0;
-
-            &:checked {
-                + span {
-                    background-color: var(--fund-color);
-                }
-            }
+        &.active {
+            background-color: $theme-color;
         }
 
         span {
@@ -220,6 +214,12 @@
         &__toggle {
             width: 50%;
             padding: 0 12px;
+        }
+
+        &__toggle-input {
+            span {
+                font-size: 12px;
+            }
         }
 
         &__table {

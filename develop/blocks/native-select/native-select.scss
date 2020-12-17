@@ -26,9 +26,12 @@
 
         border: none;
         appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
         outline: none;
         cursor: pointer;
         border-bottom: 1px solid #696969;
+        background-color: transparent;
 
         transition: border-color 300ms ease;
 

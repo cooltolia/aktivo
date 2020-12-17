@@ -18,44 +18,34 @@ html(lang='ru')
                     +e.toggle
                         +e.toggle-title Тип доходности
                         +e.toggle-inputs
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle1' checked='')
+                            +e.A.toggle-input.active(href='#')
                                 span номинальная
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle1')
+                            +e.A.toggle-input(href='#')
                                 span эффективная
                     +e.toggle
                         +e.toggle-title Показатели за
                         +e.toggle-inputs
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle2' checked='')
+                            +e.A.toggle-input(href='#')
                                 span 12 месяцев
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle2')
+                            +e.A.toggle-input.active(href='#')
                                 span все время
                     +e.toggle
                         +e.toggle-title Доходность за
                         +e.toggle-inputs
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle3')
+                            +e.A.toggle-input.active(href='#')
                                 span период
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle3' checked='')
-                                span год
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle3')
+                            +e.A.toggle-input(href='#')
+                                span все время
+                            +e.A.toggle-input(href='#')
                                 span 12 месяцев
                     +e.toggle
                         +e.toggle-title Период
                         +e.toggle-inputs
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle4')
+                            +e.A.toggle-input.active(href='#')
                                 span месяц
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle4' checked='')
+                            +e.A.toggle-input(href='#')
                                 span квартал
-                            +e.LABEL.toggle-input
-                                input(type='radio' name='toggle4')
+                            +e.A.toggle-input(href='#')
                                 span год
                 +e.graph
                     +monitoring-graph
