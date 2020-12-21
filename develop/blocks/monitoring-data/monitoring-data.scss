@@ -187,7 +187,15 @@
         &__data-list {
             padding-left: 16px;
             padding-right: 16px;
-            column-count: 2;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        &__data-col {
+            padding-right: 24px;
+            max-width: 50%;
+            flex: 1;
         }
 
         &__steps {
@@ -238,6 +246,10 @@
         &__data-list {
             padding-left: 24px;
             padding-right: 24px;
+        }
+
+        &__data-col {
+            padding-right: 32px;
         }
     }
 }
