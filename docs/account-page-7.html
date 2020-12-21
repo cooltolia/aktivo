@@ -122,7 +122,7 @@
                 </li>
                 <li class="account-nav__item"><a class="account-nav__link active" href="#">Реквизиты</a>
                 </li>
-                <li class="account-nav__item"><a class="account-nav__link account-nav__link--notify" href="#">Партнерская программа</a>
+                <li class="account-nav__item"><a class="account-nav__link account-nav__link--notify" href="#">Рекомендовать друга</a>
                 </li>
               </ul>
             </nav><!--/ account-nav --> 
@@ -222,7 +222,7 @@
                   <div class="monitoring-data">
                     <div class="monitoring-data__header">
                       <div class="monitoring-data__title">Все фонды
-                      </div><a class="monitoring-data__link" href="#">На продажу
+                      </div><a class="monitoring-data__link application-trigger" href="#">На продажу
                       <svg>
                         <use xlink:href="images/redesign/html-sprite.svg#l-arrow"></use>
                       </svg></a>
@@ -552,7 +552,38 @@
           </p>
         </div>
       </div>
-    </footer><!--/ main-footer --> 
+    </footer><!--/ main-footer --> <!-- modal --> 
+    <div class="modal applocation-modal monitoring-sale-modal" id="applicationModal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close="">
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="Какое количество долей вы хотите продать?">
+          <button class="modal__close modal__close" aria-label="Close modal" data-micromodal-close="">
+            <svg>
+              <use xlink:href="images/redesign/html-sprite.svg#close"></use>
+            </svg>
+          </button>
+          <div class="modal__header">
+            <div class="modal__title">Какое количество долей вы хотите продать?
+            </div>
+          </div>
+          <form class="modal__form" method="post" action="#">
+            <div class="modal__input-row">
+              <label class="modal__label" for="shareAmount">Долей к продаже
+              </label><input class="modal__input" type="text" name="monitoring-sale_name" id="shareAmount" value="8.00000" required=""/><span class="modal__input-error error"></span>
+            </div>
+            <div class="modal__input-row">
+              <label class="modal__label" for="sharePrice">Цена за долю
+              </label><input class="modal__input" type="text" name="monitoring-sale_surname" id="sharePrice" value="333609.05"/><span class="modal__input-error error"></span>
+            </div>
+            <div class="modal__input-row">
+              <div class="modal__input">на сумму <span id="shareResult">2668872.40</span>
+              </div>
+            </div>
+            <button class="modal__submit btn" type="submit">Оставить заявку
+            </button>
+          </form>
+        </div>
+      </div>
+    </div><!--/ modal --> 
     <script src="js/vendor.js"></script>
     <script src="js/main.js"></script>
   </body>

@@ -44,7 +44,7 @@
 
         &__wrapper {
             max-width: none;
-            padding-top: 124px;
+            padding-top: 154px;
             padding-bottom: 64px;
             display: flex;
 
@@ -52,11 +52,13 @@
         }
 
         &__sidebar {
-            width: 320px;
+            width: 280px;
+            flex: 0 0 auto;
         }
 
         &__main {
-            width: 840px;
+            width: 60%;
+            flex: 1 1 auto;
         }
     }
 }

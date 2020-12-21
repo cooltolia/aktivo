@@ -1789,7 +1789,7 @@ th {
     display: block; }
   .account-layout__wrapper {
     max-width: none;
-    padding-top: 124px;
+    padding-top: 154px;
     padding-bottom: 64px;
     display: -webkit-box;
     display: -moz-box;
@@ -1797,9 +1797,17 @@ th {
     display: flex;
     border: none; }
   .account-layout__sidebar {
-    width: 320px; }
+    width: 280px;
+    -webkit-box-flex: 0;
+       -moz-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto; }
   .account-layout__main {
-    width: 840px; } }
+    width: 60%;
+    -webkit-box-flex: 1;
+       -moz-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto; } }
 
 .account-monitoring__sidebar {
   width: -webkit-calc(100% + 40px);
@@ -5947,8 +5955,8 @@ th {
     width: 495px;
     left: 665px; }
   .lines.account .line {
-    width: 320px;
-    left: 320px; }
+    width: 280px;
+    left: 280px; }
   .lines .line {
     position: absolute;
     width: 360px;
@@ -6804,9 +6812,11 @@ th {
 
 @media (min-width: 1024px) {
   .monitoring-data__header {
-    padding: 0 36px; }
+    padding: 0 24px; }
+  .monitoring-data__title {
+    font-size: 18px; }
   .monitoring-data__toggles {
-    padding: 20px 36px 0 36px;
+    padding: 20px 24px 0 24px;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -6821,13 +6831,16 @@ th {
   .monitoring-data__toggle {
     width: 50%;
     padding: 0 12px; }
+  .monitoring-data__toggle-title {
+    font-size: 14px; }
   .monitoring-data__toggle-input span {
-    font-size: 12px; }
+    font-size: 13px;
+    white-space: nowrap; }
   .monitoring-data__table {
     padding-top: 40px; }
   .monitoring-data__data-list {
-    padding-left: 36px;
-    padding-right: 36px; } }
+    padding-left: 24px;
+    padding-right: 24px; } }
 
 .monitoring-funds__row {
   position: relative;
@@ -6896,7 +6909,7 @@ th {
 
 @media (min-width: 1024px) {
   .monitoring-funds__row {
-    font-size: 12px; } }
+    font-size: 13px; } }
 
 .monitoring-graph__title {
   margin: 0 0 8px;
@@ -6973,12 +6986,17 @@ th {
 
 @media (min-width: 1024px) {
   .monitoring-graph__title {
-    padding: 0 40px; }
+    padding: 0 40px;
+    font-size: 14px; }
   .monitoring-graph__caption {
     padding: 0 48px; }
   .monitoring-graph__caption-block {
     max-width: 170px;
-    margin-right: 48px; } }
+    margin-right: 48px; }
+  .monitoring-graph__caption-value {
+    font-size: 16px; }
+  .monitoring-graph__caption-label {
+    font-size: 14px; } }
 
 .monitoring-header__title {
   position: relative;
@@ -7255,7 +7273,7 @@ th {
       .monitoring-table__desktop table td {
         padding: 10px 5px;
         vertical-align: top;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.2; }
         .monitoring-table__desktop table td.right {
           text-align: right; }
@@ -7290,7 +7308,7 @@ th {
                     transform: translate(-50%, -50%);
             stroke: currentColor; }
       .monitoring-table__desktop table thead td {
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 500;
         color: #696969; }
       .monitoring-table__desktop table tbody td {

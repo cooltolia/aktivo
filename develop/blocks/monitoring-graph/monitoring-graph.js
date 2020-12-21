@@ -120,7 +120,7 @@
                         fontFamily: 'Montserrat',
                     },
                     formatter: function () {
-                        return this.y + 'k';
+                        return this.y < 1000 ? this.y : this.y / 1000 + 'k';
                     },
                 },
             },

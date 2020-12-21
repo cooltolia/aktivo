@@ -1,0 +1,21 @@
+mixin monitoring-sale-modal()
+    +b.modal.applocation-modal.monitoring-sale-modal#applicationModal(aria-hidden="true")
+        +e.overlay(tabindex="-1" data-micromodal-close="")
+            +e.dialog(role="dialog" aria-modal="true" aria-labelledby="Какое количество долей вы хотите продать?")
+                +e.close.BUTTON.modal__close(aria-label="Close modal" data-micromodal-close="")
+                    +icon('close')
+                +e.header
+                    +e.title Какое количество долей вы хотите продать?
+                +e.FORM.form(method='post' action='#')
+                    +e.input-row
+                        +e.LABEL.label(for='shareAmount') Долей к продаже
+                        +e.INPUT.input(type='text', name='monitoring-sale_name' id='shareAmount' value='8.00000' required='')
+                        +e.SPAN.input-error.error
+                    +e.input-row
+                        +e.LABEL.label(for='sharePrice') Цена за долю
+                        +e.INPUT.input(type='text', name='monitoring-sale_surname' id='sharePrice' value='333609.05')
+                        +e.SPAN.input-error.error
+                    +e.input-row
+                        +e.input на сумму 
+                            span#shareResult 2668872.40
+                    +e.BUTTON.submit.btn(type='submit') Оставить заявку

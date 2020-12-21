@@ -640,6 +640,63 @@ jQuery(document).ready(function ($) {
         });
       });
     }
+    /** code for monitoring-sale-modal */
+
+
+    (function () {
+      var modal = document.querySelector('.monitoring-sale-modal');
+      var form = modal.querySelector('form');
+      if (!modal) return;
+      var formatPatterns = {
+        amount: wNumb({
+          decimals: 5,
+          thousand: ' '
+        }),
+        price: wNumb({
+          decimals: 2,
+          thousand: ' '
+        }),
+        ruble: wNumb({
+          decimals: 2,
+          thousand: ' ',
+          suffix: " \u20BD"
+        })
+      };
+      var $shareAmount = modal.querySelector('#shareAmount');
+      var $sharePrice = modal.querySelector('#sharePrice');
+      var $shareResult = modal.querySelector('#shareResult');
+      $shareAmount.addEventListener('change', function (e) {
+        var value = parseFloat(e.target.value);
+        if (!value) value = 0;
+        value = parseFloat(value.toFixed(5));
+        e.target.value = formatPatterns.amount.to(value);
+        updateResult();
+      });
+      $sharePrice.addEventListener('change', function (e) {
+        var value = parseFloat(e.target.value);
+        if (!value) value = 0;
+        value = parseFloat(value.toFixed(2));
+        e.target.value = formatPatterns.price.to(value);
+        updateResult();
+      });
+      $shareAmount.value = formatPatterns.amount.to(parseFloat($shareAmount.value));
+      $sharePrice.value = formatPatterns.price.to(parseFloat($sharePrice.value));
+      $shareResult.textContent = formatPatterns.ruble.to(parseFloat($shareResult.textContent));
+
+      function updateResult() {
+        var shareAmount = formatPatterns.amount.from($shareAmount.value);
+        var sharePrice = formatPatterns.price.from($sharePrice.value);
+        $shareResult.textContent = formatPatterns.ruble.to(shareAmount * sharePrice);
+      }
+      /** hope this will help */
+
+
+      form.addEventListener('submit', function (e) {
+        $shareAmount.value = formatPatterns.amount.from($shareAmount.value);
+        $sharePrice.value = formatPatterns.price.from($sharePrice.value);
+        $shareResult.textContent = formatPatterns.ruble.from($shareResult.textContent);
+      });
+    })();
 
     (function () {
       var btn = $('.authorization__toggle');
@@ -1306,7 +1363,7 @@ jQuery(document).ready(function ($) {
                 fontFamily: 'Montserrat'
               },
               formatter: function formatter() {
-                return this.y + 'k';
+                return this.y < 1000 ? this.y : this.y / 1000 + 'k';
               }
             }
           }
@@ -1536,6 +1593,67 @@ jQuery(document).ready(function ($) {
         series: barData
       });
     })();
+
+    {
+      var _triggerButtons = document.querySelectorAll('.application-trigger');
+
+      if (_triggerButtons.length > 0) {
+        _triggerButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            MicroModal.show('applicationModal', {
+              disableScroll: true,
+              awaitCloseAnimation: true,
+              onShow: function onShow(modal) {
+                onModalOpen(modal);
+                applicationModalLogic(modal);
+              },
+              onClose: function onClose(modal) {
+                onModalClose(modal, false);
+              }
+            });
+          });
+        });
+      }
+    }
+
+    function applicationModalLogic(modal) {
+      var form = modal.querySelector('.modal__form');
+      var inputs = form.querySelectorAll('input');
+      console.log(inputs);
+      var inputEmail = $('#applicationEmail');
+      var inputPhone = $('#applicationPhone');
+      var phoneMask = '+7 (f99) 999-99-99';
+      inputPhone.inputmask({
+        mask: phoneMask,
+        showMaskOnHover: false
+      });
+
+      function inputPhoneValidate() {
+        var enteredPhone = inputPhone.val();
+        return Inputmask.isValid(enteredPhone, {
+          mask: phoneMask
+        });
+      }
+
+      inputs.forEach(function (input) {
+        return input.addEventListener('focus', function () {
+          return hideSingleInputError(input);
+        });
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!inputPhoneValidate()) {
+          showInputError(inputPhone, 'Неверно указан телефон');
+          return;
+        }
+
+        var formData = $(form).serialize();
+        postData('url', formData).then(function (data) {
+          MicroModal.close('applicationModal');
+        });
+      });
+    }
 
     (function () {
       var steps = document.querySelector('.monitoring-steps');
