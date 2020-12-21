@@ -1262,7 +1262,7 @@ jQuery(document).ready(function ($) {
         });
       }, 1000);
       var columnWidth = 50;
-      var chartMinWidth = columnWidth * 1.1 * profitData.length;
+      var chartMinWidth = columnWidth * 1.25 * profitData.length;
 
       var onChartLoad = function onChartLoad() {
         var points0 = this.series[0].data;
@@ -1304,6 +1304,8 @@ jQuery(document).ready(function ($) {
       Highcharts.chart('income-monitoring', {
         chart: {
           marginTop: 20,
+          marginRight: 24,
+          marginLeft: 24,
           scrollablePlotArea: {
             minWidth: chartMinWidth
           },
@@ -1381,12 +1383,25 @@ jQuery(document).ready(function ($) {
           }
         }],
         yAxis: [{
-          visible: false,
+          // visible: false,
           min: 0,
-          max: dividendsMax
+          max: dividendsMax,
+          title: {
+            text: ''
+          },
+          opposite: true,
+          labels: {
+            x: 5
+          }
         }, {
           max: profitMax,
-          visible: false
+          title: {
+            text: ''
+          },
+          width: 40,
+          labels: {
+            x: -6
+          }
         }],
         legend: {
           enabled: false

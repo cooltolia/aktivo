@@ -2177,6 +2177,13 @@ th {
     font-size: 10px;
     line-height: 1.1;
     font-weight: 400; }
+  .account-partner__data-value--full {
+    padding-top: 8px;
+    border-top: 1px solid #f6f6f6;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #696969; }
 
 .account-partner__wrapper {
   width: -webkit-calc(100% + 40px);
@@ -2215,6 +2222,8 @@ th {
       margin: 0 -12px; }
       .account-partner__data-value--flex div {
         padding: 0 12px; }
+    .account-partner__data-value--full {
+      font-size: 14px; }
   .account-partner__wrapper {
     width: 100%;
     margin: 0;
@@ -2926,6 +2935,19 @@ th {
     white-space: nowrap; }
   .authorization__account:hover {
     color: #fed63f; }
+
+.authorization__exit {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  margin-left: 8px; }
+  .authorization__exit svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    fill: #9c9c9c; }
 
 @media (min-width: 1024px) {
   .authorization__inner-link {
@@ -7316,8 +7338,8 @@ th {
             opacity: 0.6; }
           .monitoring-table__desktop table td a svg {
             position: absolute;
-            width: 6px;
-            height: 8px;
+            width: 8px;
+            height: 12px;
             left: 50%;
             top: 50%;
             -webkit-transform: translate(-50%, -50%);
@@ -9476,6 +9498,7 @@ th {
           font-weight: 500;
           color: #696969; }
     .partner-table__actions {
+      max-width: none;
       margin-right: 30px; } }
 
 .partners-appeal {
