@@ -54,8 +54,9 @@ function applicationModalLogic(modal) {
 /** code for monitoring-sale-modal */
 (function () {
     const modal = document.querySelector('.monitoring-sale-modal');
-    const form = modal.querySelector('form');
     if (!modal) return;
+    const form = modal.querySelector('form');
+    if (!form) return;
 
     const formatPatterns = {
         amount: wNumb({
