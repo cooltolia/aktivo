@@ -2001,6 +2001,34 @@ th {
                 transform: translateY(-35%);
         font-size: 11px; } }
 
+.account-news__tags {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap; }
+
+.account-news__tag {
+  padding: 3px 5px;
+  margin: 0 6px 6px 0;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #fed63f;
+  border-radius: 3px;
+  -webkit-transition: color 300ms ease, background-color 300ms ease;
+  -moz-transition: color 300ms ease, background-color 300ms ease;
+  transition: color 300ms ease, background-color 300ms ease; }
+  .account-news__tag:hover, .account-news__tag.active {
+    background-color: #fed63f;
+    color: #fff; }
+
 .account-news__column {
   margin-bottom: 40px; }
   .account-news__column:last-child {
@@ -6970,7 +6998,7 @@ th {
   width: calc(100% + 40px);
   margin-left: -20px;
   margin-bottom: 20px;
-  height: 200px; }
+  height: 300px; }
   .monitoring-graph__container #income-monitoring {
     width: 100%;
     height: 100%;

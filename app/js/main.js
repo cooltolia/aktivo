@@ -1248,8 +1248,11 @@ jQuery(document).ready(function ($) {
     (function () {
       var chart = document.getElementById('income-monitoring');
       if (!chart) return;
-      var profitData = [2500, 1700, 1200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
-      var dividendsData = [5, 10, 20, 35, 20, 15, 5, 20, 20, 35, 20, 15];
+      [7]; // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
+      // const dividendsData = [5, 10, 20, 85, 20, 15, 5, 20, 20, 35, 20, 15];
+
+      var profitData = [66442.8, 25786.51, 64648.8, 65352.25, 21275.49, 748878.0, 82916.36, 49460.5, 65876.33, 50389.35, 53762.3, 11285.56];
+      var dividendsData = [14.2, 5.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3];
       var chartDates = ['02.18', '03.18', '04.18', '05.18', '06.18', '07.18', '08.18', '09.18', '10.18', '11.18', '12.18', '01.19'];
       var dividendsMax = Math.max.apply(Math, dividendsData);
       var profitMax = Math.max.apply(Math, profitData);
@@ -1258,60 +1261,20 @@ jQuery(document).ready(function ($) {
       setTimeout(function () {
         var scrolledArea = chart.querySelector('.highcharts-scrolling');
         if (scrolledArea.length === 0) return;
-        new SimpleBar(scrolledArea, {
+        var scroll = new SimpleBar(scrolledArea, {
           autoHide: false
-        });
+        }); // const scrolledContent = scroll.getScrollElement();
+        // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
       }, 1000);
       var columnWidth = 50;
       var chartMinWidth = columnWidth * 1.25 * profitData.length;
-
-      var onChartLoad = function onChartLoad() {
-        var points0 = this.series[0].data;
-        var points1 = this.series[1].data;
-        points0.forEach(function (point, i) {
-          var _point$dataLabel$attr = point.dataLabel.attr(),
-              x = _point$dataLabel$attr.x,
-              y = _point$dataLabel$attr.y;
-
-          var _point$dataLabel$getB = point.dataLabel.getBBox(),
-              height = _point$dataLabel$getB.height;
-
-          var _points1$i$dataLabel$ = points1[i].dataLabel.attr(),
-              x1 = _points1$i$dataLabel$.x,
-              y1 = _points1$i$dataLabel$.y;
-
-          var _points1$i$dataLabel$2 = points1[i].dataLabel.getBBox(),
-              height1 = _points1$i$dataLabel$2.height;
-
-          if (y + height * 1.1 > y1 && y < y1 + height1 * 1.1) {
-            if (y < y1) {
-              y1 = y - height * 1.25;
-            } else {
-              y = y1 + height1 * 1.25;
-            }
-          }
-
-          points1[i].dataLabel.attr({
-            x: x1,
-            y: y1
-          });
-          point.dataLabel.attr({
-            x: x,
-            y: y
-          });
-        });
-      };
-
       Highcharts.chart('income-monitoring', {
         chart: {
-          marginTop: 20,
+          marginTop: 30,
           marginRight: 24,
           marginLeft: 24,
           scrollablePlotArea: {
             minWidth: chartMinWidth
-          },
-          events: {
-            load: onChartLoad
           }
         },
         title: {
@@ -1322,9 +1285,7 @@ jQuery(document).ready(function ($) {
         },
         plotOptions: {
           series: {
-            dataLabels: {
-              allowOverlap: true
-            },
+            dataLabels: {},
             states: {
               inactive: {
                 opacity: 1
@@ -1337,6 +1298,7 @@ jQuery(document).ready(function ($) {
               enabled: true,
               color: 'black',
               padding: 10,
+              y: 28,
               crop: false,
               overflow: 'none',
               style: {
@@ -1366,7 +1328,7 @@ jQuery(document).ready(function ($) {
                 fontFamily: 'Montserrat'
               },
               formatter: function formatter() {
-                return this.y < 1000 ? this.y : this.y / 1000 + 'k';
+                if (this.y >= 1000000) return (this.y / 1000000).toFixed(2) + '<br/>млн. ₽';else if (this.y >= 1000) return (this.y / 1000).toFixed(2) + '<br/>тыс. ₽';else return this.y + ' ₽';
               }
             }
           }
@@ -1374,6 +1336,7 @@ jQuery(document).ready(function ($) {
         xAxis: [{
           categories: chartDates,
           crosshair: false,
+          offset: 20,
           labels: {
             style: {
               color: '#696969',
@@ -1384,7 +1347,7 @@ jQuery(document).ready(function ($) {
           }
         }],
         yAxis: [{
-          // visible: false,
+          visible: false,
           min: 0,
           max: dividendsMax,
           title: {
@@ -1395,6 +1358,7 @@ jQuery(document).ready(function ($) {
             x: 5
           }
         }, {
+          visible: false,
           max: profitMax,
           title: {
             text: ''

@@ -2,8 +2,25 @@
     const chart = document.getElementById('income-monitoring');
     if (!chart) return;
 
-    const profitData = [2500, 1700, 1200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
-    const dividendsData = [5, 10, 20, 35, 20, 15, 5, 20, 20, 35, 20, 15];
+    [7];
+
+    // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
+    // const dividendsData = [5, 10, 20, 85, 20, 15, 5, 20, 20, 35, 20, 15];
+    const profitData = [
+        66442.8,
+        25786.51,
+        64648.8,
+        65352.25,
+        21275.49,
+        748878.0,
+        82916.36,
+        49460.5,
+        65876.33,
+        50389.35,
+        53762.3,
+        11285.56,
+    ];
+    const dividendsData = [14.2, 5.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3];
     const chartDates = [
         '02.18',
         '03.18',
@@ -25,49 +42,25 @@
     const fundColor = styles.getPropertyValue('--fund-color').trim();
 
     setTimeout(() => {
-        var scrolledArea = chart.querySelector('.highcharts-scrolling');
+        const scrolledArea = chart.querySelector('.highcharts-scrolling');
         if (scrolledArea.length === 0) return;
-        new SimpleBar(scrolledArea, {
+        const scroll = new SimpleBar(scrolledArea, {
             autoHide: false,
         });
+        // const scrolledContent = scroll.getScrollElement();
+        // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
     }, 1000);
 
-    var columnWidth = 50;
-    var chartMinWidth = columnWidth * 1.25 * profitData.length;
-
-    const onChartLoad = function () {
-        const points0 = this.series[0].data;
-        const points1 = this.series[1].data;
-
-        points0.forEach(function (point, i) {
-            let { x, y } = point.dataLabel.attr();
-            const { height } = point.dataLabel.getBBox();
-            let { x: x1, y: y1 } = points1[i].dataLabel.attr();
-            const { height: height1 } = points1[i].dataLabel.getBBox();
-
-            if (y + height * 1.1 > y1 && y < y1 + height1 * 1.1) {
-                if (y < y1) {
-                    y1 = y - height * 1.25;
-                } else {
-                    y = y1 + height1 * 1.25;
-                }
-            }
-
-            points1[i].dataLabel.attr({ x: x1, y: y1 });
-            point.dataLabel.attr({ x: x, y: y });
-        });
-    };
+    const columnWidth = 50;
+    const chartMinWidth = columnWidth * 1.25 * profitData.length;
 
     Highcharts.chart('income-monitoring', {
         chart: {
-            marginTop: 20,
+            marginTop: 30,
             marginRight: 24,
             marginLeft: 24,
             scrollablePlotArea: {
                 minWidth: chartMinWidth,
-            },
-            events: {
-                load: onChartLoad,
             },
         },
         title: {
@@ -79,7 +72,6 @@
         plotOptions: {
             series: {
                 dataLabels: {
-                    allowOverlap: true,
                 },
                 states: {
                     inactive: {
@@ -93,6 +85,7 @@
                     enabled: true,
                     color: 'black',
                     padding: 10,
+                    y: 28,
                     crop: false,
                     overflow: 'none',
                     style: {
@@ -122,7 +115,9 @@
                         fontFamily: 'Montserrat',
                     },
                     formatter: function () {
-                        return this.y < 1000 ? this.y : this.y / 1000 + 'k';
+                        if (this.y >= 1000000) return (this.y / 1000000).toFixed(2) + '<br/>млн. ₽';
+                        else if (this.y >= 1000) return (this.y / 1000).toFixed(2) + '<br/>тыс. ₽';
+                        else return this.y + ' ₽';
                     },
                 },
             },
@@ -131,6 +126,7 @@
             {
                 categories: chartDates,
                 crosshair: false,
+                offset: 20,
                 labels: {
                     style: {
                         color: '#696969',
@@ -143,7 +139,7 @@
         ],
         yAxis: [
             {
-                // visible: false,
+                visible: false,
                 min: 0,
                 max: dividendsMax,
                 title: {
@@ -156,6 +152,7 @@
                 },
             },
             {
+                visible: false,
                 max: profitMax,
                 title: {
                     text: '',

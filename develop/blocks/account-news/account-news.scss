@@ -1,4 +1,30 @@
 .account-news {
+    &__tags {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    &__tag {
+        padding: 3px 5px;
+        margin: 0 6px 6px 0;
+
+        color: $text-color;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+
+        border: 1px solid $theme-color;
+        border-radius: 3px;
+
+        transition: color 300ms ease, background-color 300ms ease;
+
+        &:hover,
+        &.active {
+            background-color: $theme-color;
+            color: #fff;
+        }
+    }
+
     &__column {
         margin-bottom: 40px;
 
