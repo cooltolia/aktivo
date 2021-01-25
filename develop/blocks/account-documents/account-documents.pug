@@ -6,6 +6,9 @@ mixin account-documents()
         +e.block
             +e.TIME.date(datetime='2020-01-17') 17 января 2020 г.
             +e.document
+                +account-document('Голосование по продаже котельной Активо пять', null, null, 'Проголосовать', false)
+                    +e.row
+                        +account-poll
                 +account-document('Покупка №403246 Активо четырнадцать', 'buy', '122 525 313.90 ₽', 'Не завершена', false)
                     +e.row
                         +e.name Договор купли-продажи паев

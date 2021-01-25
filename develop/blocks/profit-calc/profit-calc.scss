@@ -399,6 +399,8 @@
 
 @media #{$desktop} {
     .profit-calc {
+        padding-top: 125px;
+        
         &__wrapper {
             grid-template-columns: 400px 360px 400px;
         }

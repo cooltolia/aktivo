@@ -3,7 +3,7 @@
     z-index: 9;
     width: 100%;
     height: 100%;
-    
+
     &:not(.slick-initialized) {
         overflow: hidden;
     }
@@ -80,33 +80,34 @@
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-end;
+        align-items: flex-start;
     }
 
     &__title {
         position: relative;
         margin: 0 0 35px;
 
-        font-size: 20px;
-        color: rgba($color: $text-color-white, $alpha: 0.7);
+        font-size: 16px;
+        color: $theme-color;
         font-weight: 400;
 
         &::after {
             content: '';
             position: absolute;
-            width: 50%;
+            width: 100%;
+            left: 0;
+            bottom: -9px;
             height: 1px;
-            left: -35px;
-            bottom: -14px;
 
             background-color: $theme-color;
         }
     }
 
     &__price-value {
-        margin-bottom: 4px;
+        margin-bottom: 8px;
 
         font-size: 28px;
-        color: $text-color-white;
+        color: $theme-color;
         font-weight: 600;
         line-height: 1;
     }

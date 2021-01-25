@@ -84,27 +84,38 @@
         &__item {
             position: relative;
             margin-bottom: 0;
-            margin-right: 15px;
+            padding: 0 7px;
             flex: 0 0 auto;
 
             &:last-child {
-                margin-right: 0;
+                padding-right: 0;
+            }
+
+            &:first-child {
+                padding-left: 0;
             }
 
             &:hover {
                 #{$this}__subnav {
-                    opacity: 1;
+                    height: 100vh;
                     pointer-events: all;
+                }
+
+                #{$this}__link::after {
+                    transform: rotate(225deg);
                 }
             }
         }
 
         &__link {
+            display: block;
+
             &.has-subnav {
                 padding-right: 15px;
 
                 &::after {
                     right: 3px;
+                    transition: transform 300ms ease;
                 }
             }
         }
@@ -113,16 +124,27 @@
             position: absolute;
             display: block;
             width: 100%;
+            height: 0;
+            overflow: hidden;
+            // height: 100vh;
             min-width: 200px;
+            left: 0;
+            padding-top: 30px;
+            // min-width: 200px;
 
-            opacity: 0;
             pointer-events: none;
 
-            transition: opacity 300ms ease;
+            transition: height 300ms ease-in;
+            will-change: height;
         }
 
         &__sublist {
-            padding-left: 0;
+            height: 100%;
+            padding: 20px 7px;
+
+            background-color: var(--theme-secondary-color);
+            border-left: 1px solid rgba(#919191, 0.2);
+            border-right: 1px solid rgba(#919191, 0.2);
         }
     }
 }
@@ -130,7 +152,7 @@
 @media #{$desktop} {
     .main-nav {
         &__item {
-            margin-right: 30px;
+            padding: 0 20px;
         }
 
         &__link {
@@ -139,6 +161,14 @@
                     right: 0px;
                 }
             }
+        }
+
+        &__subnav {
+            min-width: 250px;
+        }
+
+        &__sublist {
+            padding: 20px;
         }
     }
 }

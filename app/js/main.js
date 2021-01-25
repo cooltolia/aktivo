@@ -391,6 +391,19 @@ jQuery(document).ready(function ($) {
     }
 
     (function () {
+      var aboutTeamSlider = $('.about-team__slider');
+      if (aboutTeamSlider.length === 0) return;
+      if (window.matchMedia('(max-width: 767px)').matches) return;
+      aboutTeamSlider.slick({
+        rows: 0,
+        slidesToScroll: 1,
+        slidesToShow: 3,
+        arrows: true // variableWidth: true
+
+      });
+    })();
+
+    (function () {
       $('.about-top__video-snippet').modalVideo({
         allowAutoplay: true
       });
@@ -1213,7 +1226,7 @@ jQuery(document).ready(function ($) {
     (function () {
       var subNavLinks = $('.main-nav__link.has-subnav');
 
-      if (window.matchMedia('(max-width: 1024px)').matches) {
+      if (window.matchMedia('(max-width: 1023px)').matches) {
         subNavLinks.on('click', function (e) {
           e.preventDefault();
           var subnav = $(this).next();
@@ -1251,8 +1264,8 @@ jQuery(document).ready(function ($) {
       [7]; // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
       // const dividendsData = [5, 10, 20, 85, 20, 15, 5, 20, 20, 35, 20, 15];
 
-      var profitData = [66442.8, 25786.51, 64648.8, 65352.25, 21275.49, 748878.0, 82916.36, 49460.5, 65876.33, 50389.35, 53762.3, 11285.56];
-      var dividendsData = [14.2, 5.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3];
+      var profitData = [122442.8, 5786.51, 174648.8, 65352.25, 21275.49, 748878.0, 82916.36, 49460.5, 65876.33, 50389.35, 53762.3, 11285.56];
+      var dividendsData = [87.2, 195.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3];
       var chartDates = ['02.18', '03.18', '04.18', '05.18', '06.18', '07.18', '08.18', '09.18', '10.18', '11.18', '12.18', '01.19'];
       var dividendsMax = Math.max.apply(Math, dividendsData);
       var profitMax = Math.max.apply(Math, profitData);
@@ -1267,7 +1280,37 @@ jQuery(document).ready(function ($) {
         // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
       }, 1000);
       var columnWidth = 50;
-      var chartMinWidth = columnWidth * 1.25 * profitData.length;
+      var chartMinWidth = columnWidth * 1.25 * profitData.length; //TODO
+
+      var onChartLoad = function onChartLoad() {
+        var points0 = this.series[0].data;
+        var points1 = this.series[1].data;
+        points0.forEach(function (point, i) {
+          var _point$dataLabel$attr = point.dataLabel.attr(),
+              y = _point$dataLabel$attr.y;
+
+          var _point$dataLabel$getB = point.dataLabel.getBBox(),
+              height = _point$dataLabel$getB.height;
+
+          var _points1$i$dataLabel$ = points1[i].dataLabel.attr(),
+              y1 = _points1$i$dataLabel$.y,
+              opacity1 = _points1$i$dataLabel$.opacity;
+
+          var _points1$i$dataLabel$2 = points1[i].dataLabel.getBBox(),
+              height1 = _points1$i$dataLabel$2.height;
+
+          if (opacity1 === 0 && y + height > y1 + 5) {
+            y1 = y + height1 - 30;
+          }
+
+          debugger;
+          points1[i].dataLabel.attr({
+            y: y1,
+            opacity: 1
+          });
+        });
+      };
+
       Highcharts.chart('income-monitoring', {
         chart: {
           marginTop: 30,
@@ -1275,6 +1318,10 @@ jQuery(document).ready(function ($) {
           marginLeft: 24,
           scrollablePlotArea: {
             minWidth: chartMinWidth
+          },
+          //TODO
+          events: {
+            render: onChartLoad
           }
         },
         title: {
@@ -1297,8 +1344,10 @@ jQuery(document).ready(function ($) {
               align: 'center',
               enabled: true,
               color: 'black',
-              padding: 10,
-              y: 28,
+              //TODO
+              // padding: 10,
+              padding: 0,
+              y: 20,
               crop: false,
               overflow: 'none',
               style: {

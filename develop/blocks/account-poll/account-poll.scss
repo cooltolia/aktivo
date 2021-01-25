@@ -1,0 +1,80 @@
+.account-poll {
+    &__description {
+        margin: 0 0 20px;
+
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    &__form {
+        &.voted {
+            .account-poll__vote {
+                font-weight: 600;
+
+                .percentage {
+                    display: block;
+                }
+
+                &:hover {
+                    background-color: initial;
+                }
+            }
+        }
+    }
+
+    &__vote {
+        @include btn-reset;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 38px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+
+        font-size: 12px;
+        color: $text-color;
+        text-align: left;
+
+        border-bottom: 1px solid #f0f0f0;
+
+        transition: background-color 300ms ease;
+
+        &:hover {
+            background-color: rgba($theme-color, 0.5);
+        }
+
+        &:first-child {
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .percentage {
+            display: none;
+
+            flex: 0 0 auto;
+            width: 26px;
+            margin-right: 20px;
+        }
+
+        .progress {
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: -1;
+
+            background-color: $theme-color;
+            pointer-events: none;
+        }
+    }
+}
+
+@media #{$tablet} {
+    .account-poll {
+    }
+}
+
+@media #{$desktop} {
+    .account-poll {
+    }
+}

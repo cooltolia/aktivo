@@ -3,10 +3,11 @@ mixin account-document(title, type, price, statusText, status)
         +e.header
             +e.title !{title}
             +e.data
-                +e.price(class=type)
-                    .icon
-                        +icon('l-arrow')
-                    | !{price}
+                if (type && price)
+                    +e.price(class=type)
+                        .icon
+                            +icon('l-arrow')
+                        | !{price}
                 +e.header-status(class=status ? 'ready' : 'waiting') !{statusText}
         +e.body
             block

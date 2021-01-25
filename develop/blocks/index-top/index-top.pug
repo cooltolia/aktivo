@@ -5,6 +5,8 @@ mixin index-top()
                 +e.title
                     +title('h1', 'light')(data-aos="fade-left-full" data-aos-duration='1000')
                         | Коллективные <br>инвестиции<br> в коммерческую<br> недвижимость
+                    +e.A.tip(href='#') Что такое коллективные инвестиции
+                +e.A.link.btn(href='#' data-aos="fade-down" data-aos-delay='700') Все объекты
                 +e.UL.advantages
                     +e.LI.advantages-item(data-aos="fade-down" data-aos-delay='700')
                         +e.SPAN.advantage-value 458 000 000 ₽
@@ -15,6 +17,5 @@ mixin index-top()
                     +e.LI.advantages-item(data-aos="fade-down" data-aos-delay='900')
                         +e.SPAN.advantage-value &gt;700
                         +e.SPAN.advantage-title активных инвесторов
-                +e.A.link.btn(href='#' data-aos="fade-down" data-aos-delay='700') Смотреть объекты
                 +e.slider(data-aos="fade-up" data-aos-duration='1000' data-aos-delay='250')
                     +index-slider

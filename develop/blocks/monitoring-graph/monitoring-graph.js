@@ -7,9 +7,9 @@
     // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
     // const dividendsData = [5, 10, 20, 85, 20, 15, 5, 20, 20, 35, 20, 15];
     const profitData = [
-        66442.8,
-        25786.51,
-        64648.8,
+        122442.8,
+        5786.51,
+        174648.8,
         65352.25,
         21275.49,
         748878.0,
@@ -20,7 +20,7 @@
         53762.3,
         11285.56,
     ];
-    const dividendsData = [14.2, 5.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3];
+    const dividendsData = [87.2, 195.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3];
     const chartDates = [
         '02.18',
         '03.18',
@@ -54,6 +54,26 @@
     const columnWidth = 50;
     const chartMinWidth = columnWidth * 1.25 * profitData.length;
 
+    //TODO
+    const onChartLoad = function () {
+        const points0 = this.series[0].data;
+        const points1 = this.series[1].data;
+
+        points0.forEach(function (point, i) {
+            let { y } = point.dataLabel.attr();
+            const { height } = point.dataLabel.getBBox();
+            let { y: y1, opacity: opacity1 } = points1[i].dataLabel.attr();
+            const { height: height1 } = points1[i].dataLabel.getBBox();
+
+            if (opacity1 === 0 && y + height > y1 + 5) {
+                y1 = y + height1 - 30;
+            }
+            debugger;
+
+            points1[i].dataLabel.attr({ y: y1, opacity: 1 });
+        });
+    };
+
     Highcharts.chart('income-monitoring', {
         chart: {
             marginTop: 30,
@@ -61,6 +81,10 @@
             marginLeft: 24,
             scrollablePlotArea: {
                 minWidth: chartMinWidth,
+            },
+            //TODO
+            events: {
+                render: onChartLoad,
             },
         },
         title: {
@@ -71,8 +95,7 @@
         },
         plotOptions: {
             series: {
-                dataLabels: {
-                },
+                dataLabels: {},
                 states: {
                     inactive: {
                         opacity: 1,
@@ -84,8 +107,10 @@
                     align: 'center',
                     enabled: true,
                     color: 'black',
-                    padding: 10,
-                    y: 28,
+                    //TODO
+                    // padding: 10,
+                    padding: 0,
+                    y: 20,
                     crop: false,
                     overflow: 'none',
                     style: {

@@ -1,6 +1,6 @@
 (function() {
     const subNavLinks = $('.main-nav__link.has-subnav');
-    if (window.matchMedia('(max-width: 1024px)').matches) {
+    if (window.matchMedia('(max-width: 1023px)').matches) {
         subNavLinks.on('click', function(e) {
             e.preventDefault();
 
