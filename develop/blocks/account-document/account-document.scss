@@ -1,6 +1,12 @@
 .account-document {
     transition: background-color 300ms ease;
 
+    &.poll {
+        .account-document__title {
+            width: 70%;
+        }
+    }
+
     &:last-child {
         border-bottom: 1px solid #f6f6f6;
     }

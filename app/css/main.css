@@ -1389,6 +1389,8 @@ th {
   -webkit-transition: background-color 300ms ease;
   -moz-transition: background-color 300ms ease;
   transition: background-color 300ms ease; }
+  .account-document.poll .account-document__title {
+    width: 70%; }
   .account-document:last-child {
     border-bottom: 1px solid #f6f6f6; }
   .account-document.active {
@@ -2331,12 +2333,23 @@ th {
   font-size: 12px;
   line-height: 1.5; }
 
-.account-poll__form.voted .account-poll__vote {
+.account-poll__form.voted .account-poll__vote.selected {
   font-weight: 600; }
-  .account-poll__form.voted .account-poll__vote .percentage {
-    display: block; }
-  .account-poll__form.voted .account-poll__vote:hover {
-    background-color: initial; }
+
+.account-poll__form.voted .account-poll__vote .percentage {
+  display: block; }
+
+.account-poll__form.voted .account-poll__vote .progress {
+  -webkit-animation: pollProgress 600ms ease-in forwards;
+     -moz-animation: pollProgress 600ms ease-in forwards;
+          animation: pollProgress 600ms ease-in forwards;
+  -webkit-transform-origin: left center;
+     -moz-transform-origin: left center;
+      -ms-transform-origin: left center;
+          transform-origin: left center; }
+
+.account-poll__form.voted .account-poll__vote:hover {
+  background-color: initial; }
 
 .account-poll__vote {
   padding: 0;
@@ -2360,6 +2373,7 @@ th {
   font-size: 12px;
   color: #000;
   text-align: left;
+  text-decoration: none;
   border-bottom: 1px solid #f0f0f0;
   -webkit-transition: background-color 300ms ease;
   -moz-transition: background-color 300ms ease;
@@ -2384,6 +2398,42 @@ th {
     z-index: -1;
     background-color: #fed63f;
     pointer-events: none; }
+
+@-webkit-keyframes pollProgress {
+  0% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0); }
+  80% {
+    -webkit-transform: scaleX(1.5);
+            transform: scaleX(1.5); }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1); } }
+
+@-moz-keyframes pollProgress {
+  0% {
+    -moz-transform: scaleX(0);
+         transform: scaleX(0); }
+  80% {
+    -moz-transform: scaleX(1.5);
+         transform: scaleX(1.5); }
+  100% {
+    -moz-transform: scaleX(1);
+         transform: scaleX(1); } }
+
+@keyframes pollProgress {
+  0% {
+    -webkit-transform: scaleX(0);
+       -moz-transform: scaleX(0);
+            transform: scaleX(0); }
+  80% {
+    -webkit-transform: scaleX(1.5);
+       -moz-transform: scaleX(1.5);
+            transform: scaleX(1.5); }
+  100% {
+    -webkit-transform: scaleX(1);
+       -moz-transform: scaleX(1);
+            transform: scaleX(1); } }
 
 .modal .account-settings-modal .modal__dialog {
   padding: 0;

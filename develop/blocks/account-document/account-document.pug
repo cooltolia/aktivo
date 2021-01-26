@@ -1,5 +1,5 @@
 mixin account-document(title, type, price, statusText, status)
-    +b.account-document
+    +b.account-document&attributes(attributes)
         +e.header
             +e.title !{title}
             +e.data

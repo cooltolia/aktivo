@@ -2,19 +2,19 @@ mixin account-poll()
     +b.account-poll
         +e.P.description Сдаются гаражи с возможностью использования под складское хранение срок в административном комплексе по адресу: ул.&nbsp;Адмирала&nbsp;Руднева, д.&nbsp;6. Контакт Дмитрий. Цена договорная.
         +e.FORM.form(method='get' action='/')
-            +e.BUTTON.vote(type='submit' name='poll1' value='1')
+            +e.A.vote(href='#' name='poll1' value='1')
                 span.progress
                 span.percentage
                 | Поддерживаю 
-            +e.BUTTON.vote(type='submit' name='poll1' value='2')
+            +e.A.vote(href='#' name='poll1' value='2')
                 span.progress
                 span.percentage
                 | Против
-            +e.BUTTON.vote(type='submit' name='poll1' value='3')
+            +e.A.vote(href='#' name='poll1' value='3')
                 span.progress
                 span.percentage
                 | Не знаю
-            +e.BUTTON.vote(type='submit' name='poll1' value='4')
+            +e.A.vote(href='#' name='poll1' value='4')
                 span.progress
                 span.percentage
                 | Подумаю
@@ -23,19 +23,19 @@ mixin account-poll()
         br
         br
         +e.FORM.form.voted(method='get' action='/')
-            +e.BUTTON.vote(type='submit' name='poll1' value='1' disabled='')
+            +e.A.vote.selected(href='#' name='poll1' value='1' disabled='')
                 span.progress(style='width: 70%') 
                 span.percentage 70%
                 | Поддерживаю 
-            +e.BUTTON.vote(type='submit' name='poll1' value='2' disabled='')
+            +e.A.vote(href='#' name='poll1' value='2' disabled='')
                 span.progress(style='width: 20%') 
                 span.percentage 20%
                 | Против
-            +e.BUTTON.vote(type='submit' name='poll1' value='3' disabled='')
+            +e.A.vote(href='#' name='poll1' value='3' disabled='')
                 span.progress(style='width: 6%') 
                 span.percentage 6%
                 | Не знаю
-            +e.BUTTON.vote(type='submit' name='poll1' value='4' disabled='')
+            +e.A.vote(href='#' name='poll1' value='4' disabled='')
                 span.progress(style='width: 4%') 
                 span.percentage 4% 
                 | Подумаю
