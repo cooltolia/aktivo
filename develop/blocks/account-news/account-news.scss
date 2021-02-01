@@ -4,6 +4,16 @@
         flex-flow: row wrap;
     }
 
+    &__filter {
+        margin-bottom: 16px;
+    }
+
+    &__select {
+        width: 50%;
+        max-width: 250px;
+        min-width: 160px;
+    }
+
     &__tag {
         padding: 3px 5px;
         margin: 0 6px 6px 0;

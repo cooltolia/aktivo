@@ -2063,6 +2063,14 @@ th {
       -ms-flex-flow: row wrap;
           flex-flow: row wrap; }
 
+.account-news__filter {
+  margin-bottom: 16px; }
+
+.account-news__select {
+  width: 50%;
+  max-width: 250px;
+  min-width: 160px; }
+
 .account-news__tag {
   padding: 3px 5px;
   margin: 0 6px 6px 0;

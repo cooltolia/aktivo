@@ -2,6 +2,9 @@ mixin account-news()
     +b.SECTION.account-news
         +e.column
             +e.H2.column-title Новости ваших фондов
+            +e.filter
+                +e.select
+                    +native-select('funds', ['Все фонды', 'Фонд 1', 'Фонд 2', 'Фонд 3'])
             +e.tags
                 +e.A.tag(href='#') #А1
                 +e.A.tag(href='#') #А2
