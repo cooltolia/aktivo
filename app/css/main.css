@@ -6686,6 +6686,8 @@ th {
     margin: 0 0 16px; }
   .modal__content ol, .modal__content ul {
     padding: 0;
+    padding-left: 20px;
+    list-style-position: inside;
     margin: 0 0 16px; }
   .modal__input-row {
     position: relative;
