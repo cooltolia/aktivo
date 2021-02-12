@@ -54,7 +54,6 @@
     const columnWidth = 50;
     const chartMinWidth = columnWidth * 1.25 * profitData.length;
 
-    //TODO
     const onChartLoad = function () {
         const points0 = this.series[0].data;
         const points1 = this.series[1].data;
@@ -68,7 +67,6 @@
             if (opacity1 === 0 && y + height > y1 + 5) {
                 y1 = y + height1 - 30;
             }
-            debugger;
 
             points1[i].dataLabel.attr({ y: y1, opacity: 1 });
         });
@@ -82,7 +80,6 @@
             scrollablePlotArea: {
                 minWidth: chartMinWidth,
             },
-            //TODO
             events: {
                 render: onChartLoad,
             },
@@ -107,7 +104,6 @@
                     align: 'center',
                     enabled: true,
                     color: 'black',
-                    //TODO
                     // padding: 10,
                     padding: 0,
                     y: 20,

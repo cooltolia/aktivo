@@ -102,6 +102,17 @@
         }
     }
 
+    &__content {
+        p {
+            margin: 0 0 16px;
+        }
+
+        ol, ul {
+            padding: 0;
+            margin: 0 0 16px;
+        }
+    }
+
     &__input-row {
         position: relative;
         margin-bottom: 12px;

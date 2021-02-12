@@ -1223,6 +1223,29 @@ jQuery(document).ready(function ($) {
       });
     })();
 
+    {
+      var _triggerButtons = document.querySelectorAll('.info-trigger');
+
+      console.log(_triggerButtons);
+
+      if (_triggerButtons.length > 0) {
+        _triggerButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            MicroModal.show('infoModal', {
+              disableScroll: true,
+              awaitCloseAnimation: true,
+              onShow: function onShow(modal) {
+                onModalOpen(modal);
+              },
+              onClose: function onClose(modal) {
+                onModalClose(modal, false);
+              }
+            });
+          });
+        });
+      }
+    }
+
     (function () {
       var subNavLinks = $('.main-nav__link.has-subnav');
 
@@ -1280,7 +1303,7 @@ jQuery(document).ready(function ($) {
         // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
       }, 1000);
       var columnWidth = 50;
-      var chartMinWidth = columnWidth * 1.25 * profitData.length; //TODO
+      var chartMinWidth = columnWidth * 1.25 * profitData.length;
 
       var onChartLoad = function onChartLoad() {
         var points0 = this.series[0].data;
@@ -1303,7 +1326,6 @@ jQuery(document).ready(function ($) {
             y1 = y + height1 - 30;
           }
 
-          debugger;
           points1[i].dataLabel.attr({
             y: y1,
             opacity: 1
@@ -1319,7 +1341,6 @@ jQuery(document).ready(function ($) {
           scrollablePlotArea: {
             minWidth: chartMinWidth
           },
-          //TODO
           events: {
             render: onChartLoad
           }
@@ -1344,7 +1365,6 @@ jQuery(document).ready(function ($) {
               align: 'center',
               enabled: true,
               color: 'black',
-              //TODO
               // padding: 10,
               padding: 0,
               y: 20,

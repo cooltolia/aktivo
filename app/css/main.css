@@ -6682,6 +6682,11 @@ th {
     font-weight: 400; }
     .modal__subtitle:last-child {
       margin-bottom: 0; }
+  .modal__content p {
+    margin: 0 0 16px; }
+  .modal__content ol, .modal__content ul {
+    padding: 0;
+    margin: 0 0 16px; }
   .modal__input-row {
     position: relative;
     margin-bottom: 12px;
@@ -6945,6 +6950,8 @@ th {
   margin-bottom: 12px; }
 
 .monitoring-data__data-label {
+  display: inline-block;
+  position: relative;
   margin: 0 0 4px;
   font-size: 12px;
   line-height: 1.4;
@@ -6970,6 +6977,34 @@ th {
     transition: opacity 300ms ease; }
     .monitoring-data__data-value a:hover, .monitoring-data__data-value a:active, .monitoring-data__data-value a:focus {
       opacity: 0.6; }
+
+.monitoring-data__data-info {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: -12px;
+  top: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 7px;
+  line-height: 1;
+  background-color: #fed63f;
+  border-radius: 50%; }
 
 .monitoring-data__toggles {
   padding-top: 20px; }
