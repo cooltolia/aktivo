@@ -4003,45 +4003,50 @@ th {
   .custom-select__label {
     display: block;
     margin: 0;
-    font-size: 14px;
+    font-size: 8px;
     line-height: 1.6;
-    color: #000; }
+    color: #696969; }
   .custom-select__selected {
     padding: 0;
     margin: 0;
     background: none;
     border: none;
     outline: none;
-    width: 100%;
     position: relative;
-    height: 50px;
-    padding-left: 12px;
-    padding-right: 32px;
-    color: #000;
-    font-size: 14px;
+    width: 100%;
+    padding: 0 20px 7px 0;
+    color: #696969;
+    font-size: 11px;
     font-weight: 400;
-    line-height: 1;
     text-align: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    background-color: #fff;
-    border: 1px solid #a5a5a5; }
+    border: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 1px solid #696969;
+    background-color: transparent;
+    -webkit-transition: border-color 300ms ease;
+    -moz-transition: border-color 300ms ease;
+    transition: border-color 300ms ease; }
+    .custom-select__selected:hover, .custom-select__selected:active, .custom-select__selected:focus {
+      border-color: #fed63f; }
     .custom-select__selected:focus {
       outline: none; }
     .custom-select__selected::after {
       content: '';
       position: absolute;
       top: 50%;
-      right: 12px;
+      width: 9px;
+      height: 5px;
+      right: 0;
       -webkit-transform: translateY(-50%);
          -moz-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
               transform: translateY(-50%);
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 6px solid #000;
-      border-radius: 2px;
+      background-image: url(../images/redesign/chevron.svg);
+      background-size: cover;
       -webkit-transition: -webkit-transform 300ms ease;
       transition: -webkit-transform 300ms ease;
       -moz-transition: transform 300ms ease, -moz-transform 300ms ease;
@@ -4059,33 +4064,29 @@ th {
     width: 100%;
     height: auto;
     max-height: 180px;
-    -webkit-transform: translateY(8px);
-       -moz-transform: translateY(8px);
-        -ms-transform: translateY(8px);
-            transform: translateY(8px);
-    background-color: #ffffff;
-    border: 1px solid #a5a5a5;
-    -webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25); }
+    background-color: #ffffff; }
     .custom-select__dropdown .simplebar-track.simplebar-vertical {
       right: 7px;
       top: 20px;
       bottom: 20px; }
   .custom-select__options {
     margin: 0;
-    padding: 16px;
+    padding: 0;
     list-style: none; }
   .custom-select__option {
-    padding: 10px 0;
+    display: block;
+    padding: 10px 2px;
     color: #000;
-    font-size: 16px;
-    -webkit-transition: opacity 300ms ease;
-    -moz-transition: opacity 300ms ease;
-    transition: opacity 300ms ease;
+    font-size: 12px;
+    text-decoration: none;
+    background-color: #f4f4f4;
+    -webkit-transition: background-color 300ms ease;
+    -moz-transition: background-color 300ms ease;
+    transition: background-color 300ms ease;
     outline: none;
     cursor: pointer; }
     .custom-select__option:hover, .custom-select__option:active, .custom-select__option:focus {
-      opacity: 0.6; }
+      background-color: #eaeaea; }
     .custom-select__option:focus {
       text-decoration: none; }
 
@@ -5126,6 +5127,11 @@ th {
   .index-slider__slide {
     position: relative;
     height: 100%; }
+  .index-slider__progress {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 1; }
   .index-slider__image {
     position: absolute;
     width: 100%;
@@ -7009,10 +7015,23 @@ th {
   border-radius: 50%; }
 
 .monitoring-data__toggles {
-  padding-top: 20px; }
+  padding-top: 20px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  margin: 0 -10px -15px; }
 
 .monitoring-data__toggle {
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  width: 50%;
+  padding: 0 10px; }
 
 .monitoring-data__toggle-title {
   margin-bottom: 8px;
@@ -7140,21 +7159,9 @@ th {
   .monitoring-data__title {
     font-size: 18px; }
   .monitoring-data__toggles {
-    padding: 20px 24px 0 24px;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-       -moz-box-orient: horizontal;
-       -moz-box-direction: normal;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
-    margin: 0 -12px; }
+    padding: 20px 24px 12px; }
   .monitoring-data__toggle {
-    width: 50%;
-    padding: 0 12px; }
+    width: 25%; }
   .monitoring-data__toggle-title {
     font-size: 14px; }
   .monitoring-data__toggle-input span {
@@ -7961,6 +7968,9 @@ th {
 .object-card {
   position: relative;
   z-index: 11; }
+  .object-card__progress {
+    width: 100%;
+    height: 20px; }
   .object-card__header {
     position: relative;
     width: 100%; }
@@ -8116,12 +8126,18 @@ th {
   .object-card__table {
     width: 100%;
     table-layout: fixed; }
+    .object-card__table tr {
+      vertical-align: baseline; }
     .object-card__table td {
       padding: 6px 0;
       font-size: 12px; }
       .object-card__table td:first-child {
         width: 65%;
         padding-right: 10px; }
+      .object-card__table td small {
+        display: block;
+        font-size: 10px;
+        color: #4a4a4a; }
       .object-card__table td .value {
         display: inline;
         position: relative;
@@ -8130,15 +8146,15 @@ th {
         display: block;
         max-width: 100%; }
       .object-card__table td[colspan='2'] {
-        padding-top: 24px;
-        text-align: center;
+        padding-top: 36px;
+        text-align: left;
         position: relative; }
         .object-card__table td[colspan='2']::before {
           content: '';
           position: absolute;
           width: 100%;
           height: 1px;
-          top: 12px;
+          top: 16px;
           left: 0;
           background-color: #ddd; }
   .object-card__tooltip {
@@ -8411,7 +8427,6 @@ th {
     width: 100%;
     overflow: hidden; }
     .object-finances__table table {
-      width: 100%;
       table-layout: fixed; }
     .object-finances__table td {
       width: 130px;
@@ -8420,8 +8435,7 @@ th {
       font-size: 12px;
       line-height: 30px;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis; }
+      overflow: hidden; }
     .object-finances__table tr:first-child td {
       padding-bottom: 20px;
       font-weight: 600;
@@ -8584,8 +8598,10 @@ th {
     text-align: center;
     font-size: 15px; }
   .object-finances__table tr:first-child .heading {
-    bottom: 30px;
-    font-size: 24px; }
+    bottom: 8px;
+    font-size: 24px;
+    white-space: initial;
+    text-align: left; }
   .object-finances__table td {
     width: 126px;
     height: 40px;
@@ -8623,12 +8639,12 @@ th {
   .object-finances__line-chart {
     position: relative;
     padding-top: 70px;
-    padding-left: 80px; }
+    padding-left: 58px; }
   .object-finances__column-chart {
     padding-top: 40px;
-    padding-left: 80px; }
+    padding-left: 58px; }
   .object-finances__subtitle {
-    width: 195px;
+    width: 188px;
     -webkit-box-align: start;
        -moz-box-align: start;
         -ms-flex-align: start;
@@ -8821,6 +8837,29 @@ th {
     .object-plans__slider .slick-arrow.slick-next {
       right: 40px; } }
 
+.object-progress {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background-color: #cdcdcd; }
+  .object-progress__bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(254, 214, 63, 0.8); }
+  .object-progress__label {
+    position: absolute;
+    padding: 0 5px;
+    top: 50%;
+    -webkit-transform: translateY(-55%);
+       -moz-transform: translateY(-55%);
+        -ms-transform: translateY(-55%);
+            transform: translateY(-55%);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1; }
+
 .object-slider {
   position: relative;
   width: -webkit-calc(100% + 40px);
@@ -8946,6 +8985,8 @@ th {
       height: 100%;
       -o-object-fit: cover;
          object-fit: cover; }
+  .object-slider__progress {
+    position: relative; }
   .object-slider__play {
     position: absolute;
     left: 50%;

@@ -1,5 +1,7 @@
 mixin object-card(data)
     +b.object-card
+        +e.progress
+            block
         +e.header
             +e.A.link(href='object-page.html')
             +e.image
@@ -22,7 +24,7 @@ mixin object-card(data)
                     td
                         span.value= data.price
                 tr
-                    td Цена за кв. метр: 
+                    td Цена за кв. метр:
                     td
                         span.value 143 799.41 ₽ 
                 tr
@@ -31,17 +33,22 @@ mixin object-card(data)
                         span.value 10.4%
                             +e.BUTTON.tooltip.tooltip(data-tippy-content='Доходность растёт с каждым годом за счет ежегодной индексации на 5% и будет составлять 16.4% в 2027 году. Рассчитано при цене 411 млн руб.') ?
                 tr
-                    td Доходность за 10 лет: 
+                    td Доходность за 10 лет:
                     td
                         span.value 12.8%
                             +e.BUTTON.tooltip.tooltip(data-tippy-content='Доходность растёт с каждым годом за счет ежегодной индексации на 5% и будет составлять 16.4% в 2027 году. Рассчитано при цене 411 млн руб.') ?
                 tr
-                    td Окупаемость: 
+                    td Окупаемость:
                     td
                         +e.A.lock.tooltip(href='#' data-tippy-content='Информация доступна только для зарегистрированных пользователей. Нажмите, чтобы зарегистрироваться или авторизоваться')
                             +icon('lock')
                 tr
                     td Мин. инвестиции:
+                    td
+                        span.value 353 694 ₽
+                tr
+                    td Стоимость пая:
+                        small без комиссии
                     td
                         span.value 353 694 ₽
                 tr
@@ -64,6 +71,6 @@ mixin object-card(data)
 
 
 
- 
+
 
 

@@ -10,6 +10,10 @@
     const columnChartPadding = parseInt(window.getComputedStyle(columnChart.parentNode).paddingLeft);
     let scrolledColumnChart = null;
 
+    const tableWidth = financesTable.firstElementChild.clientWidth;
+    const tableWrapperWidth = financesTable.clientWidth;
+    if (tableWidth > tableWrapperWidth) financesTable.firstElementChild.style.width = '100%';
+
     const dataCells = financesTable.querySelectorAll('tr:not(:first-child) td');
     const cellHeight = dataCells[0].getBoundingClientRect().height;
     const regularCellWidth = dataCells[1].getBoundingClientRect().width;
@@ -43,7 +47,7 @@
             }
             const offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
             vr.style.left = `${offsetLeft}px`;
-            vr.style.marginLeft = '16px';
+            vr.style.marginLeft = '8px';
 
             hr.classList.add('active');
             vr.classList.add('active');
@@ -59,6 +63,13 @@
     const jumpNext = document.querySelector('.object-finances__jump-next');
     const jumpPrev = document.querySelector('.object-finances__jump-prev');
     const maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
+
+    if (tableWidth < tableWrapperWidth) {
+        $(scrollNext).hide();
+        $(scrollPrev).hide();
+        $(jumpNext).hide();
+        $(jumpPrev).hide();
+    }
 
     const debouncedNextClick = debounce(nextClick, 200, true);
     const debouncedPrevClick = debounce(prevClick, 200, true);
@@ -169,7 +180,6 @@
 
     if (lineChart) {
         const data = [
-            99999.8,
             242277.779,
             3172259.31,
             1669890.65,
@@ -211,8 +221,7 @@
             null,
         ];
         const categories = [
-            'Август 2017',
-            'Сентябрь 2017',
+            'Сентябрь 2022',
             'Октябрь 2017',
             'Ноябрь 2017',
             'Декабрь 2017',
@@ -222,7 +231,7 @@
             'Апрель 2018',
             'Май 2018',
             'Август 2017',
-            'Сентябрь 2017',
+            'Сентябрь 2022',
             'Октябрь 2017',
             'Ноябрь 2017',
             'Декабрь 2017',
@@ -259,13 +268,13 @@
 
         Highcharts.chart('lineChart', {
             chart: {
-                type: 'line',
+                type: 'spline',
                 scrollablePlotArea: {
                     minWidth: chartMinWidth,
                     // opacity: 0,
                 },
                 marginTop: 60,
-                marginLeft: 60,
+                marginLeft: 70,
             },
             title: false,
             credits: {
@@ -290,6 +299,7 @@
                         fontWeight: '600',
                         fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                         paddingLeft: '5px',
+                        whiteSpace: 'nowrap',
                     },
                 },
             },
@@ -312,7 +322,7 @@
                 },
             },
             plotOptions: {
-                line: {
+                spline: {
                     color: '#fed63f',
                     // dataLabels: {
                     //     enabled: false,
@@ -341,7 +351,7 @@
                         events: {
                             mouseOver: ({ target }) => {
                                 if (!showGridLine) return;
-                                const magicNumber = 54;
+                                const magicNumber = 69;
                                 vr.style.left = `${
                                     target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft
                                 }px`;
@@ -369,11 +379,10 @@
     }
 
     if (columnChart) {
-        const data = [480, 80, 70, 0, 0, 0, 0, 0, 0, 70, 489, 89, 70, 0, 0, 0, 0, 0, 0, 7, null];
-        const percentage = [48, 8, 7, 0, 0, 0, 0, 0, 0, 7, 48, 8, 7, 0, 0, 0, 0, 0, 0, 7, null];
+        const data = [80, 70, 0, 0, 0, 0, 0, 0, 70, 489, 89, 70, 0, 0, 0, 0, 0, 0, 7, null];
+        const percentage = [8, 7, 0, 0, 0, 0, 0, 0, 7, 48, 8, 7, 0, 0, 0, 0, 0, 0, 7, null];
         const categories = [
-            'Август 2017',
-            'Сентябрь 2017',
+            'Сентябрь 2022',
             'Октябрь 2017',
             'Ноябрь 2017',
             'Декабрь 2017',
@@ -383,7 +392,7 @@
             'Апрель 2018',
             'Май 2018',
             'Август 2017',
-            'Сентябрь 2017',
+            'Сентябрь 2022',
             'Октябрь 2017',
             'Ноябрь 2017',
             'Декабрь 2017',
@@ -424,7 +433,7 @@
                     // opacity: 0,
                 },
                 marginTop: 60,
-                marginLeft: 60,
+                marginLeft: 70,
             },
             title: false,
             credits: {
@@ -463,6 +472,9 @@
                             fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                             whiteSpace: 'nowrap',
                         },
+                        formatter: function () {
+                            return this.value + 'шт.';
+                        },
                     },
                 },
                 {
@@ -479,6 +491,9 @@
                             fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                             whiteSpace: 'nowrap',
                         },
+                        formatter: function () {
+                            return this.value + '%';
+                        },
                     },
                 },
             ],
@@ -488,7 +503,7 @@
                     pointWidth: plotColumnWidth,
                     pointPlacement: 0.22,
                 },
-                line: {
+                sline: {
                     dataLabels: {
                         formatter: function () {
                             return this.y + '%';
@@ -503,7 +518,7 @@
                 {
                     data,
                     type: 'column',
-
+                    color: 'transparent',
                     dataLabels: {
                         enabled: true,
                         align: 'left',
@@ -517,7 +532,7 @@
                     },
                     states: {
                         hover: {
-                            // enabled: false,
+                            enabled: false,
                             color: '#fed63f',
                         },
                         inactive: {
@@ -525,33 +540,12 @@
                         },
                     },
                     minPointLength: 10,
-                    point: {
-                        events: {
-                            mouseOver: ({ target }) => {
-                                if (!showGridLine) return;
-                                const magicNumber = 59;
-
-                                vr.style.left = `${
-                                    target.clientX -
-                                    target.pointWidth / 2 +
-                                    columnChartPadding +
-                                    magicNumber -
-                                    scrolledColumnChart.scrollLeft
-                                }px`;
-                                vr.style.marginLeft = '';
-                                vr.classList.add('active');
-                            },
-                            mouseOut: () => {
-                                vr.classList.remove('active');
-                            },
-                        },
-                    },
                 },
                 {
                     data: percentage,
                     name: 'Доходность',
-                    type: 'line',
-                    color: '#000',
+                    type: 'spline',
+                    color: '#fed63f',
                     yAxis: 1,
                     dataLabels: {
                         enabled: true,
@@ -565,10 +559,36 @@
                     },
                     states: {
                         hover: {
-                            enabled: false,
+                            enabled: true,
+                            color: '#fed63f',
                         },
                         inactive: {
                             opacity: 1,
+                        },
+                    },
+                    point: {
+                        events: {
+                            mouseOver: ({ target }) => {
+                                if (!showGridLine) return;
+                                const magicNumber = 69;
+
+                                vr.style.left = `${
+                                    target.clientX + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft
+                                }px`;
+
+                                // vr.style.left = `${
+                                //     target.clientX -
+                                //     target.pointWidth / 2 +
+                                //     columnChartPadding +
+                                //     magicNumber -
+                                //     scrolledColumnChart.scrollLeft
+                                // }px`;
+                                vr.style.marginLeft = '';
+                                vr.classList.add('active');
+                            },
+                            mouseOut: () => {
+                                vr.classList.remove('active');
+                            },
                         },
                     },
                 },

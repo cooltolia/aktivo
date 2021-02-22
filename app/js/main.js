@@ -909,8 +909,6 @@ jQuery(document).ready(function ($) {
       /**
        * @param {HTMLElement} select
        * @param {Object} options
-       * @param {Boolean} options.multiple - multiple choises
-       * @param {String} options.multipleCounterLabel
        * @param {Function} options.onSelect - callback for selected element
        */
       function CustomSelect(select) {
@@ -946,12 +944,6 @@ jQuery(document).ready(function ($) {
             up_arrow: 38,
             escape: 27
           };
-
-          if (this.options.multiple) {
-            this.multipleCounter = 0;
-            this.optionsList.classList.add('multiple');
-          }
-
           this.setEventHandlers();
         }
       }, {
@@ -969,6 +961,8 @@ jQuery(document).ready(function ($) {
             var target = e.target;
 
             if (target.classList.contains('custom-select__option')) {
+              e.preventDefault();
+
               _this.selectItem(e);
             }
           });
@@ -1022,8 +1016,9 @@ jQuery(document).ready(function ($) {
           if (e.type === 'click') {
             this.dropdown.classList.toggle('opened');
             this.selected.classList.toggle('opened');
-            this.dropdown.setAttribute('aria-expanded', this.dropdown.classList.contains('opened'));
-            $$.fadeToggle(this.dropdown);
+            this.dropdown.setAttribute('aria-expanded', this.dropdown.classList.contains('opened')); // $$.fadeToggle(this.dropdown);
+
+            $(this.dropdown).fadeToggle(120);
           }
 
           if (e.keyCode === this.keyCodes.down_arrow) {
@@ -1041,8 +1036,9 @@ jQuery(document).ready(function ($) {
         value: function closeOptionsList() {
           this.dropdown.classList.remove('opened');
           this.selected.classList.remove('opened');
-          this.dropdown.setAttribute('aria-expanded', false);
-          $$.fadeOut(this.dropdown);
+          this.dropdown.setAttribute('aria-expanded', false); // $$.fadeOut(this.dropdown);
+
+          $(this.dropdown).fadeOut(120);
         }
       }, {
         key: "focusNextListItem",
@@ -1078,12 +1074,7 @@ jQuery(document).ready(function ($) {
         key: "selectItem",
         value: function selectItem(e) {
           var selectedValue = e.target.textContent.trim();
-
-          if (this.options.multiple) {
-            this.multipleSelectLogic(e, selectedValue);
-          } else {
-            this.singleSelectLogic(e, selectedValue);
-          }
+          this.singleSelectLogic(e, selectedValue);
         }
       }, {
         key: "setSelected",
@@ -1098,10 +1089,6 @@ jQuery(document).ready(function ($) {
 
           if (this.valueInput) {
             this.valueInput.value = null;
-          }
-
-          if (this.multipleCounter) {
-            this.multipleCounter = 0;
           }
         }
       }, {
@@ -1121,49 +1108,17 @@ jQuery(document).ready(function ($) {
             this.options.onSelect(selectedValue);
           }
         }
-      }, {
-        key: "multipleSelectLogic",
-        value: function multipleSelectLogic(e, selectedValue) {
-          var valueDivider = ';';
-          var action = e.target.classList.contains('selected') ? 'remove' : 'add';
-
-          if (action === 'remove') {
-            e.target.classList.remove('selected');
-            this.multipleCounter--;
-
-            if (this.valueInput) {
-              this.valueInput.value = this.valueInput.value.split(valueDivider).filter(function (val) {
-                return val !== selectedValue;
-              }).join(valueDivider);
-            }
-          } else {
-            e.target.classList.add('selected');
-            this.multipleCounter++;
-
-            if (this.valueInput) {
-              this.valueInput.value += selectedValue + valueDivider;
-            }
-          }
-
-          if (this.multipleCounter === 0) {
-            this.selected.textContent = this.inititalPlaceholder;
-          } else {
-            this.selected.textContent = "".concat(this.options.multipleCounterLabel, ": ").concat(this.multipleCounter);
-          }
-
-          if (typeof this.options.onSelect === 'function') {
-            var selectedItem = {
-              value: selectedValue,
-              id: e.target.dataset.id,
-              action: action
-            };
-            this.options.onSelect(selectedItem);
-          }
-        }
       }]);
 
       return CustomSelect;
     }();
+
+    (function () {
+      var selects = document.querySelectorAll('.custom-select');
+      selects.forEach(function (select) {
+        return new CustomSelect(select);
+      });
+    })();
 
     (function () {
       var faq = $('.faq');
@@ -1811,6 +1766,9 @@ jQuery(document).ready(function ($) {
       var columnChart = document.querySelector('#columnChart');
       var columnChartPadding = parseInt(window.getComputedStyle(columnChart.parentNode).paddingLeft);
       var scrolledColumnChart = null;
+      var tableWidth = financesTable.firstElementChild.clientWidth;
+      var tableWrapperWidth = financesTable.clientWidth;
+      if (tableWidth > tableWrapperWidth) financesTable.firstElementChild.style.width = '100%';
       var dataCells = financesTable.querySelectorAll('tr:not(:first-child) td');
       var cellHeight = dataCells[0].getBoundingClientRect().height;
       var regularCellWidth = dataCells[1].getBoundingClientRect().width;
@@ -1845,7 +1803,7 @@ jQuery(document).ready(function ($) {
 
           var offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
           vr.style.left = "".concat(offsetLeft, "px");
-          vr.style.marginLeft = '16px';
+          vr.style.marginLeft = '8px';
           hr.classList.add('active');
           vr.classList.add('active');
         });
@@ -1859,6 +1817,14 @@ jQuery(document).ready(function ($) {
       var jumpNext = document.querySelector('.object-finances__jump-next');
       var jumpPrev = document.querySelector('.object-finances__jump-prev');
       var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
+
+      if (tableWidth < tableWrapperWidth) {
+        $(scrollNext).hide();
+        $(scrollPrev).hide();
+        $(jumpNext).hide();
+        $(jumpPrev).hide();
+      }
+
       var debouncedNextClick = debounce(nextClick, 200, true);
       var debouncedPrevClick = debounce(prevClick, 200, true);
       var debouncedJumpNext = debounce(jumpingNext, 200, true);
@@ -1971,7 +1937,7 @@ jQuery(document).ready(function ($) {
       }
 
       if (lineChart) {
-        var data = [99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, // 2570890.35,
+        var data = [242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, // 2570890.35,
         // 4195441.54,
         // 1001971.62,
         // 3348942.76,
@@ -1991,7 +1957,7 @@ jQuery(document).ready(function ($) {
         // 1795512.88,
         // 3098144.21,
         null];
-        var categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', // 'Июнь 2018',
+        var categories = ['Сентябрь 2022', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Август 2017', 'Сентябрь 2022', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', // 'Июнь 2018',
         // 'Июль 2018',
         // 'Август 2018',
         // 'Сентябрь 2018',
@@ -2017,13 +1983,13 @@ jQuery(document).ready(function ($) {
         var chartMinWidth = columnWidth * data.length;
         Highcharts.chart('lineChart', {
           chart: {
-            type: 'line',
+            type: 'spline',
             scrollablePlotArea: {
               minWidth: chartMinWidth // opacity: 0,
 
             },
             marginTop: 60,
-            marginLeft: 60
+            marginLeft: 70
           },
           title: false,
           credits: {
@@ -2047,7 +2013,8 @@ jQuery(document).ready(function ($) {
                 fontSize: labelFontSize,
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
-                paddingLeft: '5px'
+                paddingLeft: '5px',
+                whiteSpace: 'nowrap'
               }
             }
           },
@@ -2070,7 +2037,7 @@ jQuery(document).ready(function ($) {
             }
           },
           plotOptions: {
-            line: {
+            spline: {
               color: '#fed63f' // dataLabels: {
               //     enabled: false,
               // },
@@ -2101,7 +2068,7 @@ jQuery(document).ready(function ($) {
                   mouseOver: function mouseOver(_ref) {
                     var target = _ref.target;
                     if (!showGridLine) return;
-                    var magicNumber = 54;
+                    var magicNumber = 69;
                     vr.style.left = "".concat(target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft, "px");
                     vr.style.marginLeft = '';
                     vr.classList.add('active');
@@ -2125,9 +2092,9 @@ jQuery(document).ready(function ($) {
       }
 
       if (columnChart) {
-        var _data = [480, 80, 70, 0, 0, 0, 0, 0, 0, 70, 489, 89, 70, 0, 0, 0, 0, 0, 0, 7, null];
-        var percentage = [48, 8, 7, 0, 0, 0, 0, 0, 0, 7, 48, 8, 7, 0, 0, 0, 0, 0, 0, 7, null];
-        var _categories = ['Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Август 2017', 'Сентябрь 2017', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', // 'Июнь 2018',
+        var _data = [80, 70, 0, 0, 0, 0, 0, 0, 70, 489, 89, 70, 0, 0, 0, 0, 0, 0, 7, null];
+        var percentage = [8, 7, 0, 0, 0, 0, 0, 0, 7, 48, 8, 7, 0, 0, 0, 0, 0, 0, 7, null];
+        var _categories = ['Сентябрь 2022', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', 'Август 2017', 'Сентябрь 2022', 'Октябрь 2017', 'Ноябрь 2017', 'Декабрь 2017', 'Январь 2018', 'Февраль 2018', 'Март 2018', 'Апрель 2018', 'Май 2018', // 'Июнь 2018',
         // 'Июль 2018',
         // 'Август 2018',
         // 'Сентябрь 2018',
@@ -2159,7 +2126,7 @@ jQuery(document).ready(function ($) {
 
             },
             marginTop: 60,
-            marginLeft: 60
+            marginLeft: 70
           },
           title: false,
           credits: {
@@ -2196,6 +2163,9 @@ jQuery(document).ready(function ($) {
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                 whiteSpace: 'nowrap'
+              },
+              formatter: function formatter() {
+                return this.value + 'шт.';
               }
             }
           }, {
@@ -2211,6 +2181,9 @@ jQuery(document).ready(function ($) {
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                 whiteSpace: 'nowrap'
+              },
+              formatter: function formatter() {
+                return this.value + '%';
               }
             }
           }],
@@ -2220,7 +2193,7 @@ jQuery(document).ready(function ($) {
               pointWidth: plotColumnWidth,
               pointPlacement: 0.22
             },
-            line: {
+            sline: {
               dataLabels: {
                 formatter: function formatter() {
                   return this.y + '%';
@@ -2234,6 +2207,7 @@ jQuery(document).ready(function ($) {
           series: [{
             data: _data,
             type: 'column',
+            color: 'transparent',
             dataLabels: {
               enabled: true,
               align: 'left',
@@ -2247,34 +2221,19 @@ jQuery(document).ready(function ($) {
             },
             states: {
               hover: {
-                // enabled: false,
+                enabled: false,
                 color: '#fed63f'
               },
               inactive: {
                 opacity: 1
               }
             },
-            minPointLength: 10,
-            point: {
-              events: {
-                mouseOver: function mouseOver(_ref2) {
-                  var target = _ref2.target;
-                  if (!showGridLine) return;
-                  var magicNumber = 59;
-                  vr.style.left = "".concat(target.clientX - target.pointWidth / 2 + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft, "px");
-                  vr.style.marginLeft = '';
-                  vr.classList.add('active');
-                },
-                mouseOut: function mouseOut() {
-                  vr.classList.remove('active');
-                }
-              }
-            }
+            minPointLength: 10
           }, {
             data: percentage,
             name: 'Доходность',
-            type: 'line',
-            color: '#000',
+            type: 'spline',
+            color: '#fed63f',
             yAxis: 1,
             dataLabels: {
               enabled: true,
@@ -2288,10 +2247,33 @@ jQuery(document).ready(function ($) {
             },
             states: {
               hover: {
-                enabled: false
+                enabled: true,
+                color: '#fed63f'
               },
               inactive: {
                 opacity: 1
+              }
+            },
+            point: {
+              events: {
+                mouseOver: function mouseOver(_ref2) {
+                  var target = _ref2.target;
+                  if (!showGridLine) return;
+                  var magicNumber = 69;
+                  vr.style.left = "".concat(target.clientX + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft, "px"); // vr.style.left = `${
+                  //     target.clientX -
+                  //     target.pointWidth / 2 +
+                  //     columnChartPadding +
+                  //     magicNumber -
+                  //     scrolledColumnChart.scrollLeft
+                  // }px`;
+
+                  vr.style.marginLeft = '';
+                  vr.classList.add('active');
+                },
+                mouseOut: function mouseOut() {
+                  vr.classList.remove('active');
+                }
               }
             }
           }],
@@ -2349,6 +2331,31 @@ jQuery(document).ready(function ($) {
         slidesToScroll: 1,
         slidesToShow: 1,
         arrows: true
+      });
+    })();
+
+    (function () {
+      var progressBars = document.querySelectorAll('.object-progress');
+      if (progressBars.length === 0) return;
+      progressBars.forEach(function (el) {
+        var bar = el.querySelector('.object-progress__bar');
+        var label = el.querySelector('.object-progress__label');
+        var widths = {
+          el: el.getBoundingClientRect().width,
+          bar: bar.getBoundingClientRect().width,
+          label: label.getBoundingClientRect().width
+        };
+        var rightEmptySpace = widths.el - widths.bar; // if (widths.bar < widths.label) {
+        //     label.style.left = widths.bar + 'px';
+        // } else {
+        //     label.style.right = widths.el - widths.bar + 'px';
+        // }
+
+        if (widths.label < rightEmptySpace) {
+          label.style.left = widths.bar + 'px';
+        } else {
+          label.style.right = rightEmptySpace + 'px';
+        }
       });
     })();
 

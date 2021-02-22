@@ -6,9 +6,9 @@ mixin custom-select(name, options = [], placeholder, label = false, defaultValue
             +e.INPUT.value(type='hidden' name=name value=defaultValue)
         +e.BUTTON.selected(type='button' tabindex='0')= placeholder || options[0]
         +e.dropdown(aria-expanded='false')
-            +e.UL.options
+            +e.options
                 if (options && options.length > 0)
                     each option in options
-                        +e.LI.option(tabindex='0')= option
+                        +e.A.option(href='#')= option
                 else
                     block

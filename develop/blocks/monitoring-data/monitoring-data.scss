@@ -110,10 +110,15 @@
 
     &__toggles {
         padding-top: 20px;
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 -10px -15px;
     }
 
     &__toggle {
         margin-bottom: 15px;
+        width: 50%;
+        padding: 0 10px;
     }
 
     &__toggle-title {
@@ -237,15 +242,11 @@
         }
 
         &__toggles {
-            padding: 20px 24px 0 24px;
-            display: flex;
-            flex-flow: row wrap;
-            margin: 0 -12px;
+            padding: 20px 24px 12px;
         }
 
         &__toggle {
-            width: 50%;
-            padding: 0 12px;
+            width: 25%;
         }
 
         &__toggle-title {

@@ -16,7 +16,7 @@
         overflow: hidden;
 
         table {
-            width: 100%;
+            // width: 100%;
             table-layout: fixed;
         }
 
@@ -29,7 +29,6 @@
             line-height: 30px;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         tr:first-child {
@@ -263,9 +262,11 @@
                 }
 
                 .heading {
-                    bottom: 30px;
+                    bottom: 8px;
 
                     font-size: 24px;
+                    white-space: initial;
+                    text-align: left;
                 }
             }
 
@@ -335,16 +336,16 @@
         &__line-chart {
             position: relative;
             padding-top: 70px;
-            padding-left: 80px;
+            padding-left: 58px;
         }
 
         &__column-chart {
             padding-top: 40px;
-            padding-left: 80px;
+            padding-left: 58px;
         }
 
         &__subtitle {
-            width: 195px;
+            width: 188px;
             align-items: flex-start;
 
             font-size: 24px;

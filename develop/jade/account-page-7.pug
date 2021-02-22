@@ -16,37 +16,41 @@ html(lang='ru')
                         +icon('l-arrow')
                 +e.toggles
                     +e.toggle
-                        +e.toggle-title Тип доходности
-                        +e.toggle-inputs
-                            +e.A.toggle-input.active(href='#')
-                                span номинальная
-                            +e.A.toggle-input(href='#')
-                                span эффективная
+                        +custom-select(false, ['номинальная', 'эффективная'], false, 'Тип доходности')
+                        //- +e.toggle-title Тип доходности
+                        //- +e.toggle-inputs
+                        //-     +e.A.toggle-input.active(href='#')
+                        //-         span номинальная
+                        //-     +e.A.toggle-input(href='#')
+                        //-         span эффективная
                     +e.toggle
-                        +e.toggle-title Показатели за
-                        +e.toggle-inputs
-                            +e.A.toggle-input(href='#')
-                                span 12 месяцев
-                            +e.A.toggle-input.active(href='#')
-                                span все время
+                        +custom-select(false, ['12 месяцев', 'все время'], false, 'Показатели за')
+                        //- +e.toggle-title Показатели за
+                        //- +e.toggle-inputs
+                        //-     +e.A.toggle-input(href='#')
+                        //-         span 12 месяцев
+                        //-     +e.A.toggle-input.active(href='#')
+                        //-         span все время
                     +e.toggle
-                        +e.toggle-title Доходность за
-                        +e.toggle-inputs
-                            +e.A.toggle-input.active(href='#')
-                                span период
-                            +e.A.toggle-input(href='#')
-                                span все время
-                            +e.A.toggle-input(href='#')
-                                span 12 месяцев
+                        +custom-select(false, ['12 месяцев', 'все время'], false, 'Доходность за')
+                        //- +e.toggle-title Доходность за
+                        //- +e.toggle-inputs
+                        //-     +e.A.toggle-input.active(href='#')
+                        //-         span период
+                        //-     +e.A.toggle-input(href='#')
+                        //-         span все время
+                        //-     +e.A.toggle-input(href='#')
+                        //-         span 12 месяцев
                     +e.toggle
-                        +e.toggle-title Период
-                        +e.toggle-inputs
-                            +e.A.toggle-input.active(href='#')
-                                span месяц
-                            +e.A.toggle-input(href='#')
-                                span квартал
-                            +e.A.toggle-input(href='#')
-                                span год
+                        +custom-select(false, ['месяц', 'квартал', 'год'], false, 'Период')
+                        //- +e.toggle-title Период
+                        //- +e.toggle-inputs
+                        //-     +e.A.toggle-input.active(href='#')
+                        //-         span месяц
+                        //-     +e.A.toggle-input(href='#')
+                        //-         span квартал
+                        //-     +e.A.toggle-input(href='#')
+                        //-         span год
                 +e.graph
                     +monitoring-graph
                 +e.table

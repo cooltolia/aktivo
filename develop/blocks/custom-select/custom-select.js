@@ -2,10 +2,9 @@ class CustomSelect {
     /**
      * @param {HTMLElement} select
      * @param {Object} options
-     * @param {Boolean} options.multiple - multiple choises
-     * @param {String} options.multipleCounterLabel
      * @param {Function} options.onSelect - callback for selected element
      */
+
     constructor(select, options = {}) {
         if (!select) {
             throw new Error('No element has been passed');
@@ -36,11 +35,6 @@ class CustomSelect {
             escape: 27,
         };
 
-        if (this.options.multiple) {
-            this.multipleCounter = 0;
-            this.optionsList.classList.add('multiple');
-        }
-
         this.setEventHandlers();
     }
 
@@ -52,6 +46,7 @@ class CustomSelect {
             const target = e.target;
 
             if (target.classList.contains('custom-select__option')) {
+                e.preventDefault();
                 this.selectItem(e);
             }
         });
@@ -105,7 +100,8 @@ class CustomSelect {
             this.selected.classList.toggle('opened');
 
             this.dropdown.setAttribute('aria-expanded', this.dropdown.classList.contains('opened'));
-            $$.fadeToggle(this.dropdown);
+            // $$.fadeToggle(this.dropdown);
+            $(this.dropdown).fadeToggle(120);
         }
 
         if (e.keyCode === this.keyCodes.down_arrow) {
@@ -125,7 +121,8 @@ class CustomSelect {
         this.dropdown.classList.remove('opened');
         this.selected.classList.remove('opened');
         this.dropdown.setAttribute('aria-expanded', false);
-        $$.fadeOut(this.dropdown);
+        // $$.fadeOut(this.dropdown);
+        $(this.dropdown).fadeOut(120);
     }
 
     focusNextListItem(direction) {
@@ -154,11 +151,7 @@ class CustomSelect {
 
     selectItem(e) {
         const selectedValue = e.target.textContent.trim();
-        if (this.options.multiple) {
-            this.multipleSelectLogic(e, selectedValue);
-        } else {
-            this.singleSelectLogic(e, selectedValue);
-        }
+        this.singleSelectLogic(e, selectedValue);
     }
 
     setSelected(value) {
@@ -171,10 +164,6 @@ class CustomSelect {
         this.selected.textContent = this.inititalPlaceholder;
         if (this.valueInput) {
             this.valueInput.value = null;
-        }
-
-        if (this.multipleCounter) {
-            this.multipleCounter = 0;
         }
     }
 
@@ -194,42 +183,9 @@ class CustomSelect {
             this.options.onSelect(selectedValue);
         }
     }
-
-    multipleSelectLogic(e, selectedValue) {
-        const valueDivider = ';';
-        const action = e.target.classList.contains('selected') ? 'remove' : 'add';
-        if (action === 'remove') {
-            e.target.classList.remove('selected');
-            this.multipleCounter--;
-
-            if (this.valueInput) {
-                this.valueInput.value = this.valueInput.value
-                    .split(valueDivider)
-                    .filter((val) => val !== selectedValue)
-                    .join(valueDivider);
-            }
-        } else {
-            e.target.classList.add('selected');
-            this.multipleCounter++;
-
-            if (this.valueInput) {
-                this.valueInput.value += selectedValue + valueDivider;
-            }
-        }
-
-        if (this.multipleCounter === 0) {
-            this.selected.textContent = this.inititalPlaceholder;
-        } else {
-            this.selected.textContent = `${this.options.multipleCounterLabel}: ${this.multipleCounter}`;
-        }
-
-        if (typeof this.options.onSelect === 'function') {
-            const selectedItem = {
-                value: selectedValue,
-                id: e.target.dataset.id,
-                action,
-            };
-            this.options.onSelect(selectedItem);
-        }
-    }
 }
+
+(function () {
+    const selects = document.querySelectorAll('.custom-select');
+    selects.forEach((select) => new CustomSelect(select));
+})();

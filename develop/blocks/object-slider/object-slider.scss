@@ -129,6 +129,10 @@
         }
     }
 
+    &__progress {
+        position: relative;
+    }
+
     &__play {
         position: absolute;
         left: 50%;

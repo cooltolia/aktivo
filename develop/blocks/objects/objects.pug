@@ -18,6 +18,8 @@ mixin objects()
                             +e.LI.categories-item
                                 +e.A.categrories-link(href='#') Лучшая окупаемость
                 +e.MAIN.list
-                    each object in objects
+                    each object, i in objects
                         +e.object
                             +object-card(object)
+                                if (i === 0 || i === 3)
+                                    +object-progress

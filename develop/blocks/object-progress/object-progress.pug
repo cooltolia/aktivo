@@ -1,0 +1,4 @@
+mixin object-progress(width = '10%', label = 'Осталось 34% на 14.04')
+    +b.object-progress
+        +e.bar(style=`width: ${width}`)
+        +e.label !{label}

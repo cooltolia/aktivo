@@ -1,6 +1,8 @@
 mixin index-slider()
     +b.index-slider
         +e.slide
+            +e.progress
+                +object-progress
             +e.image
                 img(src='images/redesign/object-cards/object1.jpg')
             +e.content
@@ -9,6 +11,8 @@ mixin index-slider()
                 +e.price-label Прибыль&nbsp;для распределения&nbsp;за&nbsp;2019&nbsp;г.
                 //- +e.A.link(href='object-page.html') Инвестировать в объект
         +e.slide
+            +e.progress
+                +object-progress('80%')
             +e.image
                 img(src='images/redesign/object-cards/object2.jpg')
             +e.content
