@@ -17,25 +17,17 @@ mixin object-slider()
                 +e.data-col
                     +e.data-label Балансовая стоимость
                     +e.data-value 658 578 000 ₽
+        +e.progress
+            +object-progress('20%')
         +e.slider
             +e.slide
-                +e.progress
-                    +object-progress('20%')
                 img(src="images/redesign/objects/object1@3x.jpg", alt="")
             +e.slide
-                +e.progress
-                    +object-progress('40%')
                 img(src="images/redesign/objects/object2@3x.jpg", alt="")
             +e.slide
-                +e.progress
-                    +object-progress('60%')
                 img(src="images/redesign/objects/object3@3x.jpg", alt="")
             +e.slide
-                +e.progress
-                    +object-progress('80%')
                 img(src="images/redesign/objects/object4@3x.jpg", alt="")
             +e.slide
-                +e.progress
-                    +object-progress('99%')
                 img(src="images/redesign/objects/object5@3x.jpg", alt="")
         +e.BUTTON.play(data-video-id='1-kG-vDVrkk')

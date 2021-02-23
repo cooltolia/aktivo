@@ -2323,6 +2323,79 @@ jQuery(document).ready(function ($) {
 
 
     (function () {
+      var object = $('.object-new');
+      if (object.length === 0) return;
+      var objectLinks = $('.object__navigation-link');
+      var objectSections = document.querySelectorAll('.object__section');
+
+      if (window.matchMedia('(min-width: 768px)').matches) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              objectLinks.removeClass('active');
+              var sectionId = entry.target.id;
+              if (!sectionId) return;
+              var relatedLink = objectLinks.filter("[data-scroll-to=".concat(sectionId, "]"));
+              relatedLink.addClass('active');
+            }
+          });
+        }, {
+          rootMargin: '-50% 0% -50% 0%',
+          root: null
+        });
+        objectSections.forEach(function (section) {
+          return observer.observe(section);
+        });
+      }
+
+      objectLinks.on('click', function (e) {
+        e.preventDefault();
+        var link = $(this);
+        if (link.hasClass('locked')) return;
+        objectLinks.removeClass('active');
+        link.addClass('active');
+      });
+      var navigation = document.querySelector('.object-new__navigation');
+
+      if (window.matchMedia('(max-width: 1199px)').matches) {
+        var navList = navigation.querySelector('.object-new__navigation-list');
+        var activeNavLink = navigation.querySelector('.object-new__navigation-link.active');
+
+        var navItems = _toConsumableArray(navList.children);
+
+        var navItemsLength = 0;
+        navItems.forEach(function (item) {
+          navItemsLength += item.getBoundingClientRect().width;
+        });
+        var $navList = $(navList);
+
+        if (navItemsLength > navList.clientWidth + 1) {
+          $navList.slick({
+            dots: false,
+            rows: 0,
+            arrows: false,
+            infinite: false,
+            variableWidth: true,
+            touchThreshold: 10,
+            speed: 200,
+            swipeToSlide: true // edgeFriction: 1,
+
+          });
+
+          if (activeNavLink) {
+            var parentSlide = activeNavLink.parentNode;
+
+            var index = _toConsumableArray($navList.slick('getSlick').$slides).indexOf(parentSlide);
+
+            $navList.slick('slickGoTo', index);
+          }
+        } else {
+          navigation.classList.add('full');
+        }
+      }
+    })();
+
+    (function () {
       var objectPlans = $('.object-plans');
       if (objectPlans.length === 0) return;
       var slider = $('.object-plans__slider');

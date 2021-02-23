@@ -95,7 +95,7 @@
         }
 
         &__main {
-            width: 35vw;
+            width: calc(55vw - 35px);
             flex: 0 0 auto;
             padding-right: 15px;
             margin-bottom: 0;
@@ -116,7 +116,6 @@
 @media #{$laptop} {
     .object-description {
         &__main {
-            width: 43vw;
             padding-right: 45px;
         }
 
@@ -128,8 +127,8 @@
 @media #{$desktop} {
     .object-description {
         &__main {
-            width: 542px;
             padding-right: 65px;
+            width: 750px;
         }
 
         &__data {

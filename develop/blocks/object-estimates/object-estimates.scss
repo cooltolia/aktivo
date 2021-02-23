@@ -88,7 +88,7 @@
         }
 
         &__main {
-            width: 35vw;
+            width: calc(55vw - 35px);;
             flex: 0 0 auto;
         }
 
@@ -106,7 +106,7 @@
 @media #{$laptop} {
     .object-estimates {
         &__main {
-            width: 43vw;
+            width: 750px;
         }
 
         &__sum-value {
@@ -118,7 +118,6 @@
 @media #{$desktop} {
     .object-estimates {
         &__main {
-            width: 542px;
         }
 
         &__sum-value {
