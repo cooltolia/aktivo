@@ -45,6 +45,7 @@
             if (index === 1) {
                 leftPadding = parseInt(window.getComputedStyle(cell).paddingLeft) - 5;
             }
+            console.log(financesTable.scrollLeft);
             const offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
             vr.style.left = `${offsetLeft}px`;
             vr.style.marginLeft = '8px';
@@ -292,7 +293,7 @@
                 tickWidth: 0,
                 labels: {
                     align: 'left',
-                    // x: -5,
+                    // x: 2,
                     style: {
                         color: '#9e9e9e',
                         fontSize: labelFontSize,

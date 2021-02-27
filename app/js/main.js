@@ -1238,8 +1238,7 @@ jQuery(document).ready(function ($) {
 
     (function () {
       var chart = document.getElementById('income-monitoring');
-      if (!chart) return;
-      [7]; // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
+      if (!chart) return; // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
       // const dividendsData = [5, 10, 20, 85, 20, 15, 5, 20, 20, 35, 20, 15];
 
       var profitData = [122442.8, 5786.51, 174648.8, 65352.25, 21275.49, 748878.0, 82916.36, 49460.5, 65876.33, 50389.35, 53762.3, 11285.56];
@@ -1403,7 +1402,7 @@ jQuery(document).ready(function ($) {
           type: 'column',
           yAxis: 1,
           data: profitData,
-          color: fundColor,
+          color: '#CBCBCB',
           tooltip: {
             // valueSuffix: " 000 руб"
             pointFormatter: function pointFormatter() {
@@ -1801,6 +1800,7 @@ jQuery(document).ready(function ($) {
             leftPadding = parseInt(window.getComputedStyle(cell).paddingLeft) - 5;
           }
 
+          console.log(financesTable.scrollLeft);
           var offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
           vr.style.left = "".concat(offsetLeft, "px");
           vr.style.marginLeft = '8px';
@@ -2007,7 +2007,7 @@ jQuery(document).ready(function ($) {
             tickWidth: 0,
             labels: {
               align: 'left',
-              // x: -5,
+              // x: 2,
               style: {
                 color: '#9e9e9e',
                 fontSize: labelFontSize,

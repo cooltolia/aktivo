@@ -2,8 +2,6 @@
     const chart = document.getElementById('income-monitoring');
     if (!chart) return;
 
-    [7];
-
     // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
     // const dividendsData = [5, 10, 20, 85, 20, 15, 5, 20, 20, 35, 20, 15];
     const profitData = [
@@ -196,7 +194,7 @@
                 type: 'column',
                 yAxis: 1,
                 data: profitData,
-                color: fundColor,
+                color: '#CBCBCB',
                 tooltip: {
                     // valueSuffix: " 000 руб"
                     pointFormatter: function () {

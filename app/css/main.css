@@ -1876,7 +1876,8 @@ th {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    border-top: 1px solid rgba(145, 145, 145, 0.2); }
   .account-monitoring__sidebar {
     margin: 0;
     width: 260px;
@@ -7199,16 +7200,22 @@ th {
     width: -webkit-calc(var(--fund-value) * 1%);
     width: -moz-calc(var(--fund-value) * 1%);
     width: calc(var(--fund-value) * 1%);
-    background-color: var(--fund-color); }
+    background-color: #f1f1f1;
+    -webkit-transition: opacity 300ms ease;
+    -moz-transition: opacity 300ms ease;
+    transition: opacity 300ms ease; }
   .monitoring-funds__row.active, .monitoring-funds__row:hover, .monitoring-funds__row:active, .monitoring-funds__row:focus {
     font-weight: 600;
-    background-color: #f4f4f4; }
+    background-color: #fff6d4; }
+    .monitoring-funds__row.active::after, .monitoring-funds__row:hover::after, .monitoring-funds__row:active::after, .monitoring-funds__row:focus::after {
+      opacity: 0; }
   .monitoring-funds__row--header {
-    font-weight: 600; }
+    font-weight: 600;
+    background-color: #fff6d4; }
     .monitoring-funds__row--header::after {
       display: none; }
     .monitoring-funds__row--header.active, .monitoring-funds__row--header:hover, .monitoring-funds__row--header:active, .monitoring-funds__row--header:focus {
-      background-color: transparent; }
+      background-color: #fff6d4; }
 
 .monitoring-funds__link {
   position: absolute;
@@ -7278,7 +7285,7 @@ th {
             left: 0;
             right: 0;
             opacity: 1;
-            background-color: var(--fund-color);
+            background-color: #cecece;
             border-radius: 0; }
 
 .monitoring-graph__caption {
@@ -7418,7 +7425,7 @@ th {
           left: 0;
           right: 0;
           opacity: 1;
-          background-color: var(--fund-color);
+          background-color: #cecece;
           border-radius: 0; }
 
 .monitoring-steps__list {
@@ -7462,7 +7469,7 @@ th {
   font-size: 10px;
   line-height: 1.4; }
   .monitoring-steps__card--current {
-    background-color: #fed63f; }
+    background-color: #fff6d4; }
   .monitoring-steps__card--future {
     opacity: 0.3; }
   .monitoring-steps__card:last-child {
@@ -8612,7 +8619,7 @@ th {
     line-height: 40px;
     text-align: right; }
   .object-finances__table th {
-    width: 188px;
+    width: 196px;
     height: 40px;
     font-size: 14px;
     line-height: 40px; }

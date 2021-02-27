@@ -28,7 +28,7 @@
                         left: 0;
                         right: 0;
                         opacity: 1;
-                        background-color: var(--fund-color);
+                        background-color: #cecece;
                         border-radius: 0;
                     }
                 }
@@ -59,7 +59,7 @@
         line-height: 1.4;
 
         &--current {
-            background-color: $theme-color;
+            background-color: #fff6d4;
         }
 
         &--future {

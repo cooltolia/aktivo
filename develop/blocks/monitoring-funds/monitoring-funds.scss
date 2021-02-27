@@ -17,7 +17,9 @@
             height: 100%;
             width: calc(var(--fund-value) * 1%);
 
-            background-color: var(--fund-color);
+            background-color: #f1f1f1;
+
+            transition: opacity 300ms ease;
         }
 
         &.active,
@@ -26,11 +28,16 @@
         &:focus {
             font-weight: 600;
 
-            background-color: #f4f4f4;
+            background-color: #fff6d4;
+
+            &::after {
+                opacity: 0;
+            }
         }
 
         &--header {
             font-weight: 600;
+            background-color: #fff6d4;
 
             &::after {
                 display: none;
@@ -40,7 +47,7 @@
             &:hover,
             &:active,
             &:focus {
-                background-color: transparent;
+                background-color: #fff6d4;
             }
         }
     }
