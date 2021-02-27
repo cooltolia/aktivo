@@ -17,8 +17,45 @@
         50389.35,
         53762.3,
         11285.56,
+        // 122442.8,
+        // 5786.51,
+        // 174648.8,
+        // 65352.25,
+        // 21275.49,
+        // 748878.0,
+        // 82916.36,
+        // 49460.5,
+        // 65876.33,
+        // 50389.35,
+        // 53762.3,
+        // 11285.56,
     ];
-    const dividendsData = [87.2, 195.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3];
+    const dividendsData = [
+        87.2,
+        195.3,
+        13.8,
+        13.9,
+        4.3,
+        309.7,
+        17.9,
+        10.3,
+        14,
+        10.6,
+        11.4,
+        2.3,
+        // 87.2,
+        // 195.3,
+        // 13.8,
+        // 13.9,
+        // 4.3,
+        // 309.7,
+        // 17.9,
+        // 10.3,
+        // 14,
+        // 10.6,
+        // 11.4,
+        // 2.3,
+    ];
     const chartDates = [
         '02.18',
         '03.18',
@@ -32,12 +69,21 @@
         '11.18',
         '12.18',
         '01.19',
+        // '02.18',
+        // '03.18',
+        // '04.18',
+        // '05.18',
+        // '06.18',
+        // '07.18',
+        // '08.18',
+        // '09.18',
+        // '10.18',
+        // '11.18',
+        // '12.18',
+        // '01.19',
     ];
     const dividendsMax = Math.max(...dividendsData);
     const profitMax = Math.max(...profitData);
-
-    const styles = getComputedStyle(chart);
-    const fundColor = styles.getPropertyValue('--fund-color').trim();
 
     setTimeout(() => {
         const scrolledArea = chart.querySelector('.highcharts-scrolling');
@@ -49,8 +95,8 @@
         // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
     }, 1000);
 
-    const columnWidth = 50;
-    const chartMinWidth = columnWidth * 1.25 * profitData.length;
+    const columnWidth = 65;
+    const chartMinWidth = columnWidth * 1.05 * profitData.length;
 
     const onChartLoad = function () {
         const points0 = this.series[0].data;
@@ -97,7 +143,7 @@
                     },
                 },
             },
-            line: {
+            spline: {
                 dataLabels: {
                     align: 'center',
                     enabled: true,
@@ -120,11 +166,14 @@
             },
             column: {
                 pointWidth: columnWidth,
+                pointPadding: 0,
                 dataLabels: {
                     align: 'center',
                     enabled: true,
                     color: 'black',
-                    padding: 2,
+                    padding: 0,
+                    y: -6,
+                    x: -5,
                     crop: false,
                     overflow: 'none',
                     style: {
@@ -134,8 +183,8 @@
                         fontFamily: 'Montserrat',
                     },
                     formatter: function () {
-                        if (this.y >= 1000000) return (this.y / 1000000).toFixed(2) + '<br/>млн. ₽';
-                        else if (this.y >= 1000) return (this.y / 1000).toFixed(2) + '<br/>тыс. ₽';
+                        if (this.y >= 1000000) return (this.y / 1000000).toFixed(2) + '<span> млн. ₽</span>';
+                        else if (this.y >= 1000) return (this.y / 1000).toFixed(2) + '<span> тыс. ₽</span>';
                         else return this.y + ' ₽';
                     },
                 },
@@ -208,10 +257,18 @@
                         );
                     },
                 },
+                states: {
+                    hover: {
+                        color: '#fff6d4',
+                    },
+                    inactive: {
+                        opacity: 1,
+                    },
+                },
             },
             {
                 name: 'Доходность',
-                type: 'line',
+                type: 'spline',
                 data: dividendsData,
                 color: '#000',
                 tooltip: {

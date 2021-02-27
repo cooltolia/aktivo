@@ -30,17 +30,17 @@ html(lang='ru')
                                 +e.BUTTON.data-info.info-trigger(type='button') ?
                             +e.data-value.--green А1
                     +e.data-col
-                        +e.data-block
+                        +e.data-block.--full
                             +e.data-label Документы:
-                            +e.data-value
-                                a(href='#') Очень длинное название документа номер два
-                            +e.data-value
-                                a(href='#') Самое длинное длинное название документа
-                            +e.data-value
-                                a(href='#') Очень длинное название документа три
-                            +e.data-value
-                                a(href='#') Очень длинное название документа пять
-
+                            +e.data-row
+                                +e.data-value
+                                    a(href='#') Очень длинное название документа номер два
+                                +e.data-value
+                                    a(href='#') Самое длинное длинное название документа
+                                +e.data-value
+                                    a(href='#') Очень длинное название документа три
+                                +e.data-value
+                                    a(href='#') Очень длинное название документа пять
                 +e.toggles
                     +e.toggle
                         +custom-select(false, ['номинальная', 'эффективная'], false, 'Тип доходности')

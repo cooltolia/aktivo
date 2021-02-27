@@ -239,5 +239,25 @@
 
 @media #{$desktop} {
     .monitoring-table {
+        &__desktop {
+            table {
+                thead {
+                    td {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        font-size: 12px;
+                    }
+                }
+
+                tbody {
+                    td {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        font-size: 14px;
+                        text-align: left;
+                    }
+                }
+            }
+        }
     }
 }

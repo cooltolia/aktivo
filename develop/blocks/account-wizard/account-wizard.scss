@@ -95,6 +95,9 @@
 
 @media #{$tablet} {
     .account-wizard {
+        &__title {
+            padding-left: 20px;
+        }
     }
 }
 

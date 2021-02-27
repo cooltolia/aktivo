@@ -4,8 +4,8 @@
 
         font-size: 14px;
         line-height: 1.2;
-        color: #696969;
-        font-weight: 400;
+        color: $text-color;
+        font-weight: 500;
     }
 
     &__container {
@@ -22,6 +22,17 @@
 
             .highcharts-scrolling {
                 padding-bottom: 5px;
+            }
+
+            .highcharts-axis-line {
+                opacity: 0;
+            }
+
+            .highcharts-column-series .highcharts-label {
+                tspan:last-child:not(:only-child) {
+                    font-size: 9px;
+                    fill: #b2b2b2;
+                }
             }
 
             .simplebar-track {
@@ -98,10 +109,27 @@
 
 @media #{$laptop} {
     .monitoring-graph {
-        &__title {
-            padding: 0 40px;
+        padding-top: 48px;
 
-            font-size: 14px;
+        &__title {
+            position: relative;
+            padding-bottom: 12px;
+
+            font-size: 16px;
+
+            &::after {
+                position: absolute;
+                content: '';
+                left: 24px;
+                right: 24px;
+                bottom: 0;
+                height: 1px;
+                background-color: rgba(#919191, 0.2);
+            }
+        }
+
+        &__container {
+            margin-top: 32px;
         }
 
         &__caption {

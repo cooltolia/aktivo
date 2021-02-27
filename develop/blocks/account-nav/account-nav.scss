@@ -63,7 +63,7 @@
         }
 
         &.active {
-            &::after {
+            &::before {
                 transform: scaleX(1);
             }
         }
@@ -118,71 +118,82 @@
 
 @media #{$desktop} {
     .account-nav {
-        position: sticky;
-        top: 20px;
-
-        &__list {
-            display: block;
-            border: none;
-            margin-top: 0;
-        }
-
         &__item {
-            margin-bottom: 10px;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
+            flex: 0 0 auto;
         }
-
         &__link {
-            position: relative;
-            display: inline-block;
-            padding: 3px 0;
+            padding: 6px 32px 10px;
 
-            font-size: 20px;
-            text-align: left;
-
-            transition: color 300ms ease;
-
-            &:hover,
-            &:active,
-            &:focus {
-                color: $theme-color;
-
-                text-decoration: none;
-            }
-
-            &.active {
-                font-weight: 600;
-
-                &::before {
-                    content: '';
-                    width: 12px;
-                    height: 12px;
-                    left: -25px;
-                    top: 9px;
-
-                    transform: rotate(-45deg);
-
-                    border-width: 0 1px 1px 0;
-                    border-style: solid;
-                    border-color: $theme-color;
-                    background: transparent;
-                }
-            }
-
-            &--notify {
-                &::after {
-                    top: 50%;
-                    right: -25px;
-                    width: 15px;
-                    height: 15px;
-                    transform: translateY(-35%);
-
-                    font-size: 11px;
-                }
+            &::after {
+                top: 11px;
+                right: 16px;
             }
         }
+        // position: sticky;
+        // top: 20px;
+
+        // &__list {
+        //     display: block;
+        //     border: none;
+        //     margin-top: 0;
+        // }
+
+        // &__item {
+        //     margin-bottom: 10px;
+
+        //     &:last-child {
+        //         margin-bottom: 0;
+        //     }
+        // }
+
+        // &__link {
+        //     position: relative;
+        //     display: inline-block;
+        //     padding: 3px 0;
+
+        //     font-size: 20px;
+        //     text-align: left;
+
+        //     transition: color 300ms ease;
+
+        //     &:hover,
+        //     &:active,
+        //     &:focus {
+        //         color: $theme-color;
+
+        //         text-decoration: none;
+        //     }
+
+        //     &.active {
+        //         font-weight: 600;
+
+        //         &::before {
+        //             content: '';
+        //             width: 12px;
+        //             height: 12px;
+        //             left: -25px;
+        //             top: 9px;
+
+        //             transform: rotate(-45deg);
+
+        //             border-width: 0 1px 1px 0;
+        //             border-style: solid;
+        //             border-color: $theme-color;
+        //             background: transparent;
+        //         }
+        //     }
+
+        //     &--notify {
+        //         &::after {
+        //             top: 50%;
+        //             right: -25px;
+        //             width: 15px;
+        //             height: 15px;
+        //             transform: translateY(-35%);
+
+        //             font-size: 11px;
+        //         }
+        //     }
+        // }
     }
 }

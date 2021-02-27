@@ -1246,8 +1246,6 @@ jQuery(document).ready(function ($) {
       var chartDates = ['02.18', '03.18', '04.18', '05.18', '06.18', '07.18', '08.18', '09.18', '10.18', '11.18', '12.18', '01.19'];
       var dividendsMax = Math.max.apply(Math, dividendsData);
       var profitMax = Math.max.apply(Math, profitData);
-      var styles = getComputedStyle(chart);
-      var fundColor = styles.getPropertyValue('--fund-color').trim();
       setTimeout(function () {
         var scrolledArea = chart.querySelector('.highcharts-scrolling');
         if (scrolledArea.length === 0) return;
@@ -1256,8 +1254,8 @@ jQuery(document).ready(function ($) {
         }); // const scrolledContent = scroll.getScrollElement();
         // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
       }, 1000);
-      var columnWidth = 50;
-      var chartMinWidth = columnWidth * 1.25 * profitData.length;
+      var columnWidth = 65;
+      var chartMinWidth = columnWidth * 1.05 * profitData.length;
 
       var onChartLoad = function onChartLoad() {
         var points0 = this.series[0].data;
@@ -1314,7 +1312,7 @@ jQuery(document).ready(function ($) {
               }
             }
           },
-          line: {
+          spline: {
             dataLabels: {
               align: 'center',
               enabled: true,
@@ -1337,11 +1335,14 @@ jQuery(document).ready(function ($) {
           },
           column: {
             pointWidth: columnWidth,
+            pointPadding: 0,
             dataLabels: {
               align: 'center',
               enabled: true,
               color: 'black',
-              padding: 2,
+              padding: 0,
+              y: -6,
+              x: -5,
               crop: false,
               overflow: 'none',
               style: {
@@ -1351,7 +1352,7 @@ jQuery(document).ready(function ($) {
                 fontFamily: 'Montserrat'
               },
               formatter: function formatter() {
-                if (this.y >= 1000000) return (this.y / 1000000).toFixed(2) + '<br/>млн. ₽';else if (this.y >= 1000) return (this.y / 1000).toFixed(2) + '<br/>тыс. ₽';else return this.y + ' ₽';
+                if (this.y >= 1000000) return (this.y / 1000000).toFixed(2) + '<span> млн. ₽</span>';else if (this.y >= 1000) return (this.y / 1000).toFixed(2) + '<span> тыс. ₽</span>';else return this.y + ' ₽';
               }
             }
           }
@@ -1410,10 +1411,18 @@ jQuery(document).ready(function ($) {
                 return x + y;
               }, 0) * 100) + '%</b>';
             }
+          },
+          states: {
+            hover: {
+              color: '#fff6d4'
+            },
+            inactive: {
+              opacity: 1
+            }
           }
         }, {
           name: 'Доходность',
-          type: 'line',
+          type: 'spline',
           data: dividendsData,
           color: '#000',
           tooltip: {

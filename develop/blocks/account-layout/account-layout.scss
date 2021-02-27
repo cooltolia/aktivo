@@ -46,19 +46,19 @@
             max-width: none;
             padding-top: 154px;
             padding-bottom: 64px;
-            display: flex;
+            // display: flex;
 
-            border: none;   
+            border: none;
         }
 
-        &__sidebar {
-            width: 280px;
-            flex: 0 0 auto;
-        }
+        // &__sidebar {
+        //     width: 280px;
+        //     flex: 0 0 auto;
+        // }
 
-        &__main {
-            width: 60%;
-            flex: 1 1 auto;
-        }
+        // &__main {
+        //     width: 60%;
+        //     flex: 1 1 auto;
+        // }
     }
 }

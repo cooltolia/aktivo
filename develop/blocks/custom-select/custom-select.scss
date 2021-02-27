@@ -20,7 +20,7 @@
         display: block;
         margin: 0;
 
-        font-size: 8px;
+        font-size: 10px;
         line-height: 1.6;
         color: #696969;
     }
@@ -32,7 +32,7 @@
         padding: 0 20px 7px 0;
 
         color: #696969;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 400;
         text-align: left;
 
@@ -120,6 +120,19 @@
 
         &:focus {
             text-decoration: none;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .custom-select {
+        &__label {
+            font-size: 12px;
+        }
+
+        &__selected,
+        &__option {
+            font-size: 14px;
         }
     }
 }
