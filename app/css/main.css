@@ -1839,7 +1839,7 @@ th {
     display: block; }
   .account-layout__wrapper {
     max-width: none;
-    padding-top: 154px;
+    padding-top: 64px;
     padding-bottom: 64px;
     border: none; } }
 
@@ -6908,6 +6908,18 @@ th {
 .monitoring-data__data-list {
   padding-top: 30px; }
 
+.monitoring-data__data-col:first-child {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 -8px; }
+  .monitoring-data__data-col:first-child .monitoring-data__data-block {
+    width: 50%;
+    padding: 0 8px; }
+
 .monitoring-data__data-block {
   margin-bottom: 12px; }
 
@@ -7102,6 +7114,11 @@ th {
        -moz-box-flex: 1;
         -ms-flex: 1;
             flex: 1; }
+    .monitoring-data__data-col:first-child {
+      display: block; }
+      .monitoring-data__data-col:first-child .monitoring-data__data-block {
+        width: 100%;
+        padding: 0; }
   .monitoring-data__steps {
     padding-top: 30px;
     width: 100%;
@@ -7528,8 +7545,7 @@ th {
     .monitoring-table__mobile table td span,
     .monitoring-table__mobile table td a {
       display: block;
-      margin-bottom: 5px;
-      text-align: left; }
+      margin-bottom: 5px; }
       .monitoring-table__mobile table td span:last-child,
       .monitoring-table__mobile table td a:last-child {
         margin-bottom: 0; }

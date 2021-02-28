@@ -42,6 +42,19 @@
         padding-top: 30px;
     }
 
+    &__data-col {
+        &:first-child {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -8px;
+
+            .monitoring-data__data-block {
+                width: 50%;
+                padding: 0 8px;
+            }
+        }
+    }
+
     &__data-block {
         margin-bottom: 12px;
     }
@@ -221,6 +234,15 @@
             padding-right: 24px;
             max-width: 50%;
             flex: 1;
+
+            &:first-child {
+                display: block;
+
+                .monitoring-data__data-block {
+                    width: 100%;
+                    padding: 0;
+                }
+            }
         }
 
         &__steps {
