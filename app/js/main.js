@@ -859,6 +859,7 @@ jQuery(document).ready(function ($) {
       sliderWrapper.slick({
         rows: 0,
         slidesToScroll: 1,
+        swipeToSlide: true,
         slidesToShow: 1,
         arrows: true,
         mobileFirst: true,
@@ -1672,7 +1673,7 @@ jQuery(document).ready(function ($) {
       });
       $stepValue.addEventListener('blur', function (e) {
         var newStep = format.from($stepValue.textContent.trim());
-        if (isNaN(newStep)) newStep = parseInt(basicStep);
+        if (isNaN(newStep) || !newStep) newStep = parseInt(basicStep);
         customStep = newStep;
         updateRangesStep(customStep);
       });
@@ -2557,7 +2558,7 @@ jQuery(document).ready(function ($) {
         var options = {
           rootMargin: '0px 0px -90% 0px',
           root: null,
-          threshold: 0
+          threshold: [0, 0.1, 0.3]
         };
         var previousY = 0;
         var previousRatio = 0;
@@ -2592,7 +2593,7 @@ jQuery(document).ready(function ($) {
             items.forEach(function (item) {
               item.classList.add('animated');
             });
-          }, 300);
+          }, 0);
         }
       }
     })();
@@ -2714,7 +2715,7 @@ jQuery(document).ready(function ($) {
           animateRangeSlider();
         });
         shareNode.on('blur', function (e) {
-          var newShare = parseInt(shareNode.text().trim());
+          var newShare = format.from(shareNode.text().trim());
           if (isNaN(newShare)) newShare = minValue / stepValue;
           var newSliderValue = newShare * stepValue;
           investmentRangeSlider.noUiSlider.set(newSliderValue);
@@ -2722,7 +2723,7 @@ jQuery(document).ready(function ($) {
         });
         stepNode.on('blur', function (e) {
           var newStep = format.from(stepNode.text().trim());
-          if (isNaN(newStep)) newStep = parseInt(stepValue);
+          if (isNaN(newStep) || !newStep) newStep = parseInt(stepValue);
           object.attr('data-custom-step', newStep);
           updateRangesStep(object, newStep);
         });
@@ -2753,7 +2754,7 @@ jQuery(document).ready(function ($) {
         var customStep = parseInt(object.attr('data-custom-step'));
         var rate = customRate ? customRate : basicRate;
         var step = customStep ? customStep : basicStep;
-        shareNode.text(Math.floor(value / step));
+        shareNode.text(format.to(Math.floor(value / step)));
         incomeNode.text(format.to(value * rate / 100 / 12));
         rateNode.text(rate);
         stepNode.text(format.to(step));

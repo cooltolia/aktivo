@@ -47,7 +47,7 @@
         const currentRangeValue = parseInt(investmentRangeSlider.noUiSlider.get());
 
         const startValue = maxValue < currentRangeValue ? maxValue : currentRangeValue;
-       
+
         investmentRangeSlider.noUiSlider.updateOptions({
             start: startValue,
             step: step,
@@ -149,7 +149,7 @@
         });
 
         shareNode.on('blur', function (e) {
-            let newShare = parseInt(shareNode.text().trim());
+            let newShare = format.from(shareNode.text().trim());
             if (isNaN(newShare)) newShare = minValue / stepValue;
 
             const newSliderValue = newShare * stepValue;
@@ -160,7 +160,7 @@
 
         stepNode.on('blur', function (e) {
             let newStep = format.from(stepNode.text().trim());
-            if (isNaN(newStep)) newStep = parseInt(stepValue);
+            if (isNaN(newStep) || !newStep) newStep = parseInt(stepValue);
 
             object.attr('data-custom-step', newStep);
 
@@ -199,7 +199,7 @@
         const rate = customRate ? customRate : basicRate;
         const step = customStep ? customStep : basicStep;
 
-        shareNode.text(Math.floor(value / step));
+        shareNode.text(format.to(Math.floor(value / step)));
         incomeNode.text(format.to((value * rate) / 100 / 12));
         rateNode.text(rate);
         stepNode.text(format.to(step));

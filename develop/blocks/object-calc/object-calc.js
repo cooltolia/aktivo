@@ -68,7 +68,7 @@
 
     $stepValue.addEventListener('blur', function (e) {
         let newStep = format.from($stepValue.textContent.trim());
-        if (isNaN(newStep)) newStep = parseInt(basicStep);
+        if (isNaN(newStep) || !newStep) newStep = parseInt(basicStep);
 
         customStep = newStep;
 
@@ -107,9 +107,9 @@
 
         const rate = customRate ? customRate : basicRate;
         const step = customStep ? customStep : basicStep;
-       
+
         updateResultData(value, rate, step);
-        
+
     });
 
     /**

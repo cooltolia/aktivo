@@ -82,6 +82,8 @@
         .slick-list,
         .slick-track {
             height: 100%;
+
+            will-change: transform
         }
 
         .slick-arrow {
@@ -114,6 +116,7 @@
 
             &.slick-disabled {
                 opacity: 0;
+                pointer-events: none;
             }
         }
     }
@@ -123,6 +126,9 @@
         width: 280px;
         height: 100%;
         flex: 0 0 auto;
+
+        outline: none;
+
 
         // &:not(:first-child) {
         //     display: none;

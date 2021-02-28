@@ -40,10 +40,11 @@
 
         &:hover,
         &:active,
-        &:focus {
+        &:focus-visible {
             color: $theme-color;
 
             text-decoration: none;
+            outline: none;
         }
 
         &.active {

@@ -3490,7 +3490,8 @@ th {
   position: absolute;
   width: 100%;
   height: 500px;
-  padding: 24px; }
+  padding: 24px;
+  will-change: transform, opacity; }
   .best-object-card__image {
     position: absolute;
     width: 100%;
@@ -3630,7 +3631,8 @@ th {
     height: calc(100% + 5px); }
     .best-objects__objects .slick-list,
     .best-objects__objects .slick-track {
-      height: 100%; }
+      height: 100%;
+      will-change: transform; }
     .best-objects__objects .slick-arrow {
       padding: 0;
       margin: 0;
@@ -3663,7 +3665,8 @@ th {
         left: auto;
         right: 28px; }
       .best-objects__objects .slick-arrow.slick-disabled {
-        opacity: 0; }
+        opacity: 0;
+        pointer-events: none; }
   .best-objects__object {
     position: relative;
     width: 280px;
@@ -3671,7 +3674,8 @@ th {
     -webkit-box-flex: 0;
        -moz-box-flex: 0;
         -ms-flex: 0 0 auto;
-            flex: 0 0 auto; }
+            flex: 0 0 auto;
+    outline: none; }
 
 @media (min-width: 768px) {
   .best-objects {
@@ -4226,9 +4230,10 @@ th {
     -webkit-transition: color 300ms ease;
     -moz-transition: color 300ms ease;
     transition: color 300ms ease; }
-    .faq__questions-link:hover, .faq__questions-link:active, .faq__questions-link:focus {
+    .faq__questions-link:hover, .faq__questions-link:active, .faq__questions-link:focus-visible {
       color: #fed63f;
-      text-decoration: none; }
+      text-decoration: none;
+      outline: none; }
     .faq__questions-link.active {
       font-weight: 700; }
       .faq__questions-link.active::before {
@@ -7809,6 +7814,7 @@ th {
     white-space: nowrap; }
   .object-calc__income-result {
     position: relative;
+    z-index: 1;
     width: 100%;
     padding: 20px;
     min-height: 405px;

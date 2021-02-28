@@ -7,6 +7,7 @@
     sliderWrapper.slick({
         rows: 0,
         slidesToScroll: 1,
+        swipeToSlide: true,
         slidesToShow: 1,
         arrows: true,
         mobileFirst: true,

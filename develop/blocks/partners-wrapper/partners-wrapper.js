@@ -16,7 +16,7 @@
         const options = {
             rootMargin: '0px 0px -90% 0px',
             root: null,
-            threshold: 0,
+            threshold: [0, 0.1, 0.3],
         };
 
         let previousY = 0;
@@ -48,7 +48,7 @@
                 items.forEach(item => {
                     item.classList.add('animated');
                 });
-            }, 300);
+            }, 0);
         }
     }
 })();
