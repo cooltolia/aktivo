@@ -476,42 +476,39 @@ jQuery(document).ready(function ($) {
     (function () {
       var accountNav = document.querySelector('.account-nav');
       if (!accountNav) return;
+      var navList = accountNav.querySelector('.account-nav__list');
+      var activeNavLink = accountNav.querySelector('.account-nav__link.active');
 
-      if (window.matchMedia('(max-width: 1199px)').matches) {
-        var navList = accountNav.querySelector('.account-nav__list');
-        var activeNavLink = accountNav.querySelector('.account-nav__link.active');
+      var navItems = _toConsumableArray(navList.children);
 
-        var navItems = _toConsumableArray(navList.children);
+      var navItemsLength = 0;
+      navItems.forEach(function (item) {
+        navItemsLength += item.getBoundingClientRect().width;
+      });
+      var $navList = $(navList);
 
-        var navItemsLength = 0;
-        navItems.forEach(function (item) {
-          navItemsLength += item.getBoundingClientRect().width;
+      if (navItemsLength > navList.clientWidth + 1) {
+        $navList.slick({
+          dots: false,
+          rows: 0,
+          arrows: false,
+          infinite: false,
+          variableWidth: true,
+          touchThreshold: 10,
+          speed: 200,
+          swipeToSlide: true // edgeFriction: 1,
+
         });
-        var $navList = $(navList);
 
-        if (navItemsLength > navList.clientWidth + 1) {
-          $navList.slick({
-            dots: false,
-            rows: 0,
-            arrows: false,
-            infinite: false,
-            variableWidth: true,
-            touchThreshold: 10,
-            speed: 200,
-            swipeToSlide: true // edgeFriction: 1,
+        if (activeNavLink) {
+          var parentSlide = activeNavLink.parentNode;
 
-          });
+          var index = _toConsumableArray($navList.slick('getSlick').$slides).indexOf(parentSlide);
 
-          if (activeNavLink) {
-            var parentSlide = activeNavLink.parentNode;
-
-            var index = _toConsumableArray($navList.slick('getSlick').$slides).indexOf(parentSlide);
-
-            $navList.slick('slickGoTo', index);
-          }
-        } else {
-          accountNav.classList.add('full');
+          $navList.slick('slickGoTo', index);
         }
+      } else {
+        accountNav.classList.add('full');
       }
     })();
 
