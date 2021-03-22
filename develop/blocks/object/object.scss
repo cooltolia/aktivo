@@ -30,6 +30,7 @@
     }
 
     &__navigation-link {
+        display: inline-block;
         position: relative;
         padding: 3px 0;
 
@@ -71,15 +72,14 @@
             width: 16px;
             height: 16px;
             right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 9px;
 
             fill: $theme-color;
         }
     }
 
     &__section {
-        padding: 0 1px;
+        // padding: 0 1px;
         margin-bottom: 35px;
 
         &--top {

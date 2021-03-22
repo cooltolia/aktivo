@@ -496,7 +496,8 @@ jQuery(document).ready(function ($) {
           variableWidth: true,
           touchThreshold: 10,
           speed: 200,
-          swipeToSlide: true // edgeFriction: 1,
+          swipeToSlide: true // centerMode: true,
+          // edgeFriction: 1,
 
         });
 
@@ -2334,6 +2335,10 @@ jQuery(document).ready(function ($) {
       if (object.length === 0) return;
       var objectLinks = $('.object__navigation-link');
       var objectSections = document.querySelectorAll('.object__section');
+      tippy('.object__navigation-link[data-tippy-content]', {
+        placement: 'bottom',
+        arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
+      });
 
       if (window.matchMedia('(min-width: 768px)').matches) {
         var observer = new IntersectionObserver(function (entries) {
@@ -2458,6 +2463,10 @@ jQuery(document).ready(function ($) {
       var object = $('.object');
       if (object.length === 0) return;
       var objectLinks = $('.object__navigation-link');
+      tippy('.object__navigation-link[data-tippy-content]', {
+        placement: 'bottom',
+        arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
+      });
       var objectSections = document.querySelectorAll('.object__section');
 
       if (window.matchMedia('(min-width: 768px)').matches) {

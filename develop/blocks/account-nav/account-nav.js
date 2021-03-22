@@ -22,6 +22,7 @@
             touchThreshold: 10,
             speed: 200,
             swipeToSlide: true,
+            // centerMode: true,
             // edgeFriction: 1,
         });
 
