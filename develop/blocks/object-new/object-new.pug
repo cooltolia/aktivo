@@ -2,37 +2,30 @@ mixin object-new()
     +b.object-new
         +lines
         +inner
-            +e.title
-                +title('h1')
-                    | Объект
             +e.wrapper
-                +e.NAV.navigation
-                    +e.UL.navigation-list
-                        +e.LI.navigation-item
-                            +e.A.navigation-link(href='#' data-scroll-to='objectDescription') Описание
-                        +e.LI.navigation-item
-                            +e.A.navigation-link(href='#' data-scroll-to='objectPlans') Планировка
-                        +e.LI.navigation-item
-                            +e.A.navigation-link(href='#' data-scroll-to='objectLocation') Расположение
-                        +e.LI.navigation-item
-                            +e.A.navigation-link.locked(href='#') Финансы
-                                +icon('lock')
-                        +e.LI.navigation-item
-                            +e.A.navigation-link.locked(href='#') Рассчитать доход
-                                +icon('lock')
+                +e.navigation
+                    +page-navigation
+                        +e.A.link.active.current(href='#' data-scroll-to='objectDescription' data-scroll-offset='75') Описание
+                        +e.A.link(href='#' data-scroll-to='objectPlans' data-scroll-offset='75') Планировка
+                        +e.A.link(href='#' data-scroll-to='objectLocation' data-scroll-offset='75') Расположение
+                        +e.A.link.locked(href='#') Финансы
+                            +icon('lock')
+                        +e.A.link.locked(href='#') Рассчитать доход
+                            +icon('lock')
                 +e.section.--top
                     +object-slider
                 +e.section(id='objectDescription')
                     +object-description
-                +e.section(id='objectPlans')
-                    +object-plans
+                +e.section(id='objectCalc')
+                    +object-calc
                 +e.section(id='objectLocation')
                     +object-location
                 +e.section(id='objectFinances')
-                    +object-estimates
                     +object-finances
-                +e.section(id='objectCalc')
-                    +object-calc
+                +e.section(id='objectEstimates')
+                    +object-estimates
+                +e.section(id='objectPlans')
+                    +object-plans
 
 
 

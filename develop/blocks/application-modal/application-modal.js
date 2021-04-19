@@ -22,7 +22,6 @@
 function applicationModalLogic(modal) {
     const form = modal.querySelector('.modal__form');
     const inputs = form.querySelectorAll('input');
-    console.log(inputs);
 
     const inputEmail = $('#applicationEmail');
     const inputPhone = $('#applicationPhone');

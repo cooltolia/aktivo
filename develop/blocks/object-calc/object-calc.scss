@@ -1,10 +1,9 @@
 .object-calc {
     position: relative;
     z-index: 12;
-    background-color: #fff;
 
     &__title {
-        margin-bottom: 16px;
+        margin-bottom: 24px;
     }
 
     &__wrapper {
@@ -16,7 +15,7 @@
 
     &__investment {
         position: relative;
-        height: 100px;
+        height: 180px;
     }
 
     &__investment-range {
@@ -200,7 +199,7 @@
     }
 
     &__data-row {
-        margin-bottom: 16px;
+        margin-bottom: 24px;
 
         &:last-child {
             margin-bottom: 0;
@@ -209,9 +208,14 @@
 
     &__data-value {
         margin: 0 0 5px;
+        max-width: 240px;
+
+        border-bottom: 1px solid #fff;
 
         font-size: 28px;
+        line-height: 1.35;
         font-weight: 600;
+        white-space: nowrap;
 
         .value {
             outline-offset: 2px;
@@ -230,19 +234,27 @@
 
 @media #{$tablet} {
     .object-calc {
+        &__title {
+            width: 40%;
+            flex: 0 0 auto;
+            padding-right: 15px;
+            margin-bottom: 40px;
+        }
+
         &__wrapper {
             display: flex;
-            width: calc(100% + 34px);
+            width: 100%;
             margin: 0;
         }
 
         &__investment {
-            width: 45%;
+            width: 40%;
             height: auto;
         }
 
         &__income-result {
-            width: 55%;
+            width: 50%;
+            flex: 1 1 auto;
         }
 
         &__investment-data {
@@ -307,15 +319,12 @@
 @media #{$desktop} {
     .object-calc {
         &__title {
-            margin-bottom: 30px;
-        }
-
-        &__wrapper {
-            width: calc(100% + 120px);
+            width: 400px;
+            margin-bottom: 60px;
         }
 
         &__investment {
-            width: 350px;
+            width: 400px;
             flex: 0 0 auto;
         }
 

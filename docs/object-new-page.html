@@ -10,7 +10,6 @@
     <link rel="icon" type="image/png" href="/favicon_32.png" sizes="32x32"/>
     <link rel="icon" type="image/png" href="/favicon_96.png" sizes="96x96"/>
     <meta name="theme-color" content="#fed63f"/>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=99b483f6-bdce-45d5-b098-440038f8912a&amp;lang=ru_RU"></script>
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
@@ -72,32 +71,14 @@
           </nav><!--/ main-nav --> 
           <div class="main-header__authorization main-header__authorization--mobile"><!-- authorization --> 
             <div class="authorization">
-              <div class="authorization__logged"><a class="authorization__inner-link feedback-trigger" href="#" title="Документы">
-                <svg>
-                  <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
-                </svg></a><a class="authorization__inner-link authorization__settings" href="./account-page-6.html" title="Настройки">
-                <svg>
-                  <use xlink:href="images/redesign/html-sprite.svg#settings"></use>
-                </svg></a><a class="authorization__account" href="#" title="admin@aktivo.ru"> <span>admin@aktivo.ru</span></a><a class="authorization__exit" href="#">
-                <svg>
-                  <use xlink:href="images/redesign/html-sprite.svg#exit"></use>
-                </svg></a>
+              <div class="authorization__actions"><a class="authorization__action authorization__action--main" href="#">Регистрация</a><a class="authorization__action" href="#">Войти</a>
               </div>
             </div><!--/ authorization --> 
           </div>
         </div><a class="main-header__phone" href="tel: 8 800 500-64-64" data-aos="fade-left" data-aos-delay="350">8 800 500-64-64</a>
         <div class="main-header__authorization main-header__authorization--desktop" data-aos="fade-left" data-aos-delay="400"><!-- authorization --> 
           <div class="authorization">
-            <div class="authorization__logged"><a class="authorization__inner-link feedback-trigger" href="#" title="Документы">
-              <svg>
-                <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
-              </svg></a><a class="authorization__inner-link authorization__settings" href="./account-page-6.html" title="Настройки">
-              <svg>
-                <use xlink:href="images/redesign/html-sprite.svg#settings"></use>
-              </svg></a><a class="authorization__account" href="#" title="admin@aktivo.ru"> <span>admin@aktivo.ru</span></a><a class="authorization__exit" href="#">
-              <svg>
-                <use xlink:href="images/redesign/html-sprite.svg#exit"></use>
-              </svg></a>
+            <div class="authorization__actions"><a class="authorization__action authorization__action--main" href="#">Регистрация</a><a class="authorization__action" href="#">Войти</a>
             </div>
           </div><!--/ authorization --> 
         </div>
@@ -118,38 +99,54 @@
         <div class="lines"><span class="line"></span>
         </div><!--/ lines --> 
         <div class="inner">
-          <div class="object-new__title"><!-- title --> 
-            <h1 class="title">Объект
-            </h1><!--/ title --> 
-          </div>
           <div class="object-new__wrapper">
-            <nav class="object-new__navigation">
-              <ul class="object-new__navigation-list">
-                <li class="object-new__navigation-item"><a class="object-new__navigation-link" href="#" data-scroll-to="objectDescription">Описание</a>
-                </li>
-                <li class="object-new__navigation-item"><a class="object-new__navigation-link" href="#" data-scroll-to="objectPlans">Планировка</a>
-                </li>
-                <li class="object-new__navigation-item"><a class="object-new__navigation-link" href="#" data-scroll-to="objectLocation">Расположение</a>
-                </li>
-                <li class="object-new__navigation-item"><a class="object-new__navigation-link locked" href="#">Финансы
-                  <svg>
-                    <use xlink:href="images/redesign/html-sprite.svg#lock"></use>
-                  </svg></a>
-                </li>
-                <li class="object-new__navigation-item"><a class="object-new__navigation-link locked" href="#">Рассчитать доход
-                  <svg>
-                    <use xlink:href="images/redesign/html-sprite.svg#lock"></use>
-                  </svg></a>
-                </li>
-              </ul>
-            </nav>
+            <div class="object-new__navigation"><!-- page-navigation --> 
+              <nav class="page-navigation">
+                <div class="page-navigation__controls">
+                  <btn class="control-btn prev" type="button"></btn>
+                  <btn class="control-btn next" type="button"></btn>
+                </div>
+                <div class="page-navigation__wrapper">
+                  <div class="page-navigation__list"><a class="page-navigation__link active current" href="#" data-scroll-to="objectDescription" data-scroll-offset="75">Описание</a><a class="page-navigation__link" href="#" data-scroll-to="objectPlans" data-scroll-offset="75">Планировка</a><a class="page-navigation__link" href="#" data-scroll-to="objectLocation" data-scroll-offset="75">Расположение</a><a class="page-navigation__link locked" href="#">Финансы
+                    <svg>
+                      <use xlink:href="images/redesign/html-sprite.svg#lock"></use>
+                    </svg></a><a class="page-navigation__link locked" href="#">Рассчитать доход
+                    <svg>
+                      <use xlink:href="images/redesign/html-sprite.svg#lock"></use>
+                    </svg></a>
+                  </div>
+                </div>
+              </nav><!--/ page-navigation --> 
+            </div>
             <div class="object-new__section object-new__section--top"><!-- object-slider --> 
               <section class="object-slider">
+                <div class="object-slider__progress"><!-- object-progress --> 
+                  <div class="object-progress">
+                    <div class="object-progress__bar" style="width: 20%">
+                    </div>
+                    <div class="object-progress__label">Осталось 34% на 14.04
+                    </div>
+                  </div><!--/ object-progress --> 
+                </div>
+                <div class="object-slider__slider">
+                  <div class="object-slider__slide"><img src="images/redesign/objects/object1@3x.jpg" alt=""/>
+                  </div>
+                  <div class="object-slider__slide"><img src="images/redesign/objects/object2@3x.jpg" alt=""/>
+                  </div>
+                  <div class="object-slider__slide"><img src="images/redesign/objects/object3@3x.jpg" alt=""/>
+                  </div>
+                  <div class="object-slider__slide"><img src="images/redesign/objects/object4@3x.jpg" alt=""/>
+                  </div>
+                  <div class="object-slider__slide"><img src="images/redesign/objects/object5@3x.jpg" alt=""/>
+                  </div>
+                </div>
+                <button class="object-slider__play" data-video-id="1-kG-vDVrkk">
+                </button>
                 <div class="object-slider__data">
                   <div class="object-slider__data-top">
                     <div class="object-slider__title">ТЦ «ЭкоВидное»
                     </div>
-                    <div class="object-slider__rating">92,7%
+                    <div class="object-slider__rating">Рейтинг:<span style="background-color: #7DCB73">A</span>
                     </div>
                   </div>
                   <div class="object-slider__data-bottom">
@@ -179,28 +176,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="object-slider__progress"><!-- object-progress --> 
-                  <div class="object-progress">
-                    <div class="object-progress__bar" style="width: 20%">
-                    </div>
-                    <div class="object-progress__label">Осталось 34% на 14.04
-                    </div>
-                  </div><!--/ object-progress --> 
-                </div>
-                <div class="object-slider__slider">
-                  <div class="object-slider__slide"><img src="images/redesign/objects/object1@3x.jpg" alt=""/>
-                  </div>
-                  <div class="object-slider__slide"><img src="images/redesign/objects/object2@3x.jpg" alt=""/>
-                  </div>
-                  <div class="object-slider__slide"><img src="images/redesign/objects/object3@3x.jpg" alt=""/>
-                  </div>
-                  <div class="object-slider__slide"><img src="images/redesign/objects/object4@3x.jpg" alt=""/>
-                  </div>
-                  <div class="object-slider__slide"><img src="images/redesign/objects/object5@3x.jpg" alt=""/>
-                  </div>
-                </div>
-                <button class="object-slider__play" data-video-id="1-kG-vDVrkk">
-                </button>
               </section><!--/ object-slider --> 
             </div>
             <div class="object-new__section" id="objectDescription"><!-- object-description --> 
@@ -211,10 +186,8 @@
                 </div>
                 <div class="object-description__wrapper">
                   <div class="object-description__main">
-                    <p>
-                       Инвесторам предлагается профессионально отобранный объект недвижимости институционального качества формата стрит-ритейл. Объект расположен в новом жилом микрорайоне Эко Видное в Ленинском районе Московской области в 4 км от Москвы по высокоскоростной трассе М4 «Дон».</p>
-                    <p>
-                       Удачное расположение делает объект привлекательным как для покупателей, так и для брендов продуктового ритейла. Операторы, предлагающие различные группы товаров, обеспечивают стабильный покупательский трафик. Количество посетителей в месяц - более 100 тысяч человек. В Торговом центре расположены продуктовые магазины, сети быстрого питания, кафе, студии красоты, товары для детей, зоомагазин, аптека и другие арендаторы.</p>
+                    <p>Инвесторам предлагается профессионально отобранный объект недвижимости институционального качества формата стрит-ритейл. Объект расположен в новом жилом микрорайоне Эко Видное в Ленинском районе Московской области в 4 км от Москвы по высокоскоростной трассе М4 «Дон».</p>
+                    <p>Удачное расположение делает объект привлекательным как для покупателей, так и для брендов продуктового ритейла. Операторы, предлагающие различные группы товаров, обеспечивают стабильный покупательский трафик. Количество посетителей в месяц - более 100 тысяч человек. В Торговом центре расположены продуктовые магазины, сети быстрого питания, кафе, студии красоты, товары для детей, зоомагазин, аптека и другие арендаторы.</p>
                     <ul>
                       <li>Lorem, ipsum.</li>
                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, eveniet!</li>
@@ -222,11 +195,16 @@
                     </ul>
                   </div>
                   <div class="object-description__aside">
-                    <p>Объект является 1-этажным отдельно стоящим зданием с подвальными помещениями, пригодными для сдачи в аренду</p>
+                    <div class="object-description__data">
+                      <div class="object-description__data-value">1 этаж
+                      </div>
+                      <div class="object-description__data-label">1-этажное отдельно стоящие здание с подвальными помещениями, пригодными для сдачи в аренду
+                      </div>
+                    </div>
                     <div class="object-description__data">
                       <div class="object-description__data-value">98,8%
                       </div>
-                      <div class="object-description__data-label">Фактическая загрузка торгового центра 
+                      <div class="object-description__data-label">Фактическая загрузка торгового центра
                       </div>
                     </div>
                     <div class="object-description__data">
@@ -239,21 +217,59 @@
                 </div>
               </section><!--/ object-description --> 
             </div>
-            <div class="object-new__section" id="objectPlans"><!-- object-plans --> 
-              <section class="object-plans">
-                <div class="object-plans__title"><!-- title --> 
-                  <h2 class="title medium">Планировка
+            <div class="object-new__section" id="objectCalc"><!-- object-calc --> 
+              <section class="object-calc">
+                <div class="object-calc__title"><!-- title --> 
+                  <h2 class="title medium">Рассчитайте ваш доход
                   </h2><!--/ title --> 
                 </div>
-                <div class="object-plans__slider">
-                  <div class="object-plans__slide"><img src="images/redesign/object/plan1.jpg" alt=""/>
+                <div class="object-calc__wrapper">
+                  <div class="object-calc__investment">
+                    <div class="object-calc__investment-range">
+                    </div>
+                    <div class="object-calc__investment-data">
+                      <div class="object-calc__investment-label">Сколько вложить
+                      </div>
+                      <div class="object-calc__investment-value">
+                      </div>
+                    </div>
                   </div>
-                  <div class="object-plans__slide"><img src="images/redesign/object/plan1.jpg" alt=""/>
-                  </div>
-                  <div class="object-plans__slide"><img src="images/redesign/object/plan1.jpg" alt=""/>
+                  <div class="object-calc__income-result">
+                    <div class="object-calc__income-label">Сколько получить
+                    </div>
+                    <div class="object-calc__image"><img src="images/redesign/object-cards/object1.jpg" alt=""/>
+                    </div>
+                    <div class="object-calc__income-data" data-min="300000" data-max="18000000" data-liberty-step="85000" data-step="100000" data-initial="2000000" data-rate="12.8">
+                      <div class="object-calc__data-row">
+                        <div class="object-calc__data-label">Ежемесячный доход
+                        </div>
+                        <div class="object-calc__data-value object-calc__income"><span class="value" contenteditable="true"> 0</span><span class="suffix"> ₽</span>
+                        </div>
+                      </div>
+                      <div class="object-calc__data-row">
+                        <div class="object-calc__data-label">Приобретенных паев
+                        </div>
+                        <div class="object-calc__data-value object-calc__share"><span class="value" contenteditable="true">0</span><span class="suffix">&nbsp;</span>
+                        </div>
+                      </div>
+                      <div class="object-calc__data-row">
+                        <div class="object-calc__data-label">Стоимость пая
+                        </div>
+                        <div class="object-calc__data-value object-calc__step"><span class="value" contenteditable="true">0</span><span class="suffix"> ₽</span>
+                        </div>
+                      </div>
+                      <div class="object-calc__data-row">
+                        <div class="object-calc__data-label">Доходность
+                        </div>
+                        <div class="object-calc__data-value object-calc__rate"><span class="value" contenteditable="true">12.8</span><span class="suffix">%</span>
+                        </div>
+                      </div>
+                      <button class="object-calc__button btn" type="button">Оставить заявку
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </section><!--/ object-plans --> 
+              </section><!--/ object-calc --> 
             </div>
             <div class="object-new__section" id="objectLocation"><!-- object-location --> 
               <section class="object-location">
@@ -262,39 +278,249 @@
                   </h2><!--/ title --> 
                 </div>
                 <div class="object-location__wrapper">
-                  <div class="object-location__main">
-                    <p>Объект находится в новом жилом микрорайоне Эко Видное, расположенном в Ленинском районе Московской области, в 4 км от Москвы по высокоскоростной трассе М4 «Дон» в городе Видное. Микрорайон имеет выгодное расположение, удобное транспортное сообщение обеспечивается благодаря наличию общественного наземного и железнодорожного транспорта. По планам градостроительства - открытие линии скоростного трамвая и строительство станции в пе-шей доступности от объекта, что в перспективе способствует увеличению покупательского трафика.</p>
+                  <div class="object-location__map" id="map">
                   </div>
-                  <div class="object-location__aside">
-                    <div class="object-location__data">
-                      <div class="object-location__data-value">11 269
+                  <div class="object-location__content">
+                    <div class="object-location__main">
+                      <p>Объект находится в новом жилом микрорайоне Эко Видное, расположенном в Ленинском районе Московской области, в 4 км от Москвы по высокоскоростной трассе М4 «Дон» в городе Видное. Микрорайон имеет выгодное расположение, удобное транспортное сообщение обеспечивается благодаря наличию общественного наземного и железнодорожного транспорта. По планам градостроительства - открытие линии скоростного трамвая и строительство станции в пе-шей доступности от объекта, что в перспективе способствует увеличению покупательского трафика.</p>
+                    </div>
+                    <div class="object-location__aside">
+                      <div class="object-location__data">
+                        <div class="object-location__data-value">11 269
+                        </div>
+                        <div class="object-location__data-label">Домовладений находятся в радиусе 500&nbsp;м
+                        </div>
                       </div>
-                      <div class="object-location__data-label">Домовладений находятся радиусе 500 м
+                      <div class="object-location__data">
+                        <div class="object-location__data-value">5 781
+                        </div>
+                        <div class="object-location__data-label">Домовладений не имеют в пешей доступности других магазинов кроме ТЦ
+                        </div>
                       </div>
                     </div>
-                    <div class="object-location__data">
-                      <div class="object-location__data-value">5 781 
-                      </div>
-                      <div class="object-location__data-label">Домовладений не имеют в пешей доступности других магазинов кроме ТЦ
-                      </div>
-                    </div>
                   </div>
-                </div>
-                <div class="object-location__map" id="map">
                 </div>
               </section><!--/ object-location --> 
             </div>
-            <div class="object-new__section" id="objectFinances"><!-- object-estimates --> 
+            <div class="object-new__section" id="objectFinances"><!-- object-finances --> 
+              <section class="object-finances">
+                <div class="object-finances__title"><!-- title --> 
+                  <h2 class="title medium">Финансовые показатели
+                  </h2><!--/ title --> 
+                </div>
+                <div class="object-finances__table-wrapper">
+                  <div class="object-finances__table">
+                    <table>
+                      <tr>
+                        <td>
+                          <div class="heading">Сводные данные</div>
+                        </td>
+                        <td>Сентябрь 2022</td>
+                        <td>Октябрь 2017</td>
+                        <td>Ноябрь 2017</td>
+                        <td>Декабрь 2017</td>
+                        <td>Январь 2018</td>
+                        <td>Февраль 2018</td>
+                        <td>Март 2018</td>
+                        <td>Апрель 2018</td>
+                        <td>Май 2018</td>
+                        <td>Август 2017</td>
+                        <td>Сентябрь 2017</td>
+                        <td>Октябрь 2017</td>
+                        <td>Ноябрь 2017</td>
+                        <td>Декабрь 2017</td>
+                        <td>Январь 2018</td>
+                        <td>Февраль 2018</td>
+                        <td>Март 2018</td>
+                        <td>Апрель 2018</td>
+                        <td>Май 2018</td>
+                      </tr>
+                      <tr>
+                        <th>Доход</th>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                        <td>10 390 тыс. ₽</td>
+                      </tr>
+                      <tr>
+                        <th>Расход</th>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                        <td>0.00 ₽</td>
+                      </tr>
+                      <tr>
+                        <th>ЧОД</th>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                        <td>139 тыс. ₽</td>
+                      </tr>
+                      <tr>
+                        <th>Комиссия за управление</th>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                        <td>99.99 ₽</td>
+                      </tr>
+                      <tr>
+                        <th>Доход на распределение</th>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                        <td>12 290.99 ₽</td>
+                      </tr>
+                      <tr>
+                        <th>Доход на пай&nbsp;до НДФЛ</th>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                        <td>1 700.01 ₽</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="object-finances__controls-wrapper">
+                  <div class="object-finances__controls">
+                    <button class="jump prev"></button>
+                    <button class="scroll prev">Назад</button>
+                    <button class="scroll next">Вперед</button>
+                    <button class="jump next"></button>
+                  </div>
+                </div>
+                <div class="object-finances__line-chart">
+                  <div class="object-finances__subtitle">Финансовые выплаты
+                  </div>
+                  <div id="lineChart"></div>
+                </div>
+                <div class="object-finances__controls-wrapper">
+                  <div class="object-finances__controls">
+                    <button class="jump prev"></button>
+                    <button class="scroll prev">Назад</button>
+                    <button class="scroll next">Вперед</button>
+                    <button class="jump next"></button>
+                  </div>
+                </div>
+                <div class="object-finances__column-chart">
+                  <div class="object-finances__subtitle">Ликвидность
+                  </div>
+                  <div id="columnChart"></div>
+                </div>
+                <div class="object-finances__controls-wrapper">
+                  <div class="object-finances__controls">
+                    <button class="jump prev"></button>
+                    <button class="scroll prev">Назад</button>
+                    <button class="scroll next">Вперед</button>
+                    <button class="jump next"></button>
+                  </div>
+                </div>
+                <div class="object-finances__vr">
+                </div>
+              </section><!--/ object-finances --> 
+            </div>
+            <div class="object-new__section" id="objectEstimates"><!-- object-estimates --> 
               <section class="object-estimates">
                 <div class="object-estimates__title"><!-- title --> 
-                  <h2 class="title medium">Прогноз доходности
-                  </h2><!--/ title --> <span>январь 2019 — февраль 2020</span>
+                  <h2 class="title medium">Прогноз доходности&nbsp;за:
+                  </h2><!--/ title --> <span>октябрь 2020 — сентябрь 2021</span>
                 </div>
                 <div class="object-estimates__wrapper">
                   <div class="object-estimates__main">
-                    <div class="object-estimates__sum-value">59 227 357 ₽
+                    <div class="object-estimates__sum-value">38 688 ₽
                     </div>
-                    <div class="object-estimates__sum-label">Прибыль к распределению 
+                    <div class="object-estimates__sum-label">Доход на пай до НДФЛ
+                    </div>
+                    <div class="object-estimates__link"><a class="btn" href="#">Подробнее</a>
                     </div>
                   </div>
                   <div class="object-estimates__aside">
@@ -322,259 +548,107 @@
                       <div class="object-estimates__label">Комиссия за управление
                       </div>
                     </div>
+                    <div class="object-estimates__row">
+                      <div class="object-estimates__value object-estimates__value--equal">73 507 454 ₽
+                      </div>
+                      <div class="object-estimates__label">Прибыль к распределению
+                      </div>
+                    </div>
+                    <div class="object-estimates__row">
+                      <div class="object-estimates__value object-estimates__value--divide">1 900
+                      </div>
+                      <div class="object-estimates__label">Всего паев
+                      </div>
+                    </div>
+                    <div class="object-estimates__row">
+                      <div class="object-estimates__value object-estimates__value--equal">38 688 ₽
+                      </div>
+                      <div class="object-estimates__label">Доход на пай до НДФЛ
+                      </div>
+                    </div>
+                  </div>
+                  <div class="object-estimates__aside object-estimates__aside--desktop">
+                    <div class="object-estimates__col">
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--positive">93 985 738 ₽
+                        </div>
+                        <div class="object-estimates__label">Валовый доход
+                        </div>
+                      </div>
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--minus">25 524 435 ₽
+                        </div>
+                        <div class="object-estimates__label">Расходы
+                        </div>
+                      </div>
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--equal">68 461 303 ₽
+                        </div>
+                        <div class="object-estimates__label">Чистый операционный доход
+                        </div>
+                      </div>
+                    </div>
+                    <div class="object-estimates__col">
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--positive">68 461 303 ₽
+                        </div>
+                        <div class="object-estimates__label">Чистый операционный доход
+                        </div>
+                      </div>
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--minus">9 233 946 ₽
+                        </div>
+                        <div class="object-estimates__label">Комиссия за управление
+                        </div>
+                      </div>
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--equal">73 507 454 ₽
+                        </div>
+                        <div class="object-estimates__label">Прибыль к распределению
+                        </div>
+                      </div>
+                    </div>
+                    <div class="object-estimates__col">
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--positive">73 507 454 ₽
+                        </div>
+                        <div class="object-estimates__label">Прибыль к распределению
+                        </div>
+                      </div>
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--divide">1 900
+                        </div>
+                        <div class="object-estimates__label">Всего паев
+                        </div>
+                      </div>
+                      <div class="object-estimates__row">
+                        <div class="object-estimates__value object-estimates__value--equal">38 688 ₽
+                        </div>
+                        <div class="object-estimates__label">Доход на пай до НДФЛ
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </section><!--/ object-estimates --> <!-- object-finances --> 
-              <section class="object-finances">
-                <div class="object-finances__title"><!-- title --> 
-                  <h2 class="title medium">Финансы
-                  </h2><!--/ title --> 
+                <div class="object-estimates__link object-estimates__link--mobile"><a class="btn" href="#">Подробнее</a>
                 </div>
-                <div class="object-finances__table">
-                  <table>
-                    <tr>
-                      <td>
-                        <div class="heading">Сводные данные</div>
-                      </td>
-                      <td>Сентябрь 2022</td>
-                      <td>Октябрь 2017</td>
-                      <td>Ноябрь 2017</td>
-                      <td>Декабрь 2017</td>
-                      <td>Январь 2018</td>
-                      <td>Февраль 2018</td>
-                      <td>Март 2018</td>
-                      <td>Апрель 2018</td>
-                      <td>Май 2018</td>
-                      <td>Август 2017</td>
-                      <td>Сентябрь 2017</td>
-                      <td>Октябрь 2017</td>
-                      <td>Ноябрь 2017</td>
-                      <td>Декабрь 2017</td>
-                      <td>Январь 2018</td>
-                      <td>Февраль 2018</td>
-                      <td>Март 2018</td>
-                      <td>Апрель 2018</td>
-                      <td>Май 2018</td>
-                    </tr>
-                    <tr>
-                      <th>Доход</th>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                      <td>10 390 тыс. ₽</td>
-                    </tr>
-                    <tr>
-                      <th>Расход</th>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                      <td>0.00 ₽</td>
-                    </tr>
-                    <tr>
-                      <th>ЧОД</th>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                      <td>139 тыс. ₽</td>
-                    </tr>
-                    <tr>
-                      <th>Комиссия за управление</th>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                      <td>99.99 ₽</td>
-                    </tr>
-                    <tr>
-                      <th>Доход на распределение</th>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                      <td>12 290.99 ₽</td>
-                    </tr>
-                    <tr>
-                      <th>Доход на пай до НДФЛ</th>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                      <td>1 700.01 ₽</td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="object-finances__line-chart">
-                  <div class="object-finances__subtitle">Финансовые выплаты
-                  </div>
-                  <div id="lineChart"></div>
-                </div>
-                <div class="object-finances__column-chart">
-                  <div class="object-finances__subtitle">Ликвидность
-                  </div>
-                  <div id="columnChart"></div>
-                </div>
-                <div class="object-finances__scroll object-finances__scroll--prev">
-                  <button class="object-finances__scroll-prev">
-                  </button>
-                </div>
-                <div class="object-finances__scroll object-finances__scroll--next">
-                  <button class="object-finances__scroll-next active">
-                  </button>
-                </div>
-                <div class="object-finances__jump object-finances__jump--prev">
-                  <button class="object-finances__jump-prev">
-                  </button>
-                </div>
-                <div class="object-finances__jump object-finances__jump--next">
-                  <button class="object-finances__jump-next active">
-                  </button>
-                </div>
-                <div class="object-finances__hr">
-                </div>
-                <div class="object-finances__vr">
-                </div>
-              </section><!--/ object-finances --> 
+              </section><!--/ object-estimates --> 
             </div>
-            <div class="object-new__section" id="objectCalc"><!-- object-calc --> 
-              <section class="object-calc">
-                <div class="object-calc__title"><!-- title --> 
-                  <h2 class="title medium">Рассчитайте ваш доход
+            <div class="object-new__section" id="objectPlans"><!-- object-plans --> 
+              <section class="object-plans">
+                <div class="object-plans__title"><!-- title --> 
+                  <h2 class="title medium">Планировка
                   </h2><!--/ title --> 
                 </div>
-                <div class="object-calc__wrapper">
-                  <div class="object-calc__investment">
-                    <div class="object-calc__investment-range">
-                    </div>
-                    <div class="object-calc__investment-data">
-                      <div class="object-calc__investment-label">Сколько вложить
-                      </div>
-                      <div class="object-calc__investment-value">
-                      </div>
-                    </div>
+                <div class="object-plans__slider">
+                  <div class="object-plans__slide"><img src="images/redesign/object/plan1.jpg" alt=""/>
                   </div>
-                  <div class="object-calc__income-result">
-                    <div class="object-calc__income-label">Сколько получить
-                    </div>
-                    <div class="object-calc__image"><img src="images/redesign/object-cards/object1.jpg" alt=""/>
-                    </div>
-                    <div class="object-calc__income-data" data-min="300000" data-max="18000000" data-liberty-step="85000" data-step="100000" data-initial="2000000" data-rate="12.8">
-                      <div class="object-calc__data-row">
-                        <div class="object-calc__data-value object-calc__income"><span class="value" contenteditable="true"> 0</span><span class="suffix"> ₽</span>
-                        </div>
-                        <div class="object-calc__data-label">Ежемесячный доход
-                        </div>
-                      </div>
-                      <div class="object-calc__data-row">
-                        <div class="object-calc__data-value object-calc__share"><span class="value" contenteditable="true">0</span><span class="suffix">&nbsp;</span>
-                        </div>
-                        <div class="object-calc__data-label">Приобретенных паев
-                        </div>
-                      </div>
-                      <div class="object-calc__data-row">
-                        <div class="object-calc__data-value object-calc__step"><span class="value" contenteditable="true">0</span><span class="suffix"> ₽</span>
-                        </div>
-                        <div class="object-calc__data-label">Стоимость пая
-                        </div>
-                      </div>
-                      <div class="object-calc__data-row">
-                        <div class="object-calc__data-value object-calc__rate"> <span class="value" contenteditable="true">12.8</span><span class="suffix">%</span>
-                        </div>
-                        <div class="object-calc__data-label">Доходность
-                        </div>
-                      </div>
-                      <button class="object-calc__button btn" type="button">Оставить заявку
-                      </button>
-                    </div>
+                  <div class="object-plans__slide"><img src="images/redesign/object/plan1.jpg" alt=""/>
+                  </div>
+                  <div class="object-plans__slide"><img src="images/redesign/object/plan1.jpg" alt=""/>
                   </div>
                 </div>
-              </section><!--/ object-calc --> 
+              </section><!--/ object-plans --> 
             </div>
           </div>
         </div>

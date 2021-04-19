@@ -10,7 +10,7 @@
                 "text": "Наши объекты"
             },
             {
-                "link": "object-page.html",
+                "link": "object-new-page.html",
                 "text": "Объект"
             },
             {
@@ -91,7 +91,7 @@
                 "link": "account-page-9.html",
                 "text": "Мониторинг — объект-2"
             }
-            
+
         ]
 
     }

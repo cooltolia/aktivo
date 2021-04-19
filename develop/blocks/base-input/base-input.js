@@ -1,6 +1,5 @@
 (function() {
     const $inputs = $('.base-input__input, .base-input__textarea');
-    console.log('$inputs: ', $inputs);
     const $autocompleteInputs = $('.base-input-autocomplete');
 
 

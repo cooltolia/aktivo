@@ -67,7 +67,7 @@
     }
 
     &__data {
-        margin-bottom: 20px;
+        margin-bottom: 26px;
 
         &:last-child {
             margin-bottom: 0;
@@ -75,68 +75,64 @@
     }
 
     &__data-value {
-        margin-bottom: 5px;
+        margin-bottom: 8px;
 
         color: $theme-color;
-        font-size: 44px;
+        font-size: 34px;
         font-weight: 600;
-        line-height: 1;
+        line-height: 1.2;
     }
 
     &__data-label {
         font-size: 14px;
+
+        max-width: 200px;
     }
 }
 
 @media #{$tablet} {
     .object-description {
-        &__wrapper {
-            display: flex;
-        }
+        display: flex;
 
-        &__main {
-            width: calc(55vw - 35px);
+        &__title {
+            width: 40%;
             flex: 0 0 auto;
             padding-right: 15px;
+        }
+
+        &__wrapper {
+            width: 50%;
+            flex: 1 1 auto;
             margin-bottom: 0;
         }
 
-        &__aside {
-            width: 30%;
-            flex: 1 1 auto;
-
-            p {
-                max-width: 300px;
-                margin-bottom: 40px;
-            }
+        &__main {
+            margin-bottom: 30px;
         }
     }
 }
 
 @media #{$laptop} {
     .object-description {
-        &__main {
-            padding-right: 45px;
+        &__title {
+            width: 30%;
         }
 
-        &__data-value {
-            font-size: 60px;
+        &__wrapper {
+            display: flex;
+        }
+
+        &__main {
+            width: 60%;
+            padding-right: 45px;
+            margin-bottom: 0;
         }
     }
 }
 @media #{$desktop} {
     .object-description {
-        &__main {
-            padding-right: 65px;
-            width: 750px;
-        }
-
-        &__data {
-            margin-bottom: 30px;
-        }
-
-        &__data-value {
-            font-size: 74px;
+        &__title {
+            width: 400px;
         }
     }
 }

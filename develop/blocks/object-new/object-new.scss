@@ -11,108 +11,45 @@
     }
 
     &__navigation {
-        padding-top: 30px;
-        // padding-bottom: 12px;
-    }
+        padding-top: 8px;
+        position: sticky;
+        z-index: 19;
+        top: 0;
+        width: calc(100% + 40px);
+        margin-left: -20px;
 
-    &__navigation-list {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        display: flex;
-        border-bottom: 1px solid #ebebeb;
-
-        .slick-list {
-            padding-bottom: 2px;
-            margin-bottom: -2px;
-        }
-    }
-
-    &__navigation-item {
-        position: relative;
-        margin-bottom: 10px;
-
-        outline: none;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    &__navigation-link {
-        position: relative;
-        padding: 12px 6px 3px;
-
-        font-size: 12px;
-        white-space: nowrap;
-        color: $text-color;
-        text-decoration: none;
-
-        transition: color 300ms ease;
-
-        &:hover,
-        &:active,
-        &:focus {
-            color: $theme-color;
-
-            text-decoration: none;
-        }
-
-        &::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -1px;
-            left: 0;
-
-            transform: scaleX(0);
-
-            background-color: $theme-color;
-
-            transition: transform 300ms ease;
-        }
-
-        &.active {
-            font-weight: 600;
-
-            &::after {
-                transform: scaleX(1);
-            }
-        }
-
-        svg {
-            position: relative;
-            width: 16px;
-            height: 16px;
-            right: 0px;
-            top: 0;
-
-            fill: $theme-color;
-        }
+        background-color: #fff;
     }
 
     &__section {
-        margin-bottom: 35px;
-
-        &--top {
-            margin-bottom: 20px;
+        > section {
+            padding-top: 90px;
         }
 
-        &:last-child {
-            margin-bottom: 0;
+        &--top {
+            > section {
+                padding-top: 0;
+            }
+        }
+
+        &#objectFinances,
+        &#objectEstimates,
+        &#objectPlans {
+            /* hack to make side lines visible but not central */
+            padding-left: 1px;
+            padding-right: 1px;
         }
     }
 }
 
 @media #{$tablet} {
     .object-new {
-        padding-top: 50px;
+        padding-top: 40px;
 
         .lines {
             .line {
                 width: 30%;
-                left: 55vw;
+                left: calc(40% + 7px);
 
                 &::after {
                     display: none;
@@ -131,15 +68,16 @@
 
         &__navigation {
             padding-top: 0;
-            padding-bottom: 24px;
-        }
+            margin-bottom: 24px;
+            width: 100%;
+            margin: 0;
 
-        &__navigation-item {
-            padding-right: 16px;
-        }
+            border-left: 1px solid rgba(#919191, 0.2);
+            border-right: 1px solid rgba(#919191, 0.2);
 
-        &__navigation-link {
-            font-size: 14px;
+            .page-navigation {
+                padding: 0;
+            }
         }
 
         &__section {
@@ -150,10 +88,10 @@
 
 @media #{$laptop} {
     .object-new {
-        padding-top: 80px;
-
-        &__navigation-link {
-            font-size: 16px;
+        .lines {
+            .line {
+                left: calc(40% + 13px);
+            }
         }
     }
 }
@@ -162,7 +100,7 @@
     .object-new {
         .lines {
             .line {
-                left: 750px;
+                left: 420px;
             }
         }
 
@@ -170,12 +108,7 @@
             width: 100%;
         }
 
-        &__navigation-link {
-            font-size: 18px;
-        }
-
         &__section {
-            margin-bottom: 55px;
         }
     }
 }

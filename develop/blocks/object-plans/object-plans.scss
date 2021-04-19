@@ -1,4 +1,8 @@
 .object-plans {
+    position: relative;
+    z-index: 12;
+    background-color: #fff;
+
     &__title {
         margin-bottom: 16px;
     }

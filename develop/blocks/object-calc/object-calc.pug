@@ -16,23 +16,23 @@ mixin object-calc()
                     img(src='images/redesign/object-cards/object1.jpg', alt="")
                 +e.income-data(data-min='300000' data-max='18000000' data-liberty-step='85000' data-step='100000' data-initial='2000000' data-rate='12.8')
                     +e.data-row
+                        +e.data-label Ежемесячный доход
                         +e.data-value.__income
                             span.value(contenteditable='true')  0
                             span.suffix  ₽
-                        +e.data-label Ежемесячный доход
                     +e.data-row
+                        +e.data-label Приобретенных паев
                         +e.data-value.__share
                             span.value(contenteditable='true') 0
                             span.suffix &nbsp;
-                        +e.data-label Приобретенных паев
                     +e.data-row
+                        +e.data-label Стоимость пая
                         +e.data-value.__step
                             span.value(contenteditable='true') 0
                             span.suffix  ₽
-                        +e.data-label Стоимость пая
                     +e.data-row
-                        +e.data-value.__rate 
+                        +e.data-label Доходность
+                        +e.data-value.__rate
                             span.value(contenteditable='true') 12.8
                             span.suffix %
-                        +e.data-label Доходность
                     +e.BUTTON.button.btn(type='button') Оставить заявку

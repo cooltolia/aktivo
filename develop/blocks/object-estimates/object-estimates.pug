@@ -2,12 +2,14 @@ mixin object-estimates()
     +b.SECTION.object-estimates
         +e.title
             +title('h2', 'medium')
-                | Прогноз доходности
-            span январь 2019 — февраль 2020
+                | Прогноз доходности&nbsp;за:
+            span октябрь 2020 — сентябрь 2021
         +e.wrapper
             +e.main
-                +e.sum-value 59 227 357 ₽
-                +e.sum-label Прибыль к распределению 
+                +e.sum-value 38 688 ₽
+                +e.sum-label Доход на пай до НДФЛ
+                +e.link
+                    a.btn(href='#') Подробнее
             +e.aside
                 +e.row
                     +e.value.--positive 93 985 738 ₽
@@ -21,3 +23,45 @@ mixin object-estimates()
                 +e.row
                     +e.value.--minus 9 233 946 ₽
                     +e.label Комиссия за управление
+                +e.row
+                    +e.value.--equal 73 507 454 ₽
+                    +e.label Прибыль к распределению
+                +e.row
+                    +e.value.--divide 1 900
+                    +e.label Всего паев
+                +e.row
+                    +e.value.--equal 38 688 ₽
+                    +e.label Доход на пай до НДФЛ
+            +e.aside--desktop
+                +e.col
+                    +e.row
+                        +e.value.--positive 93 985 738 ₽
+                        +e.label Валовый доход
+                    +e.row
+                        +e.value.--minus 25 524 435 ₽
+                        +e.label Расходы
+                    +e.row
+                        +e.value.--equal 68 461 303 ₽
+                        +e.label Чистый операционный доход
+                +e.col
+                    +e.row
+                        +e.value.--positive 68 461 303 ₽
+                        +e.label Чистый операционный доход
+                    +e.row
+                        +e.value.--minus 9 233 946 ₽
+                        +e.label Комиссия за управление
+                    +e.row
+                        +e.value.--equal 73 507 454 ₽
+                        +e.label Прибыль к распределению
+                +e.col
+                    +e.row
+                        +e.value.--positive 73 507 454 ₽
+                        +e.label Прибыль к распределению
+                    +e.row
+                        +e.value.--divide 1 900
+                        +e.label Всего паев
+                    +e.row
+                        +e.value.--equal 38 688 ₽
+                        +e.label Доход на пай до НДФЛ
+        +e.link.--mobile
+            a.btn(href='#') Подробнее

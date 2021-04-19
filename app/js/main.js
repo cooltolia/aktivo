@@ -616,7 +616,6 @@ jQuery(document).ready(function ($) {
     function applicationModalLogic(modal) {
       var form = modal.querySelector('.modal__form');
       var inputs = form.querySelectorAll('input');
-      console.log(inputs);
       var inputEmail = $('#applicationEmail');
       var inputPhone = $('#applicationPhone');
       var phoneMask = '+7 (f99) 999-99-99';
@@ -764,7 +763,6 @@ jQuery(document).ready(function ($) {
 
     (function () {
       var $inputs = $('.base-input__input, .base-input__textarea');
-      console.log('$inputs: ', $inputs);
       var $autocompleteInputs = $('.base-input-autocomplete');
       $inputs.each(function () {
         if ($(this).val().trim() !== '') {
@@ -1179,8 +1177,6 @@ jQuery(document).ready(function ($) {
 
     {
       var _triggerButtons = document.querySelectorAll('.info-trigger');
-
-      console.log(_triggerButtons);
 
       if (_triggerButtons.length > 0) {
         _triggerButtons.forEach(function (btn) {
@@ -1695,7 +1691,6 @@ jQuery(document).ready(function ($) {
        */
 
       investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
-        console.log('update');
         var value = +values[handle];
         invsestmentValue.textContent = format.to(value);
         var rate = customRate ? customRate : basicRate;
@@ -1779,7 +1774,6 @@ jQuery(document).ready(function ($) {
       var dataCells = financesTable.querySelectorAll('tr:not(:first-child) td');
       var cellHeight = dataCells[0].getBoundingClientRect().height;
       var regularCellWidth = dataCells[1].getBoundingClientRect().width;
-      var hr = document.querySelector('.object-finances__hr');
       var vr = document.querySelector('.object-finances__vr');
       var formatValue = wNumb({
         decimals: 2,
@@ -1790,159 +1784,28 @@ jQuery(document).ready(function ($) {
       var plotColumnWidth = 52;
 
       if (window.matchMedia('(min-width: 1024px)').matches) {
-        labelFontSize = '15px';
+        labelFontSize = '14px';
         plotColumnWidth = 62;
         showGridLine = true;
       }
 
       dataCells.forEach(function (cell) {
         cell.addEventListener('mouseover', function () {
-          var offsetTop = cell.offsetParent.offsetTop + cell.offsetTop + cellHeight;
-          hr.style.top = "".concat(offsetTop, "px");
-
           var index = _toConsumableArray(cell.parentNode.children).indexOf(cell);
 
-          var leftPadding = -5;
+          var leftPadding = 0; // if (index === 1) {
+          //     leftPadding = -5;
+          // }
 
-          if (index === 1) {
-            leftPadding = parseInt(window.getComputedStyle(cell).paddingLeft) - 5;
-          }
-
-          console.log(financesTable.scrollLeft);
           var offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
           vr.style.left = "".concat(offsetLeft, "px");
-          vr.style.marginLeft = '8px';
-          hr.classList.add('active');
           vr.classList.add('active');
         });
         cell.addEventListener('mouseout', function () {
-          hr.classList.remove('active');
           vr.classList.remove('active');
         });
       });
-      var scrollNext = document.querySelector('.object-finances__scroll-next');
-      var scrollPrev = document.querySelector('.object-finances__scroll-prev');
-      var jumpNext = document.querySelector('.object-finances__jump-next');
-      var jumpPrev = document.querySelector('.object-finances__jump-prev');
-      var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
-
-      if (tableWidth < tableWrapperWidth) {
-        $(scrollNext).hide();
-        $(scrollPrev).hide();
-        $(jumpNext).hide();
-        $(jumpPrev).hide();
-      }
-
-      var debouncedNextClick = debounce(nextClick, 200, true);
-      var debouncedPrevClick = debounce(prevClick, 200, true);
-      var debouncedJumpNext = debounce(jumpingNext, 200, true);
-      var debouncedJumpPrev = debounce(jumpingPrev, 200, true);
-      jumpNext.addEventListener('click', debouncedJumpNext);
-      jumpPrev.addEventListener('click', debouncedJumpPrev);
-      var touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-      console.log('touchDevice: ', touchDevice);
-
-      if (touchDevice) {
-        scrollNext.addEventListener('touchstart', debouncedNextClick);
-        scrollNext.addEventListener('touchend', function () {
-          return clearInterval(mouseTimer);
-        });
-        scrollPrev.addEventListener('touchstart', debouncedPrevClick);
-        scrollPrev.addEventListener('touchend', function () {
-          return clearInterval(mouseTimer);
-        });
-      } else {
-        scrollNext.addEventListener('mousedown', debouncedNextClick);
-        scrollNext.addEventListener('mouseup', function () {
-          return clearInterval(mouseTimer);
-        });
-        scrollPrev.addEventListener('mousedown', debouncedPrevClick);
-        scrollPrev.addEventListener('mouseup', function () {
-          return clearInterval(mouseTimer);
-        });
-      }
-
-      var mouseTimer;
-
-      function nextClick(e) {
-        update();
-        mouseTimer = setInterval(update, 500);
-
-        function update() {
-          var value = financesTable.scrollLeft + regularCellWidth;
-          scrollPrev.classList.add('active');
-          jumpPrev.classList.add('active');
-
-          if (value > maxScrollLeft) {
-            clearInterval(mouseTimer); // return;
-          }
-
-          if (value >= maxScrollLeft - regularCellWidth) {
-            scrollNext.classList.remove('active');
-            jumpNext.classList.remove('active');
-          }
-
-          smoothLeftScroll(value);
-        }
-      }
-
-      function prevClick() {
-        update();
-        mouseTimer = setInterval(update, 500);
-
-        function update() {
-          var value = financesTable.scrollLeft - regularCellWidth;
-
-          if (value <= -regularCellWidth) {
-            clearInterval(mouseTimer);
-            return;
-          }
-
-          if (value <= 0) {
-            scrollPrev.classList.remove('active');
-            jumpPrev.classList.remove('active');
-          }
-
-          if (value <= maxScrollLeft) {
-            scrollNext.classList.add('active');
-            jumpNext.classList.add('active');
-            smoothLeftScroll(value);
-          }
-        }
-      }
-
-      function jumpingNext(e) {
-        var value = financesTable.scrollLeft + regularCellWidth * 6;
-        jumpPrev.classList.add('active');
-        scrollPrev.classList.add('active');
-
-        if (value >= maxScrollLeft - regularCellWidth * 6) {
-          smoothLeftScroll(maxScrollLeft);
-          jumpNext.classList.remove('active');
-          scrollNext.classList.remove('active');
-        } else {
-          smoothLeftScroll(value);
-        }
-      }
-
-      function jumpingPrev() {
-        var value = financesTable.scrollLeft - regularCellWidth * 6;
-
-        if (value <= -regularCellWidth) {
-          smoothLeftScroll(0);
-        }
-
-        if (value <= 0) {
-          jumpPrev.classList.remove('active');
-          scrollPrev.classList.remove('active');
-        }
-
-        if (value <= maxScrollLeft) {
-          jumpNext.classList.add('active');
-          scrollNext.classList.add('active');
-          smoothLeftScroll(value);
-        }
-      }
+      initScrollContols();
 
       if (lineChart) {
         var data = [242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, // 2570890.35,
@@ -1987,8 +1850,9 @@ jQuery(document).ready(function ($) {
         // 'Январь 2020',
         ''];
         var columnWidth = regularCellWidth;
-        console.log(columnWidth);
+        console.log('columnWidth', columnWidth);
         var chartMinWidth = columnWidth * data.length;
+        console.log('chartMinWidth: ', chartMinWidth);
         Highcharts.chart('lineChart', {
           chart: {
             type: 'spline',
@@ -1997,7 +1861,7 @@ jQuery(document).ready(function ($) {
 
             },
             marginTop: 60,
-            marginLeft: 70
+            marginLeft: 70 + columnWidth / 2
           },
           title: false,
           credits: {
@@ -2014,15 +1878,17 @@ jQuery(document).ready(function ($) {
             lineWidth: 0,
             tickWidth: 0,
             labels: {
-              align: 'left',
-              // x: 2,
+              align: 'center',
+              reserveSpace: true,
+              x: -2,
               style: {
                 color: '#9e9e9e',
                 fontSize: labelFontSize,
                 fontWeight: '600',
                 fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                 paddingLeft: '5px',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                textAlign: 'right'
               }
             }
           },
@@ -2076,7 +1942,7 @@ jQuery(document).ready(function ($) {
                   mouseOver: function mouseOver(_ref) {
                     var target = _ref.target;
                     if (!showGridLine) return;
-                    var magicNumber = 69;
+                    var magicNumber = 67;
                     vr.style.left = "".concat(target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft, "px");
                     vr.style.marginLeft = '';
                     vr.classList.add('active');
@@ -2130,11 +1996,11 @@ jQuery(document).ready(function ($) {
         Highcharts.chart('columnChart', {
           chart: {
             scrollablePlotArea: {
-              minWidth: _chartMinWidth // opacity: 0,
+              minWidth: _chartMinWidth // opacity: 1,
 
             },
             marginTop: 60,
-            marginLeft: 70
+            marginLeft: 70 + _columnWidth / 2
           },
           title: false,
           credits: {
@@ -2149,7 +2015,8 @@ jQuery(document).ready(function ($) {
             lineWidth: 0,
             tickWidth: 0,
             labels: {
-              align: 'left',
+              align: 'center',
+              x: -2,
               style: {
                 color: '#9e9e9e',
                 fontSize: labelFontSize,
@@ -2217,6 +2084,7 @@ jQuery(document).ready(function ($) {
             type: 'column',
             color: 'transparent',
             dataLabels: {
+              allowOverlap: true,
               enabled: true,
               align: 'left',
               y: -5,
@@ -2267,7 +2135,7 @@ jQuery(document).ready(function ($) {
                 mouseOver: function mouseOver(_ref2) {
                   var target = _ref2.target;
                   if (!showGridLine) return;
-                  var magicNumber = 69;
+                  var magicNumber = 67;
                   vr.style.left = "".concat(target.clientX + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft, "px"); // vr.style.left = `${
                   //     target.clientX -
                   //     target.pointWidth / 2 +
@@ -2304,6 +2172,138 @@ jQuery(document).ready(function ($) {
           behavior: 'smooth'
         });
       }
+
+      function initScrollContols() {
+        var mouseTimer;
+        var controls = document.querySelectorAll('.object-finances__controls');
+        var scrollNext = document.querySelector('.object-finances__scroll-next');
+        var scrollPrev = document.querySelector('.object-finances__scroll-prev');
+        var jumpNext = document.querySelector('.object-finances__jump-next');
+        var jumpPrev = document.querySelector('.object-finances__jump-prev');
+        var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
+
+        if (tableWidth < tableWrapperWidth) {
+          controls.forEach(function (node) {
+            return $(node).hide();
+          });
+        }
+
+        var debouncedNextClick = debounce(nextClick, 200, true);
+        var debouncedPrevClick = debounce(prevClick, 200, true);
+        var debouncedJumpNext = debounce(jumpingNext, 200, true);
+        var debouncedJumpPrev = debounce(jumpingPrev, 200, true);
+        var jumpNextBtns = document.querySelectorAll('.object-finances__controls .jump.next');
+        var jumpPrevBtns = document.querySelectorAll('.object-finances__controls .jump.prev');
+        jumpNextBtns.forEach(function (btn) {
+          btn.addEventListener('click', debouncedJumpNext);
+        });
+        jumpPrevBtns.forEach(function (btn) {
+          btn.addEventListener('click', debouncedJumpPrev);
+        });
+        var scrollNextBtns = document.querySelectorAll('.object-finances__controls .scroll.next');
+        var scrollPrevBtns = document.querySelectorAll('.object-finances__controls .scroll.prev');
+        var touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+        scrollNextBtns.forEach(function (btn) {
+          if (touchDevice) {
+            btn.addEventListener('touchstart', debouncedNextClick);
+            btn.addEventListener('touchend', function () {
+              return clearInterval(mouseTimer);
+            });
+          } else {
+            btn.addEventListener('mousedown', debouncedNextClick);
+            btn.addEventListener('mouseup', function () {
+              return clearInterval(mouseTimer);
+            });
+          }
+        });
+        scrollPrevBtns.forEach(function (btn) {
+          if (touchDevice) {
+            btn.addEventListener('touchstart', debouncedPrevClick);
+            btn.addEventListener('touchend', function () {
+              return clearInterval(mouseTimer);
+            });
+          } else {
+            btn.addEventListener('mousedown', debouncedPrevClick);
+            btn.addEventListener('mouseup', function () {
+              return clearInterval(mouseTimer);
+            });
+          }
+        });
+
+        function nextClick(e) {
+          update();
+          mouseTimer = setInterval(update, 500);
+
+          function update() {
+            var value = financesTable.scrollLeft + regularCellWidth; // show prev
+
+            if (value > maxScrollLeft) {
+              clearInterval(mouseTimer); // return;
+            }
+
+            if (value >= maxScrollLeft - regularCellWidth) {
+              toggleGradient('add'); //hide next
+            }
+
+            smoothLeftScroll(value);
+          }
+        }
+
+        function prevClick() {
+          update();
+          toggleGradient('remove');
+          mouseTimer = setInterval(update, 500);
+
+          function update() {
+            var value = financesTable.scrollLeft - regularCellWidth;
+
+            if (value <= -regularCellWidth) {
+              clearInterval(mouseTimer);
+              return;
+            }
+
+            if (value <= 0) {// hide prev
+            }
+
+            if (value <= maxScrollLeft) {
+              // show next
+              smoothLeftScroll(value);
+            }
+          }
+        }
+
+        function jumpingNext(e) {
+          var value = financesTable.scrollLeft + regularCellWidth * 6; //show prev
+
+          if (value >= maxScrollLeft - regularCellWidth * 6) {
+            smoothLeftScroll(maxScrollLeft);
+            toggleGradient('add'); // hide next
+          } else {
+            smoothLeftScroll(value);
+          }
+        }
+
+        function jumpingPrev(e) {
+          var value = financesTable.scrollLeft - regularCellWidth * 6;
+          toggleGradient('remove');
+
+          if (value <= -regularCellWidth) {
+            smoothLeftScroll(0);
+          }
+
+          if (value <= 0) {// hide prev
+          }
+
+          if (value <= maxScrollLeft) {
+            // show next
+            smoothLeftScroll(value);
+          }
+        }
+
+        function toggleGradient(action) {
+          financesTable.parentNode.classList[action]('finished');
+        }
+      }
     })(); // (function () {
     //     const objectLocation = $('.object-location');
     //     if (objectLocation.length === 0) return;
@@ -2333,33 +2333,25 @@ jQuery(document).ready(function ($) {
     (function () {
       var object = $('.object-new');
       if (object.length === 0) return;
-      var objectLinks = $('.object__navigation-link');
-      var objectSections = document.querySelectorAll('.object__section');
-      tippy('.object__navigation-link[data-tippy-content]', {
-        placement: 'bottom',
-        arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
+      var objectLinks = object.find('.page-navigation__link');
+      var objectSections = document.querySelectorAll('.object-new__section');
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            objectLinks.removeClass('active');
+            var sectionId = entry.target.id;
+            if (!sectionId) return;
+            var relatedLink = objectLinks.filter("[data-scroll-to=".concat(sectionId, "]"));
+            relatedLink.addClass('active');
+          }
+        });
+      }, {
+        rootMargin: '-50% 0% -50% 0%',
+        root: null
       });
-
-      if (window.matchMedia('(min-width: 768px)').matches) {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              objectLinks.removeClass('active');
-              var sectionId = entry.target.id;
-              if (!sectionId) return;
-              var relatedLink = objectLinks.filter("[data-scroll-to=".concat(sectionId, "]"));
-              relatedLink.addClass('active');
-            }
-          });
-        }, {
-          rootMargin: '-50% 0% -50% 0%',
-          root: null
-        });
-        objectSections.forEach(function (section) {
-          return observer.observe(section);
-        });
-      }
-
+      objectSections.forEach(function (section) {
+        return observer.observe(section);
+      });
       objectLinks.on('click', function (e) {
         e.preventDefault();
         var link = $(this);
@@ -2367,44 +2359,6 @@ jQuery(document).ready(function ($) {
         objectLinks.removeClass('active');
         link.addClass('active');
       });
-      var navigation = document.querySelector('.object-new__navigation');
-
-      if (window.matchMedia('(max-width: 1199px)').matches) {
-        var navList = navigation.querySelector('.object-new__navigation-list');
-        var activeNavLink = navigation.querySelector('.object-new__navigation-link.active');
-
-        var navItems = _toConsumableArray(navList.children);
-
-        var navItemsLength = 0;
-        navItems.forEach(function (item) {
-          navItemsLength += item.getBoundingClientRect().width;
-        });
-        var $navList = $(navList);
-
-        if (navItemsLength > navList.clientWidth + 1) {
-          $navList.slick({
-            dots: false,
-            rows: 0,
-            arrows: false,
-            infinite: false,
-            variableWidth: true,
-            touchThreshold: 10,
-            speed: 200,
-            swipeToSlide: true // edgeFriction: 1,
-
-          });
-
-          if (activeNavLink) {
-            var parentSlide = activeNavLink.parentNode;
-
-            var index = _toConsumableArray($navList.slick('getSlick').$slides).indexOf(parentSlide);
-
-            $navList.slick('slickGoTo', index);
-          }
-        } else {
-          navigation.classList.add('full');
-        }
-      }
     })();
 
     (function () {
@@ -2496,6 +2450,121 @@ jQuery(document).ready(function ($) {
         objectLinks.removeClass('active');
         link.addClass('active');
       });
+    })();
+
+    (function () {
+      tippy('.page-navigation__link[data-tippy-content]', {
+        placement: 'bottom',
+        arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
+      });
+      var navigation = document.querySelector('.page-navigation');
+      var navigationScrollWrapper = navigation.querySelector('.page-navigation__wrapper');
+      var navList = navigation.querySelector('.page-navigation__list');
+
+      var controls = _toConsumableArray(navigation.querySelectorAll('.page-navigation__controls .control-btn'));
+
+      var navLinks = _toConsumableArray(navList.querySelectorAll('.page-navigation__link'));
+
+      var navListWidth = navList.getBoundingClientRect().width;
+      var navListScrollWidth = navList.scrollWidth;
+      var navigationScrollWrapperWidth = navigationScrollWrapper.getBoundingClientRect().width;
+
+      if (navListScrollWidth === navigationScrollWrapperWidth) {
+        controls.forEach(function (control) {
+          return control.style.display = 'none';
+        });
+      } else {
+        var currentNavLink = getCurrentLink();
+        navigationScrollWrapper.scrollLeft = currentNavLink.offsetLeft;
+        toggleControlsBtns();
+      }
+
+      controls.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          var target;
+
+          if (btn.classList.contains('prev')) {
+            target = getCurrentLink().previousElementSibling;
+            var val = target.getBoundingClientRect().width;
+            scroll(-val, target);
+          } else {
+            target = getCurrentLink().nextElementSibling;
+            var _val = target.getBoundingClientRect().width;
+            scroll(_val, target);
+          }
+        });
+      });
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          setActiveNavLink(link);
+        });
+      });
+
+      function setActiveNavLink(link) {
+        resetActiveNavs();
+        link.classList.add('active');
+        debugger;
+
+        if (!elIsVisible(link)) {
+          navigationScrollWrapper.scrollLeft = link.offsetLeft;
+        }
+
+        toggleControlsBtns(link);
+      }
+
+      function scroll(val, target) {
+        navigationScrollWrapper.scrollLeft += val;
+        navLinks.forEach(function (link) {
+          return link.classList.remove('current');
+        });
+        target.classList.add('current'); // setTimeout(toggleControlsBtns, 300);
+
+        toggleControlsBtns(val);
+      }
+
+      function elIsVisible(el) {
+        var _el$getBoundingClient = el.getBoundingClientRect(),
+            left = _el$getBoundingClient.left,
+            width = _el$getBoundingClient.width;
+
+        if (left < 0) return false;else if (left + width + navigationScrollWrapper.scrollLeft > navListWidth) return false;else return true;
+      }
+
+      function resetActiveNavs() {
+        navLinks.forEach(function (el) {
+          return el.classList.remove('active');
+        });
+      } // function toggleControlsBtns(currentActiveNavLink) {
+      //     controls.forEach((el) => el.classList.remove('disabled'));
+      //     if (navLinks.indexOf(currentActiveNavLink) === 0) {
+      //         controls.find((el) => el.classList.contains('prev')).classList.add('disabled');
+      //     } else if (navLinks.indexOf(currentActiveNavLink) === navLinks.length - 1) {
+      //         controls.find((el) => el.classList.contains('next')).classList.add('disabled');
+      //     }
+      // }
+
+
+      function toggleControlsBtns() {
+        var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+        controls.forEach(function (el) {
+          return el.classList.remove('disabled');
+        });
+        setTimeout(function () {
+          if (navigationScrollWrapper.scrollLeft > navListScrollWidth - navigationScrollWrapperWidth) {
+            controls.find(function (el) {
+              return el.classList.contains('next');
+            }).classList.add('disabled');
+          } else if (navigationScrollWrapper.scrollLeft <= 0) {
+            controls.find(function (el) {
+              return el.classList.contains('prev');
+            }).classList.add('disabled');
+          }
+        }, 300);
+      }
+
+      function getCurrentLink() {
+        return navigation.querySelector('.page-navigation__link.current') || navigation.querySelector('.page-navigation__link.active');
+      }
     })();
 
     (function () {

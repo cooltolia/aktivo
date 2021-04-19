@@ -11,13 +11,13 @@ $liberty-theme: #8f6d00;
 
 $text-color: #000;
 $text-color-light: #a5a5a5;
-$text-color-medium: #9c9c9c;
+$text-color-medium: #7c7c7c;
 $text-color-white: #fff;
 // $accent-color-light: #fee7ea;
 
 $green: #5fce67;
 $red: #ff2b2b;
-$blue: #3F76FE;
+$blue: #3f76fe;
 
 @mixin btn-theme($themecolor: $themecolor) {
     position: relative;
@@ -259,4 +259,12 @@ $blue: #3F76FE;
     }
 
     @content;
+}
+
+@mixin hideScrollbar() {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

@@ -18,7 +18,6 @@
     const cellHeight = dataCells[0].getBoundingClientRect().height;
     const regularCellWidth = dataCells[1].getBoundingClientRect().width;
 
-    const hr = document.querySelector('.object-finances__hr');
     const vr = document.querySelector('.object-finances__vr');
 
     const formatValue = wNumb({
@@ -31,153 +30,29 @@
     let plotColumnWidth = 52;
 
     if (window.matchMedia('(min-width: 1024px)').matches) {
-        labelFontSize = '15px';
+        labelFontSize = '14px';
         plotColumnWidth = 62;
         showGridLine = true;
     }
 
     dataCells.forEach((cell) => {
         cell.addEventListener('mouseover', () => {
-            const offsetTop = cell.offsetParent.offsetTop + cell.offsetTop + cellHeight;
-            hr.style.top = `${offsetTop}px`;
             const index = [...cell.parentNode.children].indexOf(cell);
-            let leftPadding = -5;
-            if (index === 1) {
-                leftPadding = parseInt(window.getComputedStyle(cell).paddingLeft) - 5;
-            }
-            console.log(financesTable.scrollLeft);
+            let leftPadding = 0;
+            // if (index === 1) {
+            //     leftPadding = -5;
+            // }
             const offsetLeft = cell.offsetParent.offsetLeft + cell.offsetLeft + leftPadding - financesTable.scrollLeft;
             vr.style.left = `${offsetLeft}px`;
-            vr.style.marginLeft = '8px';
 
-            hr.classList.add('active');
             vr.classList.add('active');
         });
         cell.addEventListener('mouseout', () => {
-            hr.classList.remove('active');
             vr.classList.remove('active');
         });
     });
 
-    const scrollNext = document.querySelector('.object-finances__scroll-next');
-    const scrollPrev = document.querySelector('.object-finances__scroll-prev');
-    const jumpNext = document.querySelector('.object-finances__jump-next');
-    const jumpPrev = document.querySelector('.object-finances__jump-prev');
-    const maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
-
-    if (tableWidth < tableWrapperWidth) {
-        $(scrollNext).hide();
-        $(scrollPrev).hide();
-        $(jumpNext).hide();
-        $(jumpPrev).hide();
-    }
-
-    const debouncedNextClick = debounce(nextClick, 200, true);
-    const debouncedPrevClick = debounce(prevClick, 200, true);
-    const debouncedJumpNext = debounce(jumpingNext, 200, true);
-    const debouncedJumpPrev = debounce(jumpingPrev, 200, true);
-
-    jumpNext.addEventListener('click', debouncedJumpNext);
-    jumpPrev.addEventListener('click', debouncedJumpPrev);
-
-    const touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-    console.log('touchDevice: ', touchDevice);
-
-    if (touchDevice) {
-        scrollNext.addEventListener('touchstart', debouncedNextClick);
-        scrollNext.addEventListener('touchend', () => clearInterval(mouseTimer));
-        scrollPrev.addEventListener('touchstart', debouncedPrevClick);
-        scrollPrev.addEventListener('touchend', () => clearInterval(mouseTimer));
-    } else {
-        scrollNext.addEventListener('mousedown', debouncedNextClick);
-        scrollNext.addEventListener('mouseup', () => clearInterval(mouseTimer));
-        scrollPrev.addEventListener('mousedown', debouncedPrevClick);
-        scrollPrev.addEventListener('mouseup', () => clearInterval(mouseTimer));
-    }
-
-    let mouseTimer;
-
-    function nextClick(e) {
-        update();
-
-        mouseTimer = setInterval(update, 500);
-
-        function update() {
-            const value = financesTable.scrollLeft + regularCellWidth;
-
-            scrollPrev.classList.add('active');
-            jumpPrev.classList.add('active');
-            if (value > maxScrollLeft) {
-                clearInterval(mouseTimer);
-                // return;
-            }
-
-            if (value >= maxScrollLeft - regularCellWidth) {
-                scrollNext.classList.remove('active');
-                jumpNext.classList.remove('active');
-            }
-            smoothLeftScroll(value);
-        }
-    }
-
-    function prevClick() {
-        update();
-
-        mouseTimer = setInterval(update, 500);
-
-        function update() {
-            const value = financesTable.scrollLeft - regularCellWidth;
-
-            if (value <= -regularCellWidth) {
-                clearInterval(mouseTimer);
-                return;
-            }
-
-            if (value <= 0) {
-                scrollPrev.classList.remove('active');
-                jumpPrev.classList.remove('active');
-            }
-
-            if (value <= maxScrollLeft) {
-                scrollNext.classList.add('active');
-                jumpNext.classList.add('active');
-                smoothLeftScroll(value);
-            }
-        }
-    }
-    function jumpingNext(e) {
-        const value = financesTable.scrollLeft + regularCellWidth * 6;
-
-        jumpPrev.classList.add('active');
-        scrollPrev.classList.add('active');
-
-        if (value >= maxScrollLeft - regularCellWidth * 6) {
-            smoothLeftScroll(maxScrollLeft);
-            jumpNext.classList.remove('active');
-            scrollNext.classList.remove('active');
-        } else {
-            smoothLeftScroll(value);
-        }
-    }
-
-    function jumpingPrev() {
-        const value = financesTable.scrollLeft - regularCellWidth * 6;
-
-        if (value <= -regularCellWidth) {
-            smoothLeftScroll(0);
-        }
-
-        if (value <= 0) {
-            jumpPrev.classList.remove('active');
-            scrollPrev.classList.remove('active');
-        }
-
-        if (value <= maxScrollLeft) {
-            jumpNext.classList.add('active');
-            scrollNext.classList.add('active');
-            smoothLeftScroll(value);
-        }
-    }
+    initScrollContols();
 
     if (lineChart) {
         const data = [
@@ -264,8 +139,9 @@
             '',
         ];
         const columnWidth = regularCellWidth;
-        console.log(columnWidth);
+        console.log('columnWidth', columnWidth);
         const chartMinWidth = columnWidth * data.length;
+        console.log('chartMinWidth: ', chartMinWidth);
 
         Highcharts.chart('lineChart', {
             chart: {
@@ -275,7 +151,7 @@
                     // opacity: 0,
                 },
                 marginTop: 60,
-                marginLeft: 70,
+                marginLeft: 70 + columnWidth / 2,
             },
             title: false,
             credits: {
@@ -292,8 +168,9 @@
                 lineWidth: 0,
                 tickWidth: 0,
                 labels: {
-                    align: 'left',
-                    // x: 2,
+                    align: 'center',
+                    reserveSpace: true,
+                    x: -2,
                     style: {
                         color: '#9e9e9e',
                         fontSize: labelFontSize,
@@ -301,6 +178,7 @@
                         fontFamily: 'Montserrat, Helvetica, Arial, sans-serif;',
                         paddingLeft: '5px',
                         whiteSpace: 'nowrap',
+                        textAlign: 'right',
                     },
                 },
             },
@@ -352,7 +230,7 @@
                         events: {
                             mouseOver: ({ target }) => {
                                 if (!showGridLine) return;
-                                const magicNumber = 69;
+                                const magicNumber = 67;
                                 vr.style.left = `${
                                     target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft
                                 }px`;
@@ -431,10 +309,10 @@
             chart: {
                 scrollablePlotArea: {
                     minWidth: chartMinWidth,
-                    // opacity: 0,
+                    // opacity: 1,
                 },
                 marginTop: 60,
-                marginLeft: 70,
+                marginLeft: 70 + columnWidth / 2,
             },
             title: false,
             credits: {
@@ -449,7 +327,8 @@
                 lineWidth: 0,
                 tickWidth: 0,
                 labels: {
-                    align: 'left',
+                    align: 'center',
+                    x: -2,
                     style: {
                         color: '#9e9e9e',
                         fontSize: labelFontSize,
@@ -521,6 +400,7 @@
                     type: 'column',
                     color: 'transparent',
                     dataLabels: {
+                        allowOverlap: true,
                         enabled: true,
                         align: 'left',
                         y: -5,
@@ -571,7 +451,7 @@
                         events: {
                             mouseOver: ({ target }) => {
                                 if (!showGridLine) return;
-                                const magicNumber = 69;
+                                const magicNumber = 67;
 
                                 vr.style.left = `${
                                     target.clientX + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft
@@ -614,5 +494,143 @@
             left: value,
             behavior: 'smooth',
         });
+    }
+
+    function initScrollContols() {
+        let mouseTimer;
+
+        const controls = document.querySelectorAll('.object-finances__controls');
+
+        const scrollNext = document.querySelector('.object-finances__scroll-next');
+        const scrollPrev = document.querySelector('.object-finances__scroll-prev');
+        const jumpNext = document.querySelector('.object-finances__jump-next');
+        const jumpPrev = document.querySelector('.object-finances__jump-prev');
+        const maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
+
+        if (tableWidth < tableWrapperWidth) {
+            controls.forEach((node) => $(node).hide());
+        }
+
+        const debouncedNextClick = debounce(nextClick, 200, true);
+        const debouncedPrevClick = debounce(prevClick, 200, true);
+        const debouncedJumpNext = debounce(jumpingNext, 200, true);
+        const debouncedJumpPrev = debounce(jumpingPrev, 200, true);
+
+        const jumpNextBtns = document.querySelectorAll('.object-finances__controls .jump.next');
+        const jumpPrevBtns = document.querySelectorAll('.object-finances__controls .jump.prev');
+
+        jumpNextBtns.forEach((btn) => {
+            btn.addEventListener('click', debouncedJumpNext);
+        });
+        jumpPrevBtns.forEach((btn) => {
+            btn.addEventListener('click', debouncedJumpPrev);
+        });
+
+        const scrollNextBtns = document.querySelectorAll('.object-finances__controls .scroll.next');
+        const scrollPrevBtns = document.querySelectorAll('.object-finances__controls .scroll.prev');
+
+        const touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+
+        scrollNextBtns.forEach((btn) => {
+            if (touchDevice) {
+                btn.addEventListener('touchstart', debouncedNextClick);
+                btn.addEventListener('touchend', () => clearInterval(mouseTimer));
+            } else {
+                btn.addEventListener('mousedown', debouncedNextClick);
+                btn.addEventListener('mouseup', () => clearInterval(mouseTimer));
+            }
+        });
+        scrollPrevBtns.forEach((btn) => {
+            if (touchDevice) {
+                btn.addEventListener('touchstart', debouncedPrevClick);
+                btn.addEventListener('touchend', () => clearInterval(mouseTimer));
+            } else {
+                btn.addEventListener('mousedown', debouncedPrevClick);
+                btn.addEventListener('mouseup', () => clearInterval(mouseTimer));
+            }
+        });
+
+        function nextClick(e) {
+            update();
+
+            mouseTimer = setInterval(update, 500);
+
+            function update() {
+                const value = financesTable.scrollLeft + regularCellWidth;
+
+                // show prev
+                if (value > maxScrollLeft) {
+                    clearInterval(mouseTimer);
+                    // return;
+                }
+
+                if (value >= maxScrollLeft - regularCellWidth) {
+                    toggleGradient('add');
+                    //hide next
+                }
+                smoothLeftScroll(value);
+            }
+        }
+
+        function prevClick() {
+            update();
+
+            toggleGradient('remove');
+
+            mouseTimer = setInterval(update, 500);
+
+            function update() {
+                const value = financesTable.scrollLeft - regularCellWidth;
+
+                if (value <= -regularCellWidth) {
+                    clearInterval(mouseTimer);
+                    return;
+                }
+
+                if (value <= 0) {
+                    // hide prev
+                }
+
+                if (value <= maxScrollLeft) {
+                    // show next
+                    smoothLeftScroll(value);
+                }
+            }
+        }
+        function jumpingNext(e) {
+            const value = financesTable.scrollLeft + regularCellWidth * 6;
+
+            //show prev
+
+            if (value >= maxScrollLeft - regularCellWidth * 6) {
+                smoothLeftScroll(maxScrollLeft);
+                toggleGradient('add');
+                // hide next
+            } else {
+                smoothLeftScroll(value);
+            }
+        }
+
+        function jumpingPrev(e) {
+            const value = financesTable.scrollLeft - regularCellWidth * 6;
+            toggleGradient('remove');
+
+            if (value <= -regularCellWidth) {
+                smoothLeftScroll(0);
+            }
+
+            if (value <= 0) {
+                // hide prev
+            }
+
+            if (value <= maxScrollLeft) {
+                // show next
+                smoothLeftScroll(value);
+            }
+        }
+
+        function toggleGradient(action) {
+            financesTable.parentNode.classList[action]('finished');
+        }
     }
 })();

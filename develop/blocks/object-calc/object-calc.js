@@ -101,7 +101,6 @@
      */
 
     investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
-        console.log('update');
         let value = +values[handle];
         invsestmentValue.textContent = format.to(value);
 

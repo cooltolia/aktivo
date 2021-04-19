@@ -84,6 +84,7 @@
 
             .authorization {
                 position: absolute;
+                left: 20px;
                 right: 20px;
             }
         }
@@ -116,7 +117,7 @@
 
         &__phone {
             margin-left: 0;
-            margin-right: 12px;
+            margin-right: 32px;
         }
 
         &__navigation {
@@ -151,11 +152,11 @@
             padding: 0 15px;
         }
         &__phone {
-            margin-right: 60px;
+            margin-right: 90px;
         }
 
         &__navigation {
-            margin-right: 60px;
+            margin-right: 50px;
         }
     }
 }

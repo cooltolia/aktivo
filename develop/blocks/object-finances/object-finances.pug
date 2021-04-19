@@ -2,83 +2,93 @@ mixin object-finances()
     +b.SECTION.object-finances
         +e.title
             +title('h2', 'medium')
-                | Финансы
-        +e.table
-            table
-                tr
-                    td
-                        .heading Сводные данные
-                    td Сентябрь 2022
-                    td Октябрь 2017
-                    td Ноябрь 2017
-                    td Декабрь 2017
-                    td Январь 2018
-                    td Февраль 2018
-                    td Март 2018
-                    td Апрель 2018
-                    td Май 2018
-                    td Август 2017
-                    td Сентябрь 2017
-                    td Октябрь 2017
-                    td Ноябрь 2017
-                    td Декабрь 2017
-                    td Январь 2018
-                    td Февраль 2018
-                    td Март 2018
-                    td Апрель 2018
-                    td Май 2018
-                    //- td &nbsp;
-                tr
-                    th Доход
-                    each val in Array.from(new Array(19))
-                        td 10 390 тыс. ₽
-                    //- td
-                        //- | &nbsp;
-                tr
-                    th Расход
-                    each val in Array.from(new Array(19))
-                        td 0.00 ₽
-                    //- td
-                        //- | &nbsp;
-                tr
-                    th ЧОД
-                    each val in Array.from(new Array(19))
-                        td 139 тыс. ₽
-                    //- td
-                        //- | &nbsp;
-                tr
-                    th Комиссия за управление
-                    each val in Array.from(new Array(19))
-                        td 99.99 ₽
-                    //- td
-                        //- | &nbsp;
-                tr
-                    th Доход на распределение
-                    each val in Array.from(new Array(19))
-                        td 12 290.99 ₽
-                    //- td
-                        //- | &nbsp;
-                tr
-                    th Доход на пай до НДФЛ
-                    each val in Array.from(new Array(19))
-                        td 1 700.01 ₽
-                    //- td
-                        //- | &nbsp;
+                | Финансовые показатели
+        +e.table-wrapper
+            +e.table
+                table
+                    tr
+                        td
+                            .heading Сводные данные
+                        td Сентябрь 2022
+                        td Октябрь 2017
+                        td Ноябрь 2017
+                        td Декабрь 2017
+                        td Январь 2018
+                        td Февраль 2018
+                        td Март 2018
+                        td Апрель 2018
+                        td Май 2018
+                        td Август 2017
+                        td Сентябрь 2017
+                        td Октябрь 2017
+                        td Ноябрь 2017
+                        td Декабрь 2017
+                        td Январь 2018
+                        td Февраль 2018
+                        td Март 2018
+                        td Апрель 2018
+                        td Май 2018
+                        //- td &nbsp;
+                    tr
+                        th Доход
+                        each val in Array.from(new Array(19))
+                            td 10 390 тыс. ₽
+                        //- td
+                            //- | &nbsp;
+                    tr
+                        th Расход
+                        each val in Array.from(new Array(19))
+                            td 0.00 ₽
+                        //- td
+                            //- | &nbsp;
+                    tr
+                        th ЧОД
+                        each val in Array.from(new Array(19))
+                            td 139 тыс. ₽
+                        //- td
+                            //- | &nbsp;
+                    tr
+                        th Комиссия за управление
+                        each val in Array.from(new Array(19))
+                            td 99.99 ₽
+                        //- td
+                            //- | &nbsp;
+                    tr
+                        th Доход на распределение
+                        each val in Array.from(new Array(19))
+                            td 12 290.99 ₽
+                        //- td
+                            //- | &nbsp;
+                    tr
+                        th Доход на пай&nbsp;до НДФЛ
+                        each val in Array.from(new Array(19))
+                            td 1 700.01 ₽
+                        //- td
+                            //- | &nbsp;
+        +e.controls-wrapper
+            +e.controls
+                button.jump.prev
+                button.scroll.prev Назад
+                button.scroll.next Вперед
+                button.jump.next
         +e.line-chart
             +e.subtitle
                 | Финансовые выплаты
             #lineChart
+        +e.controls-wrapper
+            +e.controls
+                button.jump.prev
+                button.scroll.prev Назад
+                button.scroll.next Вперед
+                button.jump.next
         +e.column-chart
             +e.subtitle
                 | Ликвидность
             #columnChart
-        +e.scroll.--prev
-            +e.BUTTON.scroll-prev
-        +e.scroll.--next
-            +e.BUTTON.scroll-next.active
-        +e.jump.--prev
-            +e.BUTTON.jump-prev
-        +e.jump.--next
-            +e.BUTTON.jump-next.active
-        +e.hr
+        +e.controls-wrapper
+            +e.controls
+                button.jump.prev
+                button.scroll.prev Назад
+                button.scroll.next Вперед
+                button.jump.next
         +e.vr

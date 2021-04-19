@@ -1,5 +1,10 @@
 .authorization {
-    &__login {
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__action {
         display: block;
 
         padding-right: 10px;
@@ -26,7 +31,7 @@
             right: 0;
             top: 50%;
 
-            transform: translateY(-35%) rotate(-45deg);
+            transform: translateY(-45%) rotate(-45deg);
 
             border-width: 0 1px 1px 0;
             border-style: solid;
@@ -103,9 +108,8 @@
 
     &__exit {
         position: relative;
-        width: 22px;
-        height: 22px;
-        margin-left: 8px;
+        width: 24px;
+        height: 24px;
 
         &:hover {
             svg {
@@ -126,6 +130,14 @@
     .authorization {
         &__inner-link {
             display: none;
+        }
+
+        &__action {
+            display: none;
+
+            &--main {
+                display: block;
+            }
         }
     }
 }
