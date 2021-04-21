@@ -2453,7 +2453,7 @@ jQuery(document).ready(function ($) {
     })();
 
     (function () {
-      tippy('.page-navigation__link[data-tippy-content]', {
+      tippy('.page-navigation [data-tippy-content]', {
         placement: 'bottom',
         arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
       });
@@ -2479,11 +2479,15 @@ jQuery(document).ready(function ($) {
         toggleControlsBtns();
       }
 
+      navigationScrollWrapper.addEventListener('scroll', function (e) {
+        toggleControlsBtns();
+      });
       controls.forEach(function (btn) {
         btn.addEventListener('click', function (e) {
           var target;
 
           if (btn.classList.contains('prev')) {
+            console.log(getCurrentLink());
             target = getCurrentLink().previousElementSibling;
             var val = target.getBoundingClientRect().width;
             scroll(-val, target);
@@ -2503,6 +2507,7 @@ jQuery(document).ready(function ($) {
       function setActiveNavLink(link) {
         resetActiveNavs();
         link.classList.add('active');
+        link.classList.add('current');
         debugger;
 
         if (!elIsVisible(link)) {
@@ -2532,7 +2537,8 @@ jQuery(document).ready(function ($) {
 
       function resetActiveNavs() {
         navLinks.forEach(function (el) {
-          return el.classList.remove('active');
+          el.classList.remove('active');
+          el.classList.remove('current');
         });
       } // function toggleControlsBtns(currentActiveNavLink) {
       //     controls.forEach((el) => el.classList.remove('disabled'));
@@ -2546,10 +2552,11 @@ jQuery(document).ready(function ($) {
 
       function toggleControlsBtns() {
         var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-        controls.forEach(function (el) {
-          return el.classList.remove('disabled');
-        });
         setTimeout(function () {
+          controls.forEach(function (el) {
+            return el.classList.remove('disabled');
+          });
+
           if (navigationScrollWrapper.scrollLeft > navListScrollWidth - navigationScrollWrapperWidth) {
             controls.find(function (el) {
               return el.classList.contains('next');
