@@ -28,7 +28,7 @@
     &__data-top {
         position: absolute;
         top: 20px;
-        height: 410px;
+        height: 270px;
         left: 20px;
         right: 20px;
         display: flex;
@@ -48,8 +48,7 @@
         span {
             display: inline-block;
             margin-left: 6px;
-            width: 24px;
-            height: 24px;
+            padding: 0 3px;
 
             text-align: center;
 
@@ -287,8 +286,7 @@
 
         &__rating {
             span {
-                width: 46px;
-                height: 42px;
+                padding: 0 6px;
 
                 border-radius: 3px;
             }

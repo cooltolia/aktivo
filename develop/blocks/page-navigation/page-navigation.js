@@ -25,21 +25,20 @@
         toggleControlsBtns();
     }
 
-    navigationScrollWrapper.addEventListener('scroll', e => {
+    navigationScrollWrapper.addEventListener('scroll', (e) => {
         toggleControlsBtns();
-    })
+    });
 
     controls.forEach((btn) => {
         btn.addEventListener('click', (e) => {
             let target;
             if (btn.classList.contains('prev')) {
-                console.log(getCurrentLink());
-                target = getCurrentLink().previousElementSibling;
-                const val = target.getBoundingClientRect().width
+                target = previousLinkTag();
+                const val = target.getBoundingClientRect().width;
                 scroll(-val, target);
             } else {
-                target = getCurrentLink().nextElementSibling;
-                const val = target.getBoundingClientRect().width
+                target = nextLinkTag();
+                const val = target.getBoundingClientRect().width;
                 scroll(val, target);
             }
         });
@@ -56,8 +55,6 @@
         link.classList.add('active');
         link.classList.add('current');
 
-        debugger;
-
         if (!elIsVisible(link)) {
             navigationScrollWrapper.scrollLeft = link.offsetLeft;
         }
@@ -68,8 +65,8 @@
     function scroll(val, target) {
         navigationScrollWrapper.scrollLeft += val;
 
-        navLinks.forEach(link => link.classList.remove('current'))
-        target.classList.add('current')
+        navLinks.forEach((link) => link.classList.remove('current'));
+        target.classList.add('current');
 
         // setTimeout(toggleControlsBtns, 300);
         toggleControlsBtns(val);
@@ -99,8 +96,6 @@
     //     }
     // }
     function toggleControlsBtns(val = 0) {
-
-
         setTimeout(() => {
             controls.forEach((el) => el.classList.remove('disabled'));
 
@@ -117,5 +112,25 @@
             navigation.querySelector('.page-navigation__link.current') ||
             navigation.querySelector('.page-navigation__link.active')
         );
+    }
+
+    function nextLinkTag() {
+        const currentLink = getCurrentLink();
+        let sibling = currentLink.nextElementSibling;
+
+        while (sibling) {
+            if (sibling.matches('.page-navigation__link')) return sibling;
+            sibling = sibling.nextElementSibling;
+        }
+    }
+
+    function previousLinkTag() {
+        const currentLink = getCurrentLink();
+        let sibling = currentLink.previousElementSibling;
+
+        while (sibling) {
+            if (sibling.matches('.page-navigation__link')) return sibling;
+            sibling = sibling.nextElementSibling;
+        }
     }
 })();

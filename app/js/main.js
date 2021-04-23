@@ -2176,10 +2176,6 @@ jQuery(document).ready(function ($) {
       function initScrollContols() {
         var mouseTimer;
         var controls = document.querySelectorAll('.object-finances__controls');
-        var scrollNext = document.querySelector('.object-finances__scroll-next');
-        var scrollPrev = document.querySelector('.object-finances__scroll-prev');
-        var jumpNext = document.querySelector('.object-finances__jump-next');
-        var jumpPrev = document.querySelector('.object-finances__jump-prev');
         var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
 
         if (tableWidth < tableWrapperWidth) {
@@ -2194,14 +2190,14 @@ jQuery(document).ready(function ($) {
         var debouncedJumpPrev = debounce(jumpingPrev, 200, true);
         var jumpNextBtns = document.querySelectorAll('.object-finances__controls .jump.next');
         var jumpPrevBtns = document.querySelectorAll('.object-finances__controls .jump.prev');
+        var scrollNextBtns = document.querySelectorAll('.object-finances__controls .scroll.next');
+        var scrollPrevBtns = document.querySelectorAll('.object-finances__controls .scroll.prev');
         jumpNextBtns.forEach(function (btn) {
           btn.addEventListener('click', debouncedJumpNext);
         });
         jumpPrevBtns.forEach(function (btn) {
           btn.addEventListener('click', debouncedJumpPrev);
         });
-        var scrollNextBtns = document.querySelectorAll('.object-finances__controls .scroll.next');
-        var scrollPrevBtns = document.querySelectorAll('.object-finances__controls .scroll.prev');
         var touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
         scrollNextBtns.forEach(function (btn) {
           if (touchDevice) {
@@ -2237,12 +2233,26 @@ jQuery(document).ready(function ($) {
           function update() {
             var value = financesTable.scrollLeft + regularCellWidth; // show prev
 
+            scrollPrevBtns.forEach(function (btn) {
+              return btn.classList.remove('hidden');
+            });
+            jumpPrevBtns.forEach(function (btn) {
+              return btn.classList.remove('hidden');
+            });
+
             if (value > maxScrollLeft) {
               clearInterval(mouseTimer); // return;
             }
 
             if (value >= maxScrollLeft - regularCellWidth) {
               toggleGradient('add'); //hide next
+
+              scrollNextBtns.forEach(function (btn) {
+                return btn.classList.add('hidden');
+              });
+              jumpNextBtns.forEach(function (btn) {
+                return btn.classList.add('hidden');
+              });
             }
 
             smoothLeftScroll(value);
@@ -2262,11 +2272,24 @@ jQuery(document).ready(function ($) {
               return;
             }
 
-            if (value <= 0) {// hide prev
+            if (value <= 0) {
+              // hide prev
+              scrollPrevBtns.forEach(function (btn) {
+                return btn.classList.add('hidden');
+              });
+              jumpPrevBtns.forEach(function (btn) {
+                return btn.classList.add('hidden');
+              });
             }
 
             if (value <= maxScrollLeft) {
               // show next
+              scrollNextBtns.forEach(function (btn) {
+                return btn.classList.remove('hidden');
+              });
+              jumpNextBtns.forEach(function (btn) {
+                return btn.classList.remove('hidden');
+              });
               smoothLeftScroll(value);
             }
           }
@@ -2275,9 +2298,22 @@ jQuery(document).ready(function ($) {
         function jumpingNext(e) {
           var value = financesTable.scrollLeft + regularCellWidth * 6; //show prev
 
+          scrollPrevBtns.forEach(function (btn) {
+            return btn.classList.remove('hidden');
+          });
+          jumpPrevBtns.forEach(function (btn) {
+            return btn.classList.remove('hidden');
+          });
+
           if (value >= maxScrollLeft - regularCellWidth * 6) {
             smoothLeftScroll(maxScrollLeft);
-            toggleGradient('add'); // hide next
+            toggleGradient('add');
+            scrollNextBtns.forEach(function (btn) {
+              return btn.classList.add('hidden');
+            });
+            jumpNextBtns.forEach(function (btn) {
+              return btn.classList.add('hidden');
+            }); // hide next
           } else {
             smoothLeftScroll(value);
           }
@@ -2291,11 +2327,24 @@ jQuery(document).ready(function ($) {
             smoothLeftScroll(0);
           }
 
-          if (value <= 0) {// hide prev
+          if (value <= 0) {
+            // hide prev
+            scrollPrevBtns.forEach(function (btn) {
+              return btn.classList.add('hidden');
+            });
+            jumpPrevBtns.forEach(function (btn) {
+              return btn.classList.add('hidden');
+            });
           }
 
           if (value <= maxScrollLeft) {
             // show next
+            scrollNextBtns.forEach(function (btn) {
+              return btn.classList.remove('hidden');
+            });
+            jumpNextBtns.forEach(function (btn) {
+              return btn.classList.remove('hidden');
+            });
             smoothLeftScroll(value);
           }
         }
@@ -2487,12 +2536,11 @@ jQuery(document).ready(function ($) {
           var target;
 
           if (btn.classList.contains('prev')) {
-            console.log(getCurrentLink());
-            target = getCurrentLink().previousElementSibling;
+            target = previousLinkTag();
             var val = target.getBoundingClientRect().width;
             scroll(-val, target);
           } else {
-            target = getCurrentLink().nextElementSibling;
+            target = nextLinkTag();
             var _val = target.getBoundingClientRect().width;
             scroll(_val, target);
           }
@@ -2508,7 +2556,6 @@ jQuery(document).ready(function ($) {
         resetActiveNavs();
         link.classList.add('active');
         link.classList.add('current');
-        debugger;
 
         if (!elIsVisible(link)) {
           navigationScrollWrapper.scrollLeft = link.offsetLeft;
@@ -2571,6 +2618,26 @@ jQuery(document).ready(function ($) {
 
       function getCurrentLink() {
         return navigation.querySelector('.page-navigation__link.current') || navigation.querySelector('.page-navigation__link.active');
+      }
+
+      function nextLinkTag() {
+        var currentLink = getCurrentLink();
+        var sibling = currentLink.nextElementSibling;
+
+        while (sibling) {
+          if (sibling.matches('.page-navigation__link')) return sibling;
+          sibling = sibling.nextElementSibling;
+        }
+      }
+
+      function previousLinkTag() {
+        var currentLink = getCurrentLink();
+        var sibling = currentLink.previousElementSibling;
+
+        while (sibling) {
+          if (sibling.matches('.page-navigation__link')) return sibling;
+          sibling = sibling.nextElementSibling;
+        }
       }
     })();
 

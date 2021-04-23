@@ -119,6 +119,13 @@
 
         button {
             @include btn-reset;
+
+            transition: opacity 300ms ease, color 300ms ease;
+
+            &.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
         }
 
         .scroll {
@@ -129,8 +136,6 @@
             font-weight: 500;
             color: #696969;
             line-height: 1;
-
-            transition: color 300ms ease;
 
             &::before {
                 content: '';

@@ -501,10 +501,6 @@
 
         const controls = document.querySelectorAll('.object-finances__controls');
 
-        const scrollNext = document.querySelector('.object-finances__scroll-next');
-        const scrollPrev = document.querySelector('.object-finances__scroll-prev');
-        const jumpNext = document.querySelector('.object-finances__jump-next');
-        const jumpPrev = document.querySelector('.object-finances__jump-prev');
         const maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
 
         if (tableWidth < tableWrapperWidth) {
@@ -519,15 +515,15 @@
         const jumpNextBtns = document.querySelectorAll('.object-finances__controls .jump.next');
         const jumpPrevBtns = document.querySelectorAll('.object-finances__controls .jump.prev');
 
+        const scrollNextBtns = document.querySelectorAll('.object-finances__controls .scroll.next');
+        const scrollPrevBtns = document.querySelectorAll('.object-finances__controls .scroll.prev');
+
         jumpNextBtns.forEach((btn) => {
             btn.addEventListener('click', debouncedJumpNext);
         });
         jumpPrevBtns.forEach((btn) => {
             btn.addEventListener('click', debouncedJumpPrev);
         });
-
-        const scrollNextBtns = document.querySelectorAll('.object-finances__controls .scroll.next');
-        const scrollPrevBtns = document.querySelectorAll('.object-finances__controls .scroll.prev');
 
         const touchDevice = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
@@ -559,6 +555,8 @@
                 const value = financesTable.scrollLeft + regularCellWidth;
 
                 // show prev
+                scrollPrevBtns.forEach((btn) => btn.classList.remove('hidden'));
+                jumpPrevBtns.forEach((btn) => btn.classList.remove('hidden'));
                 if (value > maxScrollLeft) {
                     clearInterval(mouseTimer);
                     // return;
@@ -567,6 +565,8 @@
                 if (value >= maxScrollLeft - regularCellWidth) {
                     toggleGradient('add');
                     //hide next
+                    scrollNextBtns.forEach((btn) => btn.classList.add('hidden'));
+                    jumpNextBtns.forEach((btn) => btn.classList.add('hidden'));
                 }
                 smoothLeftScroll(value);
             }
@@ -589,10 +589,14 @@
 
                 if (value <= 0) {
                     // hide prev
+                    scrollPrevBtns.forEach((btn) => btn.classList.add('hidden'));
+                    jumpPrevBtns.forEach((btn) => btn.classList.add('hidden'));
                 }
 
                 if (value <= maxScrollLeft) {
                     // show next
+                    scrollNextBtns.forEach((btn) => btn.classList.remove('hidden'));
+                    jumpNextBtns.forEach((btn) => btn.classList.remove('hidden'));
                     smoothLeftScroll(value);
                 }
             }
@@ -601,10 +605,14 @@
             const value = financesTable.scrollLeft + regularCellWidth * 6;
 
             //show prev
+            scrollPrevBtns.forEach((btn) => btn.classList.remove('hidden'));
+            jumpPrevBtns.forEach((btn) => btn.classList.remove('hidden'));
 
             if (value >= maxScrollLeft - regularCellWidth * 6) {
                 smoothLeftScroll(maxScrollLeft);
                 toggleGradient('add');
+                scrollNextBtns.forEach((btn) => btn.classList.add('hidden'));
+                jumpNextBtns.forEach((btn) => btn.classList.add('hidden'));
                 // hide next
             } else {
                 smoothLeftScroll(value);
@@ -621,10 +629,14 @@
 
             if (value <= 0) {
                 // hide prev
+                scrollPrevBtns.forEach((btn) => btn.classList.add('hidden'));
+                jumpPrevBtns.forEach((btn) => btn.classList.add('hidden'));
             }
 
             if (value <= maxScrollLeft) {
                 // show next
+                scrollNextBtns.forEach((btn) => btn.classList.remove('hidden'));
+                jumpNextBtns.forEach((btn) => btn.classList.remove('hidden'));
                 smoothLeftScroll(value);
             }
         }

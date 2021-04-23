@@ -8655,17 +8655,20 @@ th {
       margin: 0;
       background: none;
       border: none;
-      outline: none; }
+      outline: none;
+      -webkit-transition: opacity 300ms ease, color 300ms ease;
+      -moz-transition: opacity 300ms ease, color 300ms ease;
+      transition: opacity 300ms ease, color 300ms ease; }
+      .object-finances__controls button.hidden {
+        opacity: 0;
+        pointer-events: none; }
     .object-finances__controls .scroll {
       position: relative;
       padding-left: 10px;
       font-size: 14px;
       font-weight: 500;
       color: #696969;
-      line-height: 1;
-      -webkit-transition: color 300ms ease;
-      -moz-transition: color 300ms ease;
-      transition: color 300ms ease; }
+      line-height: 1; }
       .object-finances__controls .scroll::before {
         content: '';
         position: absolute;
@@ -9112,7 +9115,7 @@ th {
   .object-slider__data-top {
     position: absolute;
     top: 20px;
-    height: 410px;
+    height: 270px;
     left: 20px;
     right: 20px;
     display: -webkit-box;
@@ -9140,8 +9143,7 @@ th {
   .object-slider__rating span {
     display: inline-block;
     margin-left: 6px;
-    width: 24px;
-    height: 24px;
+    padding: 0 3px;
     text-align: center;
     border-radius: 2px; }
   .object-slider__data-bottom {
@@ -9331,8 +9333,7 @@ th {
     .object-slider__title, .object-slider__rating {
       font-size: 34px; }
     .object-slider__rating span {
-      width: 46px;
-      height: 42px;
+      padding: 0 6px;
       border-radius: 3px; }
     .object-slider__data-label {
       font-size: 14px; }
