@@ -2528,6 +2528,7 @@ jQuery(document).ready(function ($) {
         toggleControlsBtns();
       }
 
+      navLinksObserver(navLinks);
       navigationScrollWrapper.addEventListener('scroll', function (e) {
         toggleControlsBtns();
       });
@@ -2638,6 +2639,52 @@ jQuery(document).ready(function ($) {
           if (sibling.matches('.page-navigation__link')) return sibling;
           sibling = sibling.nextElementSibling;
         }
+      }
+
+      function navLinksObserver(links) {
+        var config = {
+          attributes: true,
+          childList: false,
+          subtree: false
+        };
+
+        var callback = function callback(mutationsList) {
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = mutationsList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var mutation = _step.value;
+
+              if (mutation.type === 'attributes') {
+                var target = mutation.target;
+
+                if (target.classList.contains('active') && !target.classList.contains('current')) {
+                  setActiveNavLink(target);
+                }
+              }
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+        };
+
+        links.forEach(function (link) {
+          var observer = new MutationObserver(callback);
+          observer.observe(link, config);
+        });
       }
     })();
 

@@ -25,6 +25,8 @@
         toggleControlsBtns();
     }
 
+    navLinksObserver(navLinks);
+
     navigationScrollWrapper.addEventListener('scroll', (e) => {
         toggleControlsBtns();
     });
@@ -132,5 +134,29 @@
             if (sibling.matches('.page-navigation__link')) return sibling;
             sibling = sibling.nextElementSibling;
         }
+    }
+
+    function navLinksObserver(links) {
+        const config = {
+            attributes: true,
+            childList: false,
+            subtree: false,
+        };
+
+        const callback = function (mutationsList) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'attributes') {
+                    const target = mutation.target;
+                    if (target.classList.contains('active') && !target.classList.contains('current')) {
+                        setActiveNavLink(target)
+                    }
+                }
+            }
+        };
+
+        links.forEach((link) => {
+            const observer = new MutationObserver(callback);
+            observer.observe(link, config);
+        });
     }
 })();
