@@ -2511,150 +2511,151 @@ jQuery(document).ready(function ($) {
         placement: 'bottom',
         arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
       });
-      var navigation = document.querySelector('.page-navigation');
-      var navigationScrollWrapper = navigation.querySelector('.page-navigation__wrapper');
-      var navList = navigation.querySelector('.page-navigation__list');
-
-      var controls = _toConsumableArray(navigation.querySelectorAll('.page-navigation__controls .control-btn'));
-
-      var navLinks = _toConsumableArray(navList.querySelectorAll('.page-navigation__link'));
-
-      var navListWidth = navList.getBoundingClientRect().width;
-      var navListScrollWidth = navList.scrollWidth;
-      var navigationScrollWrapperWidth = navigationScrollWrapper.getBoundingClientRect().width;
-
-      if (navListScrollWidth === navigationScrollWrapperWidth) {
-        controls.forEach(function (control) {
-          return control.style.display = 'none';
-        });
-      } else {
-        var currentNavLink = getCurrentLink();
-        navigationScrollWrapper.scrollLeft = currentNavLink.offsetLeft;
-        toggleControlsBtns();
-      }
-
-      navLinksObserver(navLinks);
-      navigationScrollWrapper.addEventListener('scroll', function (e) {
-        toggleControlsBtns();
+      var fontObserver = new FontFaceObserver('Montserrat', {
+        weight: 600
       });
-      controls.forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-          var target;
-
-          if (btn.classList.contains('prev')) {
-            target = previousLinkTag();
-            var val = target.getBoundingClientRect().width;
-            scroll(-val, target);
-          } else {
-            target = nextLinkTag();
-            var _val = target.getBoundingClientRect().width;
-            scroll(_val, target);
-          }
-        });
-      });
-      navLinks.forEach(function (link) {
-        link.addEventListener('click', function (e) {
-          setActiveNavLink(link);
-        });
+      fontObserver.load().then(function () {
+        init();
       });
 
-      function setActiveNavLink(link) {
-        resetActiveNavs();
-        link.classList.add('active');
-        link.classList.add('current');
+      function init() {
+        var navigation = document.querySelector('.page-navigation');
+        var navigationScrollWrapper = navigation.querySelector('.page-navigation__wrapper');
+        var navList = navigation.querySelector('.page-navigation__list');
 
-        if (!elIsVisible(link)) {
-          navigationScrollWrapper.scrollLeft = link.offsetLeft;
-        }
+        var controls = _toConsumableArray(navigation.querySelectorAll('.page-navigation__controls .control-btn'));
 
-        toggleControlsBtns(link);
-      }
+        var navLinks = _toConsumableArray(navList.querySelectorAll('.page-navigation__link'));
 
-      function scroll(val, target) {
-        navigationScrollWrapper.scrollLeft += val;
-        navLinks.forEach(function (link) {
-          return link.classList.remove('current');
-        });
-        target.classList.add('current'); // setTimeout(toggleControlsBtns, 300);
+        var navListWidth = navList.getBoundingClientRect().width;
+        var navListScrollWidth = navList.scrollWidth;
+        var navigationScrollWrapperWidth = navigationScrollWrapper.getBoundingClientRect().width;
 
-        toggleControlsBtns(val);
-      }
-
-      function elIsVisible(el) {
-        var _el$getBoundingClient = el.getBoundingClientRect(),
-            left = _el$getBoundingClient.left,
-            width = _el$getBoundingClient.width;
-
-        if (left < 0) return false;else if (left + width + navigationScrollWrapper.scrollLeft > navListWidth) return false;else return true;
-      }
-
-      function resetActiveNavs() {
-        navLinks.forEach(function (el) {
-          el.classList.remove('active');
-          el.classList.remove('current');
-        });
-      } // function toggleControlsBtns(currentActiveNavLink) {
-      //     controls.forEach((el) => el.classList.remove('disabled'));
-      //     if (navLinks.indexOf(currentActiveNavLink) === 0) {
-      //         controls.find((el) => el.classList.contains('prev')).classList.add('disabled');
-      //     } else if (navLinks.indexOf(currentActiveNavLink) === navLinks.length - 1) {
-      //         controls.find((el) => el.classList.contains('next')).classList.add('disabled');
-      //     }
-      // }
-
-
-      function toggleControlsBtns() {
-        var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-        setTimeout(function () {
-          controls.forEach(function (el) {
-            return el.classList.remove('disabled');
+        if (navListScrollWidth === navigationScrollWrapperWidth) {
+          controls.forEach(function (control) {
+            return control.style.display = 'none';
           });
-          console.log('navigationScrollWrapper.scrollLeft', navigationScrollWrapper.scrollLeft);
-          console.log('navListScrollWidth', navListScrollWidth);
-          console.log('navigationScrollWrapperWidth', navigationScrollWrapperWidth);
-
-          if (navigationScrollWrapper.scrollLeft > navListScrollWidth - navigationScrollWrapperWidth) {
-            controls.find(function (el) {
-              return el.classList.contains('next');
-            }).classList.add('disabled');
-          } else if (navigationScrollWrapper.scrollLeft <= 0) {
-            controls.find(function (el) {
-              return el.classList.contains('prev');
-            }).classList.add('disabled');
-          }
-        }, 300);
-      }
-
-      function getCurrentLink() {
-        return navigation.querySelector('.page-navigation__link.current') || navigation.querySelector('.page-navigation__link.active');
-      }
-
-      function nextLinkTag() {
-        var currentLink = getCurrentLink();
-        var sibling = currentLink.nextElementSibling;
-
-        while (sibling) {
-          if (sibling.matches('.page-navigation__link')) return sibling;
-          sibling = sibling.nextElementSibling;
+        } else {
+          var currentNavLink = getCurrentLink();
+          navigationScrollWrapper.scrollLeft = currentNavLink.offsetLeft;
+          toggleControlsBtns();
         }
-      }
 
-      function previousLinkTag() {
-        var currentLink = getCurrentLink();
-        var sibling = currentLink.previousElementSibling;
+        navigationScrollWrapper.addEventListener('scroll', function (e) {
+          toggleControlsBtns();
+        });
+        navLinksObserver(navLinks);
+        controls.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            var target;
 
-        while (sibling) {
-          if (sibling.matches('.page-navigation__link')) return sibling;
-          sibling = sibling.nextElementSibling;
-        }
-      }
-
-      function navLinksObserver(links) {
-        links.forEach(function (link) {
-          link.addEventListener('linkChanged', function (e) {
+            if (btn.classList.contains('prev')) {
+              target = previousLinkTag();
+              var val = target.getBoundingClientRect().width;
+              scroll(-val, target);
+            } else {
+              target = nextLinkTag();
+              var _val = target.getBoundingClientRect().width;
+              scroll(_val, target);
+            }
+          });
+        });
+        navLinks.forEach(function (link) {
+          link.addEventListener('click', function (e) {
             setActiveNavLink(link);
           });
         });
+
+        function setActiveNavLink(link) {
+          resetActiveNavs();
+          link.classList.add('active');
+          link.classList.add('current');
+
+          if (!elIsVisible(link)) {
+            navigationScrollWrapper.scrollLeft = link.offsetLeft;
+          }
+
+          toggleControlsBtns(link);
+        }
+
+        function scroll(val, target) {
+          navigationScrollWrapper.scrollLeft += val;
+          navLinks.forEach(function (link) {
+            return link.classList.remove('current');
+          });
+          target.classList.add('current'); // setTimeout(toggleControlsBtns, 300);
+
+          toggleControlsBtns(val);
+        }
+
+        function elIsVisible(el) {
+          var _el$getBoundingClient = el.getBoundingClientRect(),
+              left = _el$getBoundingClient.left,
+              width = _el$getBoundingClient.width;
+
+          if (left < 0) return false;else if (left + width + navigationScrollWrapper.scrollLeft > navListWidth) return false;else return true;
+        }
+
+        function resetActiveNavs() {
+          navLinks.forEach(function (el) {
+            el.classList.remove('active');
+            el.classList.remove('current');
+          });
+        }
+
+        function toggleControlsBtns() {
+          var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+          setTimeout(function () {
+            controls.forEach(function (el) {
+              return el.classList.remove('disabled');
+            });
+            console.log('navigationScrollWrapper.scrollLeft', navigationScrollWrapper.scrollLeft);
+            console.log('navListScrollWidth', navListScrollWidth);
+            console.log('navigationScrollWrapperWidth', navigationScrollWrapperWidth);
+
+            if (navigationScrollWrapper.scrollLeft > navListScrollWidth - navigationScrollWrapperWidth) {
+              controls.find(function (el) {
+                return el.classList.contains('next');
+              }).classList.add('disabled');
+            } else if (navigationScrollWrapper.scrollLeft <= 0) {
+              controls.find(function (el) {
+                return el.classList.contains('prev');
+              }).classList.add('disabled');
+            }
+          }, 300);
+        }
+
+        function getCurrentLink() {
+          return navigation.querySelector('.page-navigation__link.current') || navigation.querySelector('.page-navigation__link.active');
+        }
+
+        function nextLinkTag() {
+          var currentLink = getCurrentLink();
+          var sibling = currentLink.nextElementSibling;
+
+          while (sibling) {
+            if (sibling.matches('.page-navigation__link')) return sibling;
+            sibling = sibling.nextElementSibling;
+          }
+        }
+
+        function previousLinkTag() {
+          var currentLink = getCurrentLink();
+          var sibling = currentLink.previousElementSibling;
+
+          while (sibling) {
+            if (sibling.matches('.page-navigation__link')) return sibling;
+            sibling = sibling.nextElementSibling;
+          }
+        }
+
+        function navLinksObserver(links) {
+          links.forEach(function (link) {
+            link.addEventListener('linkChanged', function (e) {
+              setActiveNavLink(link);
+            });
+          });
+        }
       }
     })();
 
