@@ -2384,6 +2384,7 @@ jQuery(document).ready(function ($) {
       if (object.length === 0) return;
       var objectLinks = object.find('.page-navigation__link');
       var objectSections = document.querySelectorAll('.object-new__section');
+      var linkChangedEvent = createNewEvent('linkChanged');
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -2391,7 +2392,11 @@ jQuery(document).ready(function ($) {
             var sectionId = entry.target.id;
             if (!sectionId) return;
             var relatedLink = objectLinks.filter("[data-scroll-to=".concat(sectionId, "]"));
-            relatedLink.addClass('active');
+
+            if (relatedLink[0]) {
+              relatedLink.addClass('active');
+              relatedLink[0].dispatchEvent(linkChangedEvent);
+            }
           }
         });
       }, {
@@ -2604,6 +2609,9 @@ jQuery(document).ready(function ($) {
           controls.forEach(function (el) {
             return el.classList.remove('disabled');
           });
+          console.log('navigationScrollWrapper.scrollLeft', navigationScrollWrapper.scrollLeft);
+          console.log('navListScrollWidth', navListScrollWidth);
+          console.log('navigationScrollWrapperWidth', navigationScrollWrapperWidth);
 
           if (navigationScrollWrapper.scrollLeft > navListScrollWidth - navigationScrollWrapperWidth) {
             controls.find(function (el) {
@@ -2642,48 +2650,10 @@ jQuery(document).ready(function ($) {
       }
 
       function navLinksObserver(links) {
-        var config = {
-          attributes: true,
-          childList: false,
-          subtree: false
-        };
-
-        var callback = function callback(mutationsList) {
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
-
-          try {
-            for (var _iterator = mutationsList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var mutation = _step.value;
-
-              if (mutation.type === 'attributes') {
-                var target = mutation.target;
-
-                if (target.classList.contains('active') && !target.classList.contains('current')) {
-                  setActiveNavLink(target);
-                }
-              }
-            }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator.return != null) {
-                _iterator.return();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
-            }
-          }
-        };
-
         links.forEach(function (link) {
-          var observer = new MutationObserver(callback);
-          observer.observe(link, config);
+          link.addEventListener('linkChanged', function (e) {
+            setActiveNavLink(link);
+          });
         });
       }
     })();

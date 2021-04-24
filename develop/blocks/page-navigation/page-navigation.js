@@ -101,6 +101,9 @@
         setTimeout(() => {
             controls.forEach((el) => el.classList.remove('disabled'));
 
+            console.log('navigationScrollWrapper.scrollLeft', navigationScrollWrapper.scrollLeft);
+            console.log('navListScrollWidth', navListScrollWidth);
+            console.log('navigationScrollWrapperWidth', navigationScrollWrapperWidth);
             if (navigationScrollWrapper.scrollLeft > navListScrollWidth - navigationScrollWrapperWidth) {
                 controls.find((el) => el.classList.contains('next')).classList.add('disabled');
             } else if (navigationScrollWrapper.scrollLeft <= 0) {
@@ -137,26 +140,10 @@
     }
 
     function navLinksObserver(links) {
-        const config = {
-            attributes: true,
-            childList: false,
-            subtree: false,
-        };
-
-        const callback = function (mutationsList) {
-            for (let mutation of mutationsList) {
-                if (mutation.type === 'attributes') {
-                    const target = mutation.target;
-                    if (target.classList.contains('active') && !target.classList.contains('current')) {
-                        setActiveNavLink(target)
-                    }
-                }
-            }
-        };
-
         links.forEach((link) => {
-            const observer = new MutationObserver(callback);
-            observer.observe(link, config);
+            link.addEventListener('linkChanged', (e) => {
+                setActiveNavLink(link)
+            });
         });
     }
 })();

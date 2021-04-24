@@ -1,6 +1,9 @@
 .page-navigation {
     position: relative;
 
+    &.small {
+    }
+
     &__wrapper {
         overflow: auto;
         overscroll-behavior-x: contain;
@@ -123,17 +126,44 @@
 
             fill: $theme-color;
         }
+
+        &--notify {
+            &::after {
+                content: '!';
+                position: absolute;
+                top: 18px;
+                right: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 9px;
+                height: 9px;
+
+                color: $text-color;
+                line-height: 1;
+                font-size: 7px;
+                font-weight: 700;
+
+                background-color: $theme-color;
+                border-radius: 50%;
+            }
+        }
     }
 }
 
 @media #{$tablet} {
     .page-navigation {
+        &.small {
+            .page-navigation__link {
+                padding: 12px 35px 12px;
+            }
+        }
+
         &__item {
             padding-right: 16px;
         }
 
         &__link {
-            font-size: 14px;
             padding: 12px 52px 20px;
         }
     }
@@ -141,6 +171,12 @@
 
 @media #{$laptop} {
     .page-navigation {
+        &.small {
+            .page-navigation__link {
+                font-size: 14px;
+            }
+        }
+
         &__link {
             font-size: 16px;
 
@@ -156,6 +192,11 @@
 
 @media #{$desktop} {
     .page-navigation {
+        &.small {
+            .page-navigation__link {
+                font-size: 14px;
+            }
+        }
         &__link {
             font-size: 18px;
         }

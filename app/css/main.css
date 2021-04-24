@@ -9723,15 +9723,43 @@ th {
       right: 0px;
       top: 0;
       fill: #fed63f; }
+    .page-navigation__link--notify::after {
+      content: '!';
+      position: absolute;
+      top: 18px;
+      right: 15px;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+         -moz-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+         -moz-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 9px;
+      height: 9px;
+      color: #000;
+      line-height: 1;
+      font-size: 7px;
+      font-weight: 700;
+      background-color: #fed63f;
+      border-radius: 50%; }
 
 @media (min-width: 768px) {
+  .page-navigation.small .page-navigation__link {
+    padding: 12px 35px 12px; }
   .page-navigation__item {
     padding-right: 16px; }
   .page-navigation__link {
-    font-size: 14px;
     padding: 12px 52px 20px; } }
 
 @media (min-width: 1024px) {
+  .page-navigation.small .page-navigation__link {
+    font-size: 14px; }
   .page-navigation__link {
     font-size: 16px; }
     .page-navigation__link:hover, .page-navigation__link:focus-visible {
@@ -9739,6 +9767,8 @@ th {
       text-decoration: none; } }
 
 @media (min-width: 1200px) {
+  .page-navigation.small .page-navigation__link {
+    font-size: 14px; }
   .page-navigation__link {
     font-size: 18px; } }
 

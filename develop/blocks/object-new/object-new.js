@@ -6,6 +6,8 @@
 
     const objectSections = document.querySelectorAll('.object-new__section');
 
+    const linkChangedEvent = createNewEvent('linkChanged');
+
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -14,7 +16,10 @@
                     const sectionId = entry.target.id;
                     if (!sectionId) return;
                     const relatedLink = objectLinks.filter(`[data-scroll-to=${sectionId}]`);
-                    relatedLink.addClass('active');
+                    if (relatedLink[0]) {
+                        relatedLink.addClass('active');
+                        relatedLink[0].dispatchEvent(linkChangedEvent);
+                    }
                 }
             });
         },

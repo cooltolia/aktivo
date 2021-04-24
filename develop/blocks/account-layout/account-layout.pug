@@ -4,6 +4,16 @@ mixin account-layout()
         +inner
             +e.wrapper
                 +e.ASIDE.sidebar
-                    +account-nav
+                    +page-navigation('small')
+                        +e.A.link(href='#') Мониторинг
+                        +e.A.link.--notify(href='#') Документы
+                        +e.A.link(href='#') Новости
+                        +e.A.link.active.current(href='#') Реквизиты
+                        +e.A.link.--notify(href='#') Рекомендовать друга
+                        +e.A.link(href='#') Мониторинг
+                        +e.A.link.--notify(href='#') Документы
+                        +e.A.link(href='#') Новости
+                        +e.A.link(href='#') Реквизиты
+                        +e.A.link.--notify(href='#') Рекомендовать друга
                 +e.MAIN.main
                     block
