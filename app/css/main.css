@@ -1866,7 +1866,8 @@ th {
   width: -webkit-calc(100% + 40px);
   width: -moz-calc(100% + 40px);
   width: calc(100% + 40px);
-  margin-left: -20px; }
+  margin-left: -20px;
+  margin-bottom: 20px; }
 
 @media (min-width: 768px) {
   .account-monitoring__header {
@@ -6973,6 +6974,10 @@ th {
      -moz-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -webkit-box-pack: justify;
+     -moz-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border-top: 1px solid rgba(145, 145, 145, 0.2);
   border-bottom: 1px solid rgba(145, 145, 145, 0.2); }
   .monitoring-data__header--funds {
