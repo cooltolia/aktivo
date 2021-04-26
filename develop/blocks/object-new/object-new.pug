@@ -6,13 +6,12 @@ mixin object-new()
                 +e.navigation
                     +page-navigation
                         +e.A.link.active.current(href='#' data-scroll-to='objectDescription' data-scroll-offset='75') Описание
-                        div(style='display: none')
-                        +e.A.link(href='#' data-scroll-to='objectPlans' data-scroll-offset='75') Планировка
+                        +e.A.link(href='#' data-scroll-offset='75') Рассчитать доход
                         +e.A.link(href='#' data-scroll-to='objectLocation' data-scroll-offset='75') Расположение
-                        +e.A.link.locked(href='#' data-tippy-content='И вот почему') Финансы
-                            +icon('lock')
-                        +e.A.link.locked(href='#') Рассчитать доход
-                            +icon('lock')
+                        +e.A.link.locked(href='#' data-tippy-content='И вот почему') Финансовые показатели
+                            //- +icon('lock')
+                        +e.A.link.locked(href='#' data-scroll-to='objectPlans') Планировка
+                            //- +icon('lock')
                 +e.section.--top
                     +object-slider
                 +e.section(id='objectDescription')

@@ -1,10 +1,11 @@
-mixin account-monitoring(color = '#FED63F')
+mixin account-monitoring(color = '#FED63F', hasSidebar = true)
     +b.account-monitoring
         //- +e.header
         //-     +monitoring-header
         +e.wrapper
-            +e.sidebar
-                +monitoring-funds
+            if (hasSidebar)
+                +e.sidebar
+                    +monitoring-funds
             +e.body(style='--fund-color: ' + color)
                 +monitoring-data
                     block

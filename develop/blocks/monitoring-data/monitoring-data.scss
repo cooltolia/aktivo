@@ -1,17 +1,17 @@
 .monitoring-data {
-    &__title {
-        margin: 0 0 6px;
-        font-size: 18px;
-        line-height: 1.2;
-        font-weight: 600;
+    &__subnav {
+        padding-top: 24px;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        padding-bottom: 6px;
+        justify-content: space-between;
     }
 
     &__link {
         position: relative;
-        display: inline-block;
-        padding: 6px 0;
-
-        padding-right: 14px;
+        flex: 0 0 auto;
+        margin-bottom: 6px;
 
         font-size: 12px;
         color: $blue;
@@ -27,19 +27,66 @@
         }
 
         svg {
-            position: absolute;
             width: 9px;
             height: 8px;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%) rotate(180deg);
+            margin-right: 12px;
 
             stroke: currentColor;
+        }
+
+        &--right {
+            svg {
+                margin-right: 0;
+                margin-left: 12px;
+                transform: rotate(180deg);
+            }
+        }
+
+        &--big {
+            font-size: 16px;
+        }
+    }
+
+    &__header {
+        padding: 16px 0;
+        display: flex;
+        align-items: flex-start;
+        border-top: 1px solid rgba(#919191, 0.2);
+        border-bottom: 1px solid rgba(#919191, 0.2);
+
+        &--funds {
+            border: none;
+        }
+    }
+
+    &__title {
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: 600;
+    }
+
+    &__rating {
+        flex: 0 0 auto;
+        font-size: 16px;
+        font-weight: 600;
+
+        span {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 0 3px;
+
+            text-align: center;
+            color: $text-color-white;
+
+            border-radius: 2px;
         }
     }
 
     &__data-list {
-        padding-top: 30px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+
+        border-bottom: 1px solid rgba(#919191, 0.2);
     }
 
     &__data-col {
@@ -196,15 +243,39 @@
         width: calc(100% + 40px);
         margin-left: -20px;
     }
+
+    &__finances,
+    &__estimates {
+        padding-top: 44px;
+
+        .title.medium {
+            font-size: 18px;
+        }
+
+        .object-finances__title {
+            margin-bottom: 24px;
+        }
+
+        .object-finances__vr {
+            top: 40px;
+        }
+    }
 }
 
 @media #{$tablet} {
     .monitoring-data {
+        &__subnav {
+            padding-left: 24px;
+            padding-right: 24px;
+            padding-bottom: 12px;
+        }
+
         &__header {
-            padding: 0 16px;
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
+            padding-left: 24px;
+            padding-right: 24px;
         }
 
         &__title {
@@ -215,16 +286,17 @@
 
         &__link {
             flex: 0 0 auto;
-            margin-top: -4px;
         }
 
         &__toggles {
-            padding: 20px 16px 0 16px;
+            padding: 20px 24px 0 24px;
         }
 
         &__data-list {
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-top: 42px;
+            padding-bottom: 30px;
+            padding-left: 24px;
+            padding-right: 24px;
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
@@ -250,24 +322,39 @@
             width: 100%;
             margin-left: 0;
         }
+
+        &__table {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        &__finances,
+        &__estimates {
+            padding-left: 24px;
+        }
+
+        &__estimates {
+            padding-right: 24px;
+        }
     }
 }
 
 @media #{$laptop} {
     .monitoring-data {
         &__header {
-            padding: 0 24px 24px;
+            padding: 24px;
         }
 
         &__title {
-            font-size: 18px;
+            font-size: 24px;
         }
 
         &__link {
             font-size: 18px;
-            padding-right: 16px;
 
             svg {
+                position: relative;
+                top: 2px;
                 width: 11px;
                 height: 13px;
             }
@@ -292,66 +379,70 @@
             }
         }
 
+        &__graph {
+            padding-top: 0;
+        }
+
         &__table {
             padding-top: 40px;
+            padding-left: 12px;
+            padding-right: 12px;
         }
 
-        &__data-list {
-            padding-left: 24px;
-            padding-right: 24px;
-        }
-
-        &__data-col {
-            padding-right: 32px;
+        &__finances {
+            padding-left: 0px;
         }
     }
 }
 
 @media #{$desktop} {
     .monitoring-data {
-        &__data-list {
-            display: block;
-        }
+        &__header {
+            padding-top: 32px;
+            padding-bottom: 32px;
 
-        &__data-col {
-            padding: 18px 0;
-            width: 100%;
-            max-width: none;
-            display: flex;
-            margin-top: -1px;
-
-            border-top: 1px solid #e7e7e7;
-            border-bottom: 1px solid #e7e7e7;
-
-            &:first-child {
-                display: flex;
-                margin: 0;
-
-                .monitoring-data__data-block {
-                    width: 25%;
-                    margin-bottom: 0;
-                    padding-right: 8px;
+            &--funds {
+                .monitoring-data__title {
+                    font-size: 18px;
                 }
             }
         }
 
-        &__data-block {
-            width: 25%;
-            margin-bottom: 0;
-            padding-right: 8px;
+        &__title {
+            font-size: 34px;
+        }
 
-            &--full {
-                width: 100%;
-                padding: 0;
+        &__rating {
+            font-size: 34px;
+
+            span {
+                padding-left: 6px;
+                padding-right: 6px;
             }
         }
 
-        &__data-row {
-            display: flex;
+        &__data-label {
+            font-size: 14px;
+        }
 
-            .monitoring-data__data-value {
-                width: 25%;
-                padding-right: 8px;
+        &__data-value {
+            font-size: 20px;
+        }
+
+        &__finances,
+        &__estimates {
+            padding-right: 1px;
+
+            .object-finances__title {
+                margin-bottom: 50px;
+
+                .title.medium {
+                    font-size: 34px;
+                }
+            }
+
+            .object-estimates__title .title.medium {
+                font-size: 34px;
             }
         }
     }

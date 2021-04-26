@@ -9,51 +9,38 @@ html(lang='ru')
     body
         +main-header
         +account-layout
-            +account-monitoring()
+            +account-monitoring('#FED63F', false)
+                +e.subnav
+                    +e.A.link(href='#')
+                        +icon('l-arrow')
+                        | к списку фондов
+                    +e.A.link.--right(href='#')
+                        | следующий фонд
+                        +icon('l-arrow')
                 +e.header
                     +e.title Активо три — торговый центр Эко&nbsp;видное
-                    +e.A.link(href='#') На продажу
-                        +icon('l-arrow')
+                    +e.rating Рейтинг:
+                        span(style='background-color: #7DCB73') A
                 +e.data-list
-                    +e.data-col
-                        +e.data-block
-                            +e.data-label Вам принадлежит:
-                            +e.data-value 18 из 1990 паев
-                        +e.data-block
-                            +e.data-label Инвестиции:
-                            +e.data-value 4 344 132.00 ₽
-                        +e.data-block
-                            +e.data-label Ближайшая выплата:
-                            +e.data-value до 30.09.2020
-                        +e.data-block
-                            +e.data-label Рейтинг фонда:
-                                +e.BUTTON.data-info.info-trigger(type='button') ?
-                            +e.data-value.--green А1
-                    +e.data-col
-                        +e.data-block.--full
-                            +e.data-label Документы:
-                            +e.data-row
-                                +e.data-value
-                                    a(href='#') Очень длинное название документа номер два
-                                +e.data-value
-                                    a(href='#') Самое длинное длинное название документа
-                                +e.data-value
-                                    a(href='#') Очень длинное название документа три
-                                +e.data-value
-                                    a(href='#') Очень длинное название документа пять
-                +e.toggles
-                    +e.toggle
-                        +custom-select(false, ['номинальная', 'эффективная'], false, 'Тип доходности')
-                    +e.toggle
-                        +custom-select(false, ['12 месяцев', 'все время'], false, 'Показатели за')
-                    +e.toggle
-                        +custom-select(false, ['12 месяцев', 'все время'], false, 'Доходность за')
-                    +e.toggle
-                        +custom-select(false, ['месяц', 'квартал', 'год'], false, 'Период')
-                +e.graph
-                    +monitoring-graph
-                +e.table
-                    +monitoring-table
+                    +e.data-block
+                        +e.data-label Категория
+                        +e.data-value Стрит-ритейл
+                    +e.data-block
+                        +e.data-label Площадь
+                        +e.data-value 3 203 кв.м
+                    +e.data-block
+                        +e.data-label Всего паев
+                        +e.data-value 1 900
+                    +e.data-block
+                        +e.data-label Балансовая стоимость
+                        +e.data-value 658 578 000 ₽
+                    +e.data-block
+                        +e.data-label Стоимость 1 кв. м.
+                        +e.data-value 205 600 ₽
+                +e.finances
+                    +object-finances
+                +e.estimates
+                    +object-estimates
         +main-footer
             +lines
         +info-modal

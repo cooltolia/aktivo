@@ -45,6 +45,8 @@
 
             background-color: rgba(#fff, 0.95);
 
+            transition: opacity 300ms ease;
+
             &.disabled {
                 opacity: 0;
                 pointer-events: none;

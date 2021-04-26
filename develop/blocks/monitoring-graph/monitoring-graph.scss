@@ -62,21 +62,20 @@
     }
 
     &__caption {
-        display: flex;
+        position: relative;
     }
 
     &__caption-block {
-        flex: 0 0 auto;
-        max-width: 150px;
-        margin-right: 16px;
+        margin-bottom: 16px;
+        padding-right: 80px;
 
         &:last-child {
-            margin-right: 0;
+            margin-bottom: 0;
         }
     }
 
     &__caption-value {
-        margin: 0 0 8px;
+        margin: 0 0 4px;
 
         font-size: 16px;
         font-weight: 600;
@@ -85,8 +84,20 @@
     &__caption-label {
         font-size: 14px;
         line-height: 1.2;
-        color: #696969;
-        font-weight: 400;
+    }
+
+    &__caption-type {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 80px;
+        font-size: 14px;
+        line-height: 1.2;
+        color: #aaaaaa;
+        font-weight: 600;
+        text-align: right;
+        text-transform: uppercase;
     }
 }
 
@@ -103,6 +114,10 @@
 
         &__caption {
             padding: 0 24px;
+        }
+
+        &__caption-type {
+            right: 24px;
         }
     }
 }
@@ -133,20 +148,36 @@
         }
 
         &__caption {
-            padding: 0 48px;
+            padding: 0 24px;
+            display: flex;
+
+            border-bottom: 1px solid rgba(#919191, 0.2);
+        }
+
+        &__caption-type {
+            position: relative;
+            width: auto;
+            margin-left: auto;
+            flex: 0 0 auto;
+            right: 0;
         }
 
         &__caption-block {
-            max-width: 170px;
-            margin-right: 48px;
+            display: flex;
+            margin-right: 24px;
+            flex: 0 0 auto;
+            padding-right: 0;
+            align-items: baseline;
         }
 
         &__caption-value {
             font-size: 16px;
+            order: 1;
+            margin-left: 8px;
         }
 
         &__caption-label {
-            font-size: 14px;
+            font-size: 16px;
         }
     }
 }

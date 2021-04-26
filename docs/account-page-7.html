@@ -99,31 +99,17 @@
       </div><!--/ lines --> 
       <div class="inner">
         <div class="account-layout__wrapper">
-          <aside class="account-layout__sidebar"><!-- account-nav --> 
-            <nav class="account-nav">
-              <ul class="account-nav__list">
-                <li class="account-nav__item"><a class="account-nav__link" href="#">Мониторинг</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link account-nav__link--notify" href="#">Документы</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link" href="#">Новости</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link active" href="#">Реквизиты</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link account-nav__link--notify" href="#">Рекомендовать друга</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link" href="#">Мониторинг</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link account-nav__link--notify" href="#">Документы</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link" href="#">Новости</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link active" href="#">Реквизиты</a>
-                </li>
-                <li class="account-nav__item"><a class="account-nav__link account-nav__link--notify" href="#">Рекомендовать друга</a>
-                </li>
-              </ul>
-            </nav><!--/ account-nav --> 
+          <aside class="account-layout__sidebar"><!-- page-navigation --> 
+            <nav class="page-navigation small">
+              <div class="page-navigation__controls">
+                <btn class="control-btn prev" type="button"></btn>
+                <btn class="control-btn next" type="button"></btn>
+              </div>
+              <div class="page-navigation__wrapper">
+                <div class="page-navigation__list"><a class="page-navigation__link" href="#">Мониторинг</a><a class="page-navigation__link page-navigation__link--notify" href="#">Документы</a><a class="page-navigation__link" href="#">Новости</a><a class="page-navigation__link active current" href="#">Реквизиты</a><a class="page-navigation__link page-navigation__link--notify" href="#">Рекомендовать друга</a><a class="page-navigation__link" href="#">Мониторинг</a><a class="page-navigation__link page-navigation__link--notify" href="#">Документы</a><a class="page-navigation__link" href="#">Новости</a><a class="page-navigation__link" href="#">Реквизиты</a><a class="page-navigation__link page-navigation__link--notify" href="#">Рекомендовать друга</a>
+                </div>
+              </div>
+            </nav><!--/ page-navigation --> 
           </aside>
           <main class="account-layout__main" role="main"><!-- account-monitoring --> 
             <div class="account-monitoring">
@@ -208,9 +194,9 @@
                 </div>
                 <div class="account-monitoring__body" style="--fund-color: #FED63F"><!-- monitoring-data --> 
                   <div class="monitoring-data">
-                    <div class="monitoring-data__header">
+                    <div class="monitoring-data__header monitoring-data__header--funds">
                       <div class="monitoring-data__title">Все фонды
-                      </div><a class="monitoring-data__link application-trigger" href="#">На продажу
+                      </div><a class="monitoring-data__link monitoring-data__link--right monitoring-data__link--big application-trigger" href="#">На продажу
                       <svg>
                         <use xlink:href="images/redesign/html-sprite.svg#l-arrow"></use>
                       </svg></a>
@@ -276,14 +262,16 @@
                           <div class="monitoring-graph__caption-block">
                             <div class="monitoring-graph__caption-value">1 124 760.78 ₽
                             </div>
-                            <div class="monitoring-graph__caption-label">Выплачено за все время, до НДФЛ  
+                            <div class="monitoring-graph__caption-label">Выплачено за все время
                             </div>
                           </div>
                           <div class="monitoring-graph__caption-block">
                             <div class="monitoring-graph__caption-value">99 124 760.78 ₽
                             </div>
-                            <div class="monitoring-graph__caption-label">Выплачено за 12 месяцев, до НДФЛ  
+                            <div class="monitoring-graph__caption-label">Выплачено за 12 месяцев
                             </div>
+                          </div>
+                          <div class="monitoring-graph__caption-type">До НДФЛ
                           </div>
                         </div>
                       </div><!--/ monitoring-graph --> 

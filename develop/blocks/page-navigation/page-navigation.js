@@ -34,9 +34,8 @@
             toggleControlsBtns();
         }
 
-        navigationScrollWrapper.addEventListener('scroll', (e) => {
-            toggleControlsBtns();
-        });
+        const debouncedScrollEvent = debounce(toggleControlsBtns, 100);
+        navigationScrollWrapper.addEventListener('scroll', debouncedScrollEvent);
 
         navLinksObserver(navLinks);
 
@@ -45,11 +44,27 @@
                 let target;
                 if (btn.classList.contains('prev')) {
                     target = previousLinkTag();
-                    const val = target.getBoundingClientRect().width;
-                    scroll(-val, target);
+                    if (!target) {
+                        navigationScrollWrapper.scrollLeft = 0;
+                        return;
+                    }
+                    console.log(target);
+                    console.log(elIsVisible(target));
+                    if (elIsVisible(target)) {
+                        console.log('pff');
+                    }
+                    const val = target.offsetLeft;
+                    scroll(val, target);
                 } else {
                     target = nextLinkTag();
-                    const val = target.getBoundingClientRect().width;
+                    if (!target) {
+                        navigationScrollWrapper.scrollLeft = navListScrollWidth;
+                        return;
+                    }
+                    if (elIsVisible(target)) {
+                        console.log('pff');
+                    }
+                    const val = target.offsetLeft;
                     scroll(val, target);
                 }
             });
@@ -65,6 +80,7 @@
             resetActiveNavs();
             link.classList.add('active');
             link.classList.add('current');
+            console.log('elIsVisible', link, elIsVisible(link));
 
             if (!elIsVisible(link)) {
                 navigationScrollWrapper.scrollLeft = link.offsetLeft;
@@ -74,7 +90,7 @@
         }
 
         function scroll(val, target) {
-            navigationScrollWrapper.scrollLeft += val;
+            navigationScrollWrapper.scrollLeft = val;
 
             navLinks.forEach((link) => link.classList.remove('current'));
             target.classList.add('current');
@@ -84,9 +100,15 @@
         }
 
         function elIsVisible(el) {
-            const { left, width } = el.getBoundingClientRect();
-            if (left < 0) return false;
-            else if (left + width + navigationScrollWrapper.scrollLeft > navListWidth) return false;
+            if (!el) return;
+
+            debugger;
+
+            const left = el.offsetLeft;
+            const { width } = el.getBoundingClientRect();
+
+            if (left < navigationScrollWrapper.scrollLeft) return false;
+            else if (left > navListWidth - (navigationScrollWrapper.scrollLeft + width)) return false;
             else return true;
         }
 
@@ -98,18 +120,13 @@
         }
 
         function toggleControlsBtns(val = 0) {
-            setTimeout(() => {
-                controls.forEach((el) => el.classList.remove('disabled'));
+            controls.forEach((el) => el.classList.remove('disabled'));
 
-                console.log('navigationScrollWrapper.scrollLeft', navigationScrollWrapper.scrollLeft);
-                console.log('navListScrollWidth', navListScrollWidth);
-                console.log('navigationScrollWrapperWidth', navigationScrollWrapperWidth);
-                if (navigationScrollWrapper.scrollLeft > navListScrollWidth - navigationScrollWrapperWidth) {
-                    controls.find((el) => el.classList.contains('next')).classList.add('disabled');
-                } else if (navigationScrollWrapper.scrollLeft <= 0) {
-                    controls.find((el) => el.classList.contains('prev')).classList.add('disabled');
-                }
-            }, 300);
+            if (Math.ceil(navigationScrollWrapper.scrollLeft) >= navListScrollWidth - navigationScrollWrapperWidth) {
+                controls.find((el) => el.classList.contains('next')).classList.add('disabled');
+            } else if (navigationScrollWrapper.scrollLeft <= 0) {
+                controls.find((el) => el.classList.contains('prev')).classList.add('disabled');
+            }
         }
 
         function getCurrentLink() {
@@ -142,6 +159,7 @@
         function navLinksObserver(links) {
             links.forEach((link) => {
                 link.addEventListener('linkChanged', (e) => {
+                    debugger;
                     setActiveNavLink(link);
                 });
             });

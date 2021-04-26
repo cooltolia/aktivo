@@ -1236,9 +1236,9 @@ jQuery(document).ready(function ($) {
       if (!chart) return; // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
       // const dividendsData = [5, 10, 20, 85, 20, 15, 5, 20, 20, 35, 20, 15];
 
-      var profitData = [122442.8, 5786.51, 174648.8, 65352.25, 21275.49, 748878.0, 82916.36, 49460.5, 65876.33, 50389.35, 53762.3, 11285.56];
-      var dividendsData = [87.2, 195.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3];
-      var chartDates = ['02.18', '03.18', '04.18', '05.18', '06.18', '07.18', '08.18', '09.18', '10.18', '11.18', '12.18', '01.19'];
+      var profitData = [122442.8, 5786.51, 174648.8, 65352.25, 21275.49, 748878.0, 82916.36, 49460.5, 65876.33, 50389.35, 53762.3, 11285.56, 122442.8, 5786.51, 174648.8, 65352.25, 21275.49];
+      var dividendsData = [87.2, 195.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3, 87.2, 195.3, 13.8, 13.9, 4.3];
+      var chartDates = ['02.18', '03.18', '04.18', '05.18', '06.18', '07.18', '08.18', '09.18', '10.18', '11.18', '12.18', '01.19', '02.18', '03.18', '04.18', '05.18', '06.18'];
       var dividendsMax = Math.max.apply(Math, dividendsData);
       var profitMax = Math.max.apply(Math, profitData);
       setTimeout(function () {
@@ -2541,9 +2541,8 @@ jQuery(document).ready(function ($) {
           toggleControlsBtns();
         }
 
-        navigationScrollWrapper.addEventListener('scroll', function (e) {
-          toggleControlsBtns();
-        });
+        var debouncedScrollEvent = debounce(toggleControlsBtns, 100);
+        navigationScrollWrapper.addEventListener('scroll', debouncedScrollEvent);
         navLinksObserver(navLinks);
         controls.forEach(function (btn) {
           btn.addEventListener('click', function (e) {
@@ -2551,11 +2550,34 @@ jQuery(document).ready(function ($) {
 
             if (btn.classList.contains('prev')) {
               target = previousLinkTag();
-              var val = target.getBoundingClientRect().width;
-              scroll(-val, target);
+
+              if (!target) {
+                navigationScrollWrapper.scrollLeft = 0;
+                return;
+              }
+
+              console.log(target);
+              console.log(elIsVisible(target));
+
+              if (elIsVisible(target)) {
+                console.log('pff');
+              }
+
+              var val = target.offsetLeft;
+              scroll(val, target);
             } else {
               target = nextLinkTag();
-              var _val = target.getBoundingClientRect().width;
+
+              if (!target) {
+                navigationScrollWrapper.scrollLeft = navListScrollWidth;
+                return;
+              }
+
+              if (elIsVisible(target)) {
+                console.log('pff');
+              }
+
+              var _val = target.offsetLeft;
               scroll(_val, target);
             }
           });
@@ -2570,6 +2592,7 @@ jQuery(document).ready(function ($) {
           resetActiveNavs();
           link.classList.add('active');
           link.classList.add('current');
+          console.log('elIsVisible', link, elIsVisible(link));
 
           if (!elIsVisible(link)) {
             navigationScrollWrapper.scrollLeft = link.offsetLeft;
@@ -2579,7 +2602,7 @@ jQuery(document).ready(function ($) {
         }
 
         function scroll(val, target) {
-          navigationScrollWrapper.scrollLeft += val;
+          navigationScrollWrapper.scrollLeft = val;
           navLinks.forEach(function (link) {
             return link.classList.remove('current');
           });
@@ -2589,11 +2612,14 @@ jQuery(document).ready(function ($) {
         }
 
         function elIsVisible(el) {
+          if (!el) return;
+          debugger;
+          var left = el.offsetLeft;
+
           var _el$getBoundingClient = el.getBoundingClientRect(),
-              left = _el$getBoundingClient.left,
               width = _el$getBoundingClient.width;
 
-          if (left < 0) return false;else if (left + width + navigationScrollWrapper.scrollLeft > navListWidth) return false;else return true;
+          if (left < navigationScrollWrapper.scrollLeft) return false;else if (left > navListWidth - (navigationScrollWrapper.scrollLeft + width)) return false;else return true;
         }
 
         function resetActiveNavs() {
@@ -2605,24 +2631,19 @@ jQuery(document).ready(function ($) {
 
         function toggleControlsBtns() {
           var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-          setTimeout(function () {
-            controls.forEach(function (el) {
-              return el.classList.remove('disabled');
-            });
-            console.log('navigationScrollWrapper.scrollLeft', navigationScrollWrapper.scrollLeft);
-            console.log('navListScrollWidth', navListScrollWidth);
-            console.log('navigationScrollWrapperWidth', navigationScrollWrapperWidth);
+          controls.forEach(function (el) {
+            return el.classList.remove('disabled');
+          });
 
-            if (navigationScrollWrapper.scrollLeft > navListScrollWidth - navigationScrollWrapperWidth) {
-              controls.find(function (el) {
-                return el.classList.contains('next');
-              }).classList.add('disabled');
-            } else if (navigationScrollWrapper.scrollLeft <= 0) {
-              controls.find(function (el) {
-                return el.classList.contains('prev');
-              }).classList.add('disabled');
-            }
-          }, 300);
+          if (Math.ceil(navigationScrollWrapper.scrollLeft) >= navListScrollWidth - navigationScrollWrapperWidth) {
+            controls.find(function (el) {
+              return el.classList.contains('next');
+            }).classList.add('disabled');
+          } else if (navigationScrollWrapper.scrollLeft <= 0) {
+            controls.find(function (el) {
+              return el.classList.contains('prev');
+            }).classList.add('disabled');
+          }
         }
 
         function getCurrentLink() {
@@ -2652,6 +2673,7 @@ jQuery(document).ready(function ($) {
         function navLinksObserver(links) {
           links.forEach(function (link) {
             link.addEventListener('linkChanged', function (e) {
+              debugger;
               setActiveNavLink(link);
             });
           });
