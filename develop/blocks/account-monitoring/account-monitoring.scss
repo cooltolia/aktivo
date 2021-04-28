@@ -27,6 +27,7 @@
             margin: 0;
             width: 260px;
             flex: 0 0 auto;
+            border-right: 1px solid rgba(#919191, 0.2);
         }
 
         &__body {
@@ -34,7 +35,7 @@
             width: 50%;
             flex: 1 1 auto;
 
-            border-left: 1px solid rgba(#919191, 0.2);
+
         }
     }
 }

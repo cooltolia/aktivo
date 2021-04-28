@@ -1,0 +1,57 @@
+include template/header
+include template/footer
+include ../blocks/**/*
+- const alias = "m"
+- const theme = 'light'
+doctype html
+html(lang='ru')
+    +doc-header
+    body
+        +main-header
+        +account-layout
+            +account-monitoring('#FED63F', false)
+                +e.funds-table
+                    +e.A.funds-row(href='#')
+                        +e.funds-cell Активо один
+                        +e.funds-cell.--long ТРК Столица
+                        +e.funds-cell Вам принадлежит:
+                        +e.funds-cell 1000 из 1990 паев
+                    +e.A.funds-row(href='#')
+                        +e.funds-cell Активо два
+                        +e.funds-cell.--long ТЦ «Богородский пассаж»
+                        +e.funds-cell Вам принадлежит:
+                        +e.funds-cell 10 из 1990 паев
+                    +e.A.funds-row(href='#')
+                        +e.funds-cell Активо три
+                        +e.funds-cell.--long ТЦ «Фили»
+                        +e.funds-cell Вам принадлежит:
+                        +e.funds-cell 100 из 1990 паев
+                    +e.A.funds-row(href='#')
+                        +e.funds-cell Активо четыре
+                        +e.funds-cell.--long ТЦ "ЭкоВидное"
+                        +e.funds-cell Вам принадлежит:
+                        +e.funds-cell 331 из 1990 паев
+                    +e.A.funds-row(href='#')
+                        +e.funds-cell Активо пять
+                        +e.funds-cell.--long ТРК Столица
+                        +e.funds-cell Вам принадлежит:
+                        +e.funds-cell 1243 из 1990 паев
+                    +e.A.funds-row(href='#')
+                        +e.funds-cell Активо шеcть
+                        +e.funds-cell.--long ТЦ «Богородский пассаж»
+                        +e.funds-cell Вам принадлежит:
+                        +e.funds-cell 12 из 1990 паев
+                    +e.A.funds-row(href='#')
+                        +e.funds-cell Активо десять
+                        +e.funds-cell.--long ТЦ «Фили»
+                        +e.funds-cell.
+                        +e.funds-cell.
+                    +e.A.funds-row(href='#')
+                        +e.funds-cell Активо
+                        +e.funds-cell.--long ТЦ "ЭкоВидное"
+                        +e.funds-cell
+                        +e.funds-cell
+        +main-footer
+            +lines
+        +info-modal
+        +doc-footer

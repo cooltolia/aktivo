@@ -1885,14 +1885,14 @@ th {
     -webkit-box-flex: 0;
        -moz-box-flex: 0;
         -ms-flex: 0 0 auto;
-            flex: 0 0 auto; }
+            flex: 0 0 auto;
+    border-right: 1px solid rgba(145, 145, 145, 0.2); }
   .account-monitoring__body {
     width: 50%;
     -webkit-box-flex: 1;
        -moz-box-flex: 1;
         -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
-    border-left: 1px solid rgba(145, 145, 145, 0.2); } }
+            flex: 1 1 auto; } }
 
 @media (min-width: 1024px) {
   .account-monitoring__sidebar {
@@ -7171,6 +7171,41 @@ th {
   .monitoring-data__finances .object-finances__vr, .monitoring-data__estimates .object-finances__vr {
     top: 40px; }
 
+.monitoring-data__funds-row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  margin: 0 -16px 8px;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(145, 145, 145, 0.2); }
+
+.monitoring-data__funds-cell {
+  padding: 8px 16px;
+  -webkit-box-flex: 0;
+     -moz-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 400; }
+  .monitoring-data__funds-cell:first-child {
+    width: 35%;
+    max-width: 170px;
+    font-weight: 600; }
+  .monitoring-data__funds-cell:empty {
+    display: none; }
+  .monitoring-data__funds-cell--long {
+    width: 65%; }
+
 @media (min-width: 768px) {
   .monitoring-data__subnav {
     padding-left: 24px;
@@ -7244,7 +7279,13 @@ th {
   .monitoring-data__finances, .monitoring-data__estimates {
     padding-left: 24px; }
   .monitoring-data__estimates {
-    padding-right: 24px; } }
+    padding-right: 24px; }
+  .monitoring-data__funds-row {
+    margin: 0; }
+  .monitoring-data__funds-cell {
+    font-size: 16px; }
+    .monitoring-data__funds-cell:first-child {
+      max-width: 190px; } }
 
 @media (min-width: 1024px) {
   .monitoring-data__header {
@@ -7274,7 +7315,26 @@ th {
     padding-left: 12px;
     padding-right: 12px; }
   .monitoring-data__finances {
-    padding-left: 0px; } }
+    padding-left: 0px; }
+  .monitoring-data__funds-table {
+    display: table;
+    width: 100%;
+    table-layout: fixed; }
+  .monitoring-data__funds-row {
+    margin: 0;
+    display: table-row; }
+  .monitoring-data__funds-cell {
+    display: table-cell;
+    padding: 24px 16px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(145, 145, 145, 0.2); }
+    .monitoring-data__funds-cell:first-child {
+      width: auto;
+      max-width: none; }
+    .monitoring-data__funds-cell--long {
+      width: 40%; }
+    .monitoring-data__funds-cell:empty {
+      display: table-cell; } }
 
 @media (min-width: 1200px) {
   .monitoring-data__header {
@@ -7300,7 +7360,18 @@ th {
       .monitoring-data__finances .object-finances__title .title.medium, .monitoring-data__estimates .object-finances__title .title.medium {
         font-size: 34px; }
     .monitoring-data__finances .object-estimates__title .title.medium, .monitoring-data__estimates .object-estimates__title .title.medium {
-      font-size: 34px; } }
+      font-size: 34px; }
+  .monitoring-data__funds-row:hover .monitoring-data__funds-cell {
+    background-color: #fff6d4; }
+  .monitoring-data__funds-cell {
+    padding: 36px 24px;
+    -webkit-transition: background-color 300ms ease;
+    -moz-transition: background-color 300ms ease;
+    transition: background-color 300ms ease; }
+    .monitoring-data__funds-cell:first-child {
+      padding-left: 36px; }
+    .monitoring-data__funds-cell:last-child {
+      padding-right: 36px; } }
 
 .monitoring-funds__row {
   position: relative;
