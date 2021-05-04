@@ -94,7 +94,7 @@
         text-decoration: none;
         outline: none;
 
-        transition: color 300ms ease;
+        transition: color 300ms ease, text-shadow 300ms ease;
 
         &::before {
             content: '';
@@ -112,7 +112,7 @@
         }
 
         &.active {
-            font-weight: 600;
+            text-shadow: 0.5px 0.25px 0px black;
 
             &::before {
                 transform: scaleX(1);
@@ -182,11 +182,16 @@
         &__link {
             font-size: 16px;
 
-            &:hover,
-            &:focus-visible {
-                color: $theme-color;
+            &:not(.active) {
+                &:hover,
+                &:focus-visible {
+                    color: $theme-color;
 
-                text-decoration: none;
+                    text-decoration: none;
+                }
+            }
+
+            &.active {
             }
         }
     }

@@ -6,7 +6,7 @@
     });
 
     const fontObserver = new FontFaceObserver('Montserrat', {
-        weight: 600,
+        weight: 400,
     });
 
     fontObserver.load().then(function () {
@@ -43,16 +43,17 @@
             btn.addEventListener('click', (e) => {
                 let target;
                 if (btn.classList.contains('prev')) {
-                    target = previousLinkTag();
+                    // target = previousLinkTag();
+                    target = previousHiddenLinkTag()
                     if (!target) {
                         navigationScrollWrapper.scrollLeft = 0;
                         return;
                     }
-                    console.log(target);
-                    console.log(elIsVisible(target));
-                    if (elIsVisible(target)) {
-                        console.log('pff');
-                    }
+                    // console.log(target);
+                    // console.log(elIsVisible(target));
+                    // if (elIsVisible(target)) {
+                    //     console.log('pff');
+                    // }
                     const val = target.offsetLeft;
                     scroll(val, target);
                 } else {
@@ -106,9 +107,11 @@
 
             const left = el.offsetLeft;
             const { width } = el.getBoundingClientRect();
+            const scrollLeft = Math.round(navigationScrollWrapper.scrollLeft);
 
-            if (left < navigationScrollWrapper.scrollLeft) return false;
-            else if (left > navListWidth - (navigationScrollWrapper.scrollLeft + width)) return false;
+            if (left === scrollLeft) return true;
+            if (left < scrollLeft) return false;
+            else if (left - scrollLeft > navListWidth - width) return false;
             else return true;
         }
 
@@ -121,10 +124,11 @@
 
         function toggleControlsBtns(val = 0) {
             controls.forEach((el) => el.classList.remove('disabled'));
+            const scrollLeft = Math.round(navigationScrollWrapper.scrollLeft);
 
-            if (Math.ceil(navigationScrollWrapper.scrollLeft) >= navListScrollWidth - navigationScrollWrapperWidth) {
+            if (scrollLeft >= navListScrollWidth - navigationScrollWrapperWidth) {
                 controls.find((el) => el.classList.contains('next')).classList.add('disabled');
-            } else if (navigationScrollWrapper.scrollLeft <= 0) {
+            } else if (scrollLeft <= 0) {
                 controls.find((el) => el.classList.contains('prev')).classList.add('disabled');
             }
         }
@@ -152,7 +156,18 @@
 
             while (sibling) {
                 if (sibling.matches('.page-navigation__link')) return sibling;
-                sibling = sibling.nextElementSibling;
+                sibling = sibling.previousElementSibling;
+            }
+        }
+
+        function previousHiddenLinkTag() {
+            const currentLink = getCurrentLink();
+            let sibling = currentLink.previousElementSibling;
+
+            while (sibling) {
+                console.log(sibling, elIsVisible(sibling));
+                if (sibling.matches('.page-navigation__link') && !elIsVisible(sibling)) return sibling;
+                sibling = sibling.previousElementSibling;
             }
         }
 
