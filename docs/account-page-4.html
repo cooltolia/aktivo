@@ -71,7 +71,16 @@
           </nav><!--/ main-nav --> 
           <div class="main-header__authorization main-header__authorization--mobile"><!-- authorization --> 
             <div class="authorization">
-              <div class="authorization__actions"><a class="authorization__action authorization__action--main" href="#">Регистрация</a><a class="authorization__action" href="#">Войти</a>
+              <div class="authorization__logged"><a class="authorization__inner-link feedback-trigger" href="#" title="Документы">
+                <svg>
+                  <use xlink:href="images/redesign/html-sprite.svg#bubble"></use>
+                </svg></a><a class="authorization__inner-link authorization__settings" href="./account-page-6.html" title="Настройки">
+                <svg>
+                  <use xlink:href="images/redesign/html-sprite.svg#settings"></use>
+                </svg></a><a class="authorization__exit" href="#">
+                <svg>
+                  <use xlink:href="images/redesign/html-sprite.svg#exit"></use>
+                </svg></a>
               </div>
             </div><!--/ authorization --> 
           </div>
@@ -113,249 +122,273 @@
           </aside>
           <main class="account-layout__main" role="main"><!-- account-documents --> 
             <section class="account-documents">
-              <div class="account-documents__empty">
-                <div class="account-documents__empty-title">У вас пока нет документов
-                </div><a class="account-documents__empty-link btn" href="#">Купить объект</a>
-              </div>
-              <div class="account-documents__block"><time class="account-documents__date" datetime="2020-01-17">17 января 2020 г.</time>
-                <div class="account-documents__document"><!-- account-document --> 
-                  <div class="account-document poll">
-                    <div class="account-document__header">
-                      <div class="account-document__title">Голосование по продаже котельной Активо пять
-                      </div>
-                      <div class="account-document__data">
-                        <div class="account-document__header-status waiting">Проголосовать
+              <div class="account-documents__wrapper">
+                <aside class="account-documents__aside"><a class="account-documents__aside-link active" href="#">Общие документы</a><a class="account-documents__aside-link" href="#">Активо один</a><a class="account-documents__aside-link" href="#">Активо два</a><a class="account-documents__aside-link" href="#">Активо три</a><a class="account-documents__aside-link" href="#">Активо четыре</a><a class="account-documents__aside-link" href="#">Активо пять</a><a class="account-documents__aside-link" href="#">Активо шесть</a><a class="account-documents__aside-link" href="#">Активо десять</a><a class="account-documents__aside-link" href="#">Активо</a>
+                </aside>
+                <div class="account-documents__list">
+                  <div class="account-documents__block">
+                    <div class="account-documents__document"><!-- account-document --> 
+                      <div class="account-document">
+                        <div class="account-document__header">
+                          <div class="account-document__title"><span class="notify">Покупка №403246 Активо четырнадцать</span>
+                          </div>
+                          <div class="account-document__data">
+                          </div>
+                        </div>
+                        <div class="account-document__body">
+                          <div class="account-document__row">
+                            <div class="account-document__name">Уведомление об операции по лицевому счету
+                            </div>
+                            <div class="account-document__actions"><a class="account-document__action" href="#">
+                              <svg>
+                                <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                              </svg>скачать</a>
+                            </div>
+                          </div>
+                          <div class="account-document__row">
+                            <div class="account-document__name">Свидетельство о государственной регистрации права
+                            </div>
+                            <div class="account-document__actions"><a class="account-document__action" href="#">
+                              <svg>
+                                <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                              </svg>скачать</a>
+                            </div>
+                          </div>
+                          <div class="account-document__row">
+                            <div class="account-document__name">Уведомление об операции по лицевому счету
+                            </div>
+                            <div class="account-document__actions"><a class="account-document__action" href="#">
+                              <svg>
+                                <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                              </svg>скачать</a>
+                            </div>
+                          </div>
+                          <div class="account-document__row">
+                            <div class="account-document__name">Свидетельство о государственной регистрации права
+                            </div>
+                            <div class="account-document__actions"><a class="account-document__action" href="#">
+                              <svg>
+                                <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                              </svg>скачать</a>
+                            </div>
+                          </div>
+                          <div class="account-document__account">
+                            <div class="account-document__account-logo"><img src="images/redesign/alfacapital.png" alt="Альфа-Капитал"/>
+                            </div>
+                            <p class="account-document__account-text">Откройте лицевой счет на сайте управляющей компании
+                            </p>
+                            <button class="account-document__account-button btn" type="button">Открыть счет
+                            </button>
+                          </div>
+                        </div>
+                      </div><!--/ account-document --> 
+                    </div>
+                  </div>
+                  <div class="account-documents__block"><time class="account-documents__date" datetime="2020-01-02">2 января 2020 г.</time><!-- account-document --> 
+                    <div class="account-document">
+                      <div class="account-document__header">
+                        <div class="account-document__title"><span>Продажа №403241 Активо один</span>
+                        </div>
+                        <div class="account-document__data">
+                          <div class="account-document__price sell">
+                            <div class="icon">
+                              <svg>
+                                <use xlink:href="images/redesign/html-sprite.svg#l-arrow"></use>
+                              </svg>
+                            </div>525 313.90 ₽
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="account-document__body">
-                      <div class="account-document__row"><!-- account-poll --> 
-                        <div class="account-poll">
-                          <p class="account-poll__description">Сдаются гаражи с возможностью использования под складское хранение срок в административном комплексе по адресу: ул.&nbsp;Адмирала&nbsp;Руднева, д.&nbsp;6. Контакт Дмитрий. Цена договорная.
-                          </p>
-                          <form class="account-poll__form" method="get" action="/"><a class="account-poll__vote" href="#" name="poll1" value="1"><span class="progress"></span><span class="percentage"></span>Поддерживаю </a><a class="account-poll__vote" href="#" name="poll1" value="2"><span class="progress"></span><span class="percentage"></span>Против</a><a class="account-poll__vote" href="#" name="poll1" value="3"><span class="progress"></span><span class="percentage"></span>Не знаю</a><a class="account-poll__vote" href="#" name="poll1" value="4"><span class="progress"></span><span class="percentage"></span>Подумаю</a>
-                          </form><br/><br/><br/><br/>
-                          <form class="account-poll__form voted" method="get" action="/"><a class="account-poll__vote selected" href="#" name="poll1" value="1" disabled=""><span class="progress" style="width: 70%"> </span><span class="percentage">70%</span>Поддерживаю </a><a class="account-poll__vote" href="#" name="poll1" value="2" disabled=""><span class="progress" style="width: 20%"> </span><span class="percentage">20%</span>Против</a><a class="account-poll__vote" href="#" name="poll1" value="3" disabled=""><span class="progress" style="width: 6%"> </span><span class="percentage">6%</span>Не знаю</a><a class="account-poll__vote" href="#" name="poll1" value="4" disabled=""><span class="progress" style="width: 4%"> </span><span class="percentage">4% </span>Подумаю</a>
-                          </form>
-                        </div><!--/ account-poll --> 
-                      </div>
-                    </div>
-                  </div><!--/ account-document --> <!-- account-document --> 
-                  <div class="account-document">
-                    <div class="account-document__header">
-                      <div class="account-document__title">Покупка №403246 Активо четырнадцать
-                      </div>
-                      <div class="account-document__data">
-                        <div class="account-document__price buy">
-                          <div class="icon">
+                      <div class="account-document__body">
+                        <div class="account-document__row">
+                          <div class="account-document__name">Договор купли-продажи паев
+                          </div>
+                          <div class="account-document__status"><span class="highlight">на подпись</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
                             <svg>
-                              <use xlink:href="images/redesign/html-sprite.svg#l-arrow"></use>
-                            </svg>
-                          </div>122 525 313.90 ₽
+                              <use xlink:href="images/redesign/html-sprite.svg#check"></use>
+                            </svg>Подписать</a><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#view"></use>
+                            </svg>Ознакомиться</a>
+                          </div>
                         </div>
-                        <div class="account-document__header-status waiting">Не завершена
+                        <div class="account-document__row">
+                          <div class="account-document__name">Счет на оплату — 10%
+                          </div>
+                          <div class="account-document__status"><span>оплачено</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="account-document__body">
-                      <div class="account-document__row">
-                        <div class="account-document__name">Договор купли-продажи паев
+                        <div class="account-document__row">
+                          <div class="account-document__name">Счет на оплату — 90%
+                          </div>
+                          <div class="account-document__status"><span class="highlight">оплатить</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
                         </div>
-                        <div class="account-document__status account-document__status--highlight">на подпись
+                        <div class="account-document__row">
+                          <div class="account-document__name">Заявление и анкета для открытия счета в спец. депозитарий
+                          </div>
+                          <div class="account-document__status"><span>для ознакомления</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
                         </div>
-                        <div class="account-document__actions"><a class="account-document__action" href="#">
-                          <svg>
-                            <use xlink:href="images/redesign/html-sprite.svg#check"></use>
-                          </svg>Подписать</a><a class="account-document__action" href="#">
-                          <svg>
-                            <use xlink:href="images/redesign/html-sprite.svg#view"></use>
-                          </svg>Ознакомиться</a>
-                        </div>
-                      </div>
-                      <div class="account-document__row">
-                        <div class="account-document__name">Счет на оплату — 10%
-                        </div>
-                        <div class="account-document__status">оплачено
-                        </div>
-                        <div class="account-document__actions"><a class="account-document__action" href="#">
-                          <svg>
-                            <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                          </svg>скачать</a>
-                        </div>
-                      </div>
-                      <div class="account-document__row">
-                        <div class="account-document__name">Счет на оплату — 90%
-                        </div>
-                        <div class="account-document__status account-document__status--highlight">оплатить
-                        </div>
-                        <div class="account-document__actions"><a class="account-document__action" href="#">
-                          <svg>
-                            <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                          </svg>скачать</a>
-                        </div>
-                      </div>
-                      <div class="account-document__row">
-                        <div class="account-document__name">Заявление и анкета для открытия счета в спец. депозитарий
-                        </div>
-                        <div class="account-document__status">для ознакомления
-                        </div>
-                        <div class="account-document__actions"><a class="account-document__action" href="#">
-                          <svg>
-                            <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                          </svg>скачать</a>
+                        <div class="account-document__row">
+                          <div class="account-document__name">Анкета ФЛ в реестре владельцев инвестиционных паев
+                          </div>
+                          <div class="account-document__status"><span>подписано</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
                         </div>
                       </div>
-                      <div class="account-document__row">
-                        <div class="account-document__name">Анкета ФЛ в реестре владельцев инвестиционных паев
+                    </div><!--/ account-document --> 
+                  </div>
+                  <div class="account-documents__block"><time class="account-documents__date" datetime="2020-01-02">2 января 2020 г.</time><!-- account-document --> 
+                    <div class="account-document">
+                      <div class="account-document__header">
+                        <div class="account-document__title"><span class="notify">Продажа №403241 Активо один</span>
                         </div>
-                        <div class="account-document__status">подписано
-                        </div>
-                        <div class="account-document__actions"><a class="account-document__action" href="#">
-                          <svg>
-                            <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                          </svg>скачать</a>
+                        <div class="account-document__data">
+                          <div class="account-document__price buy">
+                            <div class="icon">
+                              <svg>
+                                <use xlink:href="images/redesign/html-sprite.svg#l-arrow"></use>
+                              </svg>
+                            </div>525 313.90 ₽
+                          </div>
                         </div>
                       </div>
-                      <div class="account-document__account">
-                        <div class="account-document__account-logo"><img src="images/redesign/alfacapital.png" alt="Альфа-Капитал"/>
+                      <div class="account-document__body">
+                        <div class="account-document__row">
+                          <div class="account-document__name">Договор купли-продажи паев
+                          </div>
+                          <div class="account-document__status"><span class="highlight">на подпись</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#check"></use>
+                            </svg>Подписать</a><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#view"></use>
+                            </svg>Ознакомиться</a>
+                          </div>
                         </div>
-                        <p class="account-document__account-text">
-                           Откройте лицевой счет на сайте управляющей компании
-                        </p>
-                        <button class="account-document__account-button btn" type="button">Открыть счет
-                        </button>
+                        <div class="account-document__row">
+                          <div class="account-document__name">Счет на оплату — 10%
+                          </div>
+                          <div class="account-document__status"><span>оплачено</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
+                        </div>
+                        <div class="account-document__row">
+                          <div class="account-document__name">Счет на оплату — 90%
+                          </div>
+                          <div class="account-document__status"><span class="highlight">оплатить</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
+                        </div>
+                        <div class="account-document__row">
+                          <div class="account-document__name">Заявление и анкета для открытия счета в спец. депозитарий
+                          </div>
+                          <div class="account-document__status"><span>для ознакомления</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
+                        </div>
+                        <div class="account-document__row">
+                          <div class="account-document__name">Анкета ФЛ в реестре владельцев инвестиционных паев
+                          </div>
+                          <div class="account-document__status"><span>подписано</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div><!--/ account-document --> 
+                    </div><!--/ account-document --> <!-- account-document --> 
+                    <div class="account-document">
+                      <div class="account-document__header">
+                        <div class="account-document__title"><span class="notify">Продажа №403241</span>
+                        </div>
+                        <div class="account-document__data">
+                          <div class="account-document__price sell closed">
+                            <div class="icon">
+                              <svg>
+                                <use xlink:href="images/redesign/html-sprite.svg#l-arrow"></use>
+                              </svg>
+                            </div>2 525 313.90 ₽
+                          </div>
+                        </div>
+                      </div>
+                      <div class="account-document__body">
+                        <div class="account-document__row">
+                          <div class="account-document__name">Договор купли-продажи паев
+                          </div>
+                          <div class="account-document__status"><span class="highlight">на подпись</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#check"></use>
+                            </svg>Подписать</a>
+                          </div>
+                        </div>
+                        <div class="account-document__row">
+                          <div class="account-document__name">Счет на оплату — 10%
+                          </div>
+                          <div class="account-document__status"><span>оплачено</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
+                        </div>
+                        <div class="account-document__row">
+                          <div class="account-document__name">Счет на оплату — 90%
+                          </div>
+                          <div class="account-document__status"><span class="highlight">оплатить</span>
+                          </div>
+                          <div class="account-document__actions"><a class="account-document__action" href="#">
+                            <svg>
+                              <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
+                            </svg>скачать</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!--/ account-document --> 
+                  </div>
                 </div>
-              </div>
-              <div class="account-documents__block"><time class="account-documents__date" datetime="2020-01-02">2 января 2020 г.</time><!-- account-document --> 
-                <div class="account-document">
-                  <div class="account-document__header">
-                    <div class="account-document__title">Продажа №403241 Активо один
-                    </div>
-                    <div class="account-document__data">
-                      <div class="account-document__price sell">
-                        <div class="icon">
-                          <svg>
-                            <use xlink:href="images/redesign/html-sprite.svg#l-arrow"></use>
-                          </svg>
-                        </div>525 313.90 ₽
-                      </div>
-                      <div class="account-document__header-status ready">Завершена
-                      </div>
-                    </div>
-                  </div>
-                  <div class="account-document__body">
-                    <div class="account-document__row">
-                      <div class="account-document__name">Договор купли-продажи паев
-                      </div>
-                      <div class="account-document__status account-document__status--highlight">на подпись
-                      </div>
-                      <div class="account-document__actions"><a class="account-document__action" href="#">
-                        <svg>
-                          <use xlink:href="images/redesign/html-sprite.svg#check"></use>
-                        </svg>Подписать</a>
-                      </div>
-                    </div>
-                    <div class="account-document__row">
-                      <div class="account-document__name">Счет на оплату — 10%
-                      </div>
-                      <div class="account-document__status">оплачено
-                      </div>
-                      <div class="account-document__actions"><a class="account-document__action" href="#">
-                        <svg>
-                          <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                        </svg>скачать</a>
-                      </div>
-                    </div>
-                    <div class="account-document__row">
-                      <div class="account-document__name">Счет на оплату — 90%
-                      </div>
-                      <div class="account-document__status account-document__status--highlight">оплатить
-                      </div>
-                      <div class="account-document__actions"><a class="account-document__action" href="#">
-                        <svg>
-                          <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                        </svg>скачать</a>
-                      </div>
-                    </div>
-                    <div class="account-document__row">
-                      <div class="account-document__name">Заявление и анкета для открытия счета в спец. депозитарий
-                      </div>
-                      <div class="account-document__status">для ознакомления
-                      </div>
-                      <div class="account-document__actions"><a class="account-document__action" href="#">
-                        <svg>
-                          <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                        </svg>скачать</a>
-                      </div>
-                    </div>
-                    <div class="account-document__row">
-                      <div class="account-document__name">Анкета ФЛ в реестре владельцев инвестиционных паев
-                      </div>
-                      <div class="account-document__status">подписано
-                      </div>
-                      <div class="account-document__actions"><a class="account-document__action" href="#">
-                        <svg>
-                          <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                        </svg>скачать</a>
-                      </div>
-                    </div>
-                  </div>
-                </div><!--/ account-document --> <!-- account-document --> 
-                <div class="account-document">
-                  <div class="account-document__header">
-                    <div class="account-document__title">Продажа №403241
-                    </div>
-                    <div class="account-document__data">
-                      <div class="account-document__price sell">
-                        <div class="icon">
-                          <svg>
-                            <use xlink:href="images/redesign/html-sprite.svg#l-arrow"></use>
-                          </svg>
-                        </div>2 525 313.90 ₽
-                      </div>
-                      <div class="account-document__header-status ready">Завершена
-                      </div>
-                    </div>
-                  </div>
-                  <div class="account-document__body">
-                    <div class="account-document__row">
-                      <div class="account-document__name">Договор купли-продажи паев
-                      </div>
-                      <div class="account-document__status account-document__status--highlight">на подпись
-                      </div>
-                      <div class="account-document__actions"><a class="account-document__action" href="#">
-                        <svg>
-                          <use xlink:href="images/redesign/html-sprite.svg#check"></use>
-                        </svg>Подписать</a>
-                      </div>
-                    </div>
-                    <div class="account-document__row">
-                      <div class="account-document__name">Счет на оплату — 10%
-                      </div>
-                      <div class="account-document__status">оплачено
-                      </div>
-                      <div class="account-document__actions"><a class="account-document__action" href="#">
-                        <svg>
-                          <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                        </svg>скачать</a>
-                      </div>
-                    </div>
-                    <div class="account-document__row">
-                      <div class="account-document__name">Счет на оплату — 90%
-                      </div>
-                      <div class="account-document__status account-document__status--highlight">оплатить
-                      </div>
-                      <div class="account-document__actions"><a class="account-document__action" href="#">
-                        <svg>
-                          <use xlink:href="images/redesign/html-sprite.svg#d-arrow"></use>
-                        </svg>скачать</a>
-                      </div>
-                    </div>
-                  </div>
-                </div><!--/ account-document --> 
               </div>
             </section><!--/ account-documents --> 
           </main>
