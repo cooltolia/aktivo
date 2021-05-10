@@ -2512,7 +2512,7 @@ jQuery(document).ready(function ($) {
         arrow: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="6" fill="none"><path d="M5.094 1.265a2 2 0 012.723 0L12.911 6H0l5.094-4.735z" fill="#fed63f"/></svg>'
       });
       var fontObserver = new FontFaceObserver('Montserrat', {
-        weight: 600
+        weight: 400
       });
       fontObserver.load().then(function () {
         init();
@@ -2549,19 +2549,18 @@ jQuery(document).ready(function ($) {
             var target;
 
             if (btn.classList.contains('prev')) {
-              target = previousLinkTag();
+              // target = previousLinkTag();
+              target = previousHiddenLinkTag();
 
               if (!target) {
                 navigationScrollWrapper.scrollLeft = 0;
                 return;
-              }
+              } // console.log(target);
+              // console.log(elIsVisible(target));
+              // if (elIsVisible(target)) {
+              //     console.log('pff');
+              // }
 
-              console.log(target);
-              console.log(elIsVisible(target));
-
-              if (elIsVisible(target)) {
-                console.log('pff');
-              }
 
               var val = target.offsetLeft;
               scroll(val, target);
@@ -2619,7 +2618,9 @@ jQuery(document).ready(function ($) {
           var _el$getBoundingClient = el.getBoundingClientRect(),
               width = _el$getBoundingClient.width;
 
-          if (left < navigationScrollWrapper.scrollLeft) return false;else if (left > navListWidth - (navigationScrollWrapper.scrollLeft + width)) return false;else return true;
+          var scrollLeft = Math.round(navigationScrollWrapper.scrollLeft);
+          if (left === scrollLeft) return true;
+          if (left < scrollLeft) return false;else if (left - scrollLeft > navListWidth - width) return false;else return true;
         }
 
         function resetActiveNavs() {
@@ -2634,12 +2635,13 @@ jQuery(document).ready(function ($) {
           controls.forEach(function (el) {
             return el.classList.remove('disabled');
           });
+          var scrollLeft = Math.round(navigationScrollWrapper.scrollLeft);
 
-          if (Math.ceil(navigationScrollWrapper.scrollLeft) >= navListScrollWidth - navigationScrollWrapperWidth) {
+          if (scrollLeft >= navListScrollWidth - navigationScrollWrapperWidth) {
             controls.find(function (el) {
               return el.classList.contains('next');
             }).classList.add('disabled');
-          } else if (navigationScrollWrapper.scrollLeft <= 0) {
+          } else if (scrollLeft <= 0) {
             controls.find(function (el) {
               return el.classList.contains('prev');
             }).classList.add('disabled');
@@ -2666,7 +2668,18 @@ jQuery(document).ready(function ($) {
 
           while (sibling) {
             if (sibling.matches('.page-navigation__link')) return sibling;
-            sibling = sibling.nextElementSibling;
+            sibling = sibling.previousElementSibling;
+          }
+        }
+
+        function previousHiddenLinkTag() {
+          var currentLink = getCurrentLink();
+          var sibling = currentLink.previousElementSibling;
+
+          while (sibling) {
+            console.log(sibling, elIsVisible(sibling));
+            if (sibling.matches('.page-navigation__link') && !elIsVisible(sibling)) return sibling;
+            sibling = sibling.previousElementSibling;
           }
         }
 

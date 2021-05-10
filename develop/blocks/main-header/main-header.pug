@@ -1,4 +1,4 @@
-mixin main-header()
+mixin main-header(logged)
     +b.HEADER.main-header
         +e.inner
             +e.A.logo(href='./')
@@ -12,6 +12,6 @@ mixin main-header()
                     +authorization(theme)
             +e.A.phone(href='tel: 8 800 500-64-64' data-aos="fade-left" data-aos-delay="350") 8 800 500-64-64
             +e.authorization.--desktop(data-aos="fade-left" data-aos-delay="400")
-                +authorization(theme)
+                +authorization(logged)
             +e.hamburger
                 +hamburger(theme)

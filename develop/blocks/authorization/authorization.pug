@@ -1,5 +1,5 @@
-mixin authorization()
-    -const loggedIn = false
+mixin authorization(logged = false)
+    -const loggedIn = logged
     +b.authorization
         if !loggedIn
             +e.actions

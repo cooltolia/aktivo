@@ -1,13 +1,15 @@
-mixin account-document(title, type, price, statusText, status)
+mixin account-document(title, type, price, isClosed)
     +b.account-document&attributes(attributes)
+        -const random = Math.random()
         +e.header
-            +e.title !{title}
+            +e.title
+                span(class=(+random < 0.5) ? 'notify' : '') !{title}
             +e.data
                 if (type && price)
-                    +e.price(class=type)
+                    -const statusClass = isClosed ? ' closed' : ''
+                    +e.price(class=type + statusClass)
                         .icon
                             +icon('l-arrow')
                         | !{price}
-                +e.header-status(class=status ? 'ready' : 'waiting') !{statusText}
         +e.body
             block

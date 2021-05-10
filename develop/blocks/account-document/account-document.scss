@@ -54,6 +54,32 @@
         font-size: 12px;
         font-weight: 600;
         line-height: 1.4;
+
+        span {
+            position: relative;
+
+            &.notify {
+                &::after {
+                    content: '!';
+                    position: absolute;
+                    bottom: 2px;
+                    right: -18px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 9px;
+                    height: 9px;
+
+                    color: $text-color;
+                    line-height: 1;
+                    font-size: 7px;
+                    font-weight: 700;
+
+                    background-color: $theme-color;
+                    border-radius: 50%;
+                }
+            }
+        }
     }
 
     &__data {
@@ -101,6 +127,14 @@
                 }
             }
         }
+
+        &.closed {
+            color: #727272;
+
+            .icon svg {
+                stroke: #727272;
+            }
+        }
     }
 
     &__header-status {
@@ -129,33 +163,45 @@
 
     &__name {
         width: 60%;
+        padding-right: 12px;
         margin-bottom: 4px;
 
         font-size: 12px;
         line-height: 1.2;
+
+        + .account-document__actions {
+            justify-content: flex-end;
+        }
     }
 
     &__status {
-        margin-top: 8px;
+        // margin-top: 8px;
         margin-left: auto;
+        margin-bottom: 4px;
 
         font-size: 10px;
         line-height: 1.2;
         color: #727272;
 
-        &--highlight {
-            padding: 3px 9px;
+        span {
+            display: block;
 
-            color: $text-color;
+            &.highlight {
+                padding: 3px 9px;
 
-            background-color: $theme-color;
-            border-radius: 9px;
+                color: $text-color;
+
+                background-color: $theme-color;
+                border-radius: 9px;
+            }
         }
     }
 
     &__actions {
-        width: 100%;
+        min-width: 40%;
+        flex: 1 1 auto;
         display: flex;
+        margin-bottom: 4px;
     }
 
     &__action {
@@ -234,6 +280,10 @@
         &__title {
             width: 50%;
             font-size: 16px;
+
+            span.notify::after {
+                bottom: 4px;
+            }
         }
 
         &__data {
@@ -245,12 +295,13 @@
 
         &__price {
             flex: 1 1 auto;
+            justify-content: flex-end;
 
             font-size: 16px;
 
             .icon {
-                width: 11px;
-                height: 13px;
+                width: 13px;
+                height: 16px;
                 margin-right: 16px;
             }
 
@@ -276,20 +327,27 @@
         }
 
         &__name {
+            width: 50%;
+            flex: 1 1 auto;
             padding-right: 24px;
         }
 
         &__status {
             flex: 0 0 auto;
+            width: 146px;
+            display: flex;
+            justify-content: flex-end;
             margin-right: 16px;
             margin-top: 0;
+            margin-left: auto;
 
             font-size: 12px;
         }
 
         &__actions {
             display: block;
-            width: 162px;
+            min-width: auto;
+            width: 100px;
             flex: 0 0 auto;
         }
 
@@ -333,10 +391,5 @@
             margin-right: 10px;
             margin-bottom: 0;
         }
-    }
-}
-
-@media #{$desktop} {
-    .account-document {
     }
 }

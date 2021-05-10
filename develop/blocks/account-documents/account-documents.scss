@@ -34,6 +34,35 @@
         color: #838282;
     }
 
+    &__aside {
+        padding: 0 0 12px;
+
+        border-bottom: 1px solid #f6f6f6;
+    }
+
+    &__aside-link {
+        display: block;
+        padding: 12px;
+
+        font-size: 12px;
+        font-weight: 600;
+        color: $text-color;
+        text-decoration: none;
+
+        transition: background-color 300ms ease;
+
+        &.active {
+            background-color: #fff6d4;
+            font-weight: 700;
+        }
+
+        &:hover,
+        &:active,
+        &:focus-visible {
+            background-color: #fff6d4;
+        }
+    }
+
     &__block {
         margin-bottom: 20px;
 
@@ -54,7 +83,31 @@
     }
 }
 
+@media #{$laptop} {
+    .account-documents {
+        &__wrapper {
+            display: flex;
+        }
+
+        &__aside {
+            min-width: 200px;
+            border-right: 1px solid #f6f6f6;
+        }
+
+        &__list {
+            flex: 1 1 auto;
+        }
+    }
+}
+
 @media #{$desktop} {
     .account-documents {
+        &__aside {
+            min-width: 300px;
+        }
+
+        &__aside-link {
+            padding: 12px 20px;
+        }
     }
 }

@@ -1,116 +1,170 @@
 mixin account-documents()
     +b.SECTION.account-documents
-        +e.empty
-            +e.empty-title У вас пока нет документов
-            +e.A.empty-link.btn(href='#') Купить объект
-        +e.block
-            +e.TIME.date(datetime='2020-01-17') 17 января 2020 г.
-            +e.document
-                +account-document('Голосование по продаже котельной Активо пять', null, null, 'Проголосовать', false)(class='poll')
-                    +e.row
-                        +account-poll
-                +account-document('Покупка №403246 Активо четырнадцать', 'buy', '122 525 313.90 ₽', 'Не завершена', false)
-                    +e.row
-                        +e.name Договор купли-продажи паев
-                        +e.status.--highlight на подпись
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('check')
-                                | Подписать
-                            +e.A.action(href='#')
-                                +icon('view')
-                                | Ознакомиться
-                    +e.row
-                        +e.name Счет на оплату — 10%
-                        +e.status оплачено
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-                    +e.row
-                        +e.name Счет на оплату — 90%
-                        +e.status.--highlight оплатить
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-                    +e.row
-                        +e.name Заявление и анкета для открытия счета в спец. депозитарий
-                        +e.status для ознакомления
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-                    +e.row
-                        +e.name Анкета ФЛ в реестре владельцев инвестиционных паев
-                        +e.status подписано
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-                    +e.account
-                        +e.account-logo
-                            img(src="images/redesign/alfacapital.png", alt="Альфа-Капитал")
-                        +e.P.account-text 
-                            | Откройте лицевой счет на сайте управляющей компании
-                        +e.BUTTON.account-button.btn(type='button') Открыть счет
-        +e.block
-            +e.TIME.date(datetime='2020-01-02') 2 января 2020 г.
-            +account-document('Продажа №403241 Активо один', 'sell', '525 313.90 ₽', 'Завершена', true)
-                    +e.row
-                        +e.name Договор купли-продажи паев
-                        +e.status.--highlight на подпись
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('check')
-                                | Подписать
-                    +e.row
-                        +e.name Счет на оплату — 10%
-                        +e.status оплачено
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-                    +e.row
-                        +e.name Счет на оплату — 90%
-                        +e.status.--highlight оплатить
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-                    +e.row
-                        +e.name Заявление и анкета для открытия счета в спец. депозитарий
-                        +e.status для ознакомления
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-                    +e.row
-                        +e.name Анкета ФЛ в реестре владельцев инвестиционных паев
-                        +e.status подписано
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-            +account-document('Продажа №403241', 'sell', '2 525 313.90 ₽', 'Завершена', true)
-                    +e.row
-                        +e.name Договор купли-продажи паев
-                        +e.status.--highlight на подпись
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('check')
-                                | Подписать
-                    +e.row
-                        +e.name Счет на оплату — 10%
-                        +e.status оплачено
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
-                    +e.row
-                        +e.name Счет на оплату — 90%
-                        +e.status.--highlight оплатить
-                        +e.actions
-                            +e.A.action(href='#')
-                                +icon('d-arrow')
-                                | скачать
+        //- +e.empty
+        //-     +e.empty-title У вас пока нет документов
+        //-     +e.A.empty-link.btn(href='#') Купить объект
+        +e.wrapper
+            +e.ASIDE.aside
+                +e.A.aside-link.active(href='#') Общие документы
+                +e.A.aside-link(href='#') Активо один
+                +e.A.aside-link(href='#') Активо два
+                +e.A.aside-link(href='#') Активо три
+                +e.A.aside-link(href='#') Активо четыре
+                +e.A.aside-link(href='#') Активо пять
+                +e.A.aside-link(href='#') Активо шесть
+                +e.A.aside-link(href='#') Активо десять
+                +e.A.aside-link(href='#') Активо
+            +e.list
+                +e.block
+                    +e.document
+                        //- +account-document('Голосование по продаже котельной Активо пять', null, null, 'Проголосовать', false)(class='poll')
+                        //-     +e.row
+                        //-         +account-poll
+                        +account-document('Покупка №403246 Активо четырнадцать')
+                            +e.row
+                                +e.name Уведомление об операции по лицевому счету
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Свидетельство о государственной регистрации права
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Уведомление об операции по лицевому счету
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Свидетельство о государственной регистрации права
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.account
+                                +e.account-logo
+                                    img(src="images/redesign/alfacapital.png", alt="Альфа-Капитал")
+                                +e.P.account-text
+                                    | Откройте лицевой счет на сайте управляющей компании
+                                +e.BUTTON.account-button.btn(type='button') Открыть счет
+                +e.block
+                    +e.TIME.date(datetime='2020-01-02') 2 января 2020 г.
+                    +account-document('Продажа №403241 Активо один', 'sell', '525 313.90 ₽', false)
+                            +e.row
+                                +e.name Договор купли-продажи паев
+                                +e.status
+                                    span.highlight на подпись
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('check')
+                                        | Подписать
+                                    +e.A.action(href='#')
+                                        +icon('view')
+                                        | Ознакомиться
+                            +e.row
+                                +e.name Счет на оплату — 10%
+                                +e.status
+                                    span оплачено
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Счет на оплату — 90%
+                                +e.status
+                                    span.highlight оплатить
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Заявление и анкета для открытия счета в спец. депозитарий
+                                +e.status
+                                    span для ознакомления
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Анкета ФЛ в реестре владельцев инвестиционных паев
+                                +e.status
+                                    span подписано
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                +e.block
+                    +e.TIME.date(datetime='2020-01-02') 2 января 2020 г.
+                    +account-document('Продажа №403241 Активо один', 'buy', '525 313.90 ₽', false)
+                            +e.row
+                                +e.name Договор купли-продажи паев
+                                +e.status
+                                    span.highlight на подпись
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('check')
+                                        | Подписать
+                                    +e.A.action(href='#')
+                                        +icon('view')
+                                        | Ознакомиться
+                            +e.row
+                                +e.name Счет на оплату — 10%
+                                +e.status
+                                    span оплачено
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Счет на оплату — 90%
+                                +e.status
+                                    span.highlight оплатить
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Заявление и анкета для открытия счета в спец. депозитарий
+                                +e.status
+                                    span для ознакомления
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Анкета ФЛ в реестре владельцев инвестиционных паев
+                                +e.status
+                                    span подписано
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                    +account-document('Продажа №403241', 'sell', '2 525 313.90 ₽', true)
+                            +e.row
+                                +e.name Договор купли-продажи паев
+                                +e.status
+                                    span.highlight на подпись
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('check')
+                                        | Подписать
+                            +e.row
+                                +e.name Счет на оплату — 10%
+                                +e.status
+                                    span оплачено
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
+                            +e.row
+                                +e.name Счет на оплату — 90%
+                                +e.status
+                                    span.highlight оплатить
+                                +e.actions
+                                    +e.A.action(href='#')
+                                        +icon('d-arrow')
+                                        | скачать
