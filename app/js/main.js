@@ -37,9 +37,10 @@ AOS.init({
   duration: 750
 });
 $.noConflict();
+document.addEventListener('DOMContentLoaded', function (e) {
+  document.body.classList.add('js-loaded');
+});
 jQuery(document).ready(function ($) {
-  $('body').removeClass('pageload');
-
   if (typeof Promise !== 'function') {
     document.createElement('picture');
     loadScript('/js/polyfills/browser.js', globalInitFunction); // loadScript('/js/polyfills/browser.js', globalInitFunction);
@@ -2520,6 +2521,7 @@ jQuery(document).ready(function ($) {
 
       function init() {
         var navigation = document.querySelector('.page-navigation');
+        if (!navigation) return;
         var navigationScrollWrapper = navigation.querySelector('.page-navigation__wrapper');
         var navList = navigation.querySelector('.page-navigation__list');
 

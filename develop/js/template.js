@@ -24,9 +24,12 @@ AOS.init({
 });
 
 $.noConflict();
-jQuery(document).ready(function ($) {
-    $('body').removeClass('pageload');
 
+document.addEventListener('DOMContentLoaded', (e) => {
+    document.body.classList.add('js-loaded');
+});
+
+jQuery(document).ready(function ($) {
     if (typeof Promise !== 'function') {
         document.createElement('picture');
         loadScript('/js/polyfills/browser.js', globalInitFunction);

@@ -12923,13 +12923,18 @@ body {
   overflow-x: hidden;
   --theme-background-color: #fff;
   --theme-secondary-color: #fff;
-  --theme-text-color: #000; }
+  --theme-text-color: #000;
+  /* prevent transition on load */ }
   body.menu-opened, body.modal-opened {
     overflow: hidden; }
   body[theme='dark-theme'] {
     --theme-background-color: #202020;
     --theme-secondary-color: #303030;
     --theme-text-color: #fff; }
+  body:not(.js-loaded) * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    transition: none !important; }
 
 [data-aos] {
   visibility: hidden; }

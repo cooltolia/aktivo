@@ -15,6 +15,8 @@
 
     function init() {
         const navigation = document.querySelector('.page-navigation');
+        if (!navigation) return;
+
         const navigationScrollWrapper = navigation.querySelector('.page-navigation__wrapper');
         const navList = navigation.querySelector('.page-navigation__list');
         const controls = [...navigation.querySelectorAll('.page-navigation__controls .control-btn')];
@@ -44,7 +46,7 @@
                 let target;
                 if (btn.classList.contains('prev')) {
                     // target = previousLinkTag();
-                    target = previousHiddenLinkTag()
+                    target = previousHiddenLinkTag();
                     if (!target) {
                         navigationScrollWrapper.scrollLeft = 0;
                         return;

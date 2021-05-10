@@ -25,6 +25,13 @@ body {
         --theme-secondary-color: #303030;
         --theme-text-color: #fff;
     }
+
+    /* prevent transition on load */
+    &:not(.js-loaded) {
+        * {
+            transition: none !important;
+        }
+    }
 }
 
 [data-aos] {
