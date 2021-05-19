@@ -37,6 +37,8 @@
 
     dataCells.forEach((cell) => {
         cell.addEventListener('mouseover', () => {
+            if (cell.textContent.trim().length === 0) return;
+
             const index = [...cell.parentNode.children].indexOf(cell);
             let leftPadding = 0;
             // if (index === 1) {
