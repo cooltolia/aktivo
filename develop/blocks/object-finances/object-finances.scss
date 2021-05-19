@@ -86,7 +86,7 @@
 
     &__vr {
         position: absolute;
-        z-index: 13;
+        z-index: 16;
         width: 105px;
         top: 160px;
         bottom: 0;
@@ -307,6 +307,7 @@
             th {
                 width: 288px;
                 padding-left: 24px;
+                padding-bottom: 24px;
 
                 font-size: 14px;
                 font-weight: 600;
