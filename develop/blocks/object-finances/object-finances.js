@@ -52,7 +52,7 @@
         });
     });
 
-    initScrollContols();
+    initScrollControls();
 
     if (lineChart) {
         const data = [
@@ -229,6 +229,7 @@
                     point: {
                         events: {
                             mouseOver: ({ target }) => {
+                                if (target.clientX < scrolledLineChart.scrollLeft) return;
                                 if (!showGridLine) return;
                                 const magicNumber = 67;
                                 vr.style.left = `${
@@ -254,7 +255,9 @@
             ],
             legend: false,
         });
+
         scrolledLineChart = lineChart.querySelector('.highcharts-scrolling');
+        console.log(scrolledLineChart.scrollLeft);
     }
 
     if (columnChart) {
@@ -451,6 +454,7 @@
                         events: {
                             mouseOver: ({ target }) => {
                                 if (!showGridLine) return;
+                                if (target.clientX < scrolledColumnChart.scrollLeft) return;
                                 const magicNumber = 67;
 
                                 vr.style.left = `${
@@ -496,7 +500,7 @@
         });
     }
 
-    function initScrollContols() {
+    function initScrollControls() {
         let mouseTimer;
 
         const controls = document.querySelectorAll('.object-finances__controls');
