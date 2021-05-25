@@ -231,11 +231,12 @@
                     point: {
                         events: {
                             mouseOver: ({ target }) => {
-                                if (target.clientX < scrolledLineChart.scrollLeft) return;
-                                if (!showGridLine) return;
+                                let leftOffset = 0;
+                                if (scrolledColumnChart && target.clientX > scrolledLineChart.scrollLeft)
+                                    leftOffset = target.clientX;
                                 const magicNumber = 67;
                                 vr.style.left = `${
-                                    target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft
+                                    leftOffset + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft
                                 }px`;
                                 vr.style.marginLeft = '';
                                 vr.classList.add('active');
