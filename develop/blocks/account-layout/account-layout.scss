@@ -51,6 +51,18 @@
             border: none;
         }
 
+        &__sidebar {
+            position: sticky;
+            z-index: 19;
+            top: 0;
+            width: 100%;
+            margin-bottom: 30px;
+
+            background: #fff;
+            border-left: 1px solid rgba(145, 145, 145, 0.2);
+            border-right: 1px solid rgba(145, 145, 145, 0.2);
+        }
+
         // &__sidebar {
         //     width: 280px;
         //     flex: 0 0 auto;
