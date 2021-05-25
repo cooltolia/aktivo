@@ -456,11 +456,13 @@
                         events: {
                             mouseOver: ({ target }) => {
                                 if (!showGridLine) return;
-                                if (target.clientX < scrolledColumnChart.scrollLeft) return;
+                                let leftOffset = 0;
+                                if (scrolledColumnChart && target.clientX > scrolledColumnChart.scrollLeft)
+                                    leftOffset = target.clientX;
                                 const magicNumber = 67;
 
                                 vr.style.left = `${
-                                    target.clientX + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft
+                                    leftOffset + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft
                                 }px`;
 
                                 // vr.style.left = `${
