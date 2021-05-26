@@ -77,6 +77,7 @@
             2795352.5,
             4823505.42,
             2925765.61,
+
             // 2570890.35,
             // 4195441.54,
             // 1001971.62,
@@ -118,6 +119,7 @@
             'Март 2018',
             'Апрель 2018',
             'Май 2018',
+
             // 'Июнь 2018',
             // 'Июль 2018',
             // 'Август 2018',
@@ -231,13 +233,21 @@
                     point: {
                         events: {
                             mouseOver: ({ target }) => {
-                                let leftOffset = 0;
-                                if (scrolledColumnChart && target.clientX > scrolledLineChart.scrollLeft)
-                                    leftOffset = target.clientX;
+                                if (!showGridLine) return;
+                                let scrollOffset = 0;
+                                if (
+                                    scrolledLineChart &&
+                                    scrolledLineChart.scrollLeft &&
+                                    target.clientX < scrolledLineChart.scrollLeft
+                                )
+                                    return;
+
+                                if (scrolledLineChart && target.clientX > scrolledLineChart.scrollLeft) {
+                                    scrollOffset = scrolledLineChart.scrollLeft;
+                                }
+
                                 const magicNumber = 67;
-                                vr.style.left = `${
-                                    leftOffset + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft
-                                }px`;
+                                vr.style.left = `${target.clientX + lineChartPadding + magicNumber - scrollOffset}px`;
                                 vr.style.marginLeft = '';
                                 vr.classList.add('active');
                             },
@@ -260,7 +270,6 @@
         });
 
         scrolledLineChart = lineChart.querySelector('.highcharts-scrolling');
-        console.log(scrolledLineChart.scrollLeft);
     }
 
     if (columnChart) {
@@ -286,6 +295,7 @@
             'Март 2018',
             'Апрель 2018',
             'Май 2018',
+
             // 'Июнь 2018',
             // 'Июль 2018',
             // 'Август 2018',
@@ -457,22 +467,20 @@
                         events: {
                             mouseOver: ({ target }) => {
                                 if (!showGridLine) return;
-                                let leftOffset = 0;
-                                if (scrolledColumnChart && target.clientX > scrolledColumnChart.scrollLeft)
-                                    leftOffset = target.clientX;
+                                let scrollOffset = 0;
+                                if (
+                                    scrolledColumnChart &&
+                                    scrolledColumnChart.scrollLeft &&
+                                    target.clientX < scrolledColumnChart.scrollLeft
+                                )
+                                    return;
+
+                                if (scrolledColumnChart && target.clientX > scrolledColumnChart.scrollLeft) {
+                                    scrollOffset = scrolledColumnChart.scrollLeft;
+                                }
+
                                 const magicNumber = 67;
-
-                                vr.style.left = `${
-                                    leftOffset + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft
-                                }px`;
-
-                                // vr.style.left = `${
-                                //     target.clientX -
-                                //     target.pointWidth / 2 +
-                                //     columnChartPadding +
-                                //     magicNumber -
-                                //     scrolledColumnChart.scrollLeft
-                                // }px`;
+                                vr.style.left = `${target.clientX + columnChartPadding + magicNumber - scrollOffset}px`;
                                 vr.style.marginLeft = '';
                                 vr.classList.add('active');
                             },
