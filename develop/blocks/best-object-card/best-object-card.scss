@@ -75,9 +75,24 @@
 
     &__rate {
         position: relative;
+        margin-bottom: 8px;
+
         font-size: 50px;
         font-weight: 600;
-        color: #6ec89e;
+        color: #fff;
+    }
+
+    &__class {
+        position: relative;
+        padding: 8px;
+        display: inline-block;
+
+        font-size: 32px;
+        font-weight: 600;
+        color: $text-color-white;
+        text-decoration: none;
+
+        border-radius: 6px;
     }
 }
 

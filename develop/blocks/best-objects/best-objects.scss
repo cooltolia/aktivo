@@ -51,7 +51,7 @@
 
         font-size: 10px;
         font-weight: 500;
-        color: #1cb96f;
+        // color: #1cb96f;
         text-align: right;
 
         @for $i from 1 through 10 {
@@ -60,13 +60,13 @@
             }
         }
 
-        &--medium {
-            color: #fed63f;
-        }
+        // &--medium {
+        //     color: #fed63f;
+        // }
 
-        &--low {
-            color: #ffa30c;
-        }
+        // &--low {
+        //     color: #ffa30c;
+        // }
 
         &--hidden {
             opacity: 0;
