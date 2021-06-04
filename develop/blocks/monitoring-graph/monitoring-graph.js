@@ -5,23 +5,8 @@
     // const profitData = [2500, 1700, 22200, 1600, 1250, 650, 2500, 1700, 1200, 1600, 1250, 650];
     // const dividendsData = [5, 10, 20, 85, 20, 15, 5, 20, 20, 35, 20, 15];
     const profitData = [
-        122442.8,
-        5786.51,
-        174648.8,
-        65352.25,
-        21275.49,
-        748878.0,
-        82916.36,
-        49460.5,
-        65876.33,
-        50389.35,
-        53762.3,
-        11285.56,
-        122442.8,
-        5786.51,
-        174648.8,
-        65352.25,
-        21275.49,
+        122442.8, 5786.51, 174648.8, 65352.25, 21275.49, 748878.0, 82916.36, 49460.5, 65876.33, 50389.35, 53762.3,
+        11285.56, 122442.8, 5786.51, 174648.8, 65352.25, 21275.49,
         // 748878.0,
         // 82916.36,
         // 49460.5,
@@ -31,23 +16,7 @@
         // 11285.56,
     ];
     const dividendsData = [
-        87.2,
-        195.3,
-        13.8,
-        13.9,
-        4.3,
-        309.7,
-        17.9,
-        10.3,
-        14,
-        10.6,
-        11.4,
-        2.3,
-        87.2,
-        195.3,
-        13.8,
-        13.9,
-        4.3,
+        87.2, 195.3, 13.8, 13.9, 4.3, 309.7, 17.9, 10.3, 14, 10.6, 11.4, 2.3, 87.2, 195.3, 13.8, 13.9, 4.3,
         // 309.7,
         // 17.9,
         // 10.3,
@@ -85,16 +54,6 @@
     const dividendsMax = Math.max(...dividendsData);
     const profitMax = Math.max(...profitData);
 
-    setTimeout(() => {
-        const scrolledArea = chart.querySelector('.highcharts-scrolling');
-        if (scrolledArea.length === 0) return;
-        const scroll = new SimpleBar(scrolledArea, {
-            autoHide: false,
-        });
-        // const scrolledContent = scroll.getScrollElement();
-        // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
-    }, 1000);
-
     const columnWidth = 65;
     const chartMinWidth = columnWidth * 1.05 * profitData.length;
 
@@ -116,7 +75,7 @@
         });
     };
 
-    Highcharts.chart('income-monitoring', {
+    const highchart = Highcharts.chart('income-monitoring', {
         chart: {
             marginTop: 30,
             marginRight: 24,
@@ -133,6 +92,12 @@
         },
         exporting: {
             enabled: false,
+        },
+        tooltip: {
+            positioner: function (w, h, point) {
+                this.chart.pointer.chartPosition = null;
+                return this.getPosition(w, h, point);
+            },
         },
         plotOptions: {
             series: {
@@ -277,4 +242,22 @@
             },
         ],
     });
+
+    setTimeout(() => {
+        const scrolledArea = chart.querySelector('.highcharts-scrolling');
+        if (scrolledArea.length === 0) return;
+        const scroll = new SimpleBar(scrolledArea, {
+            autoHide: false,
+        });
+
+        scrolledArea.addEventListener(
+            'scroll',
+            function () {
+                highchart.tooltip.hide(0);
+            },
+            true
+        );
+        // const scrolledContent = scroll.getScrollElement();
+        // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
+    }, 1000);
 })();
