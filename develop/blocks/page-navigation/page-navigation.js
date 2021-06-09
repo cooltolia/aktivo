@@ -39,8 +39,9 @@
             }
         }
 
+
         const debouncedScrollEvent = debounce(toggleControlsBtns, 100);
-        navigationScrollWrapper.addEventListener('scroll', debouncedScrollEvent);
+        navigationScrollWrapper.addEventListener('scroll', toggleControlsBtns);
 
         navLinksObserver(navLinks);
 
@@ -131,7 +132,7 @@
             controls.forEach((el) => el.classList.remove('disabled'));
             const scrollLeft = Math.round(navigationScrollWrapper.scrollLeft);
 
-            if (scrollLeft >= navListScrollWidth - navigationScrollWrapperWidth) {
+            if (scrollLeft >= Math.ceil(navListScrollWidth) - Math.ceil(navigationScrollWrapperWidth)) {
                 controls.find((el) => el.classList.contains('next')).classList.add('disabled');
             } else if (scrollLeft <= 0) {
                 controls.find((el) => el.classList.contains('prev')).classList.add('disabled');
@@ -184,5 +185,7 @@
                 });
             });
         }
+
+
     }
 })();

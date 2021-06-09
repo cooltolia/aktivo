@@ -128,28 +128,25 @@
 
             fill: $theme-color;
         }
+    }
 
-        &--notify {
-            &::after {
-                content: '!';
-                position: absolute;
-                top: 18px;
-                right: 15px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 9px;
-                height: 9px;
+    &__notify {
+        position: absolute;
+        top: 18px;
+        right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 9px;
+        height: 9px;
 
-                color: $text-color;
-                line-height: 1;
-                font-size: 7px;
-                font-weight: 700;
+        color: $text-color;
+        line-height: 1;
+        font-size: 7px;
+        font-weight: 700;
 
-                background-color: $theme-color;
-                border-radius: 50%;
-            }
-        }
+        background-color: $theme-color;
+        border-radius: 50%;
     }
 }
 
