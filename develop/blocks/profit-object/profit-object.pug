@@ -21,8 +21,8 @@ mixin profit-object(id, name, rate, libertyRate)
                         span.suffix  ₽
                     +e.data-label Стоимость пая
                 +e.data-row
-                    +e.data-value.__rate 
-                        span.value(contenteditable='true')= rate
+                    +e.data-value.__rate
+                        span.value= rate
                         span.suffix %
                     +e.data-label Доходность
         +e.footer

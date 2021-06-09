@@ -144,6 +144,10 @@
             width: 60%;
             padding-right: 45px;
             margin-bottom: 0;
+
+            &.full {
+                width: 100%;
+            }
         }
     }
 }

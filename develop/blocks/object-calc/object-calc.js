@@ -27,7 +27,7 @@
     const minValue = parseInt(dataWrapper.dataset.min);
     const maxValue = parseInt(dataWrapper.dataset.max);
     const basicStep = parseInt(dataWrapper.dataset.step);
-    const basicRate = parseFloat(dataWrapper.dataset.rate);
+    const payoutValue = parseFloat(dataWrapper.dataset.payout);
 
     const minStepDivider = minValue / basicStep;
 
@@ -71,18 +71,22 @@
         if (isNaN(newStep) || !newStep) newStep = parseInt(basicStep);
 
         customStep = newStep;
+        const newRate = parseFloat((newStep / payoutValue).toFixed(1));
+        $rateValue.textContent = newRate;
+
+        $incomeValue.textContent = format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12);
 
         updateRangesStep(customStep);
     });
 
-    $rateValue.addEventListener('blur', function (e) {
-        let newRate = parseFloat($rateValue.textContent.trim());
-        if (isNaN(newRate)) newRate = parseFloat(basicRate);
+    // $rateValue.addEventListener('blur', function (e) {
+    //     let newRate = parseFloat($rateValue.textContent.trim());
+    //     if (isNaN(newRate)) newRate = parseFloat(basicRate);
 
-        customRate = newRate;
+    //     customRate = newRate;
 
-        $incomeValue.textContent = format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12);
-    });
+    //     $incomeValue.textContent = format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12);
+    // });
 
     document.addEventListener('keypress', function (e) {
         if (e.keyCode === 13 && e.target.classList.contains('value') && e.target.isContentEditable) {
@@ -101,14 +105,14 @@
      */
 
     investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
+        debugger;
         let value = +values[handle];
         invsestmentValue.textContent = format.to(value);
 
-        const rate = customRate ? customRate : basicRate;
         const step = customStep ? customStep : basicStep;
+        const rate = parseFloat(((payoutValue / step) * 100).toFixed(1));
 
         updateResultData(value, rate, step);
-
     });
 
     /**
@@ -138,7 +142,7 @@
 
     function updateRangesStep(step) {
         const minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
-        const maxPadding = (maxValue % step === 0) ? 0 : step;
+        const maxPadding = maxValue % step === 0 ? 0 : step;
 
         investmentRangeSlider.noUiSlider.updateOptions(
             {
@@ -165,5 +169,4 @@
         const finalSelectedValue = investmentRangeSlider.noUiSlider.get();
         postData('url', `investment=${finalSelectedValue}`).then((data) => {});
     }
-
 })();

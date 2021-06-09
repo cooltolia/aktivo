@@ -132,10 +132,12 @@
         const rateNode = object.find('.profit-object__rate .value');
         const stepNode = object.find('.profit-object__step .value');
 
+
         const minValue = object.data('min');
         const maxValue = object.data('max');
         const stepValue = object.data('step');
         const rateValue = object.data('rate');
+        const payoutValue = object.data('payout');
 
         incomeNode.on('blur', function (e) {
             const newIncome = format.from(incomeNode.text().trim());
@@ -164,17 +166,21 @@
 
             object.attr('data-custom-step', newStep);
 
+            const newRate = parseFloat((newStep / payoutValue).toFixed(1));
+            rateNode.text(newRate);
+            incomeNode.text(format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12));
+
             updateRangesStep(object, newStep);
         });
 
-        rateNode.on('blur', function (e) {
-            let newRate = parseFloat(rateNode.text().trim());
-            if (isNaN(newRate)) newRate = parseFloat(rateValue);
+        // rateNode.on('blur', function (e) {
+        //     let newRate = parseFloat(rateNode.text().trim());
+        //     if (isNaN(newRate)) newRate = parseFloat(rateValue);
 
-            object.attr('data-custom-rate', newRate);
+        //     object.attr('data-custom-rate', newRate);
 
-            incomeNode.text(format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12));
-        });
+        //     incomeNode.text(format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12));
+        // });
     }
 
     document.addEventListener('keypress', function (e) {
@@ -191,13 +197,13 @@
         const rateNode = object.find('.profit-object__rate .value');
         const stepNode = object.find('.profit-object__step .value');
 
-        const basicRate = object.data('rate');
-        const customRate = parseInt(object.attr('data-custom-rate'));
+        const payoutValue = object.data('payout');
+
         const basicStep = object.data('step');
         const customStep = parseInt(object.attr('data-custom-step'));
 
-        const rate = customRate ? customRate : basicRate;
         const step = customStep ? customStep : basicStep;
+        const rate = parseFloat((payoutValue / step * 100).toFixed(1));
 
         shareNode.text(format.to(Math.floor(value / step)));
         incomeNode.text(format.to((value * rate) / 100 / 12));
@@ -216,6 +222,8 @@
 
         const minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
         const maxPadding = maxValue % step === 0 ? 0 : step;
+
+        debugger;
 
         investmentRangeSlider.noUiSlider.updateOptions(
             {

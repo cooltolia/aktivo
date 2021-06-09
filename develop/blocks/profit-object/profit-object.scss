@@ -50,7 +50,7 @@
     }
 
     &__data-row {
-        margin-bottom: 16px;
+        margin-bottom: 24px;
 
         &:last-child {
             margin-bottom: 0;
@@ -59,12 +59,20 @@
 
     &__data-value {
         margin: 0 0 5px;
+        max-width: 240px;
+
+        border-bottom: 1px solid #fff;
 
         font-size: 28px;
+        line-height: 1.35;
         font-weight: 600;
         white-space: nowrap;
 
         overflow: hidden;
+
+        .value {
+            outline-offset: 2px;
+        }
     }
 
     &__data-label {
