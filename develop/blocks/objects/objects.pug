@@ -20,6 +20,6 @@ mixin objects()
                 +e.MAIN.list
                     each object, i in objects
                         +e.object
-                            +object-card(object)
+                            +object-card(object, i === 0)
                                 if (i === 0 || i === 3)
                                     +object-progress

@@ -1,4 +1,4 @@
-mixin object-card(data)
+mixin object-card(data, hasReserve)
     +b.object-card
         +e.progress
             block
@@ -51,18 +51,30 @@ mixin object-card(data)
                         small без комиссии
                     td
                         span.value 353 694 ₽
-                tr
-                    td(colspan='2')
-                        span.value
-                            b ЗПИФН "Активо четырнадцать"
-                tr
-                    td Управляющая компания:
-                    td
-                        span.value КСП Капитал
-                tr
-                    td Депозитарная компания:
-                    td
-                        img(src="images/redesign/infinitum.png", alt="")
+                if (!hasReserve)
+                    tr
+                        td(colspan='2')
+                            span.value
+                                b ЗПИФН "Активо четырнадцать"
+                    tr
+                        td Управляющая компания:
+                        td
+                            span.value КСП Капитал
+                    tr
+                        td Депозитарная компания:
+                        td
+                            img(src="images/redesign/infinitum.png", alt="")
+        if (hasReserve)
+            +e.FORM.reserve(data-price='300000')
+                +e.reserve-inputs
+                    +e.reserve-input
+                        label(for='reserveShare1') Количество паев на бронь
+                        input(type='number' id='reserveShare1' data-id='reserveShare' value='6' name='share')
+                    +e.reserve-input
+                        label(for='reserveSum1') Сумма бронирования
+                        input(type='text' id='reserveSum1' data-id='reserveSum' disabled)
+                +e.BUTTON.reserve-btn.btn.--small(type='button') Забронировать
+
 
 
 

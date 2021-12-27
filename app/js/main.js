@@ -1826,6 +1826,20 @@ jQuery(document).ready(function ($) {
       $('.object-card__play').modalVideo({
         allowAutoplay: true
       });
+      var reserveForms = document.querySelectorAll('.object-card__reserve');
+      reserveForms.forEach(function (form) {
+        var price = parseInt(form.dataset.price);
+        var shareInput = form.querySelector('[data-id="reserveShare"]');
+        var sumInput = form.querySelector('[data-id="reserveSum"]');
+        updateSumInput(shareInput, sumInput, price);
+        shareInput.addEventListener('input', function (e) {
+          updateSumInput(shareInput, sumInput, price);
+        });
+      });
+
+      function updateSumInput(shareInput, sumInput, price) {
+        sumInput.value = (+shareInput.value * price).toLocaleString();
+      }
     })();
 
     (function () {

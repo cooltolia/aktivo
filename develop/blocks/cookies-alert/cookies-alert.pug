@@ -1,9 +1,5 @@
 mixin cookies-alert()
     +b.cookies-alert
         +e.inner
-            +e.BUTTON.close(type='button')
-                +icon('close')
-            +e.P.text Пользуясь нашим сайтом, вы&nbsp;соглашаетесь с&nbsp;тем, что мы используем cookies
-            +e.footer
-                +e.A.link Политика Cookie »
-                +e.BUTTON.accept.btn.--small(type='button') Ок
+            +e.P.text Пользуясь нашим сайтом, вы&nbsp;соглашаетесь с&nbsp;тем, что мы используем <a href='#'>cookies</a>
+            +e.BUTTON.accept.btn.--small(type='button') Ок

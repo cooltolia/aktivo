@@ -3,7 +3,7 @@
     padding: 24px 16px;
     z-index: 99;
     width: calc(100% - 40px);
-    max-width: 440px;
+    max-width: 548px;
     right: 20px;
     bottom: 20px;
 
@@ -49,6 +49,18 @@
         font-size: 16px;
         line-height: 1.2;
         font-weight: 500;
+
+        a {
+            color: $theme-color;
+            font-size: 16px;
+            text-decoration: none;
+
+            transition: color 300ms ease;
+
+            &:hover {
+                color: $text-color;
+            }
+        }
     }
 
     &__footer {
@@ -57,19 +69,8 @@
         justify-content: space-between;
     }
 
-    &__link {
-        color: $theme-color;
-        font-size: 16px;
-        text-decoration: none;
-
-        transition: color 300ms ease;
-
-        &:hover {
-            color: $text-color;
-        }
-    }
-
     &__accept {
+        display: block;
         &.btn {
             color: $theme-color;
 
@@ -82,5 +83,16 @@
 @media #{$laptop} {
     .cookies-alert {
         padding: 30px;
+
+        &__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__text {
+            padding-right: 30px;
+            margin-bottom: 0;
+        }
     }
 }
