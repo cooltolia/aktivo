@@ -1,0 +1,86 @@
+.cookies-alert {
+    position: fixed;
+    padding: 24px 16px;
+    z-index: 99;
+    width: calc(100% - 40px);
+    max-width: 440px;
+    right: 20px;
+    bottom: 20px;
+
+    color: $text-color;
+
+    transform: translateY(150%);
+    transition: transform 300ms ease;
+
+    background: #ffffff;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+
+    &.active {
+        transform: translateY(0%);
+    }
+
+    &__inner {
+        margin: 0 auto;
+    }
+
+    &__close {
+        @include btn-reset;
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        top: 16px;
+        right: 16px;
+
+        svg {
+            @include svg-icon;
+
+            stroke: $text-color;
+            stroke-width: 3px;
+
+            pointer-events: none;
+        }
+    }
+
+    &__text {
+        margin: 0;
+        margin-bottom: 20px;
+
+        font-size: 16px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__link {
+        color: $theme-color;
+        font-size: 16px;
+        text-decoration: none;
+
+        transition: color 300ms ease;
+
+        &:hover {
+            color: $text-color;
+        }
+    }
+
+    &__accept {
+        &.btn {
+            color: $theme-color;
+
+            background-color: $text-color;
+            border-color: $text-color;
+        }
+    }
+}
+
+@media #{$laptop} {
+    .cookies-alert {
+        padding: 30px;
+    }
+}

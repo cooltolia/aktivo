@@ -44,7 +44,9 @@
      *editing default values
      */
 
-    $incomeValue.addEventListener('blur', function (e) {
+    function onIncomeChange(e) {
+        const caretPosition = getCaretIndex(e.target);
+
         const newIncome = format.from($incomeValue.textContent.trim());
         $incomeValue.textContent = format.to(newIncome);
 
@@ -53,9 +55,11 @@
 
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
-    });
 
-    $shareValue.addEventListener('blur', function (e) {
+        setCaretPosition(e.target, caretPosition);
+    }
+
+    function onShareChange() {
         let newShare = parseInt($shareValue.textContent.trim());
         if (isNaN(newShare)) newShare = minValue / basicStep;
 
@@ -64,9 +68,11 @@
 
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
-    });
+    }
 
-    $stepValue.addEventListener('blur', function (e) {
+    function onStepChange(e) {
+        const caretPosition = getCaretIndex(e.target);
+
         let newStep = format.from($stepValue.textContent.trim());
         if (isNaN(newStep) || !newStep) newStep = parseInt(basicStep);
 
@@ -77,7 +83,17 @@
         $incomeValue.textContent = format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12);
 
         updateRangesStep(customStep);
-    });
+
+        setCaretPosition(e.target, caretPosition);
+    }
+
+    const debouncedOnIncomeChange = debounce(onIncomeChange, 500);
+    const debouncedOnShareChange = debounce(onShareChange, 500);
+    const debouncedOnStepChange = debounce(onStepChange, 500);
+
+    $incomeValue.addEventListener('keyup', debouncedOnIncomeChange);
+    $shareValue.addEventListener('keyup', debouncedOnShareChange);
+    $stepValue.addEventListener('keyup', debouncedOnStepChange);
 
     // $rateValue.addEventListener('blur', function (e) {
     //     let newRate = parseFloat($rateValue.textContent.trim());
@@ -105,7 +121,6 @@
      */
 
     investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
-        debugger;
         let value = +values[handle];
         invsestmentValue.textContent = format.to(value);
 

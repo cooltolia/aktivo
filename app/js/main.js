@@ -391,6 +391,34 @@ jQuery(document).ready(function ($) {
       return parsed;
     }
 
+    function getCaretIndex(element) {
+      var position = 0;
+      var isSupported = typeof window.getSelection !== 'undefined';
+
+      if (isSupported) {
+        var selection = window.getSelection();
+
+        if (selection.rangeCount !== 0) {
+          var range = window.getSelection().getRangeAt(0);
+          var preCaretRange = range.cloneRange();
+          preCaretRange.selectNodeContents(element);
+          preCaretRange.setEnd(range.endContainer, range.endOffset);
+          position = preCaretRange.toString().length;
+        }
+      }
+
+      return position;
+    }
+
+    function setCaretPosition(el, pos) {
+      var range = document.createRange();
+      var sel = window.getSelection();
+      range.setStart(el.childNodes[0], pos);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+
     (function () {
       var aboutTeamSlider = $('.about-team__slider');
       if (aboutTeamSlider.length === 0) return;
@@ -831,22 +859,19 @@ jQuery(document).ready(function ($) {
     (function () {
       var bestObjectCards = $('.best-object-card');
       if (bestObjectCards.length === 0) return;
-      var rateColors = ['#1cb96f', '#fed63f', '#ffa30c'];
-      bestObjectCards.each(function (_, card) {
-        var rate = parseInt($(card).data('rate'));
-        var rateNode = $(card).find('.best-object-card__rate');
-        var stepHeight = 8;
-
-        if (rate >= 80) {
-          rateNode.css('color', rateColors[0]);
-        } else if (rate < 80 && rate >= 50) {
-          rateNode.css('color', rateColors[1]);
-        } else {
-          rateNode.css('color', rateColors[2]);
-        }
-
-        $(card).css('top', "calc(".concat(100 - rate, "% + ").concat(stepHeight, "px"));
-      });
+      var rateColors = ['#1cb96f', '#fed63f', '#ffa30c']; // bestObjectCards.each((_, card) => {
+      //     const rate = parseInt($(card).data('rate'));
+      //     const rateNode = $(card).find('.best-object-card__rate');
+      //     const stepHeight = 8;
+      //     if (rate >= 80) {
+      //         rateNode.css('color', rateColors[0]);
+      //     } else if (rate < 80 && rate >= 50) {
+      //         rateNode.css('color', rateColors[1]);
+      //     } else {
+      //         rateNode.css('color', rateColors[2]);
+      //     }
+      //     $(card).css('top', `calc(${100 - rate}% + ${stepHeight}px`);
+      // });
     })();
 
     (function () {
@@ -898,6 +923,25 @@ jQuery(document).ready(function ($) {
         });
         myMap.behaviors.disable('scrollZoom');
         myMap.geoObjects.add(myPlacemark);
+      });
+    })();
+
+    (function () {
+      var cookiesAlert = document.querySelector('.cookies-alert');
+      if (!cookiesAlert) return; // const acceptCookies = document.querySelector('.cookies-alert__accept');
+
+      var acceptCookies = document.querySelectorAll('.cookies-alert__close, .cookies-alert__accept');
+      setTimeout(function () {
+        cookiesAlert.classList.add('active');
+      }, 2000);
+      acceptCookies.forEach(function (el) {
+        el.addEventListener('click', function () {
+          cookiesAlert.classList.remove('active');
+          setCookie('cookie', true, 91);
+          setTimeout(function () {
+            cookiesAlert.remove();
+          }, 500);
+        });
       });
     })();
 
@@ -1242,14 +1286,6 @@ jQuery(document).ready(function ($) {
       var chartDates = ['02.18', '03.18', '04.18', '05.18', '06.18', '07.18', '08.18', '09.18', '10.18', '11.18', '12.18', '01.19', '02.18', '03.18', '04.18', '05.18', '06.18'];
       var dividendsMax = Math.max.apply(Math, dividendsData);
       var profitMax = Math.max.apply(Math, profitData);
-      setTimeout(function () {
-        var scrolledArea = chart.querySelector('.highcharts-scrolling');
-        if (scrolledArea.length === 0) return;
-        var scroll = new SimpleBar(scrolledArea, {
-          autoHide: false
-        }); // const scrolledContent = scroll.getScrollElement();
-        // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
-      }, 1000);
       var columnWidth = 65;
       var chartMinWidth = columnWidth * 1.05 * profitData.length;
 
@@ -1281,7 +1317,7 @@ jQuery(document).ready(function ($) {
         });
       };
 
-      Highcharts.chart('income-monitoring', {
+      var highchart = Highcharts.chart('income-monitoring', {
         chart: {
           marginTop: 30,
           marginRight: 24,
@@ -1298,6 +1334,12 @@ jQuery(document).ready(function ($) {
         },
         exporting: {
           enabled: false
+        },
+        tooltip: {
+          positioner: function positioner(w, h, point) {
+            this.chart.pointer.chartPosition = null;
+            return this.getPosition(w, h, point);
+          }
         },
         plotOptions: {
           series: {
@@ -1426,6 +1468,17 @@ jQuery(document).ready(function ($) {
           }
         }]
       });
+      setTimeout(function () {
+        var scrolledArea = chart.querySelector('.highcharts-scrolling');
+        if (scrolledArea.length === 0) return;
+        var scroll = new SimpleBar(scrolledArea, {
+          autoHide: false
+        });
+        scrolledArea.addEventListener('scroll', function () {
+          highchart.tooltip.hide(0);
+        }, true); // const scrolledContent = scroll.getScrollElement();
+        // scrolledContent.scrollLeft = scrolledContent.scrollWidth;
+      }, 1000);
     })();
 
     (function () {
@@ -1636,7 +1689,7 @@ jQuery(document).ready(function ($) {
       var minValue = parseInt(dataWrapper.dataset.min);
       var maxValue = parseInt(dataWrapper.dataset.max);
       var basicStep = parseInt(dataWrapper.dataset.step);
-      var basicRate = parseFloat(dataWrapper.dataset.rate);
+      var payoutValue = parseFloat(dataWrapper.dataset.payout);
       var minStepDivider = minValue / basicStep;
       /** step and rate can be overwritten by user */
 
@@ -1650,34 +1703,50 @@ jQuery(document).ready(function ($) {
        *editing default values
        */
 
-      $incomeValue.addEventListener('blur', function (e) {
+      function onIncomeChange(e) {
+        var caretPosition = getCaretIndex(e.target);
         var newIncome = format.from($incomeValue.textContent.trim());
         $incomeValue.textContent = format.to(newIncome);
         var currentRate = parseFloat($rateValue.textContent);
         var newSliderValue = newIncome * 12 / currentRate * 100;
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
-      });
-      $shareValue.addEventListener('blur', function (e) {
+        setCaretPosition(e.target, caretPosition);
+      }
+
+      function onShareChange() {
         var newShare = parseInt($shareValue.textContent.trim());
         if (isNaN(newShare)) newShare = minValue / basicStep;
         var step = customStep ? customStep : basicStep;
         var newSliderValue = newShare * step;
         investmentRangeSlider.noUiSlider.set(newSliderValue);
         animateRangeSlider();
-      });
-      $stepValue.addEventListener('blur', function (e) {
+      }
+
+      function onStepChange(e) {
+        var caretPosition = getCaretIndex(e.target);
         var newStep = format.from($stepValue.textContent.trim());
         if (isNaN(newStep) || !newStep) newStep = parseInt(basicStep);
         customStep = newStep;
-        updateRangesStep(customStep);
-      });
-      $rateValue.addEventListener('blur', function (e) {
-        var newRate = parseFloat($rateValue.textContent.trim());
-        if (isNaN(newRate)) newRate = parseFloat(basicRate);
-        customRate = newRate;
+        var newRate = parseFloat((newStep / payoutValue).toFixed(1));
+        $rateValue.textContent = newRate;
         $incomeValue.textContent = format.to(investmentRangeSlider.noUiSlider.get() * (newRate / 100) / 12);
-      });
+        updateRangesStep(customStep);
+        setCaretPosition(e.target, caretPosition);
+      }
+
+      var debouncedOnIncomeChange = debounce(onIncomeChange, 500);
+      var debouncedOnShareChange = debounce(onShareChange, 500);
+      var debouncedOnStepChange = debounce(onStepChange, 500);
+      $incomeValue.addEventListener('keyup', debouncedOnIncomeChange);
+      $shareValue.addEventListener('keyup', debouncedOnShareChange);
+      $stepValue.addEventListener('keyup', debouncedOnStepChange); // $rateValue.addEventListener('blur', function (e) {
+      //     let newRate = parseFloat($rateValue.textContent.trim());
+      //     if (isNaN(newRate)) newRate = parseFloat(basicRate);
+      //     customRate = newRate;
+      //     $incomeValue.textContent = format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12);
+      // });
+
       document.addEventListener('keypress', function (e) {
         if (e.keyCode === 13 && e.target.classList.contains('value') && e.target.isContentEditable) {
           e.preventDefault();
@@ -1694,8 +1763,8 @@ jQuery(document).ready(function ($) {
       investmentRangeSlider.noUiSlider.on('update', function (values, handle) {
         var value = +values[handle];
         invsestmentValue.textContent = format.to(value);
-        var rate = customRate ? customRate : basicRate;
         var step = customStep ? customStep : basicStep;
+        var rate = parseFloat((payoutValue / step * 100).toFixed(1));
         updateResultData(value, rate, step);
       });
       /**
@@ -1792,6 +1861,8 @@ jQuery(document).ready(function ($) {
 
       dataCells.forEach(function (cell) {
         cell.addEventListener('mouseover', function () {
+          if (cell.textContent.trim().length === 0) return;
+
           var index = _toConsumableArray(cell.parentNode.children).indexOf(cell);
 
           var leftPadding = 0; // if (index === 1) {
@@ -1806,7 +1877,7 @@ jQuery(document).ready(function ($) {
           vr.classList.remove('active');
         });
       });
-      initScrollContols();
+      initScrollControls();
 
       if (lineChart) {
         var data = [242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, 99999.8, 242277.779, 3172259.31, 1669890.65, 1647254.72, 2863786.35, 2513992.47, 2795352.5, 4823505.42, 2925765.61, // 2570890.35,
@@ -1943,8 +2014,15 @@ jQuery(document).ready(function ($) {
                   mouseOver: function mouseOver(_ref) {
                     var target = _ref.target;
                     if (!showGridLine) return;
+                    var scrollOffset = 0;
+                    if (scrolledLineChart && scrolledLineChart.scrollLeft && target.clientX < scrolledLineChart.scrollLeft) return;
+
+                    if (scrolledLineChart && target.clientX > scrolledLineChart.scrollLeft) {
+                      scrollOffset = scrolledLineChart.scrollLeft;
+                    }
+
                     var magicNumber = 67;
-                    vr.style.left = "".concat(target.clientX + lineChartPadding + magicNumber - scrolledLineChart.scrollLeft, "px");
+                    vr.style.left = "".concat(target.clientX + lineChartPadding + magicNumber - scrollOffset, "px");
                     vr.style.marginLeft = '';
                     vr.classList.add('active');
                   },
@@ -2136,15 +2214,15 @@ jQuery(document).ready(function ($) {
                 mouseOver: function mouseOver(_ref2) {
                   var target = _ref2.target;
                   if (!showGridLine) return;
-                  var magicNumber = 67;
-                  vr.style.left = "".concat(target.clientX + columnChartPadding + magicNumber - scrolledColumnChart.scrollLeft, "px"); // vr.style.left = `${
-                  //     target.clientX -
-                  //     target.pointWidth / 2 +
-                  //     columnChartPadding +
-                  //     magicNumber -
-                  //     scrolledColumnChart.scrollLeft
-                  // }px`;
+                  var scrollOffset = 0;
+                  if (scrolledColumnChart && scrolledColumnChart.scrollLeft && target.clientX < scrolledColumnChart.scrollLeft) return;
 
+                  if (scrolledColumnChart && target.clientX > scrolledColumnChart.scrollLeft) {
+                    scrollOffset = scrolledColumnChart.scrollLeft;
+                  }
+
+                  var magicNumber = 67;
+                  vr.style.left = "".concat(target.clientX + columnChartPadding + magicNumber - scrollOffset, "px");
                   vr.style.marginLeft = '';
                   vr.classList.add('active');
                 },
@@ -2174,7 +2252,7 @@ jQuery(document).ready(function ($) {
         });
       }
 
-      function initScrollContols() {
+      function initScrollControls() {
         var mouseTimer;
         var controls = document.querySelectorAll('.object-finances__controls');
         var maxScrollLeft = financesTable.scrollWidth - financesTable.clientWidth;
@@ -2539,12 +2617,17 @@ jQuery(document).ready(function ($) {
           });
         } else {
           var currentNavLink = getCurrentLink();
-          navigationScrollWrapper.scrollLeft = currentNavLink.offsetLeft;
-          toggleControlsBtns();
+
+          if (elIsVisible(currentNavLink)) {
+            toggleControlsBtns();
+          } else {
+            navigationScrollWrapper.scrollLeft = currentNavLink.offsetLeft;
+            toggleControlsBtns();
+          }
         }
 
         var debouncedScrollEvent = debounce(toggleControlsBtns, 100);
-        navigationScrollWrapper.addEventListener('scroll', debouncedScrollEvent);
+        navigationScrollWrapper.addEventListener('scroll', toggleControlsBtns);
         navLinksObserver(navLinks);
         controls.forEach(function (btn) {
           btn.addEventListener('click', function (e) {
@@ -2614,7 +2697,6 @@ jQuery(document).ready(function ($) {
 
         function elIsVisible(el) {
           if (!el) return;
-          debugger;
           var left = el.offsetLeft;
 
           var _el$getBoundingClient = el.getBoundingClientRect(),
@@ -2639,7 +2721,7 @@ jQuery(document).ready(function ($) {
           });
           var scrollLeft = Math.round(navigationScrollWrapper.scrollLeft);
 
-          if (scrollLeft >= navListScrollWidth - navigationScrollWrapperWidth) {
+          if (scrollLeft >= Math.ceil(navListScrollWidth) - Math.ceil(navigationScrollWrapperWidth)) {
             controls.find(function (el) {
               return el.classList.contains('next');
             }).classList.add('disabled');
@@ -2688,7 +2770,6 @@ jQuery(document).ready(function ($) {
         function navLinksObserver(links) {
           links.forEach(function (link) {
             link.addEventListener('linkChanged', function (e) {
-              debugger;
               setActiveNavLink(link);
             });
           });
@@ -2902,41 +2983,58 @@ jQuery(document).ready(function ($) {
       }
 
       function initValueEdit(object) {
-        var incomeNode = object.find('.profit-object__income .value');
-        var shareNode = object.find('.profit-object__share .value');
-        var rateNode = object.find('.profit-object__rate .value');
-        var stepNode = object.find('.profit-object__step .value');
+        var incomeNode = object.find('.profit-object__income .value')[0];
+        var shareNode = object.find('.profit-object__share .value')[0];
+        var rateNode = object.find('.profit-object__rate .value')[0];
+        var stepNode = object.find('.profit-object__step .value')[0];
         var minValue = object.data('min');
         var maxValue = object.data('max');
         var stepValue = object.data('step');
         var rateValue = object.data('rate');
-        incomeNode.on('blur', function (e) {
-          var newIncome = format.from(incomeNode.text().trim());
-          incomeNode.text(format.to(newIncome));
-          var currentRate = parseFloat(rateNode.text());
+        var payoutValue = object.data('payout');
+
+        function onIncomeChange(e) {
+          var caretPosition = getCaretIndex(e.target);
+          var newIncome = format.from(incomeNode.textContent.trim());
+          incomeNode.textContent = format.to(newIncome);
+          var currentRate = parseFloat(rateNode.textContent);
           var newSliderValue = newIncome * 12 / currentRate * 100;
           investmentRangeSlider.noUiSlider.set(newSliderValue);
           animateRangeSlider();
-        });
-        shareNode.on('blur', function (e) {
-          var newShare = format.from(shareNode.text().trim());
+          setCaretPosition(e.target, caretPosition);
+        }
+
+        function onShareChange() {
+          var newShare = format.from(shareNode.textContent.trim());
           if (isNaN(newShare)) newShare = minValue / stepValue;
           var newSliderValue = newShare * stepValue;
           investmentRangeSlider.noUiSlider.set(newSliderValue);
           animateRangeSlider();
-        });
-        stepNode.on('blur', function (e) {
-          var newStep = format.from(stepNode.text().trim());
+        }
+
+        function onStepChange(e) {
+          var caretPosition = getCaretIndex(e.target);
+          var newStep = format.from(stepNode.textContent.trim());
           if (isNaN(newStep) || !newStep) newStep = parseInt(stepValue);
           object.attr('data-custom-step', newStep);
+          var newRate = parseFloat((newStep / payoutValue).toFixed(1));
+          rateNode.textContent = newRate;
+          incomeNode.textContent = format.to(investmentRangeSlider.noUiSlider.get() * (newRate / 100) / 12);
           updateRangesStep(object, newStep);
-        });
-        rateNode.on('blur', function (e) {
-          var newRate = parseFloat(rateNode.text().trim());
-          if (isNaN(newRate)) newRate = parseFloat(rateValue);
-          object.attr('data-custom-rate', newRate);
-          incomeNode.text(format.to(investmentRangeSlider.noUiSlider.get() * (newRate / 100) / 12));
-        });
+          setCaretPosition(e.target, caretPosition);
+        }
+
+        var debouncedOnIncomeChange = debounce(onIncomeChange, 500);
+        var debouncedOnShareChange = debounce(onShareChange, 500);
+        var debouncedOnStepChange = debounce(onStepChange, 500);
+        incomeNode.addEventListener('keyup', debouncedOnIncomeChange);
+        shareNode.addEventListener('keyup', debouncedOnShareChange);
+        stepNode.addEventListener('keyup', debouncedOnStepChange); // rateNode.on('blur', function (e) {
+        //     let newRate = parseFloat(rateNode.text().trim());
+        //     if (isNaN(newRate)) newRate = parseFloat(rateValue);
+        //     object.attr('data-custom-rate', newRate);
+        //     incomeNode.text(format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12));
+        // });
       }
 
       document.addEventListener('keypress', function (e) {
@@ -2952,12 +3050,11 @@ jQuery(document).ready(function ($) {
         var shareNode = object.find('.profit-object__share .value');
         var rateNode = object.find('.profit-object__rate .value');
         var stepNode = object.find('.profit-object__step .value');
-        var basicRate = object.data('rate');
-        var customRate = parseInt(object.attr('data-custom-rate'));
+        var payoutValue = object.data('payout');
         var basicStep = object.data('step');
         var customStep = parseInt(object.attr('data-custom-step'));
-        var rate = customRate ? customRate : basicRate;
         var step = customStep ? customStep : basicStep;
+        var rate = parseFloat((payoutValue / step * 100).toFixed(1));
         shareNode.text(format.to(Math.floor(value / step)));
         incomeNode.text(format.to(value * rate / 100 / 12));
         rateNode.text(rate);

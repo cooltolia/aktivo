@@ -57,13 +57,30 @@
         flex-flow: column wrap;
     }
 
-    &__income-label {
+    &__income-header {
         position: relative;
         z-index: 2;
-
         margin-bottom: 25px;
-        font-size: 16px;
+
         color: $text-color-white;
+    }
+
+    &__income-label {
+        font-size: 16px;
+    }
+
+    &__income-rating {
+        margin-bottom: 12px;
+
+        span {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 0 3px;
+
+            text-align: center;
+
+            border-radius: 2px;
+        }
     }
 
     &__income-range {
@@ -289,6 +306,17 @@
             line-height: 1.6;
         }
 
+        &__income-rating {
+            font-size: 20px;
+            font-weight: 600;
+
+            span {
+                padding: 0 6px;
+
+                border-radius: 3px;
+            }
+        }
+
         &__button {
             white-space: nowrap;
         }
@@ -312,8 +340,19 @@
             min-height: 420px;
         }
 
-        &__income-label {
+        &__income-header {
             margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__income-label {
+            order: -1;
+        }
+
+        &__income-rating {
+            margin-bottom: 0;
         }
     }
 }

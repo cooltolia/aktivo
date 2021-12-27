@@ -1,12 +1,12 @@
 mixin index-slider()
     +b.index-slider
         +e.slide
-            +e.progress
-                +object-progress
             +e.image
                 img(src='images/redesign/object-cards/object1.jpg')
             +e.content
                 +e.title Объект «Эко видное»
+                +e.progress.--static
+                    +object-progress
                 +e.price-value 59 227 357&nbsp;₽
                 +e.price-label Прибыль&nbsp;для распределения&nbsp;за&nbsp;2019&nbsp;г.
                 //- +e.A.link(href='object-page.html') Инвестировать в объект

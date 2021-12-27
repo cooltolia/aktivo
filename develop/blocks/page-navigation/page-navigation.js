@@ -109,8 +109,6 @@
         function elIsVisible(el) {
             if (!el) return;
 
-            debugger;
-
             const left = el.offsetLeft;
             const { width } = el.getBoundingClientRect();
             const scrollLeft = Math.round(navigationScrollWrapper.scrollLeft);
@@ -180,7 +178,6 @@
         function navLinksObserver(links) {
             links.forEach((link) => {
                 link.addEventListener('linkChanged', (e) => {
-                    debugger;
                     setActiveNavLink(link);
                 });
             });

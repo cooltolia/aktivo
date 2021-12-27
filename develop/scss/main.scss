@@ -93,3 +93,9 @@ body {
         left: 0;
     }
 }
+
+/* FIX for safari */
+[contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+}

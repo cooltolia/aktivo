@@ -51,6 +51,11 @@
         width: 100%;
         top: 0;
         z-index: 1;
+
+        &--static {
+          position: static;
+          margin-bottom: 12px;
+        }
     }
 
     &__image {

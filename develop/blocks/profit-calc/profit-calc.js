@@ -127,11 +127,10 @@
     }
 
     function initValueEdit(object) {
-        const incomeNode = object.find('.profit-object__income .value');
-        const shareNode = object.find('.profit-object__share .value');
-        const rateNode = object.find('.profit-object__rate .value');
-        const stepNode = object.find('.profit-object__step .value');
-
+        const incomeNode = object.find('.profit-object__income .value')[0];
+        const shareNode = object.find('.profit-object__share .value')[0];
+        const rateNode = object.find('.profit-object__rate .value')[0];
+        const stepNode = object.find('.profit-object__step .value')[0];
 
         const minValue = object.data('min');
         const maxValue = object.data('max');
@@ -139,39 +138,55 @@
         const rateValue = object.data('rate');
         const payoutValue = object.data('payout');
 
-        incomeNode.on('blur', function (e) {
-            const newIncome = format.from(incomeNode.text().trim());
-            incomeNode.text(format.to(newIncome));
+        function onIncomeChange(e) {
+            const caretPosition = getCaretIndex(e.target);
 
-            const currentRate = parseFloat(rateNode.text());
+            const newIncome = format.from(incomeNode.textContent.trim());
+            incomeNode.textContent = format.to(newIncome);
+
+            const currentRate = parseFloat(rateNode.textContent);
             const newSliderValue = ((newIncome * 12) / currentRate) * 100;
 
             investmentRangeSlider.noUiSlider.set(newSliderValue);
             animateRangeSlider();
-        });
 
-        shareNode.on('blur', function (e) {
-            let newShare = format.from(shareNode.text().trim());
+            setCaretPosition(e.target, caretPosition);
+        }
+
+        function onShareChange() {
+            let newShare = format.from(shareNode.textContent.trim());
+
             if (isNaN(newShare)) newShare = minValue / stepValue;
 
             const newSliderValue = newShare * stepValue;
-
             investmentRangeSlider.noUiSlider.set(newSliderValue);
             animateRangeSlider();
-        });
+        }
 
-        stepNode.on('blur', function (e) {
-            let newStep = format.from(stepNode.text().trim());
+        function onStepChange(e) {
+            const caretPosition = getCaretIndex(e.target);
+
+            let newStep = format.from(stepNode.textContent.trim());
             if (isNaN(newStep) || !newStep) newStep = parseInt(stepValue);
 
             object.attr('data-custom-step', newStep);
 
             const newRate = parseFloat((newStep / payoutValue).toFixed(1));
-            rateNode.text(newRate);
-            incomeNode.text(format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12));
+            rateNode.textContent = newRate;
+            incomeNode.textContent = format.to((investmentRangeSlider.noUiSlider.get() * (newRate / 100)) / 12);
 
             updateRangesStep(object, newStep);
-        });
+
+            setCaretPosition(e.target, caretPosition);
+        }
+
+        const debouncedOnIncomeChange = debounce(onIncomeChange, 500);
+        const debouncedOnShareChange = debounce(onShareChange, 500);
+        const debouncedOnStepChange = debounce(onStepChange, 500);
+
+        incomeNode.addEventListener('keyup', debouncedOnIncomeChange);
+        shareNode.addEventListener('keyup', debouncedOnShareChange);
+        stepNode.addEventListener('keyup', debouncedOnStepChange);
 
         // rateNode.on('blur', function (e) {
         //     let newRate = parseFloat(rateNode.text().trim());
@@ -203,7 +218,7 @@
         const customStep = parseInt(object.attr('data-custom-step'));
 
         const step = customStep ? customStep : basicStep;
-        const rate = parseFloat((payoutValue / step * 100).toFixed(1));
+        const rate = parseFloat(((payoutValue / step) * 100).toFixed(1));
 
         shareNode.text(format.to(Math.floor(value / step)));
         incomeNode.text(format.to((value * rate) / 100 / 12));
@@ -222,8 +237,6 @@
 
         const minPadding = step >= minValue ? step : step * Math.ceil(minValue / step);
         const maxPadding = maxValue % step === 0 ? 0 : step;
-
-        debugger;
 
         investmentRangeSlider.noUiSlider.updateOptions(
             {
