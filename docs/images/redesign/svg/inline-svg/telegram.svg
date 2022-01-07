@@ -1,15 +1,30 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="telegram" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
-<g id="Background">
-</g>
-<g id="Graphic_Elements">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_3_);}
+	.st1{clip-path:url(#SVGID_4_);fill:none;}
+</style>
+<g>
 	<g>
-		<circle class="st0" cx="20.02" cy="19.18" r="16"/>
-		<path class="st1" d="M27.81,12.68c-0.06-0.18-0.13-0.23-0.25-0.27c-0.25-0.09-0.67,0.05-0.67,0.05s-14.95,5.37-15.81,5.97
-			c-0.18,0.13-0.25,0.2-0.28,0.29c-0.15,0.42,0.31,0.61,0.31,0.61l3.85,1.26c0,0,0.14,0.02,0.2-0.01c0.88-0.55,8.82-5.57,9.28-5.74
-			c0.07-0.02,0.13,0,0.11,0.05c-0.18,0.64-7.08,6.78-7.08,6.78s-0.03,0.03-0.04,0.07l-0.01-0.01l-0.36,3.82c0,0-0.15,1.17,1.02,0
-			c0.83-0.83,1.63-1.52,2.03-1.85c1.33,0.91,2.75,1.93,3.37,2.46c0.31,0.27,0.57,0.31,0.78,0.3c0.58-0.02,0.75-0.66,0.75-0.66
-			s2.72-10.97,2.82-12.44c0.01-0.14,0.02-0.24,0.02-0.33C27.85,12.88,27.84,12.74,27.81,12.68z"/>
+		<defs>
+			<polygon id="SVGID_1_" points="1,1.5 2,1.5 1,2.5 			"/>
+		</defs>
+		<defs>
+			<polygon id="SVGID_2_" points="-1,-0.5 -2,-0.5 -1,-1.5 			"/>
+		</defs>
+		<clipPath id="SVGID_3_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<clipPath id="SVGID_4_" class="st0">
+			<use xlink:href="#SVGID_2_"  style="overflow:visible;"/>
+		</clipPath>
+		<path class="st1" d="M16,0C7.2,0,0,7.2,0,16s7.2,16,16,16s16-7.2,16-16S24.8,0,16,0z M23.8,9.9C23.7,11.4,21,22.4,21,22.4
+			S20.8,23,20.2,23c-0.2,0-0.5,0-0.8-0.3c-0.6-0.5-2-1.5-3.4-2.5c-0.4,0.3-1.2,1-2,1.9c-1.2,1.2-1,0-1,0l0.4-3.8l0,0
+			c0,0,0-0.1,0-0.1s6.9-6.1,7.1-6.8c0,0,0-0.1-0.1-0.1c-0.5,0.2-8.4,5.2-9.3,5.7c-0.1,0-0.2,0-0.2,0l-3.9-1.3c0,0-0.5-0.2-0.3-0.6
+			c0-0.1,0.1-0.2,0.3-0.3c0.9-0.6,15.8-6,15.8-6s0.4-0.1,0.7,0c0.1,0,0.2,0.1,0.2,0.3c0,0.1,0,0.2,0,0.3C23.8,9.7,23.8,9.8,23.8,9.9
+			z"/>
 	</g>
 </g>
 </svg>

@@ -11960,7 +11960,7 @@ th {
     white-space: nowrap;
     overflow: hidden; }
     .profit-object__data-value .value {
-      outline-offset: 2px; }
+      outline: none; }
   .profit-object__data-label {
     font-size: 14px; }
   .profit-object__footer {

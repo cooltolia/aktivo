@@ -69,7 +69,7 @@ mixin object-card(data, hasReserve)
                 +e.reserve-inputs
                     +e.reserve-input
                         label(for='reserveShare1') Количество паев на бронь
-                        input(type='number' id='reserveShare1' data-id='reserveShare' value='6' name='share')
+                        input(type='number' id='reserveShare1' data-id='reserveShare' value='6' min='1' name='share')
                     +e.reserve-input
                         label(for='reserveSum1') Сумма бронирования
                         input(type='text' id='reserveSum1' data-id='reserveSum' disabled)
